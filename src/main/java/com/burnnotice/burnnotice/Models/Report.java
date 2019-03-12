@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name="reports")
-public class Reports {
+public class Report {
 
     @Id @GeneratedValue
     private long id;
@@ -42,16 +42,16 @@ public class Reports {
     private User user;
 
     //type of report being submitted
-//    @OneToOne
-//    private ReportType type;
+    @OneToOne
+    private ReportType type;
 
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "report_to_teams")
-//    @Filter(name="team_number", condition=":teamNumber=1")
-//    private List<RepotType> types;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "report_to_teams")
+    @Filter(name="team_number", condition=":teamNumber=1")
+    private List<ReportType> types;
 
 
 
-    public Reports() {
+    public Report() {
 
     }
 
@@ -135,20 +135,20 @@ public class Reports {
         this.user = user;
     }
 
-//    public ReportType getType() {
-//        return type;
-//    }
-//
-//    public void setType(ReportType type) {
-//        this.type = type;
-//    }
+    public ReportType getType() {
+        return type;
+    }
+
+    public void setType(ReportType type) {
+        this.type = type;
+    }
 
 
-//    public List<RepotType> getTypes() {
-//        return types;
-//    }
-//
-//    public void setTypes(List<RepotType> types) {
-//        this.types = types;
-//    }
+    public List<ReportType> getTypes() {
+        return types;
+    }
+
+    public void setTypes(List<ReportType> types) {
+        this.types = types;
+    }
 }
