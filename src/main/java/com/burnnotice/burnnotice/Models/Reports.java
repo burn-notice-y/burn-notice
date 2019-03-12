@@ -1,7 +1,10 @@
 package com.burnnotice.burnnotice.Models;
 
 
+import org.hibernate.annotations.Filter;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="reports")
@@ -41,6 +44,12 @@ public class Reports {
     //type of report being submitted
 //    @OneToOne
 //    private ReportType type;
+
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "report_to_teams")
+//    @Filter(name="team_number", condition=":teamNumber=1")
+//    private List<RepotType> types;
+
+
 
     public Reports() {
 
@@ -132,5 +141,14 @@ public class Reports {
 //
 //    public void setType(ReportType type) {
 //        this.type = type;
+//    }
+
+
+//    public List<RepotType> getTypes() {
+//        return types;
+//    }
+//
+//    public void setTypes(List<RepotType> types) {
+//        this.types = types;
 //    }
 }
