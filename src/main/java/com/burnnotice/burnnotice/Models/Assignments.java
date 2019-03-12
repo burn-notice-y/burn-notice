@@ -17,15 +17,15 @@ public class Assignments
     @Column(nullable = false)
     private String endDate;
 
-    @Column(nullable = false)
-    private long station;
 
     @Column(nullable = false)
     private boolean engine;
 
-//    @OneToMany
-//    @JoinColumn (name = user_id);
-//    private Assignments assignments;
+    @OneToOne
+    private User station;
+
+    @OneToOne
+    private User user;
 
 
 
@@ -35,14 +35,6 @@ public class Assignments
     {
     }
 
-    public Assignments(String startDate, String endDate, long station, boolean engine)
-    {
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.station = station;
-        this.engine = engine;
-//        this.assignments = assignments;
-    }
 
     public long getId()
     {
@@ -74,16 +66,6 @@ public class Assignments
         this.endDate = endDate;
     }
 
-    public long getStation()
-    {
-        return station;
-    }
-
-    public void setStation(long station)
-    {
-        this.station = station;
-    }
-
     public boolean isEngine()
     {
         return engine;
@@ -94,13 +76,23 @@ public class Assignments
         this.engine = engine;
     }
 
-//    public Assignments getAssignments()
-//    {
-//        return assignments;
-//    }
-//
-//    public void setAssignments(Assignments assignments)
-//    {
-//        this.assignments = assignments;
-//    }
+    public User getStation()
+    {
+        return station;
+    }
+
+    public void setStation(User station)
+    {
+        this.station = station;
+    }
+
+    public User getUser()
+    {
+        return user;
+    }
+
+    public void setUser(User user)
+    {
+        this.user = user;
+    }
 }
