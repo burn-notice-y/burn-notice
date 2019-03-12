@@ -10,12 +10,12 @@ public class Vacancies
 
 
 
-//    @OneToOne(mappedby = fire_stations)
-//    private fire_stations station;
-//
-//
-//    @OneToOne
-//    private fire_stations district;
+    @OneToOne
+    private FireStation station;
+
+
+    @OneToOne
+    private FireStation district;
 
     @Column
     private boolean engine;
@@ -30,6 +30,14 @@ public class Vacancies
     private boolean temporary;
 
 
+    public Vacancies(boolean engine, String postDate, String fillDate, boolean temporary)
+    {
+        this.engine = engine;
+        this.postDate = postDate;
+        this.fillDate = fillDate;
+        this.temporary = temporary;
+    }
+
     public long getId()
     {
         return id;
@@ -38,26 +46,6 @@ public class Vacancies
     public void setId(long id)
     {
         this.id = id;
-    }
-
-    public long getStation()
-    {
-        return station;
-    }
-
-    public void setStation(long station)
-    {
-        this.station = station;
-    }
-
-    public long getDistrict()
-    {
-        return district;
-    }
-
-    public void setDistrict(long district)
-    {
-        this.district = district;
     }
 
     public boolean isEngine()
@@ -100,22 +88,6 @@ public class Vacancies
         this.temporary = temporary;
     }
 
-//    public Vacancies(long station, long district, boolean engine, String postDate, String fillDate, boolean temporary)
-//    {
-//        this.station = station;
-//        this.district = district;
-//        this.engine = engine;
-//        this.postDate = postDate;
-//        this.fillDate = fillDate;
-//        this.temporary = temporary;
-//    }
 
-    public Vacancies(boolean engine, String postDate, String fillDate, boolean temporary)
-    {
-        this.engine = engine;
-        this.postDate = postDate;
-        this.fillDate = fillDate;
-        this.temporary = temporary;
-    }
 
 }
