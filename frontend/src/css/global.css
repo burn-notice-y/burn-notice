@@ -1,12 +1,20 @@
 body {
     margin: 0;
 }
+a {
+    text-decoration: none;
+}
 
 /**************************************************
 Loading Toggle
 ***************************************************/
 .main-content-cont {
     transition: all 0.4s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+    opacity: 1;
 }
 
 .loading-active {

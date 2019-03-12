@@ -12,18 +12,15 @@ class App extends Component {
     componentDidMount() {
         // reaches out and sets user-logged in to store
         this.props.fetchUser();
-        this.props.toggleLoading();
-        setTimeout(() => {
-            this.props.toggleLoading()
-        }, 2000)
     }
     render() {
         let loadingStyle = "";
         let spinnerStyle = "";
         if (this.props.isLoading){
-            loadingStyle = "loading-active";
             spinnerStyle = "spinner-active";
+            loadingStyle = "loading-active";
         }
+
         return (
             <BrowserRouter>
                 <Fragment>
