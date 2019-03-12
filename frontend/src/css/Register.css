@@ -1,0 +1,11 @@
+.big-register-cont {
+    height: 83vh;
+}
+.actions-cont {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5vh;
+}
+.reg-input div {
+    width: 100% !important;
+}

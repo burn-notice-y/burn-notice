@@ -1,17 +1,47 @@
-import React, { Component } from 'react';
-<<<<<<< HEAD
-=======
-
->>>>>>> 7ef9ed42f06747d1235658453455d65f5d494766
+import React, {Component, Fragment} from 'react';
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import {connect} from 'react-redux';
+import * as actions from './store/actions';
+import './css/global.css';
+import Register from "./Components/Register";
+import TopNavBar from './Components/Header/TopBar';
+import Header from './Components/Header/Header';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 class App extends Component {
-  render() {
-    return (
-      <div>
-          Hey
-      </div>
-    );
-  }
+    componentDidMount() {
+        // reaches out and sets user-logged in to store
+        this.props.fetchUser();
+    }
+    render() {
+        let loadingStyle = "";
+        let spinnerStyle = "";
+        if (this.props.isLoading){
+            spinnerStyle = "spinner-active";
+            loadingStyle = "loading-active";
+        }
+
+        return (
+            <BrowserRouter>
+                <Fragment>
+                    <Header/>
+                    <TopNavBar/>
+                    <main className={`main-content-cont ${loadingStyle}`}>
+                    <Switch>
+                        <Route path={"/register"} render={() => <Register/>}/>
+                    </Switch>
+                    </main>
+                    <CircularProgress className={`spinner ${spinnerStyle}`} />
+                </Fragment>
+            </BrowserRouter>
+        );
+    }
 }
 
-export default App;
+const mapStateToProps = state => {
+    return {
+        menuShown: state.menuShown,
+        isLoading: state.isLoading
+    }
+};
+export default connect(mapStateToProps, actions)(App);
