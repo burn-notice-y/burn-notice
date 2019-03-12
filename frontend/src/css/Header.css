@@ -1,0 +1,29 @@
+.top-nav-cont {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    height: 50px;
+    background-color: rgb(34, 34, 101);
+}
+.logo-cont {
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+}
+#company-logo {
+    height: 40px;
+}
+.menu-tog {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+}
+.menu-tog i {
+    font-size: 30px;
+    color: white;
+    transition: all 0.4s ease-in;
+}
+.menu-tog i:active {
+    transform: scale(.8);
+    color: #bfbfbf;
+}
