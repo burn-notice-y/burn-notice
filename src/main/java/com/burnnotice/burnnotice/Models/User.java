@@ -18,7 +18,7 @@ public class User {
     public boolean eligableForTransfer;
 
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     public String sap;
 
     @Column(nullable = false)
