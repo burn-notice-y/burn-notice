@@ -2,14 +2,20 @@ package com.burnnotice.burnnotice.Models;
 
 import javax.persistence.*;
 
-public class Vacancies
+@Entity
+@Table(name = "vacancies")
+public class Vacancy
 {
     @Id
     @GeneratedValue
     private long id;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     private FireStation station;
+
+
+    @OneToOne(cascade = {CascadeType.ALL})
+    private FireStation district;
 
     @Column
     private boolean engine;
@@ -24,12 +30,8 @@ public class Vacancies
     private boolean temporary;
 
 
-    public Vacancies(boolean engine, String postDate, String fillDate, boolean temporary)
+    public Vacancy()
     {
-        this.engine = engine;
-        this.postDate = postDate;
-        this.fillDate = fillDate;
-        this.temporary = temporary;
     }
 
     public long getId()
@@ -82,6 +84,19 @@ public class Vacancies
         this.temporary = temporary;
     }
 
+    public FireStation getStation() {
+        return station;
+    }
 
+    public void setStation(FireStation station) {
+        this.station = station;
+    }
 
+    public FireStation getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(FireStation district) {
+        this.district = district;
+    }
 }
