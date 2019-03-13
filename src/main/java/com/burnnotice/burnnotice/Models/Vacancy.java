@@ -2,7 +2,7 @@ package com.burnnotice.burnnotice.Models;
 
 import javax.persistence.*;
 
-public class Vacancies
+public class Vacancy
 {
     @Id
     @GeneratedValue
@@ -30,12 +30,8 @@ public class Vacancies
     private boolean temporary;
 
 
-    public Vacancies(boolean engine, String postDate, String fillDate, boolean temporary)
+    public Vacancy()
     {
-        this.engine = engine;
-        this.postDate = postDate;
-        this.fillDate = fillDate;
-        this.temporary = temporary;
     }
 
     public long getId()
