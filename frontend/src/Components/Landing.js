@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../css/Landing.css';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
 
 class Landing extends Component {
     render(){
@@ -19,9 +20,10 @@ class Landing extends Component {
                         </Typography>
                     </div>
                     <div className="action-info-cont">
-                        <Button variant="contained" color="primary" className={"landing-button"}>
+                        <Link to={"/register"}><Button variant="contained" color="primary" className={"landing-button"}>
                             Create an Account
-                        </Button>
+                            </Button>
+                        </Link>
                     </div>
                 </div>
             </div>
