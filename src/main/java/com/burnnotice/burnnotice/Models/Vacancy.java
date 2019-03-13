@@ -4,8 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "vacancies")
-public class Vacancy
-{
+public class Vacancy {
     @Id
     @GeneratedValue
     private long id;
@@ -30,57 +29,46 @@ public class Vacancy
     private boolean temporary;
 
 
-    public Vacancy()
-    {
+    public Vacancy() {
     }
 
-    public long getId()
-    {
+    public long getId() {
         return id;
     }
 
-    public void setId(long id)
-    {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public boolean isEngine()
-    {
+    public boolean isEngine() {
         return engine;
     }
 
-    public void setEngine(boolean engine)
-    {
+    public void setEngine(boolean engine) {
         this.engine = engine;
     }
 
-    public String getPostDate()
-    {
+    public String getPostDate() {
         return postDate;
     }
 
-    public void setPostDate(String postDate)
-    {
+    public void setPostDate(String postDate) {
         this.postDate = postDate;
     }
 
-    public String getFillDate()
-    {
+    public String getFillDate() {
         return fillDate;
     }
 
-    public void setFillDate(String fillDate)
-    {
+    public void setFillDate(String fillDate) {
         this.fillDate = fillDate;
     }
 
-    public boolean isTemporary()
-    {
+    public boolean isTemporary() {
         return temporary;
     }
 
-    public void setTemporary(boolean temporary)
-    {
+    public void setTemporary(boolean temporary) {
         this.temporary = temporary;
     }
 
@@ -99,3 +87,4 @@ public class Vacancy
     public void setDistrict(FireStation district) {
         this.district = district;
     }
+}
