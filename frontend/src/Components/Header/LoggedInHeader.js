@@ -15,9 +15,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import Person from '@material-ui/icons/Person';
 import PersonOutline from '@material-ui/icons/PersonOutline';
 import LibraryBooks from '@material-ui/icons/LibraryBooks';
-import CompareArrows from '@material-ui/icons/CompareArrows';
 import LibraryAdd from '@material-ui/icons/LibraryAdd';
-import ContactMail from '@material-ui/icons/ContactMail';
 import Assignment from '@material-ui/icons/Assignment';
 import Forum from '@material-ui/icons/Forum';
 

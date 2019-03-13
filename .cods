@@ -1,0 +1,2 @@
+BUILD_COMMAND='mvn clean install'
+JAR_FILE=target/burn-notice-0.0.1-SNAPSHOT.jar
