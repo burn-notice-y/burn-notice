@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions';
 import { Link, withRouter, Redirect } from 'react-router-dom';

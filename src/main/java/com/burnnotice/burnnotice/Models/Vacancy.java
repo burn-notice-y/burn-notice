@@ -99,4 +99,3 @@ public class Vacancy
     public void setDistrict(FireStation district) {
         this.district = district;
     }
-}

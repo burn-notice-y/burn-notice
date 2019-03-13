@@ -1,0 +1,18 @@
+.vacancy-cont {
+    margin: 4vh 0;
+}
+.availability-cont {
+    margin-top: 2vh !important;
+}
+
+.vacancy-header-cont {
+    display: flex;
+    justify-content: space-between;
+}
+.admin-create-vacancy {
+    height: 85vh;
+    overflow: scroll;
+}
+.picker {
+    margin-top: 10px;
+}
