@@ -7,12 +7,36 @@ public class FireStation {
     @Id @GeneratedValue
     private long id;
 
-//    @OneToOne
-//    private District district;
+    @OneToOne
+    private District district;
 
     @OneToOne
     private User user;
 
     public FireStation() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public District getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(District district) {
+        this.district = district;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

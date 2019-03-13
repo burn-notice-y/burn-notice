@@ -3,7 +3,7 @@
     width: 100%;
     justify-content: space-between;
     height: 50px;
-    background-color: rgb(34, 34, 101);
+    background-color: #36319d;
 }
 .logo-cont {
     display: flex;
@@ -26,4 +26,10 @@
 .menu-tog i:active {
     transform: scale(.8);
     color: #bfbfbf;
+}
+.logo-cont {
+    margin-right: 3%;
+}
+.list-item {
+    width: 100%;
 }

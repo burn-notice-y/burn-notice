@@ -9,7 +9,14 @@ public class User {
     private long id;
 
     @Column(nullable = false)
-    public String name;
+    public String firstName;
+
+    @Column(nullable = false)
+    public String lastName;
+
+    @Column(nullable=false)
+    public boolean eligableForTransfer;
+
 
     @Column(nullable = false)
     public String sap;
@@ -32,14 +39,6 @@ public class User {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getSap() {
@@ -72,5 +71,29 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public boolean isEligableForTransfer() {
+        return eligableForTransfer;
+    }
+
+    public void setEligableForTransfer(boolean eligableForTransfer) {
+        this.eligableForTransfer = eligableForTransfer;
     }
 }
