@@ -30,11 +30,9 @@ public class VacancyController
     }
 
     @PostMapping("/api/create-vacancy")
-    public Vacancy createVacancy(@RequestBody Vacancy vacancy)
+    public void createVacancy(@RequestBody Vacancy vacancy)
     {
-
         vacDao.save(vacancy);
-        return vacancy;
     }
 
 
