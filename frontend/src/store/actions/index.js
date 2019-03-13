@@ -8,7 +8,7 @@ import {
 
 // function to sign in
 export const fetchUser = () => dispatch => {
-        dispatch({type: FETCH_USER, payload: false})
+        dispatch({type: FETCH_USER, payload: {id: 1, chief: true, lastName: "Butt"}})
 };
 export const toggleMenu = () => dispatch => {
     dispatch({type: MENU_SHOWN})

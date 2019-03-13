@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Vacancies from '../../data/bigVacancy';
+import vacancy from '../../data/bigVacancy';
 
 class BigVacancy extends Component {
     render(){

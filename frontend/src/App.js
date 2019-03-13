@@ -9,6 +9,13 @@ import TopNavBar from './Components/Header/TopBar';
 import Landing from './Components/Landing';
 import Header from './Components/Header/Header';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import PropTypes from 'prop-types';
+import AdminPortal from "./Components/Admin/AdminPortal";
+import UserPortal from "./Components/User/UserPortal";
+import { MuiPickersUtilsProvider } from 'material-ui-pickers';
+import MomentUtils from '@date-io/moment';
+
+
 
 class App extends Component {
     componentDidMount() {
@@ -24,6 +31,7 @@ class App extends Component {
         }
 
         return (
+            <MuiPickersUtilsProvider utils={MomentUtils}>
             <BrowserRouter>
                 <Fragment>
                     <Header/>
@@ -31,6 +39,8 @@ class App extends Component {
                     <main className={`main-content-cont ${loadingStyle}`}>
                     <Switch>
                         <Route path={"/register"} render={() => <Register/>}/>
+                        <Route path={"/admin"} render={() => <AdminPortal/>}/>
+                        <Route path={"/profile"} render={() => <UserPortal/>}/>
                         <Route path={"/login"} render={() => <Login/>}/>
                         <Route path={"/"} render={() => <Landing/>}/>
                     </Switch>
@@ -38,9 +48,14 @@ class App extends Component {
                     <CircularProgress className={`spinner ${spinnerStyle}`} />
                 </Fragment>
             </BrowserRouter>
+            </MuiPickersUtilsProvider>
         );
     }
 }
+
+App.propTypes = {
+    fetchUser: PropTypes.any.isRequired
+};
 
 const mapStateToProps = state => {
     return {
