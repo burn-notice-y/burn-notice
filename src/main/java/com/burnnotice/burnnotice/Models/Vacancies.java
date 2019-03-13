@@ -8,14 +8,8 @@ public class Vacancies
     @GeneratedValue
     private long id;
 
-
-
     @OneToOne
     private FireStation station;
-
-
-    @OneToOne
-    private FireStation district;
 
     @Column
     private boolean engine;
