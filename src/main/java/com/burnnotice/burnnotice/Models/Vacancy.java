@@ -11,11 +11,11 @@ public class Vacancy
     private long id;
 
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     private FireStation station;
 
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     private FireStation district;
 
     @Column
@@ -33,29 +33,6 @@ public class Vacancy
 
     public Vacancy()
     {
-    }
-
-
-
-    public Vacancy(FireStation station, FireStation district, boolean engine, String postDate, String fillDate, boolean temporary)
-    {
-        this.station = station;
-        this.district = district;
-        this.engine = engine;
-        this.postDate = postDate;
-        this.fillDate = fillDate;
-        this.temporary = temporary;
-    }
-
-    public Vacancy(long id, FireStation station, FireStation district, boolean engine, String postDate, String fillDate, boolean temporary)
-    {
-        this.id = id;
-        this.station = station;
-        this.district = district;
-        this.engine = engine;
-        this.postDate = postDate;
-        this.fillDate = fillDate;
-        this.temporary = temporary;
     }
 
 
