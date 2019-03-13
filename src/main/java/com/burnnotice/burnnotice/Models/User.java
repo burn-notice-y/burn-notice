@@ -15,7 +15,7 @@ public class User {
     public String lastName;
 
     @Column(nullable=false)
-    public boolean eligableForTransfer;
+    public boolean eligibleForTransfer;
 
 
     @Column(nullable = false, unique = true)
@@ -89,11 +89,11 @@ public class User {
         this.lastName = lastName;
     }
 
-    public boolean isEligableForTransfer() {
-        return eligableForTransfer;
+    public boolean isEligibleForTransfer() {
+        return eligibleForTransfer;
     }
 
-    public void setEligableForTransfer(boolean eligableForTransfer) {
-        this.eligableForTransfer = eligableForTransfer;
+    public void setEligibleForTransfer(boolean eligibleForTransfer) {
+        this.eligibleForTransfer = eligibleForTransfer;
     }
 }
