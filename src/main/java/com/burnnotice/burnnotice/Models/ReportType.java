@@ -1,6 +1,7 @@
 package com.burnnotice.burnnotice.Models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "types" )
@@ -10,6 +11,10 @@ public class ReportType {
 
     @Column(nullable = false)
     private String name;
+
+    @ManyToOne
+    @JoinColumn (name = "report_id")
+    private Report report;
 
     public long getId() {
         return id;
