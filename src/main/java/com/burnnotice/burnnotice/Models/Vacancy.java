@@ -10,7 +10,6 @@ public class Vacancy
     @GeneratedValue
     private long id;
 
-
     @OneToOne(cascade = {CascadeType.ALL})
     private FireStation station;
 
@@ -34,7 +33,6 @@ public class Vacancy
     public Vacancy()
     {
     }
-
 
     public long getId()
     {

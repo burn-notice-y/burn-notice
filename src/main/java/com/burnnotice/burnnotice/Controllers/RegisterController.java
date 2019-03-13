@@ -12,8 +12,9 @@ public class RegisterController {
         this.registerDao = registerDao;
     }
 
-    @PostMapping("api/register")
+    @PostMapping("/api/register")
     public void register(@RequestBody User newUser){
+//        newUser.setPassword(newUser.getPassword());
         registerDao.save(newUser);
     }
 

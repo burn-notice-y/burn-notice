@@ -14,6 +14,8 @@ public class District {
     @OneToOne
     private User user;
 
+
+
     public String getName() {
         return name;
     }
