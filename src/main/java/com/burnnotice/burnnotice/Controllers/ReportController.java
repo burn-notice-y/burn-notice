@@ -1,21 +1,18 @@
 package com.burnnotice.burnnotice.Controllers;
 
 
-import com.burnnotice.burnnotice.Repository.ReportRepository;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import com.burnnotice.burnnotice.Models.Report;
+import com.burnnotice.burnnotice.Repositories.ReportRepository;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
-@Controller
-public class Report {
+@RestController
+public class ReportController {
 
     private final ReportRepository reportDao;
 
-    public Report(ReportRepository reportDao) {
+    public ReportController(ReportRepository reportDao) {
         this.reportDao = reportDao;
     }
 

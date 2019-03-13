@@ -1,8 +1,5 @@
 package com.burnnotice.burnnotice.Models;
 
-
-import org.hibernate.annotations.Filter;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -53,6 +50,7 @@ public class Report {
     public Report() {
 
     }
+
 
     public long getId() {
         return id;
