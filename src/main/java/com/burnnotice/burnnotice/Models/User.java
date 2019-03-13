@@ -1,5 +1,7 @@
 package com.burnnotice.burnnotice.Models;
 
+import com.burnnotice.burnnotice.util.Password;
+
 import javax.persistence.*;
 
 @Entity
@@ -15,10 +17,9 @@ public class User {
     public String lastName;
 
     @Column(nullable=false)
-    public boolean eligableForTransfer;
+    public boolean eligibleForTransfer;
 
-
-    @Column(nullable = false)
+    @Column(nullable = false, unique=true)
     public String sap;
 
     @Column(nullable = false)
@@ -32,6 +33,26 @@ public class User {
 
     public User() {
     }
+
+    // User 1st time creation constructor
+    public User(String sap, String email, String password, String firstName, String lastName) {
+        this.sap = sap;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = Password.encrypt(password);
+    }
+
+    // User retrieval constructor
+    public User(long id, String sap, String email, String password, String firstName, String lastName) {
+        this.id = id;
+        this.sap = sap;
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
 
     public long getId() {
         return id;
@@ -54,7 +75,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = Password.encrypt(password);
     }
 
     public boolean isChief() {
@@ -89,11 +110,11 @@ public class User {
         this.lastName = lastName;
     }
 
-    public boolean isEligableForTransfer() {
-        return eligableForTransfer;
+    public boolean isEligibleForTransfer() {
+        return eligibleForTransfer;
     }
 
-    public void setEligableForTransfer(boolean eligableForTransfer) {
-        this.eligableForTransfer = eligableForTransfer;
+    public void setEligibleForTransfer(boolean eligibleForTransfer) {
+        this.eligibleForTransfer = eligibleForTransfer;
     }
 }

@@ -7,7 +7,7 @@ public class FireStation {
     @Id @GeneratedValue
     private long id;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     private District district;
 
     @OneToOne
