@@ -1,6 +1,5 @@
 package com.burnnotice.burnnotice.Controllers;
 
-
 import com.burnnotice.burnnotice.Models.Vacancy;
 import com.burnnotice.burnnotice.Repositories.VacancyRepository;
 import org.springframework.web.bind.annotation.*;
@@ -31,11 +30,9 @@ public class VacancyController
     }
 
     @PostMapping("/api/create-vacancy")
-    public Vacancy createVacancy(@RequestBody Vacancy vacancy)
+    public void createVacancy(@RequestBody Vacancy vacancy)
     {
-
         vacDao.save(vacancy);
-        return vacancy;
     }
 
 

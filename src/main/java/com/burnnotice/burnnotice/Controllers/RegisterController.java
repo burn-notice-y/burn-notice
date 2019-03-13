@@ -2,7 +2,6 @@ package com.burnnotice.burnnotice.Controllers;
 
 import com.burnnotice.burnnotice.Models.User;
 import com.burnnotice.burnnotice.Repositories.RegisterRepository;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

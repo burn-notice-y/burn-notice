@@ -10,13 +10,11 @@ public class Vacancy
     @GeneratedValue
     private long id;
 
-
-
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     private FireStation station;
 
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     private FireStation district;
 
     @Column
