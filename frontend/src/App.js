@@ -4,7 +4,9 @@ import {connect} from 'react-redux';
 import * as actions from './store/actions';
 import './css/global.css';
 import Register from "./Components/Register";
+import Login from "./Components/Login";
 import TopNavBar from './Components/Header/TopBar';
+import Landing from './Components/Landing';
 import Header from './Components/Header/Header';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -29,6 +31,8 @@ class App extends Component {
                     <main className={`main-content-cont ${loadingStyle}`}>
                     <Switch>
                         <Route path={"/register"} render={() => <Register/>}/>
+                        <Route path={"/login"} render={() => <Login/>}/>
+                        <Route path={"/"} render={() => <Landing/>}/>
                     </Switch>
                     </main>
                     <CircularProgress className={`spinner ${spinnerStyle}`} />

@@ -1,0 +1,25 @@
+.landing-cont {
+    height: 80vh;
+    width: 70%;
+}
+.landing-header-cont {
+    margin-bottom: 10vh;
+}
+.landing-info-cont {
+    margin-bottom: 10vh;
+}
+.landing-button {
+    width: 80%;
+    background-color: #36319d !important;
+    color: white !important;
+}
+.action-info-cont {
+    text-align: center;
+}
+.full-cont {
+    width: 100%;
+    height: 95vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

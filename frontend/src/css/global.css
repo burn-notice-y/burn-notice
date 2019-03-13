@@ -13,13 +13,14 @@ Loading Toggle
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 90vh;
+    height: 95vh;
     opacity: 1;
 }
 
 .loading-active {
-    opacity: 0;
+    filter: blur(3px);
 }
+
 .spinner {
     position: absolute;
     top: 50%;
@@ -29,6 +30,7 @@ Loading Toggle
     opacity: 0;
     transition: all 0.3s ease-in-out;
 }
+
 .spinner-active {
     opacity: 1;
 }
