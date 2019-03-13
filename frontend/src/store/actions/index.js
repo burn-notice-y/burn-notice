@@ -1,4 +1,4 @@
-import axios from 'axios';
+
 import {
     FETCH_USER,
     MENU_SHOWN,
@@ -8,7 +8,7 @@ import {
 
 // function to sign in
 export const fetchUser = () => dispatch => {
-        dispatch({type: FETCH_USER, payload: {name: "Billy"}})
+        dispatch({type: FETCH_USER, payload: false})
 };
 export const toggleMenu = () => dispatch => {
     dispatch({type: MENU_SHOWN})
