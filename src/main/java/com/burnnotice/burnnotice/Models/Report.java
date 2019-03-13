@@ -45,8 +45,7 @@ public class Report {
     @OneToOne
     private ReportType type;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "report_to_teams")
-    @Filter(name="team_number", condition=":teamNumber=1")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "report")
     private List<ReportType> types;
 
 
