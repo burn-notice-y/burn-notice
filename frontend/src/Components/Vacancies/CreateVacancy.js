@@ -5,12 +5,8 @@ import { withRouter, Redirect } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import DatePickClass from './DatePickClass'
+import DatePickClass from '../DatePickClass'
 import axios from 'axios';
-import FormControl from "@material-ui/core/FormControl/FormControl";
-import InputLabel from "@material-ui/core/InputLabel/InputLabel";
-import Select from "@material-ui/core/Select/Select";
-import Input from "@material-ui/core/Input/Input";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import { fireStations } from '../../data/categories';
 import FormLabel from "@material-ui/core/FormLabel/FormLabel";
@@ -61,7 +57,7 @@ class CreateVacancy extends Component{
         if (this.state.redirect){
             return <Redirect to={"/vacancies"}/>
         }
-
+console.log("happening")
         return (
             <div className={"admin-create-vacancy"}>
                 <div className="vacancy-header">
