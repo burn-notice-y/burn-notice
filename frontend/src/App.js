@@ -15,6 +15,7 @@ import UserPortal from "./Components/User/UserPortal";
 import { MuiPickersUtilsProvider } from 'material-ui-pickers';
 import MomentUtils from '@date-io/moment';
 import VacancyDisplay from "./Components/Vacancies/VacancyDisplay";
+import ManyFirefighters from "./Components/Firefighters/ManyFirefighters";
 
 
 
@@ -44,6 +45,7 @@ class App extends Component {
                         <Route path={"/profile"} render={() => <UserPortal/>}/>
                         <Route path={"/login"} render={() => <Login/>}/>
                         <Route path={"/vacancies"} render={() => <VacancyDisplay/>}/>
+                        <Route path={"/firefighter"} render={() => <ManyFirefighters/>}/>
                         <Route path={"/"} render={() => <Landing/>}/>
                     </Switch>
                     </main>
