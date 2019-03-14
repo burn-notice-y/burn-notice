@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Switch, Route } from 'react-router-dom'
 import CreateVacancy from "./CreateVacancy";
-import AdminVacancies from "./AdminVacancies";
 
 // this component is the view for the admin to route to actions
 
@@ -12,7 +11,6 @@ class AdminPortal extends Component {
             <Fragment>
                 <Switch>
                     <Route path={"/admin/create/vacancy"} render={() => <CreateVacancy/>}/>
-                    <Route path={"/admin/view/vacancy"} render={() => <AdminVacancies/>}/>
                 </Switch>
             </Fragment>
         )

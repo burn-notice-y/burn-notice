@@ -9,7 +9,7 @@ class ManyVacancies extends Component {
         return (
             <div className="many-vacancies-cont">
                 <div className="vacancy-body">
-                    {allVacancies.map(vacancy => <Vacancy admin={this.props.admin} key={vacancy.id} {...vacancy}/>)}
+                    {allVacancies.map(vacancy => <Vacancy admin={this.props.admin} key={vacancy.id} {...vacancy} />)}
                 </div>
             </div>
         )

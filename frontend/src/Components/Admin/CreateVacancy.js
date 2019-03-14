@@ -117,7 +117,7 @@ class CreateVacancy extends Component{
                             variant="outlined"
                         >
                             {fireStations.map(option => (
-                                <MenuItem key={option} value={option}>
+                                <MenuItem key={option} value={option} className={"station-num"}>
                                     {option}
                                 </MenuItem>
                             ))}
