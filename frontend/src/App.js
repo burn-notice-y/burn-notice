@@ -10,12 +10,10 @@ import Landing from './Components/Landing';
 import Header from './Components/Header/Header';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import PropTypes from 'prop-types';
-import AdminPortal from "./Components/Admin/AdminPortal";
-import UserPortal from "./Components/User/UserPortal";
 import { MuiPickersUtilsProvider } from 'material-ui-pickers';
 import MomentUtils from '@date-io/moment';
-import VacancyDisplay from "./Components/Vacancies/VacancyDisplay";
 import Profile from "./Components/Profile";
+import VacancyRouter from "./Components/Vacancies/VacancyRouter";
 
 
 
@@ -40,10 +38,9 @@ class App extends Component {
                     <TopNavBar/>
                     <main className={`main-content-cont ${loadingStyle}`}>
                     <Switch>
+                        <Route path={"/vacancy"} render={() => <VacancyRouter/>}/>
                         <Route path={"/register"} render={() => <Register/>}/>
-                        <Route path={"/admin"} render={() => <AdminPortal/>}/>
                         <Route path={"/login"} render={() => <Login/>}/>
-                        <Route path={"/vacancies"} render={() => <VacancyDisplay/>}/>
                         <Route path={"/profile"} render={() => <Profile/>}/>
                         <Route path={"/"} render={() => <Landing/>}/>
                     </Switch>
