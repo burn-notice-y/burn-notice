@@ -3,8 +3,6 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 import * as actions from './store/actions';
 import './css/global.css';
-import Register from "./Components/Register";
-import Login from "./Components/Login";
 import TopNavBar from './Components/Header/TopBar';
 import Landing from './Components/Landing';
 import Header from './Components/Header/Header';
@@ -12,9 +10,9 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import PropTypes from 'prop-types';
 import { MuiPickersUtilsProvider } from 'material-ui-pickers';
 import MomentUtils from '@date-io/moment';
-import Profile from "./Components/Profile";
 import VacancyRouter from "./Components/Vacancies/VacancyRouter";
 import UserActionRouter from "./Components/UserActionsRouter";
+import AssignmentRouter from "./Components/Assignments/AssignmentsRouter";
 
 
 
@@ -41,6 +39,7 @@ class App extends Component {
                     <Switch>
                         <Route path={"/vacancy"} render={() => <VacancyRouter/>}/>
                         <Route path={"/user"} render={() => <UserActionRouter/>}/>
+                        <Route path={"/assignments"} render={() => <AssignmentRouter/>}/>
                         <Route path={"/"} render={() => <Landing/>}/>
                     </Switch>
                     </main>
