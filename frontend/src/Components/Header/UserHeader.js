@@ -36,7 +36,6 @@ class UserHeader extends Component{
     };
 
     render(){
-
         const navItems = (
             <div className={"nav-items-test"}>
                 <CardHeader title={"Burn Notice"}/>
