@@ -14,6 +14,7 @@ import { MuiPickersUtilsProvider } from 'material-ui-pickers';
 import MomentUtils from '@date-io/moment';
 import Profile from "./Components/Profile";
 import VacancyRouter from "./Components/Vacancies/VacancyRouter";
+import UserActionRouter from "./Components/UserActionsRouter";
 
 
 
@@ -39,9 +40,7 @@ class App extends Component {
                     <main className={`main-content-cont ${loadingStyle}`}>
                     <Switch>
                         <Route path={"/vacancy"} render={() => <VacancyRouter/>}/>
-                        <Route path={"/register"} render={() => <Register/>}/>
-                        <Route path={"/login"} render={() => <Login/>}/>
-                        <Route path={"/profile"} render={() => <Profile/>}/>
+                        <Route path={"/user"} render={() => <UserActionRouter/>}/>
                         <Route path={"/"} render={() => <Landing/>}/>
                     </Switch>
                     </main>
