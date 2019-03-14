@@ -1,6 +1,9 @@
 .vacancy-cont {
     margin: 4vh 0;
 }
+.vac-date-cont {
+    margin-top: 10vh;
+}
 .availability-cont {
     margin-top: 2vh !important;
 }
@@ -15,4 +18,19 @@
 }
 .picker {
     margin-top: 10px;
+}
+.vacancy-cat {
+    margin-bottom:15px;
+}
+.role-cont {
+    display: flex;
+    justify-content: space-between !important;
+    flex-direction: row !important;
+}
+.role-cont label {
+    width: 40% !important;
+    float: left;
+}
+.vac-role-cont {
+    margin-top: 20px;
 }

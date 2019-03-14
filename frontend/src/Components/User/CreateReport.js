@@ -12,7 +12,7 @@ import InputLabel from "@material-ui/core/InputLabel/InputLabel";
 import Select from "@material-ui/core/Select/Select";
 import Input from "@material-ui/core/Input/Input";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
-import { fireStations } from '../../data/categories';
+import { reportCategories } from '../../data/categories';
 import FormLabel from "@material-ui/core/FormLabel/FormLabel";
 import RadioGroup from "@material-ui/core/RadioGroup/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel/FormControlLabel";
@@ -22,7 +22,6 @@ import Radio from "@material-ui/core/Radio/Radio";
 class CreateVacancy extends Component{
     state = {
         reportType: "",
-        temporary: "",
         redirect: false,
         error: false,
         disabled: false,
@@ -64,12 +63,29 @@ class CreateVacancy extends Component{
 
         return (
             <div className={"admin-create-vacancy"}>
-                <div className="vacancy-header">
+                <div className="register-header">
                     <Typography component="h3" variant="h3" gutterBottom className={"registration-header"}>
                         Create a Vacancy
                     </Typography>
                 </div>
                 <div className="input-cont">
+                    <div className="vacancy-cat reg-input">
+                        <TextField
+                            id="outlined-select-currency"
+                            select
+                            label="Station With Vacancy"
+                            value={this.state.reportType}
+                            onChange={this.inputHandler('reportType')}
+                            margin="normal"
+                            variant="outlined"
+                        >
+                            {reportCategories.map(option => (
+                                <MenuItem key={option} value={option}>
+                                    {option}
+                                </MenuItem>
+                            ))}
+                        </TextField>
+                    </div>
                     <div className="vac-date-cont reg-input">
                         <DatePickClass/>
                     </div>
@@ -89,39 +105,38 @@ class CreateVacancy extends Component{
                         </div>
 
                     </div>
-
-                    <div className="vac-role-cont reg-input">
-                        <FormLabel component="legend">Is this role temporary?</FormLabel>
-                        <div >
-                            <RadioGroup
-                                className="role-cont"
-                                aria-label="Role"
-                                name="temporary"
-                                value={this.state.temporary}
-                                onChange={this.inputHandler('temporary')}
-                            >
-                                <FormControlLabel value="true" control={<Radio />} label="Yes" />
-                                <FormControlLabel value="false" control={<Radio />} label="No" />
-                            </RadioGroup>
-                        </div>
-
-                    </div>
-                    <div className="vacancy-cat reg-input">
+                    <div className="reg-email reg-input">
                         <TextField
-                            id="outlined-select-currency"
-                            select
-                            label="Station With Vacancy"
-                            value={this.state.reportType}
-                            onChange={this.inputHandler('reportType')}
+                            error={this.state.error}
+                            label="Email"
+                            type="email"
+                            value={this.state.email}
+                            onChange={this.inputHandler('email')}
                             margin="normal"
                             variant="outlined"
-                        >
-                            {fireStations.map(option => (
-                                <MenuItem key={option} value={option}>
-                                    {option}
-                                </MenuItem>
-                            ))}
-                        </TextField>
+                        />
+                    </div>
+                    <div className="reg-first-name reg-input">
+                        <TextField
+                            error={this.state.error}
+                            label="First Name"
+                            type="email"
+                            value={this.state.firstName}
+                            onChange={this.inputHandler('firstName')}
+                            margin="normal"
+                            variant="outlined"
+                        />
+                    </div>
+                    <div className="reg-last-name reg-input">
+                        <TextField
+                            error={this.state.error}
+                            label="Last Name"
+                            type="text"
+                            value={this.state.lastName}
+                            onChange={this.inputHandler('lastName')}
+                            margin="normal"
+                            variant="outlined"
+                        />
                     </div>
                 </div>
                 <div className="actions-cont">
