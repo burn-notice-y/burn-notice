@@ -1,0 +1,15 @@
+.big-edit-cont {
+    width: 80%;
+}
+.top {
+    display: flex;
+    justify-content: space-between;
+}
+.big-edit-cont {
+    height: 85vh;
+    overflow: scroll;
+}
+.actions-cont {
+    display: flex;
+    justify-content: flex-end;
+}
