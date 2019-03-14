@@ -32,6 +32,7 @@ class Vacancy extends Component {
         let role = "";
         this.props.engine ? role = "Engine" : role = "Truck";
 
+
         return (
             <Card className={"vacancy-cont"}>
                 <CardContent>
@@ -51,7 +52,7 @@ class Vacancy extends Component {
                     </Typography>
                 </CardContent>
                 <CardActions className={"vacancy-actions-cont"}>
-                    <Link to={`/admin/vacancy/${this.props.id}`}><Button size="small">See more</Button></Link>
+                    <Link to={`/vacancy/${this.props.id}`}><Button size="small">See more</Button></Link>
                 </CardActions>
             </Card>
         )
