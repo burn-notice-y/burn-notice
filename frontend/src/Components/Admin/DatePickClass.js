@@ -16,7 +16,7 @@ class DatePick extends Component {
             <InlineDatePicker
                 clearable
                 variant="outlined"
-                label="Created Date"
+                label="Start Date"
                 value={this.state.selectedDate}
                 onChange={this.handleDateChange}
                 format={"MM/DD/YYYY"}
