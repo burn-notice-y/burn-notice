@@ -1,0 +1,14 @@
+#ff_title{
+    width: 100% !important;
+    font-weight: normal;
+    font-size: 20px;
+}
+
+#ff_content{
+    width: 90% !important;
+}
+
+#ff_body{
+    width: 90% !important;
+    display: block !important;
+}
