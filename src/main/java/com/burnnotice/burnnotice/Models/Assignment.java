@@ -4,8 +4,8 @@ package com.burnnotice.burnnotice.Models;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Assignments")
-public class Assignments
+@Table(name="assignments")
+public class Assignment
 {
     @Id
     @GeneratedValue
@@ -27,14 +27,8 @@ public class Assignments
     @OneToOne
     private User user;
 
-
-
-
-
-    public Assignments()
-    {
+    public Assignment() {
     }
-
 
     public long getId()
     {

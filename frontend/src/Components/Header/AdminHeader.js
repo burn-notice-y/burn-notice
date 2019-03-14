@@ -53,7 +53,7 @@ class AdminHeader extends Component {
                 <CardHeader title={"Burn Notice"} subheader={`Welcome, Chief ${this.props.user.lastName}`}/>
                 <List>
                     <ListSubheader>Actions</ListSubheader>
-                    {[['Vacancies', '/admin/view/vacancy'], ['Create Vacancy', `/admin/create/vacancy`], ['Review Requests', '/admin/requests'], [`Assignment History`, `/assignments`]].map((text, index) => (
+                    {[['Vacancies', '/vacancy/show'], ['Create Vacancy', `/vacancy/create`], ['Review Requests', '/request'], [`Assignment History`, `/assignments/show`]].map((text, index) => (
                             <ListItem button key={index}>
                                 <ListItemIcon>{text[0] === "Ads" ?
                                     <LibraryBooks/> : this.determineIcon(text[0])}</ListItemIcon>
@@ -67,7 +67,7 @@ class AdminHeader extends Component {
                     <ListSubheader>Personal</ListSubheader>
                     <ListItem button>
                         <ListItemIcon><Person/></ListItemIcon>
-                        <Link component={RouterLink} to={"/profile"}><ListItemText primary={"Profile"}/></Link>
+                        <Link component={RouterLink} to={"/user/profile"}><ListItemText primary={"Profile"}/></Link>
                     </ListItem>
 
                     <ListItem button>

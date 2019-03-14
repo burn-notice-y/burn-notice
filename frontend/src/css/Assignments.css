@@ -1,0 +1,17 @@
+.assignments-cont {
+    height: 85vh;
+    width: 80%;
+}
+.assignments-content {
+    height: 65vh;
+    overflow: scroll;
+}
+.assignment {
+    margin: 3vh 0;
+}
+.assignment-dates {
+    margin-top: 2vh!important;
+}
+.date {
+    margin: 1vh 0 !important;
+}

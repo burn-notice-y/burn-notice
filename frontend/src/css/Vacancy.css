@@ -37,3 +37,7 @@
 .station-num {
     justify-content: center !important;
 }
+
+.card-size {
+    width: 80vh !important;
+}
