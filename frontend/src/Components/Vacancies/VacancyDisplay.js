@@ -2,12 +2,24 @@ import React, { Component } from 'react';
 import Typography from '@material-ui/core/Typography';
 import ManyVacancies from "../Vacancies/ManyVacancies";
 import '../../css/AdminVacancy.css';
+import { connect } from 'react-redux';
+import * as actions from '../../store/actions';
 
 
 // this component is the admin's view of Vacancies in their district
 
-class AdminVacancies extends Component{
+class VacancyDisplay extends Component{
+    // if chief is true, send chief to ManyVacancies
+
     render(){
+        let chief = false;
+        // waits for the db to come back with a value
+        if (this.props.user){
+            // if they are a chief,
+            if (this.props.user.chief){
+                chief = true;
+            }
+        }
         return(
             <div className="view-vacancy-cont">
                 <div className="view-vacancy-header">
@@ -16,10 +28,16 @@ class AdminVacancies extends Component{
                     </Typography>
                 </div>
                 <div className="vacancy-cont">
-                    <ManyVacancies admin={true}/>
+                    <ManyVacancies admin={chief}/>
                 </div>
             </div>
         )
     }
 }
-export default AdminVacancies;
+
+const mapStateToProps = state => {
+    return {
+        user: state.user
+    }
+}
+export default connect(mapStateToProps, actions)(VacancyDisplay);
