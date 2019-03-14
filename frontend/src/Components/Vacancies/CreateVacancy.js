@@ -57,7 +57,6 @@ class CreateVacancy extends Component{
         if (this.state.redirect){
             return <Redirect to={"/vacancies"}/>
         }
-console.log("happening")
         return (
             <div className={"admin-create-vacancy"}>
                 <div className="vacancy-header">
