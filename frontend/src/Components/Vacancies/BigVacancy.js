@@ -6,6 +6,7 @@ import Card from "@material-ui/core/Card/Card";
 import IconButton from "@material-ui/core/IconButton/IconButton";
 import DeleteIcon from "@material-ui/core/SvgIcon/SvgIcon";
 import moment from 'moment';
+import ManyFirefighters from '../Firefighters/ManyFirefighters';
 
 // show all of the properties from the vacancy object
 
@@ -63,15 +64,13 @@ class BigVacancy extends Component {
                     <Typography variant="h5" component="h2" gutterBottom>
                         Temporary: {temporary}
                     </Typography>
-                    <Typography variant="h5" component="h2" gutterBottom>
-                         Current Crew: {vacancy.fireStation.currentCrew[0].firstName}
-                    </Typography>
                     <Typography variant="body1" component="h2" gutterBottom>
                         Post Date: {postDate}
                     </Typography>
                     <Typography variant="subtitle2" component="h2">
                         Fill Date: {fillDate()}
                     </Typography>
+                    <ManyFirefighters/>
                 </CardContent>
             </Card>
 
