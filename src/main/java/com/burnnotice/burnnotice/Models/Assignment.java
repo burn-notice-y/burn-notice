@@ -27,14 +27,8 @@ public class Assignment
     @OneToOne
     private User user;
 
-
-
-
-
-    public Assignment()
-    {
+    public Assignment() {
     }
-
 
     public long getId()
     {
