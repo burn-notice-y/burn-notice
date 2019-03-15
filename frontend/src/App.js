@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 import { MuiPickersUtilsProvider } from 'material-ui-pickers';
 import MomentUtils from '@date-io/moment';
 import VacancyRouter from "./Components/Vacancies/VacancyRouter";
-import UserActionRouter from "./Components/UserActionsRouter";
+import UserActionRouter from "./Components/User/UserActionsRouter";
 import AssignmentRouter from "./Components/Assignments/AssignmentsRouter";
 
 class App extends Component {

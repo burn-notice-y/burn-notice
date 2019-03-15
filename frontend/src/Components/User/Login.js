@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../store/actions';
+import * as actions from '../../store/actions/index';
 import { Link, withRouter, Redirect } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import '../css/Login.css';
+import '../../css/Login.css';
+import axios from 'axios';
+import PropTypes from 'prop-types';
 
 
 class Login extends Component {
@@ -18,14 +20,15 @@ class Login extends Component {
 
     login = () => {
         this.props.toggleLoading();
-        setTimeout(() => {
-            this.setState({redirect: true});
-            this.props.toggleLoading()
-        }, 2000)
-        // axios.post("/api/login", {
-        //     sap: this.state.sap,
-        //     password: this.state.password
-        // })
+        axios.post("/api/login", `sap=${this.state.sap}&password=${this.state.password}`)
+            .then(() => {
+                this.setState({redirect: true});
+                this.props.toggleLoading()
+            })
+            .catch(() => {
+                this.props.toggleLoading();
+                this.setState({error: true})
+            })
     };
 
     inputHandler = type => event => {
@@ -36,7 +39,7 @@ class Login extends Component {
 
     render(){
         if (this.state.redirect){
-            return <Redirect to={"/profile"}/>
+            return <Redirect to={"/user/profile"}/>
         }
         return (
             <div className="login-cont">
@@ -87,5 +90,9 @@ class Login extends Component {
         )
     }
 }
+
+Login.propTypes = {
+    toggleLoading: PropTypes.any.isRequired
+};
 
 export default withRouter(connect(null, actions)(Login));
