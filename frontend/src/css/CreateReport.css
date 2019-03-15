@@ -1,0 +1,33 @@
+.create-report-cont {
+    width: 80%;
+    height: 85vh;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+}
+::-webkit-scrollbar {
+    width: 0; /* remove scrollbar space */
+    background: transparent; /* optional: just make scrollbar invisible */
+}
+.time {
+    margin: 3vh 0 6vh 0;
+    display: flex;
+    justify-content: space-between;
+}
+.time div {
+    width: 90%;
+}
+.team-header {
+    margin-top: 5vh;
+}
+#search {
+    margin-left: 5px;
+    margin-top: 12px;
+    width: 80%;
+    border: none;
+    font-size: 20px;
+    text-align: center;
+}
+#search:focus {
+    outline: 0;
+}

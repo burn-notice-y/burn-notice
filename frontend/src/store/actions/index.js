@@ -11,7 +11,6 @@ import axios from 'axios';
 // function to sign in
 export const fetchUser = () => dispatch => {
     axios.get("/api/logged-user").then(response => {
-        console.log(response);
         dispatch({type: FETCH_USER, payload: response.data})
     })
 };

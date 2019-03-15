@@ -6,8 +6,8 @@
     justify-content: space-between;
 }
 .big-edit-cont {
-    height: 85vh;
-    overflow: scroll;
+    height: 80vh;
+    padding-bottom: 50px;
 }
 .actions-cont {
     display: flex;
