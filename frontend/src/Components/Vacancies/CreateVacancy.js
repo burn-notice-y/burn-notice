@@ -66,7 +66,7 @@ class CreateVacancy extends Component{
                 </div>
                 <div className="input-cont">
                     <div className="vac-date-cont reg-input">
-                        <DatePickClass/>
+                        <DatePickClass labelDisplay={"Start Date"}/>
                     </div>
                     <div className="vac-role-cont reg-input">
                         <FormLabel component="legend">Vacancy Role</FormLabel>

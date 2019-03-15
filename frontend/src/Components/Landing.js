@@ -27,7 +27,7 @@ class Landing extends Component {
                         </Typography>
                     </div>
                     <div className="action-info-cont">
-                        <Link to={"/register"}><Button variant="contained" color="primary" className={"landing-button"}>
+                        <Link to={"/user/register"}><Button variant="contained" color="primary" className={"landing-button"}>
                             Create an Account
                             </Button>
                         </Link>
