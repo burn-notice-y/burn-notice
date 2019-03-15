@@ -24,27 +24,18 @@ class Register extends Component{
 
     };
 
-    postToDb = () => {
-        axios.post("/api/create-user", {
+    register = () => {
+        this.props.toggleLoading();
+        axios.post("/api/register", {
             firstName: this.state.firstName,
             lastName: this.state.lastName,
             sap: this.state.sap,
             password: this.state.password,
             email: this.state.email,
-            chief: false
         }).then(() => {
-            // do stuff
-        })
-    };
-
-    register = () => {
-        // post to db here
-        //simulating with timeout
-        this.props.toggleLoading();
-        setTimeout(() => {
-            this.setState({redirect: true});
             this.props.toggleLoading();
-        }, 2000)
+            this.setState({redirect: true})
+        }).catch(() => this.setState({error: false}))
     };
 
     inputHandler = type => event => {
