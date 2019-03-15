@@ -1,0 +1,19 @@
+.transferMain{
+    height: 85vh;
+    overflow: scroll;
+}
+
+.open{
+    background-color: lawngreen !important;
+
+}
+
+.transferStation{
+    margin-top: 5% !important;
+    margin-bottom: 5% !important;
+}
+
+.transferRole{
+    margin-top: 5% !important;
+    margin-bottom: 5% !important;
+}

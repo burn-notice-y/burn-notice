@@ -5,10 +5,13 @@
 }
 
 #ff_content{
-    width: 90% !important;
+    width: 100% !important;
+    text-align: center;
 }
 
 #ff_body{
-    width: 90% !important;
+    width: 100% !important;
     display: block !important;
+    text-align: left;
 }
+
