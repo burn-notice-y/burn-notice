@@ -41,7 +41,6 @@ class Register extends Component{
         })
     };
 
-
     inputHandler = type => event => {
         this.setState({
             [type]: event.target.value
