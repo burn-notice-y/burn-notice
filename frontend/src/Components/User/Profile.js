@@ -2,8 +2,10 @@ import React, {Component} from 'react';
 import Typography from "@material-ui/core/Typography/Typography";
 import TextField from "@material-ui/core/TextField/TextField";
 import Button from "@material-ui/core/Button/Button";
-import '../css/Profile.css';
-import user from '../data/user';
+import '../../css/Profile.css';
+import user from '../../data/user';
+import { connect } from 'react-redux';
+import * as actions from '../../store/actions';
 
 class Profile extends Component {
     state = {
@@ -15,6 +17,7 @@ class Profile extends Component {
         lastName: ""
     };
     componentDidMount(){
+        this.props.fetchUser();
         this.setState({...user})
     }
 
@@ -142,4 +145,4 @@ class Profile extends Component {
     }
 }
 
-export default Profile;
+export default connect(null, actions)(Profile);

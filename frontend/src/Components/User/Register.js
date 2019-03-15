@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import * as actions from '../store/actions'
+import * as actions from '../../store/actions/index'
 import { connect } from 'react-redux';
 import { withRouter, Redirect } from 'react-router-dom';
-import '../css/Register.css';
+import '../../css/Register.css';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
