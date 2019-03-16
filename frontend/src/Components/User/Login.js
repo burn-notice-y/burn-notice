@@ -18,6 +18,7 @@ class Login extends Component {
       redirect: false
     };
 
+
     login = () => {
         this.props.toggleLoading();
         axios.post("/api/login", `sap=${this.state.sap}&password=${this.state.password}`)
@@ -39,6 +40,7 @@ class Login extends Component {
 
     render(){
         if (this.state.redirect){
+            this.props.fetchUser();
             return <Redirect to={"/user/profile"}/>
         }
         return (

@@ -35,7 +35,10 @@ class Register extends Component{
         }).then(() => {
             this.props.toggleLoading();
             this.setState({redirect: true})
-        }).catch(() => this.setState({error: false}))
+        }).catch(() => {
+            this.props.toggleLoading();
+            this.setState({error: false})
+        })
     };
 
     inputHandler = type => event => {
