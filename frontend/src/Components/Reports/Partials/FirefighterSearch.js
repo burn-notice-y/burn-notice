@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import firefighters from "../../data/firefighters";
+import firefighters from "../../../data/firefighters";
 import Typography from "@material-ui/core/Typography/Typography";
 
 class FirefighterSearch extends Component {

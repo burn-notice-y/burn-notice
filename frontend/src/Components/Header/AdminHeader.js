@@ -43,12 +43,6 @@ class AdminHeader extends Component {
                 return;
         }
     };
-    logout = () => {
-        axios.get("/api/logout").then(() => this.setState({redirect: true}))
-            .catch(error => {
-                console.log(error)
-            })
-    };
 
     render() {
         const navItems = (
@@ -78,7 +72,7 @@ class AdminHeader extends Component {
                         <div className={"close-div"}
                              tabIndex={0}
                              role="button"
-                             onClick={this.logout}>
+                             onClick={this.props.logout}>
                             <ListItemText primary={"Logout"}/></div>
                     </ListItem>
                 </List>

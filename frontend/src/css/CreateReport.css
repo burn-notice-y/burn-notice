@@ -39,3 +39,8 @@
 #search:focus {
     outline: 0;
 }
+.multi-action-cont {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}

@@ -1,15 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import FirefighterInd from "./FirefighterInd";
 import '../../css/FireSearchCont.css';
+import PropTypes from 'prop-types';
 
-class FirefighterSearchCont extends Component{
-    render(){
-        return (
-            <div className="fireman-search-cont">
-                {this.props.searchResult.map(firefighter => <FirefighterInd addFunction={this.props.addFunction} key={firefighter.id} {...firefighter}/>)}
-            </div>
-        )
-    }
-}
+const FirefighterSearchCont = props => (
+    <div className="fireman-search-cont">
+        {props.searchResult.map(firefighter => <FirefighterInd addFunction={props.addFunction}
+                                                               key={firefighter.id} {...firefighter}/>)}
+    </div>
+);
+
+FirefighterSearchCont.propTypes = {
+    searchResult: PropTypes.array,
+    addFunction: PropTypes.func
+};
 
 export default FirefighterSearchCont;
