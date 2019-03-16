@@ -14,7 +14,6 @@ import '../../css/Vacancy.css';
 
 class FireFighter extends Component {
 
-
     render() {
         return (
             <Fragment>
