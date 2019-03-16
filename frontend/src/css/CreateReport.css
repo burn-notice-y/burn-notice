@@ -15,8 +15,16 @@
     justify-content: space-between;
 }
 .time div {
-    width: 90%;
+    width: 96%;
 }
+.time1-cont button {
+    margin-left: 40px;
+    padding-right: 0 !important;
+}
+.time2-cont button {
+    margin-left: 20px;
+}
+
 .team-header {
     margin-top: 5vh;
 }

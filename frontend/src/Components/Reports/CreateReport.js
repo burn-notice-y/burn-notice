@@ -19,6 +19,11 @@ import TimePick from "../TimePicker";
 import Paper from "@material-ui/core/Paper/Paper";
 import IconButton from "@material-ui/core/IconButton/IconButton";
 import Divider from "@material-ui/core/Divider/Divider";
+import FirefighterSearchCont from "../TransferReq/FirefighterSearchCont";
+import ExpansionPanel from "@material-ui/core/ExpansionPanel/ExpansionPanel";
+import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary/ExpansionPanelSummary";
+import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails/ExpansionPanelDetails";
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 
 class CreateVacancy extends Component{
@@ -28,19 +33,42 @@ class CreateVacancy extends Component{
         fireRetardant: "",
         primaryTeamActions: "",
         secondaryTeamActions: "",
-        team: "",
+        team: "primary",
         description: "",
         timeArrived: "",
         timeDispatched: "",
+        search: "",
         redirect: false,
         error: false,
         disabled: false,
+        searchResult: []
     };
 
     inputHandler = type => event => {
         this.setState({
             [type]: event.target.value
         })
+    };
+
+    searchFirefighters = () => {
+        if (this.state.search === ""){
+            this.setState({searchResult: []})
+        } else {
+            this.props.toggleLoading();
+            axios.get(`/api/firefighters?search=${this.state.search}`)
+                .then(res =>{
+                    this.props.toggleLoading();
+                    this.setState({searchResult: res.data})
+                })
+                .catch(() => {
+                    this.props.toggleLoading();
+                })
+        }
+    };
+
+    addFireManToTeam = (team, fireman) => {
+        console.log(team)
+        console.log(fireman)
     };
 
     render(){
@@ -154,30 +182,47 @@ class CreateVacancy extends Component{
                             Define the Teams
                         </Typography>
                     </div>
-                    <div>
+                    <div className={"search-cont"}>
                         <div className="vac-role-cont reg-input">
                             <FormLabel component="legend">Choose the Team</FormLabel>
                             <div>
                                 <RadioGroup
                                     className="role-cont group"
                                     name="engine"
-                                    value={this.state.chemicals}
+                                    value={this.state.team}
                                     onChange={this.inputHandler('team')}
                                 >
                                     <FormControlLabel value="primary" control={<Radio />} label="Primary Team"/>
                                     <FormControlLabel value="secondary" control={<Radio />} label="Secondary Team"/>
                                 </RadioGroup>
                             </div>
-
+                        <div className="teams-cont">
+                                <ExpansionPanel>
+                                    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                                        <Typography>Primary Team</Typography>
+                                    </ExpansionPanelSummary>
+                                    <ExpansionPanelDetails>
+                                        Fireman map here
+                                        <Typography>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+                                            sit amet blandit leo lobortis eget.
+                                        </Typography>
+                                    </ExpansionPanelDetails>
+                                </ExpansionPanel>
+                        </div>
                         </div>
                         <Paper elevation={1} className={"search-cont"}>
                             <input type="text" id={"search"}
-                                   value={this.state.search}/>
-                            <IconButton aria-label="Search">
+                                   value={this.state.search}
+                                    onChange={this.inputHandler('search')}
+                                   placeholder={"Search"}
+                            />
+                            <IconButton aria-label="Search" onClick={this.searchFirefighters}>
                                 <SearchIcon/>
                             </IconButton>
                             <Divider/>
                         </Paper>
+                        <FirefighterSearchCont addFunction={this.addFireManToTeam} searchResult={this.state.searchResult}/>
                     </div>
 
                 </div>

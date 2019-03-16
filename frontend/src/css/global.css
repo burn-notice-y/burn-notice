@@ -24,12 +24,14 @@ Loading Toggle
     position: absolute;
     top: 50%;
     left: 46%;
-    width: 50px !important;
-    height: 50px !important;
     opacity: 0;
+    height: 0 !important;
+    width: 0 !important;
     transition: all 0.3s ease-in-out;
 }
 
 .spinner-active {
     opacity: 1;
+    width: 50px !important;
+    height: 50px !important;
 }

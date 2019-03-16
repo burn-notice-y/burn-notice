@@ -1,0 +1,13 @@
+.fireman-search-cont {
+    margin-top: 20px;
+    width: 60%;
+}
+.firefighter-cont {
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    width: 70% !important;
+    padding-bottom: 10px;
+    border-bottom: .5px solid #d9d9d9;
+}
