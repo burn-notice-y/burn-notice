@@ -14,6 +14,7 @@ class TimePick extends Component{
         return (
             <div className="picker">
                 <TimePicker
+                    keyboard
                     clearable
                     showTodayButton
                     ampm={false}
