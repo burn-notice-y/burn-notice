@@ -5,9 +5,13 @@ import {reportCategories} from "../../../data/categories";
 import DatePickClass from "../../DatePickClass";
 import TimePick from "../../TimePicker";
 import TwoOptionSelect from "../../TwoOptionSelect";
+import Typography from "@material-ui/core/Typography/Typography";
 
 const ReportPage1 = ({ inputHandler, reportType, chemicals, fireRetardant }) => (
     <div className="page-1">
+        <Typography variant="subheading" component="p">
+            Incident Details:
+        </Typography>
         <div className="vacancy-cat reg-input">
             <TextField
                 id="outlined-select-currency"
@@ -26,14 +30,15 @@ const ReportPage1 = ({ inputHandler, reportType, chemicals, fireRetardant }) => 
             </TextField>
         </div>
         <div className="reg-input">
+
             <DatePickClass labelDisplay={"Incident Date"}/>
         </div>
         <div className="time">
             <div className="time1-cont">
-                <TimePick label={"Time Dispatched"}/>
+                <TimePick label={"Time Dispatched"} helper={"Format: XX:XX"}/>
             </div>
             <div className="time2-cont">
-                <TimePick label={"Time Arrived"}/>
+                <TimePick label={"Time Arrived"} helper={"24hr time"}/>
             </div>
         </div>
         <TwoOptionSelect title={"Exposure to Chemicals?"} value={chemicals}

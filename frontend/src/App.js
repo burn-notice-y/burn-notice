@@ -14,7 +14,6 @@ import VacancyRouter from "./Components/Vacancies/VacancyRouter";
 import UserActionRouter from "./Components/User/UserActionsRouter";
 import AssignmentRouter from "./Components/Assignments/AssignmentsRouter";
 import ReportsRouter from "./Components/Reports/Pages/ReportsRouter";
-import ScrollToTop from "./Components/ScrollToTop";
 
 class App extends Component {
     componentDidMount() {

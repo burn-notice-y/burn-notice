@@ -11,12 +11,14 @@ const DescriptionContainer = props => (
                 value={props.primaryTeamActions}
                 onChange={props.inputHandler('primaryTeamActions')}
                 margin="normal"
+                multiline
                 variant="outlined"
             />
         </div>
         <div className="reg-email reg-input">
             <TextField
                 label="Secondary Team Actions"
+                multiline
                 type="text"
                 value={props.secondaryTeamActions}
                 onChange={props.inputHandler('secondaryTeamActions')}
@@ -28,6 +30,7 @@ const DescriptionContainer = props => (
             <TextField
                 label="General Description"
                 type="text"
+                multiline
                 value={props.description}
                 onChange={props.inputHandler('description')}
                 margin="normal"

@@ -16,6 +16,7 @@ class TimePick extends Component{
                 <TimePicker
                     keyboard
                     clearable
+                    helperText={this.props.helper}
                     showTodayButton
                     ampm={false}
                     label={this.props.label}

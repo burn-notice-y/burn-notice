@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import DescriptionContainer from "../Partials/DescriptionContainer";
-import TeamSelect from "../Partials/TeamSelect";
+import Typography from "@material-ui/core/Typography/Typography";
 
 const ReportsPage2 = (props) => {
     console.log(props);
     return (
         <div className="page2">
+            <Typography variant="subheading" component="p">
+                General Description:
+            </Typography>
             <DescriptionContainer inputHandler={props.inputHandler} description={props.description}
                                   primaryTeamActions={props.primaryTeamActions} secondaryTeamActions={props.secondaryTeamActions}
-            />
-            <TeamSelect {...props}
             />
         </div>
     )

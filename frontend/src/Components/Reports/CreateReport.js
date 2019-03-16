@@ -1,23 +1,23 @@
 // Foundational
 import React, {Component, Fragment} from 'react';
 import * as actions from '../../store/actions'
-import { connect } from 'react-redux';
-import { withRouter, Redirect, Switch, Route } from 'react-router-dom';
+import {connect} from 'react-redux';
+import {withRouter, Redirect, Switch, Route} from 'react-router-dom';
 
 // util
 import axios from 'axios';
-import { Typography } from '@material-ui/core'
+import {Typography} from '@material-ui/core'
 import PropTypes from 'prop-types';
 
 // Own Components
 import '../../css/CreateReport.css';
 import ReportPage1 from "./Pages/ReportPage1";
 import ReportsPage2 from "./Pages/ReportPage2";
-import OneOption from "./Actions/OneOption";
-import TwoOptions from "./Actions/TwoOptions";
+import ReportsPage3 from "./Pages/ReportPage3";
+import Action from "./Actions/Action";
 
 
-class CreateReport extends Component{
+class CreateReport extends Component {
     state = {
         reportType: "",
         chemicals: "",
@@ -46,12 +46,12 @@ class CreateReport extends Component{
 
     searchFirefighters = () => {
         console.log("fire")
-        if (this.state.search === ""){
+        if (this.state.search === "") {
             this.setState({searchResult: []})
         } else {
             this.props.toggleLoading();
             axios.get(`/api/firefighters?search=${this.state.search}`)
-                .then(res =>{
+                .then(res => {
                     this.props.toggleLoading();
                     this.setState({searchResult: res.data})
                 })
@@ -72,50 +72,44 @@ class CreateReport extends Component{
             case "1":
                 return <ReportPage1 {...this.state} inputHandler={this.inputHandler}/>;
             case "2":
-                return <ReportsPage2 {...this.state} inputHandler={this.inputHandler}
-                                     addFiremanToTeam={this.addFiremanToTeam} searchFirefighters={this.searchFirefighters}/>;
-            default: return;
-        }
-    };
-
-    determineAction = () => {
-        switch (this.props.match.params.pageNumber) {
-            case "1":
-                return <OneOption page="1"/>;
-            case "4":
-                return <OneOption/>;
+                return <ReportsPage2 {...this.state} inputHandler={this.inputHandler}/>;
+            case "3":
+                return <ReportsPage3 {...this.state} inputHandler={this.inputHandler}
+                                     addFiremanToTeam={this.addFiremanToTeam}
+                                     searchFirefighters={this.searchFirefighters}/>;
             default:
-                return <TwoOptions page={Number(this.props.match.params.pageNumber)}/>
+                return;
         }
     };
 
-    render(){
-        if (this.state.redirect){
+
+    render() {
+        if (this.state.redirect) {
             return <Redirect to={"/reports"}/>
         }
 
         return (
             <Fragment>
-            <div className={"create-report-cont"} id={"top"}>
-                <div className="register-header">
-                    <Typography component="h3" variant="h3" gutterBottom className={"registration-header"}>
-                        File a Report
-                    </Typography>
-                    <div className="page-nav">
-                        <Typography component="h3" variant="h6" gutterBottom className={"registration-header"}>
-                            Page: {this.props.match.params.pageNumber}
+                <div className={"create-report-cont"} id={"top"}>
+                    <div className="register-header">
+                        <Typography component="h3" variant="h3" gutterBottom className={"registration-header"}>
+                            File a Report
                         </Typography>
+                        <div className="page-nav">
+                            <Typography component="h3" variant="h6" gutterBottom className={"registration-header"}>
+                                Page: {this.props.match.params.pageNumber}
+                            </Typography>
+                        </div>
+                    </div>
+                    <div className="input-cont">
+                        <Switch>
+                            <Route path={"/reports/create/:id"} render={() => this.determinePage()}/>
+                        </Switch>
+                    </div>
+                    <div className="actions-cont">
+                        <Action page={this.props.match.params.pageNumber}/>
                     </div>
                 </div>
-                <div className="input-cont">
-                    <Switch>
-                        <Route path={"/reports/create/:id"} render={() => this.determinePage()}/>
-                    </Switch>
-                </div>
-                <div className="actions-cont">
-                    {this.determineAction()}
-                </div>
-            </div>
             </Fragment>
         )
     }
