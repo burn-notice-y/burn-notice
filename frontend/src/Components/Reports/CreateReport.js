@@ -45,7 +45,6 @@ class CreateReport extends Component {
     };
 
     searchFirefighters = () => {
-        console.log("fire")
         if (this.state.search === "") {
             this.setState({searchResult: []})
         } else {
@@ -62,8 +61,14 @@ class CreateReport extends Component {
     };
 
     addFiremanToTeam = (team, fireman) => {
+        let searchResults = [...this.state.searchResult];
+        const selectedIndex = searchResults.findIndex(result => {
+            return result.id === fireman.id
+        });
+        searchResults.splice(selectedIndex, 1);
         this.setState({
-            [team]: [...this.state[team], fireman]
+            [team]: [...this.state[team], fireman],
+            searchResult: searchResults
         })
     };
 

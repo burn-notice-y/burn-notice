@@ -1,6 +1,6 @@
 import React from 'react';
 import FirefighterInd from "./FirefighterInd";
-import '../../css/FireSearchCont.css';
+import '../../../css/FireSearchCont.css';
 import PropTypes from 'prop-types';
 
 const FirefighterSearchCont = props => (

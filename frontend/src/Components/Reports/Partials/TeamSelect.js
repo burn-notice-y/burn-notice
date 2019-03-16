@@ -4,7 +4,7 @@ import TwoOptionSelect from "../../TwoOptionSelect";
 import TeamExpansion from "./TeamExpansion";
 import IconButton from "@material-ui/core/IconButton/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
-import FirefighterSearchCont from "../../TransferReq/FirefighterSearchCont";
+import FirefighterSearchCont from "./FirefighterSearchCont";
 import Typography from "@material-ui/core/Typography/Typography";
 import Paper from "@material-ui/core/Paper/Paper";
 import Divider from "@material-ui/core/Divider/Divider";
