@@ -65,11 +65,19 @@ class CreateReport extends Component {
         const selectedIndex = searchResults.findIndex(result => {
             return result.id === fireman.id
         });
-        searchResults.splice(selectedIndex, 1);
-        this.setState({
-            [team]: [...this.state[team], fireman],
-            searchResult: searchResults
-        })
+        let goodToGo = true;
+        [...this.state[team]].forEach(result => {
+            if (result.id === fireman.id){
+                goodToGo = false;
+            }
+        });
+        if (goodToGo){
+            searchResults.splice(selectedIndex, 1);
+            this.setState({
+                [team]: [...this.state[team], fireman],
+                searchResult: searchResults
+            })
+        }
     };
 
     determinePage = () => {
@@ -81,10 +89,19 @@ class CreateReport extends Component {
             case "3":
                 return <ReportsPage3 {...this.state} inputHandler={this.inputHandler}
                                      addFiremanToTeam={this.addFiremanToTeam}
-                                     searchFirefighters={this.searchFirefighters}/>;
+                                     searchFirefighters={this.searchFirefighters}
+                                     clearSearch={this.clearSearch}
+                />;
             default:
                 return;
         }
+    };
+
+    clearSearch = () => {
+        this.setState({
+            search: "",
+            searchResult: []
+        })
     };
 
 

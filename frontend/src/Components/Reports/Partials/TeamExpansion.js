@@ -6,6 +6,8 @@ import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary/Expan
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails/ExpansionPanelDetails";
 import Typography from "@material-ui/core/Typography/Typography";
 import PropTypes from 'prop-types';
+import ClearIcon from "@material-ui/icons/Clear";
+import IconButton from "@material-ui/core/IconButton/IconButton";
 
 const TeamExpansion = props => (
     <div className="teams-cont">
@@ -16,9 +18,14 @@ const TeamExpansion = props => (
             <ExpansionPanelDetails>
                 <div className="primary-display">
                     {props.teamMembers.map(teaMember => (
-                        <Typography component="p" variant="subtitle2" key={teaMember.id}>
-                            {teaMember.firstName} {teaMember.lastName}
-                        </Typography>
+                        <div className="team-member-cont">
+                            <Typography component="p" variant="subtitle2" key={teaMember.id}>
+                                {teaMember.firstName} {teaMember.lastName}
+                            </Typography>
+                            <IconButton aria-label="Search">
+                                <ClearIcon/>
+                            </IconButton>
+                        </div>
                     ))}
                 </div>
             </ExpansionPanelDetails>

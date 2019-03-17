@@ -30,13 +30,14 @@ const TeamSelect = props => (
                        value={props.search}
                        onChange={props.inputHandler('search')}
                        placeholder={"Search"}
+                       autoComplete={"off"}
                 />
                 <IconButton aria-label="Search" onClick={props.searchFirefighters}>
                     <SearchIcon/>
                 </IconButton>
                 <Divider/>
             </Paper>
-            <FirefighterSearchCont addFunction={props.addFiremanToTeam} searchResult={props.searchResult}/>
+            <FirefighterSearchCont clearSearch={props.clearSearch} addFunction={props.addFiremanToTeam} searchResult={props.searchResult}/>
         </div>
     </div>
 );
