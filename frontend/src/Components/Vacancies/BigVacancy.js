@@ -74,27 +74,72 @@ class BigVacancy extends Component {
 
         return (
 
-            <Card className={"vacancy-cont"}>
-                <CardContent>
-                    <div className="vacancy-header-cont card-size">
-                        <div className="vacancy-header">
-                            <Typography variant="h5" component="h2" gutterBottom>
-                                Station {vacancy.fireStation.code}
-                            </Typography>
-                        </div>
-                        {this.determineAdmin()}
-                    </div>
-                    <Typography variant="h5" component="h2" gutterBottom>
-                        Role: {role}
-                    </Typography>
-                    <Typography variant="h5" component="h2" gutterBottom>
-                        Temporary: {temporary}
-                    </Typography>
-                    <Typography variant="body1" component="h2" gutterBottom>
-                        Post Date: {postDate}
-                    </Typography>
-                    <Typography variant="subtitle2" component="h2">
-                        Fill Date: {fillDate()}
+            <div className="vacancy-scroll">
+                <Typography variant="h2">
+                    Vacancy Details
+                </Typography>
+
+
+                <div>
+                    <TextField
+                        disabled
+                        id="outlined-disabled"
+                        label="Station"
+                        defaultValue={vacancy.fireStation.code}
+                        className="text-field-width"
+                        margin="normal"
+                        variant="outlined"
+                    />
+                </div>
+                <div>
+                    <TextField
+                        disabled
+                        id="outlined-disabled"
+                        label="Role"
+                        className="text-field-width"
+                        defaultValue={role}
+                        margin="normal"
+                        variant="outlined"
+                    />
+                </div>
+
+                <div>
+                    <TextField
+                        disabled
+                        id="Temporary"
+                        label="Temporary"
+                        className="text-field-width"
+                        defaultValue={temporary}
+                        margin="normal"
+                        variant="outlined"
+                    />
+                </div>
+
+                <div>
+                    <TextField
+                        disabled
+                        id="outlined-disabled"
+                        label="Post Date"
+                        className="text-field-width"
+                        defaultValue={postDate}
+                        margin="normal"
+                        variant="outlined"
+                    />
+                </div>
+                <div>
+                    <TextField
+                        disabled
+                        id="outlined-disabled"
+                        label="Fill Date"
+                        className="text-field-width "
+                        defaultValue={fillDate()}
+                        margin="normal"
+                        variant="outlined"
+                    />
+                </div>
+                <div>
+                    <Typography>
+                        <ManyFirefighters/>
                     </Typography>
                 </div>
 
@@ -105,7 +150,7 @@ class BigVacancy extends Component {
 
 
 
-</div>
+            </div>
         )
     }
 }
