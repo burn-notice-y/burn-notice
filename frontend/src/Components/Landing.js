@@ -3,8 +3,15 @@ import '../css/Landing.css';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actions from '../store/actions';
 
 class Landing extends Component {
+
+    componentDidMount(){
+        this.props.fetchUser()
+    }
+
     render(){
         return (
             <div className="full-cont">
@@ -20,7 +27,7 @@ class Landing extends Component {
                         </Typography>
                     </div>
                     <div className="action-info-cont">
-                        <Link to={"/register"}><Button variant="contained" color="primary" className={"landing-button"}>
+                        <Link to={"/user/register"}><Button variant="contained" color="primary" className={"landing-button"}>
                             Create an Account
                             </Button>
                         </Link>
@@ -31,4 +38,4 @@ class Landing extends Component {
         )
     }
 }
-export default Landing;
+export default connect(null, actions)(Landing);

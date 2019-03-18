@@ -6,9 +6,13 @@ import {
     TOGGLE_LOADING
 } from "./types";
 
+import axios from 'axios';
+
 // function to sign in
 export const fetchUser = () => dispatch => {
-        dispatch({type: FETCH_USER, payload: {id: 1, chief: true, lastName: "Butt"}})
+    axios.get("/api/logged-user").then(response => {
+        dispatch({type: FETCH_USER, payload: response.data})
+    })
 };
 export const toggleMenu = () => dispatch => {
     dispatch({type: MENU_SHOWN})

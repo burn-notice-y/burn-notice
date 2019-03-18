@@ -6,7 +6,7 @@ import Register from "./Register";
 
 const UserActionRouter = () => (
     <Switch>
-        <Route path={"/user/profile"} render={() => <Profile/>}/>
+        <Route path={"/user/profile"} render={() => <Profile />}/>
         <Route path={"/user/login"} render={() => <Login/>}/>
         <Route path={"/user/register"} render={() => <Register/>}/>
     </Switch>
