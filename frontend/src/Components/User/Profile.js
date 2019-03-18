@@ -2,8 +2,10 @@ import React, {Component} from 'react';
 import Typography from "@material-ui/core/Typography/Typography";
 import TextField from "@material-ui/core/TextField/TextField";
 import Button from "@material-ui/core/Button/Button";
-import '../css/Profile.css';
-import user from '../data/user';
+import '../../css/Profile.css';
+import user from '../../data/user';
+import { connect } from 'react-redux';
+import * as actions from '../../store/actions';
 
 class Profile extends Component {
     state = {
@@ -14,13 +16,17 @@ class Profile extends Component {
         firstName: "",
         lastName: ""
     };
-    componentDidMount(){
-        this.setState({...user})
+
+    static getDerivedStateFromProps(nextProps){
+        return {...nextProps.user}
     }
 
     toggleEdit = () => {
         this.setState({editLocked: !this.state.editLocked})
     };
+
+
+
 
     inputHandler = type => event => {
         this.setState({
@@ -63,17 +69,6 @@ class Profile extends Component {
                 <div className="input-cont">
 
                     <div className="editable">
-                        <div className="reg-sap reg-input">
-                            <TextField
-                                label="SAP"
-                                value={this.state.sap}
-                                onChange={this.inputHandler('sap')}
-                                margin="normal"
-                                variant="outlined"
-                                helperText="Requires Approval"
-                                disabled={this.state.editLocked}
-                            />
-                        </div>
                         <div className="reg-email reg-input">
                             <TextField
                                 label="Email"
@@ -116,6 +111,11 @@ class Profile extends Component {
                         </div>
                         <div className="edit-transfer-cont reg-input">
                             <Typography component="p" variant="subtitle2" gutterBottom className={"edit-transfer"}>
+                                SAP: {this.state.sap}
+                            </Typography>
+                        </div>
+                        <div className="edit-transfer-cont reg-input">
+                            <Typography component="p" variant="subtitle2" gutterBottom className={"edit-transfer"}>
                                 Eligible For Transfer: {transferText}
                             </Typography>
                         </div>
@@ -142,4 +142,9 @@ class Profile extends Component {
     }
 }
 
-export default Profile;
+const mapStateToProps = state => {
+    return {
+        user: state.user
+    }
+};
+export default connect(mapStateToProps, actions)(Profile);

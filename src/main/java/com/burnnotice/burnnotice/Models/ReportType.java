@@ -32,6 +32,14 @@ public class ReportType {
         this.name = name;
     }
 
+    public Report getReport() {
+        return report;
+    }
+
+    public void setReport(Report report) {
+        this.report = report;
+    }
+
     public ReportType() {
     }
 }

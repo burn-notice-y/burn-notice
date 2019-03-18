@@ -1,11 +1,18 @@
 import React, {Component} from 'react';
+import { Redirect } from 'react-router-dom';
 import {connect} from 'react-redux';
 import * as actions from '../../store/actions'
 import axios from 'axios';
 import AdminHeader from "./AdminHeader";
 import UserHeader from "./UserHeader";
+import Register from "../User/Register";
 
 class LoggedInMenu extends Component {
+
+    state = {
+        redirect: false
+    };
+
     determineAdmin = () => {
         switch (this.props.user.chief) {
             case null:
@@ -18,13 +25,18 @@ class LoggedInMenu extends Component {
     };
 
     logout = () => {
-        axios.get("/api/logout").then(() => this.setState({redirect: true}))
+        axios.get("/api/logout").then(() => {
+            this.setState({redirect: true})
+        })
             .catch(error => {
                 console.log(error)
             })
     };
 
     render() {
+        if (this.state.redirect){
+            return (<Redirect to={"/"}/>)
+        }
         return (
             <React.Fragment>
                 {this.determineAdmin()}
