@@ -66,7 +66,8 @@ class BigVacancy extends Component {
         let role = "";
         vacancy.engine ? role = "Engine" : role = "Truck";
 
-        function ListDividers(props) {
+        function ListDividers(props)
+        {
             const {classes} = props;
         }
 
