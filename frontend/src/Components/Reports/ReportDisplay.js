@@ -4,6 +4,10 @@ import '../../css/Reportdisplay.css';
 import TextField from "@material-ui/core/TextField/TextField";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import {reportCategories, reportDisplay} from '../../data/categories';
+import ManyFirefighters from "../Firefighters/ManyFirefighters";
+import SearchByOne from "./SearchByOne";
+import SearchByTwo from "./SearchByTwo";
+import SearchByType from "./SearchByType";
 
 
 
@@ -11,19 +15,39 @@ import {reportCategories, reportDisplay} from '../../data/categories';
 
 
 class ReportDisplay extends Component {
-    state={
+    state = {
         type:""
-    }
+    };
 
     inputHandler = type => event => {
         this.setState({
             [type]: event.target.value
         })
     };
+
+    determineSearchType = pageStatus => {
+        switch (pageStatus) {
+            case "By Date":
+                return <SearchByOne type={"By Date"}/>
+            case "By Name":
+                // pass "By Name" as a prop, so the SearchByOne component knows what to render
+                return <SearchByOne type={"By Name"}/>
+            case "By Date Range":
+            //     // no props needed because they only do one thing
+                return <SearchByTwo/>
+            case "By Type":
+                return <SearchByType/>
+            // default incase they all fail
+            default: return;
+        }
+    };
+    // call this function inside of the return block, passing in `this.state.type` as the parameter
+
     render() {
-        console.log(this.state);
+console.log(this.state);
 
         return (
+
 
             <div className="report-d-cont">
                 <div className="report-d-header">
@@ -57,8 +81,12 @@ class ReportDisplay extends Component {
                         ))}
                     </TextField>
                 </div>
-            </div>
+                <div>
+                    {this.determineSearchType(this.state.type)}
 
+                </div>
+
+        </div>
 
         )
     }

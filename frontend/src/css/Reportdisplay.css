@@ -5,3 +5,19 @@
 .dropdown {
     width: 80%;
 }
+
+.time {
+    margin: 3vh 0 6vh 0;
+    display: flex;
+    justify-content: space-between;
+}
+.time div {
+    width: 70%;
+}
+
+.date-search {
+    width: 10%;
+    height: 30%;
+
+
+}
