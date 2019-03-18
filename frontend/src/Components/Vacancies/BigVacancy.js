@@ -6,17 +6,14 @@ import moment from 'moment';
 import ManyFirefighters from '../Firefighters/ManyFirefighters';
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-// import { Icon, Button, TextField, MaterialIcon, ListItem, ListItemText,  } from "material-ui";
-// import { List, ListItem, ListItemText } from "@material-ui/List";
 import { withStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
-// import { AddIcon, DeleteIcon } from '@material-ui/icons';
 import DeleteIcon from '@material-ui/icons/Delete';
 import NavigationIcon from '@material-ui/icons/Navigation';
 
 
 
-// <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+
 
 
 
