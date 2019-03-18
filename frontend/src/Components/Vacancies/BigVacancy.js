@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
 import vacancy from '../../data/bigVacancy';
 import Typography from "@material-ui/core/Typography/Typography";
-import CardContent from "@material-ui/core/CardContent/CardContent";
-import Card from "@material-ui/core/Card/Card";
 import IconButton from "@material-ui/core/IconButton/IconButton";
-import DeleteIcon from "@material-ui/core/SvgIcon/SvgIcon";
 import moment from 'moment';
 import ManyFirefighters from '../Firefighters/ManyFirefighters';
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import { withStyles } from '@material-ui/core/styles';
+import Fab from '@material-ui/core/Fab';
+import DeleteIcon from '@material-ui/icons/Delete';
+import NavigationIcon from '@material-ui/icons/Navigation';
+
+
+
+
+
+
 
 // show all of the properties from the vacancy object
 
@@ -30,6 +39,18 @@ class BigVacancy extends Component {
     };
     render(){
 
+        let applicable = () =>
+        {
+            if(vacancy.fillDate === "9999")
+            {
+                return "Apply";
+            }
+            else
+            {
+                return "Closed";
+            }
+        }
+
         let postDate = moment(vacancy.postDate).format("MMMM Do YYYY");
 
         let fillDate = () => {
@@ -44,6 +65,11 @@ class BigVacancy extends Component {
         vacancy.temporary ? temporary = "Yes" : temporary = "No";
         let role = "";
         vacancy.engine ? role = "Engine" : role = "Truck";
+
+        function ListDividers(props) {
+            const {classes} = props;
+        }
+
 
         return (
 
@@ -69,10 +95,16 @@ class BigVacancy extends Component {
                     <Typography variant="subtitle2" component="h2">
                         Fill Date: {fillDate()}
                     </Typography>
-                    <ManyFirefighters/>
-                </CardContent>
-            </Card>
+                </div>
 
+
+                <Button gutterBottom variant="contained" className="vacancy-btn-color">
+                    {applicable()}
+                </Button>
+
+
+
+</div>
         )
     }
 }
