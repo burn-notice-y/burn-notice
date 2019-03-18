@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
 
 @RestController
 @SessionAttributes("user")
-@CrossOrigin("http://localhost:3000")
 public class LoginController {
 
     private final UserRepository userDao;

@@ -57,7 +57,6 @@ class CreateVacancy extends Component{
         if (this.state.redirect){
             return <Redirect to={"/vacancies"}/>
         }
-console.log("happening")
         return (
             <div className={"admin-create-vacancy"}>
                 <div className="vacancy-header">
@@ -67,7 +66,7 @@ console.log("happening")
                 </div>
                 <div className="input-cont">
                     <div className="vac-date-cont reg-input">
-                        <DatePickClass/>
+                        <DatePickClass labelDisplay={"Start Date"}/>
                     </div>
                     <div className="vac-role-cont reg-input">
                         <FormLabel component="legend">Vacancy Role</FormLabel>

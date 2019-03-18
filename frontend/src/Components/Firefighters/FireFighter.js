@@ -12,9 +12,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import '../../css/Vacancy.css';
 
-
 class FireFighter extends Component {
-
 
     render() {
         return (
