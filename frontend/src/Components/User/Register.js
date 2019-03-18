@@ -49,7 +49,8 @@ class Register extends Component{
 
     render(){
         if (this.state.redirect){
-            return <Redirect to={"/profile"}/>
+            this.props.fetchUser();
+            return <Redirect to={"/user/profile"}/>
         }
         return (
             <div className={"big-register-cont"}>
