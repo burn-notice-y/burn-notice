@@ -16,14 +16,7 @@ public class TransferRequest {
     @Column(nullable=false)
     private String status;
 
-//    @OneToOne
-//    @JoinColumn (name="user_id");
-//    private TransferRequest transferRequest;
-
-//    @OneToOne
-//    @JoinColumn(name="desired_station");
-//    private TransferRequest transferRequest;
-
+    // OneToOne Here
 
     public TransferRequest() {
 

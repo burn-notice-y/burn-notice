@@ -5,45 +5,36 @@ import { withRouter, Redirect } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import SearchIcon from '@material-ui/icons/Search';
 import DatePickClass from '../DatePickClass'
 import axios from 'axios';
+import '../../css/CreateReport.css';
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import { reportCategories } from '../../data/categories';
 import FormLabel from "@material-ui/core/FormLabel/FormLabel";
 import RadioGroup from "@material-ui/core/RadioGroup/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel/FormControlLabel";
 import Radio from "@material-ui/core/Radio/Radio";
+import TimePick from "../TimePicker";
+import Paper from "@material-ui/core/Paper/Paper";
+import IconButton from "@material-ui/core/IconButton/IconButton";
+import Divider from "@material-ui/core/Divider/Divider";
 
 
 class CreateVacancy extends Component{
     state = {
         reportType: "",
+        chemicals: "",
+        fireRetardant: "",
+        primaryTeamActions: "",
+        secondaryTeamActions: "",
+        team: "",
+        description: "",
+        timeArrived: "",
+        timeDispatched: "",
         redirect: false,
         error: false,
         disabled: false,
-    };
-
-    postToDb = () => {
-        axios.post("/api/create-user", {
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
-            sap: this.state.sap,
-            password: this.state.password,
-            email: this.state.email,
-            chief: false
-        }).then(() => {
-            // do stuff
-        })
-    };
-
-    register = () => {
-        // post to db here
-        //simulating with timeout
-        this.props.toggleLoading();
-        setTimeout(() => {
-            this.setState({redirect: true});
-            this.props.toggleLoading();
-        }, 2000)
     };
 
     inputHandler = type => event => {
@@ -54,14 +45,14 @@ class CreateVacancy extends Component{
 
     render(){
         if (this.state.redirect){
-            return <Redirect to={"/vacancies"}/>
+            return <Redirect to={"/reports"}/>
         }
 
         return (
-            <div className={"admin-create-vacancy"}>
+            <div className={"create-report-cont"}>
                 <div className="register-header">
                     <Typography component="h3" variant="h3" gutterBottom className={"registration-header"}>
-                        Create a Vacancy
+                        File a Report
                     </Typography>
                 </div>
                 <div className="input-cont">
@@ -69,7 +60,7 @@ class CreateVacancy extends Component{
                         <TextField
                             id="outlined-select-currency"
                             select
-                            label="Station With Vacancy"
+                            label="Type of Report"
                             value={this.state.reportType}
                             onChange={this.inputHandler('reportType')}
                             margin="normal"
@@ -82,21 +73,44 @@ class CreateVacancy extends Component{
                             ))}
                         </TextField>
                     </div>
-                    <div className="vac-date-cont reg-input">
-                        <DatePickClass/>
+                    <div className="reg-input">
+                        <DatePickClass labelDisplay={"Incident Date"}/>
+                    </div>
+                    <div className="time">
+                        <div className="time1-cont">
+                            <TimePick label={"Time Dispatched"}/>
+                        </div>
+                        <div className="time2-cont">
+                            <TimePick label={"Time Arrived"}/>
+                        </div>
                     </div>
                     <div className="vac-role-cont reg-input">
-                        <FormLabel component="legend">Vacancy Role</FormLabel>
+                        <FormLabel component="legend">Exposure to Chemicals?</FormLabel>
+                        <div>
+                            <RadioGroup
+                                className="role-cont"
+                                name="engine"
+                                value={this.state.chemicals}
+                                onChange={this.inputHandler('chemicals')}
+                            >
+                                <FormControlLabel value="true" control={<Radio />} label="Yes"/>
+                                <FormControlLabel value="false" control={<Radio />} label="No"/>
+                            </RadioGroup>
+                        </div>
+
+                    </div>
+                    <div className="vac-role-cont reg-input">
+                        <FormLabel component="legend">Fire Retardant Present?</FormLabel>
                         <div >
                             <RadioGroup
                                 className="role-cont"
-                                aria-label="Role"
+                                aria-label="Was there exposure to chemicals?"
                                 name="engine"
-                                value={this.state.engine}
-                                onChange={this.inputHandler('engine')}
+                                value={this.state.fireRetardant}
+                                onChange={this.inputHandler('fireRetardant')}
                             >
-                                <FormControlLabel value="engine" control={<Radio />} label="Engine" />
-                                <FormControlLabel value="truck" control={<Radio />} label="Truck" />
+                                <FormControlLabel value="true" control={<Radio />} label="Yes"/>
+                                <FormControlLabel value="false" control={<Radio />} label="No"/>
                             </RadioGroup>
                         </div>
 
@@ -104,21 +118,21 @@ class CreateVacancy extends Component{
                     <div className="reg-email reg-input">
                         <TextField
                             error={this.state.error}
-                            label="Email"
-                            type="email"
-                            value={this.state.email}
-                            onChange={this.inputHandler('email')}
+                            label="Primary Team Actions"
+                            type="text"
+                            value={this.state.primaryTeamActions}
+                            onChange={this.inputHandler('primaryTeamActions')}
                             margin="normal"
                             variant="outlined"
                         />
                     </div>
-                    <div className="reg-first-name reg-input">
+                    <div className="reg-email reg-input">
                         <TextField
                             error={this.state.error}
-                            label="First Name"
-                            type="email"
-                            value={this.state.firstName}
-                            onChange={this.inputHandler('firstName')}
+                            label="Secondary Team Actions"
+                            type="text"
+                            value={this.state.secondaryTeamActions}
+                            onChange={this.inputHandler('secondaryTeamActions')}
                             margin="normal"
                             variant="outlined"
                         />
@@ -126,14 +140,46 @@ class CreateVacancy extends Component{
                     <div className="reg-last-name reg-input">
                         <TextField
                             error={this.state.error}
-                            label="Last Name"
+                            label="General Description"
                             type="text"
-                            value={this.state.lastName}
-                            onChange={this.inputHandler('lastName')}
+                            value={this.state.description}
+                            onChange={this.inputHandler('description')}
                             margin="normal"
                             variant="outlined"
+                            helperText={"Anything important that wasn't covered by other fields"}
                         />
                     </div>
+                    <div className="team-header">
+                        <Typography component="h3" variant="h5" gutterBottom className={"registration-header"}>
+                            Define the Teams
+                        </Typography>
+                    </div>
+                    <div>
+                        <div className="vac-role-cont reg-input">
+                            <FormLabel component="legend">Choose the Team</FormLabel>
+                            <div>
+                                <RadioGroup
+                                    className="role-cont group"
+                                    name="engine"
+                                    value={this.state.chemicals}
+                                    onChange={this.inputHandler('team')}
+                                >
+                                    <FormControlLabel value="primary" control={<Radio />} label="Primary Team"/>
+                                    <FormControlLabel value="secondary" control={<Radio />} label="Secondary Team"/>
+                                </RadioGroup>
+                            </div>
+
+                        </div>
+                        <Paper elevation={1} className={"search-cont"}>
+                            <input type="text" id={"search"}
+                                   value={this.state.search}/>
+                            <IconButton aria-label="Search">
+                                <SearchIcon/>
+                            </IconButton>
+                            <Divider/>
+                        </Paper>
+                    </div>
+
                 </div>
                 <div className="actions-cont">
                     <div className="submit-reg-cont">

@@ -16,7 +16,6 @@ Loading Toggle
     height: 95vh;
     opacity: 1;
 }
-
 .loading-active {
     filter: blur(3px);
 }

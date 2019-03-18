@@ -7,6 +7,8 @@ import moment from 'moment';
 import ManyFirefighters from "../Firefighters/ManyFirefighters";
 import "../../css/Transfer.css"
 import Chip from '@material-ui/core/Chip';
+import Divider from '@material-ui/core/Divider';
+
 
 
 class BigTransfer extends Component{
@@ -36,23 +38,27 @@ class BigTransfer extends Component{
                 <Typography variant="h2" component="h2" className="reviewTransfer">
                     Review Transfer
                 </Typography>
+                <Divider variant="middle" />
                 <Typography variant="h5" component="h2" className="transferStation">
                     Station {vacancy.fireStation.code}
                 </Typography>
+                <Divider variant="middle" />
                 <Typography variant="h5" component="h2" className="transferRole">
                     Role: {role}
                 </Typography>
-                <Typography variant="h5" component="h2" gutterBottom>
+                <Divider variant="middle" />
+                <Typography variant="h5" component="h2" className="transferTemp">
                     Temporary: {temporary}
                 </Typography>
-                <Typography variant="body1" component="h2" gutterBottom>
+                <Divider variant="middle" />
+                <Typography variant="body1" component="h2" className="transferPost">
                     Post Date: {postDate}
                 </Typography>
                 <Typography variant="subtitle2" component="h2" className="fillDate">
                     {fillDate()}
                 </Typography>
-
-                <Typography fontWeight="fontWeightMedium">
+                <Divider variant="middle" />
+                <Typography fontWeight="fontWeightMedium" className="transferPerson">
                     Person who is applying goes here
                 </Typography>
                 <ManyFirefighters/>

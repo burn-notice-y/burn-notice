@@ -47,7 +47,6 @@ class BigVacancy extends Component {
 
         return (
 
-
             <Card className={"vacancy-cont"}>
                 <CardContent>
                     <div className="vacancy-header-cont card-size">

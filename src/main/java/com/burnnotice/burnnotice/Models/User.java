@@ -11,47 +11,29 @@ public class User {
     private long id;
 
     @Column(nullable = false)
-    public String firstName;
+    private String firstName;
 
     @Column(nullable = false)
-    public String lastName;
+    private String lastName;
 
     @Column(nullable=false)
-    public boolean eligibleForTransfer;
+    private boolean eligibleForTransfer = true;
 
     @Column(nullable = false, unique=true)
-    public String sap;
+    private String sap;
 
     @Column(nullable = false)
-    public String password;
+    private String password;
 
     @Column(nullable = false)
-    boolean chief;
+    private boolean chief = false;
 
     @Column(nullable = false)
-    public String email;
+    private String email;
 
     public User() {
     }
 
-    // User 1st time creation constructor
-    public User(String sap, String email, String password, String firstName, String lastName) {
-        this.sap = sap;
-        this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.password = Password.encrypt(password);
-    }
-
-    // User retrieval constructor
-    public User(long id, String sap, String email, String password, String firstName, String lastName) {
-        this.id = id;
-        this.sap = sap;
-        this.email = email;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
 
 
     public long getId() {

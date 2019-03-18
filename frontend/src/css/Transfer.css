@@ -11,9 +11,35 @@
 .transferStation{
     margin-top: 5% !important;
     margin-bottom: 5% !important;
+    text-align: center;
+
 }
 
 .transferRole{
     margin-top: 5% !important;
     margin-bottom: 5% !important;
+    text-align: center;
+
+}
+
+.transferTemp{
+    margin-top: 5% !important;
+    margin-bottom: 5% !important;
+    text-align: center;
+
+}
+.transferPost{
+    margin-top: 5% !important;
+    margin-bottom: 5% !important;
+    text-align: center;
+}
+
+.transferPerson{
+    margin-top: 5% !important;
+    margin-bottom: 5% !important;
+    text-align: center;
+}
+
+.fillDate{
+    text-align: center;
 }
