@@ -1,6 +1,7 @@
 package com.burnnotice.burnnotice.Models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -42,15 +43,17 @@ public class Report {
     @OneToOne
     private ReportType type;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "report")
-    private List<ReportType> types;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name="report_teams",
+            joinColumns={@JoinColumn(name="report_id")},
+            inverseJoinColumns={@JoinColumn(name="user_id")}
+    )
+    private List<User> teamMembers;
 
 
 
-    public Report() {
-
-    }
-
+    public Report() { }
 
     public long getId() {
         return id;
@@ -140,12 +143,11 @@ public class Report {
         this.type = type;
     }
 
-
-    public List<ReportType> getTypes() {
-        return types;
+    public List<User> getTeamMembers() {
+        return teamMembers;
     }
 
-    public void setTypes(List<ReportType> types) {
-        this.types = types;
+    public void setTeamMembers(List<User> teamMembers) {
+        this.teamMembers = teamMembers;
     }
 }

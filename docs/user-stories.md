@@ -34,7 +34,7 @@ The users in this context, are all members of the Fire Department, excluding the
 #### Transfer Requests
 - As a user, I want to be able to apply from any platform of web browser to fill a vacancy
 - As a user, I want to be able to know if I am eligible for transfer
-- As a user, I want to see the status of my tranfer request
+- As a user, I want to see the status of my transfer request
 - As a user, I want to be notified if my request has been accepted / denied / moved stages
 
 #### Reports
@@ -51,7 +51,7 @@ The admin in this context is the District Fire Chief
 #### Vacancies
 - As an admin, I want to be able to post a vacancy to the internal job board
     - I also want to designate the type, start date, and station the vacancy is for
-- As an admin, I want to be able to close the vacnacy when no longer eligible to be filled
+- As an admin, I want to be able to close the vacancy when no longer eligible to be filled
 
 #### Transfer Requests
 - As an admin, I want to be able to see an overview of transfer requests to a specific vacancy
