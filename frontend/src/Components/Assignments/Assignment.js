@@ -6,16 +6,16 @@ import Button from "@material-ui/core/Button/Button";
 import Card from "@material-ui/core/Card/Card";
 import moment from 'moment';
 
-const Assignment = props => {
+const Assignment = ({ engine, startDate, endDate, station }) => {
     let role = "Truck";
-    if (props.engine){
+    if (engine){
         role = "Engine"
     }
 
-    let startDate = moment(props.startDate).format('MMMM Do YYYY');
-    let endDate = "Open";
-    if (props.endDate !== "9999"){
-        endDate = moment(props.endDate).format('MMMM Do YYYY');
+    let beginningDate = moment(startDate).format('MMMM Do YYYY');
+    let closeDate = "Open";
+    if (endDate !== "9999"){
+        closeDate = moment(endDate).format('MMMM Do YYYY');
     }
     return (
         <Card className={"assignment"}>
@@ -24,16 +24,16 @@ const Assignment = props => {
                     Role: {role}
                 </Typography>
                 <Typography variant="h5" component="h2">
-                    Station: {props.station.code}
+                    Station: {station.code}
                 </Typography>
                 <Typography color="textSecondary" className={"assignment-dates"}>
                     Dates of Assignment:
                 </Typography>
                 <Typography component="p" className={"date"}>
-                    Start: {startDate}
+                    Start: {beginningDate}
                 </Typography>
                 <Typography component="p" className={"date"}>
-                    End: {endDate}
+                    End: {closeDate}
                 </Typography>
             </CardContent>
             <CardActions>
@@ -44,3 +44,4 @@ const Assignment = props => {
 }
 
 export default Assignment
+

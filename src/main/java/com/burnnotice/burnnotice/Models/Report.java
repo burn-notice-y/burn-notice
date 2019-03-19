@@ -1,11 +1,16 @@
 package com.burnnotice.burnnotice.Models;
 
+import com.fasterxml.jackson.annotation.*;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name="reports")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
+        property  = "id",
+        scope = Long.class)
 public class Report {
 
     @Id @GeneratedValue
@@ -37,21 +42,15 @@ public class Report {
 
     // one creator of the report
     @OneToOne
-    private User user;
+    private User creator;
 
     //type of report being submitted
     @OneToOne
     private ReportType type;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name="report_teams",
-            joinColumns={@JoinColumn(name="report_id")},
-            inverseJoinColumns={@JoinColumn(name="user_id")}
-    )
-    private List<User> teamMembers;
-
-
+    //team involved ( friends list )
+    @OneToMany(mappedBy = "report")
+    private List<UserReport> users;
 
     public Report() { }
 
@@ -127,12 +126,12 @@ public class Report {
         this.description = description;
     }
 
-    public User getUser() {
-        return user;
+    public User getCreator() {
+        return creator;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setCreator(User creator) {
+        this.creator = creator;
     }
 
     public ReportType getType() {
@@ -143,11 +142,11 @@ public class Report {
         this.type = type;
     }
 
-    public List<User> getTeamMembers() {
-        return teamMembers;
+    public List<UserReport> getUsers() {
+        return users;
     }
 
-    public void setTeamMembers(List<User> teamMembers) {
-        this.teamMembers = teamMembers;
+    public void setUsers(List<UserReport> users) {
+        this.users = users;
     }
 }

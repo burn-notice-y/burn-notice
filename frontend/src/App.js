@@ -41,11 +41,8 @@ class App extends Component {
                         <Route path={"/vacancy"} render={() => <VacancyRouter/>}/>
                         <Route path={"/user"} render={() => <UserActionRouter/>}/>
                         <Route path={"/assignments"} render={() => <AssignmentRouter/>}/>
-
                         <Route path={"/transfer"} render={() => <TransferRouter/>}/>
-
                         <Route path={"/reports"} render={() => <ReportsRouter/>}/>
-
                         <Route path={"/"} render={() => <Landing/>}/>
                     </Switch>
                     </main>
