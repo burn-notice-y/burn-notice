@@ -3,6 +3,7 @@ package com.burnnotice.burnnotice.Models;
 import com.burnnotice.burnnotice.util.Password;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -36,11 +37,15 @@ public class User {
     @Column(nullable = false)
     private String email;
 
-    @ManyToMany(mappedBy = "teamMembers")
-    @JsonBackReference
-    private List<Report> reports;
+    @OneToMany(mappedBy = "user")
+    @JsonBackReference(value = "report")
+    private List<UserReport> reports;
 
     public User() { }
+
+    public User(long id){
+        this.id = id;
+    }
 
     public long getId() {
         return id;
@@ -106,11 +111,11 @@ public class User {
         this.eligibleForTransfer = eligibleForTransfer;
     }
 
-    public List<Report> getReports() {
+    public List<UserReport> getReports() {
         return reports;
     }
 
-    public void setReports(List<Report> report) {
-        this.reports = report;
+    public void setReports(List<UserReport> reports) {
+        this.reports = reports;
     }
 }

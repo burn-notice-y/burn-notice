@@ -24,9 +24,9 @@ public class VacancyController
     }
 
     @GetMapping("/api/one-vacancy")
-    public Optional<Vacancy> findOneVacancy(@RequestParam("id") long id)
+    public Vacancy findOneVacancy(@RequestParam("id") long id)
     {
-        return vacDao.findById(id);
+        return vacDao.findOne(id);
     }
 
     @PostMapping("/api/create-vacancy")

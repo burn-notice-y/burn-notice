@@ -130,13 +130,20 @@ class CreateReport extends Component {
             exposedToChemicals: this.state.chemicals,
             timeDispatched: this.state.timeDispatched,
             timeArrived: this.state.timeArrived,
-            teamMembers: [{id: 46, sap: 123456}],
+            users: [
+                    {
+                        user: {id: 1}
+                        },
+                    {
+                        user: {id: 2}
+                        },
+                ],
             secondaryTeam: this.state.secondaryTeam,
             fireRetardantPresent: this.state.fireRetardant,
             primaryTeamActions: this.state.primaryTeamActions,
             secondaryTeamActions: this.state.secondaryTeamActions,
             description: this.state.description,
-            user: {id: 46},
+            user: {id: 2},
             type: {id: 1, name: "Single Family Dwelling Fire"}
         }).then(result => {
             console.log(result)
