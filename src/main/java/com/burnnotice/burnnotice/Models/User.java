@@ -1,8 +1,13 @@
 package com.burnnotice.burnnotice.Models;
 
 import com.burnnotice.burnnotice.util.Password;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="users")
@@ -31,10 +36,11 @@ public class User {
     @Column(nullable = false)
     private String email;
 
-    public User() {
-    }
+    @ManyToMany(mappedBy = "teamMembers")
+    @JsonBackReference
+    private List<Report> reports;
 
-
+    public User() { }
 
     public long getId() {
         return id;
@@ -98,5 +104,13 @@ public class User {
 
     public void setEligibleForTransfer(boolean eligibleForTransfer) {
         this.eligibleForTransfer = eligibleForTransfer;
+    }
+
+    public List<Report> getReports() {
+        return reports;
+    }
+
+    public void setReports(List<Report> report) {
+        this.reports = report;
     }
 }

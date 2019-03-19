@@ -18,11 +18,13 @@ const TeamSelect = props => (
         </div>
         <div className={"search-cont"}>
             <TwoOptionSelect inputHandler={props.inputHandler('team')}
-                             oneName={"Primary Team"} oneVal={"primary"}
-                             twoName={"Secondary Team"} twoVal={"secondary"}
+                             oneName={"Primary Team"} oneVal={"primaryTeam"}
+                             twoName={"Secondary Team"} twoVal={"secondaryTeam"}
                              value={props.team} title={"Which team are you adding to?"}
             />
             <TeamExpansion teamName={"Primary Team"} teamMembers={props.primaryTeam}/>
+            <TeamExpansion teamName={"Secondary Team"} teamMembers={props.secondaryTeam}/>
+
 
 
             <Paper elevation={1} className={"search-cont"}>
@@ -37,7 +39,7 @@ const TeamSelect = props => (
                 </IconButton>
                 <Divider/>
             </Paper>
-            <FirefighterSearchCont clearSearch={props.clearSearch} addFunction={props.addFiremanToTeam} searchResult={props.searchResult}/>
+            <FirefighterSearchCont clearSearch={props.clearSearch} addFunction={props.addFiremanToTeam} team={props.team} searchResult={props.searchResult}/>
         </div>
     </div>
 );

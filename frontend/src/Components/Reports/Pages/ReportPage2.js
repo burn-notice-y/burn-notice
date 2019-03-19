@@ -4,7 +4,6 @@ import DescriptionContainer from "../Partials/DescriptionContainer";
 import Typography from "@material-ui/core/Typography/Typography";
 
 const ReportsPage2 = (props) => {
-    console.log(props);
     return (
         <div className="page2">
             <Typography variant="subheading" component="p">

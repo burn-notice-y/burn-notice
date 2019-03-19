@@ -62,8 +62,10 @@
 {
 	"createDate": "2019-02-29",
 	"exposedToChemicals": "true",
-	"timeDispatched": "unix maybe?",
-	"timeArrived": "unix?",
+	"timeDispatched": "XXXX-XX-XX",
+	// year-month-day
+	"timeArrived": "XX:XX",
+	// 24 hr time
 	"fireRetardantPresent": "true",
 	"primaryTeamActions": "what the primary team did",
 	"secondaryTeamActions": "what the secondary team did",

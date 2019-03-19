@@ -1,6 +1,7 @@
-import React, { Component, Fragment } from 'react';
+import React, {Component, Fragment} from 'react';
 import {Button} from "@material-ui/core";
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 
 class Action extends Component {
@@ -12,18 +13,20 @@ class Action extends Component {
             case "3":
                 return (
                     <div className={"multi-action-cont"}>
-                        <Link to={`/reports/create/${Number(pageStatus) - 1}`}><Button variant="contained" color="default">Previous</Button></Link>
-                        <Button variant="contained" color="primary">Submit</Button>
+                        <Link to={`/reports/create/${Number(pageStatus) - 1}`}><Button variant="contained"
+                                                                                       color="default">Previous</Button></Link>
+                        <Button variant="contained" color="primary" onClick={this.props.submitReport}>Submit</Button>
                     </div>
                 );
             default:
-                return  (
+                return (
                     <div className={"multi-action-cont"}>
-                        <Link to={`/reports/create/${Number(pageStatus) - 1}`}><Button variant="contained" color="default">Previous</Button></Link>
-                        <Link to={`/reports/create/${Number(pageStatus) + 1}`}><Button variant="contained" color="primary">Next</Button></Link>
+                        <Link to={`/reports/create/${Number(pageStatus) - 1}`}><Button variant="contained"
+                                                                                       color="default">Previous</Button></Link>
+                        <Link to={`/reports/create/${Number(pageStatus) + 1}`}><Button variant="contained"
+                                                                                       color="primary">Next</Button></Link>
                     </div>
                 );
-
         }
     };
 
@@ -34,6 +37,12 @@ class Action extends Component {
             </Fragment>
         );
     }
+}
+
+Action.propTypes = {
+    age: PropTypes.string,
+    submitReport: PropTypes.func,
+    
 }
 
 export default Action

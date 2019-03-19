@@ -17,10 +17,10 @@ const TeamExpansion = props => (
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
                 <div className="primary-display">
-                    {props.teamMembers.map(teaMember => (
-                        <div className="team-member-cont">
-                            <Typography component="p" variant="subtitle2" key={teaMember.id}>
-                                {teaMember.firstName} {teaMember.lastName}
+                    {props.teamMembers.map(teamMember => (
+                        <div className="team-member-cont" key={teamMember.id}>
+                            <Typography component="p" variant="subtitle2" key={teamMember.id}>
+                                {teamMember.firstName} {teamMember.lastName}
                             </Typography>
                             <IconButton aria-label="Search">
                                 <ClearIcon/>

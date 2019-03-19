@@ -1,0 +1,15 @@
+.modal-cont {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 25px;
+    border-radius: 5px;
+}
+.modal-cont:focus {
+    outline: none;
+}
+.modal-directions {
+    margin-top: 5vh !important;
+}
