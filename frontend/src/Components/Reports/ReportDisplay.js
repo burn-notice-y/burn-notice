@@ -5,9 +5,9 @@ import TextField from "@material-ui/core/TextField/TextField";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import {reportCategories, reportDisplay} from '../../data/categories';
 import ManyFirefighters from "../Firefighters/ManyFirefighters";
-import SearchByOne from "./SearchByOne";
-import SearchByTwo from "./SearchByTwo";
-import SearchByType from "./SearchByType";
+import SearchByOne from "./Search/SearchByOne";
+import SearchByTwo from "./Search/SearchByTwo";
+import SearchByType from "./Search/SearchByType";
 
 
 

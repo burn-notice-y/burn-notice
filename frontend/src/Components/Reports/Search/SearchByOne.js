@@ -3,6 +3,7 @@ import Paper from "@material-ui/core/Paper/Paper";
 import IconButton from "@material-ui/core/IconButton/IconButton";
 import Divider from "@material-ui/core/Divider/Divider";
 import SearchIcon from '@material-ui/icons/Search';
+import ManyReports from "../ManyReports";
 
 
 class SearchByOne extends Component {
