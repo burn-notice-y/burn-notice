@@ -3,39 +3,34 @@ package com.burnnotice.burnnotice.Controllers;
 
 import com.burnnotice.burnnotice.Models.Report;
 import com.burnnotice.burnnotice.Models.User;
-import com.burnnotice.burnnotice.Models.UserReport;
 import com.burnnotice.burnnotice.Repositories.ReportRepository;
-import com.burnnotice.burnnotice.Repositories.UserReportRepository;
 import com.burnnotice.burnnotice.Repositories.UserRepository;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class ReportController {
 
     private final ReportRepository reportDao;
     private final UserRepository userDao;
-    private final UserReportRepository userReportDao;
 
-    public ReportController(ReportRepository reportDao, UserRepository userDao, UserReportRepository userReportDao ) {
+
+    public ReportController(ReportRepository reportDao, UserRepository userDao ) {
         this.reportDao = reportDao;
         this.userDao = userDao;
-        this.userReportDao = userReportDao;
-
     }
 
     @PostMapping("/api/create-report")
     public void createReport(@RequestBody Report report) {
-
-        System.out.println(report.getCreator().getFirstName());
-        // initial save
-        Report savedReport = reportDao.save(report);
-
-        for (UserReport user: savedReport.getUsers()){
-            // null
-            // happening twice because of sending 2 users
-            // user.getUser() is null
-            userReportDao.save(new UserReport(user.getUser(), savedReport, "Primary"));
+        List<User> users = new ArrayList<User>();
+        for (User user : report.getUsers()){
+            users.add(user);
         }
+        report.setUsers(users);
+
+        reportDao.save(report);
     }
 
     // find all - return Iterable<Report>
