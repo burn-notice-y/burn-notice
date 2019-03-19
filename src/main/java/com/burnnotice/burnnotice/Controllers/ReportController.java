@@ -25,9 +25,8 @@ public class ReportController {
 
     @PostMapping("/api/create-report")
     public void createReport(@RequestBody Report report) {
-        for (UserReport user : report.getUsers()){
-            System.out.println(user.getUser().getId());
-        }
+
+        System.out.println(report.getCreator().getFirstName());
         // initial save
         Report savedReport = reportDao.save(report);
 
@@ -42,6 +41,7 @@ public class ReportController {
     // find all - return Iterable<Report>
     @GetMapping("/api/reports")
     public Iterable<Report> findAll() {
+
         return reportDao.findAll();
     }
 }

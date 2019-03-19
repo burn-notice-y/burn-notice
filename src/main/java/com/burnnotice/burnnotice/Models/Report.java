@@ -9,8 +9,8 @@ import java.util.List;
 @Entity
 @Table(name="reports")
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
-        property  = "users",
-        scope     = User.class)
+        property  = "id",
+        scope = Long.class)
 public class Report {
 
     @Id @GeneratedValue
@@ -42,7 +42,7 @@ public class Report {
 
     // one creator of the report
     @OneToOne
-    private User user;
+    private User creator;
 
     //type of report being submitted
     @OneToOne
@@ -50,7 +50,6 @@ public class Report {
 
     //team involved ( friends list )
     @OneToMany(mappedBy = "report")
-    @JsonBackReference(value = "user")
     private List<UserReport> users;
 
     public Report() { }
@@ -127,12 +126,12 @@ public class Report {
         this.description = description;
     }
 
-    public User getUser() {
-        return user;
+    public User getCreator() {
+        return creator;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setCreator(User creator) {
+        this.creator = creator;
     }
 
     public ReportType getType() {

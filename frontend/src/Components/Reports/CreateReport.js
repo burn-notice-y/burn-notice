@@ -132,18 +132,17 @@ class CreateReport extends Component {
             timeArrived: this.state.timeArrived,
             users: [
                     {
-                        user: {id: 1}
-                        },
-                    {
                         user: {id: 2}
                         },
+                    {
+                        user: {id: 3}
+                        },
                 ],
-            secondaryTeam: this.state.secondaryTeam,
             fireRetardantPresent: this.state.fireRetardant,
             primaryTeamActions: this.state.primaryTeamActions,
             secondaryTeamActions: this.state.secondaryTeamActions,
             description: this.state.description,
-            user: {id: 2},
+            creator: {id: 1, firstName: "Kanye", lastName: "West"},
             type: {id: 1, name: "Single Family Dwelling Fire"}
         }).then(result => {
             console.log(result)

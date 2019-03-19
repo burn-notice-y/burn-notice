@@ -1,11 +1,18 @@
 package com.burnnotice.burnnotice.Models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "user_report")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id",
+        scope = Long.class)
 public class UserReport {
 
     @Id
@@ -13,7 +20,6 @@ public class UserReport {
     private long id;
 
     @ManyToOne
-
     @JoinColumn(name = "user_id")
     private User user;
 
