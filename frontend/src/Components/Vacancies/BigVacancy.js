@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
 import vacancy from '../../data/bigVacancy';
 import Typography from "@material-ui/core/Typography/Typography";
-import CardContent from "@material-ui/core/CardContent/CardContent";
-import Card from "@material-ui/core/Card/Card";
 import IconButton from "@material-ui/core/IconButton/IconButton";
-import DeleteIcon from "@material-ui/core/SvgIcon/SvgIcon";
 import moment from 'moment';
 import ManyFirefighters from '../Firefighters/ManyFirefighters';
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import { withStyles } from '@material-ui/core/styles';
+import Fab from '@material-ui/core/Fab';
+import DeleteIcon from '@material-ui/icons/Delete';
+import NavigationIcon from '@material-ui/icons/Navigation';
+
+
+
+
+
+
 
 // show all of the properties from the vacancy object
 
@@ -30,6 +39,18 @@ class BigVacancy extends Component {
     };
     render(){
 
+        let applicable = () =>
+        {
+            if(vacancy.fillDate === "9999")
+            {
+                return "Apply";
+            }
+            else
+            {
+                return "Closed";
+            }
+        }
+
         let postDate = moment(vacancy.postDate).format("MMMM Do YYYY");
 
         let fillDate = () => {
@@ -45,34 +66,91 @@ class BigVacancy extends Component {
         let role = "";
         vacancy.engine ? role = "Engine" : role = "Truck";
 
+        function ListDividers(props)
+        {
+            const {classes} = props;
+        }
+
+
         return (
 
-            <Card className={"vacancy-cont"}>
-                <CardContent>
-                    <div className="vacancy-header-cont card-size">
-                        <div className="vacancy-header">
-                            <Typography variant="h5" component="h2" gutterBottom>
-                                Station {vacancy.fireStation.code}
-                            </Typography>
-                        </div>
-                        {this.determineAdmin()}
-                    </div>
-                    <Typography variant="h5" component="h2" gutterBottom>
-                        Role: {role}
-                    </Typography>
-                    <Typography variant="h5" component="h2" gutterBottom>
-                        Temporary: {temporary}
-                    </Typography>
-                    <Typography variant="body1" component="h2" gutterBottom>
-                        Post Date: {postDate}
-                    </Typography>
-                    <Typography variant="subtitle2" component="h2">
-                        Fill Date: {fillDate()}
-                    </Typography>
-                    <ManyFirefighters/>
-                </CardContent>
-            </Card>
+            <div className="vacancy-scroll">
+                <Typography variant="h2">
+                    Vacancy Details
+                </Typography>
 
+
+                <div>
+                    <TextField
+                        disabled
+                        id="outlined-disabled"
+                        label="Station"
+                        defaultValue={vacancy.fireStation.code}
+                        className="text-field-width"
+                        margin="normal"
+                        variant="outlined"
+                    />
+                </div>
+                <div>
+                    <TextField
+                        disabled
+                        id="outlined-disabled"
+                        label="Role"
+                        className="text-field-width"
+                        defaultValue={role}
+                        margin="normal"
+                        variant="outlined"
+                    />
+                </div>
+
+                <div>
+                    <TextField
+                        disabled
+                        id="Temporary"
+                        label="Temporary"
+                        className="text-field-width"
+                        defaultValue={temporary}
+                        margin="normal"
+                        variant="outlined"
+                    />
+                </div>
+
+                <div>
+                    <TextField
+                        disabled
+                        id="outlined-disabled"
+                        label="Post Date"
+                        className="text-field-width"
+                        defaultValue={postDate}
+                        margin="normal"
+                        variant="outlined"
+                    />
+                </div>
+                <div>
+                    <TextField
+                        disabled
+                        id="outlined-disabled"
+                        label="Fill Date"
+                        className="text-field-width "
+                        defaultValue={fillDate()}
+                        margin="normal"
+                        variant="outlined"
+                    />
+                </div>
+                <div>
+                    <Typography>
+                        <ManyFirefighters/>
+                    </Typography>
+                </div>
+
+
+                <Button gutterBottom variant="contained" className="vacancy-btn-color">
+                    {applicable()}
+                </Button>
+
+
+
+            </div>
         )
     }
 }

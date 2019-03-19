@@ -13,7 +13,9 @@ import MomentUtils from '@date-io/moment';
 import VacancyRouter from "./Components/Vacancies/VacancyRouter";
 import UserActionRouter from "./Components/User/UserActionsRouter";
 import AssignmentRouter from "./Components/Assignments/AssignmentsRouter";
-import ReportsRouter from "./Components/Reports/Pages/ReportsRouter";
+import TransferRouter from "./Components/TransferReq/TransferRouter";
+import ReportsRouter from "./Components/Reports/ReportsRouter";
+
 
 class App extends Component {
     componentDidMount() {
@@ -39,7 +41,11 @@ class App extends Component {
                         <Route path={"/vacancy"} render={() => <VacancyRouter/>}/>
                         <Route path={"/user"} render={() => <UserActionRouter/>}/>
                         <Route path={"/assignments"} render={() => <AssignmentRouter/>}/>
+
+                        <Route path={"/transfer"} render={() => <TransferRouter/>}/>
+
                         <Route path={"/reports"} render={() => <ReportsRouter/>}/>
+
                         <Route path={"/"} render={() => <Landing/>}/>
                     </Switch>
                     </main>
