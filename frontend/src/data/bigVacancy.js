@@ -1,4 +1,5 @@
 export default {
+    id: 2,
     fireStation: {
         id: 2,
         code: "40",

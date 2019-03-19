@@ -1,14 +1,23 @@
 package com.burnnotice.burnnotice.Models;
 
 import com.burnnotice.burnnotice.util.Password;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="users")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id",
+        scope = Long.class)
 public class User {
+
     @Id @GeneratedValue
     private long id;
+
 
     @Column(nullable = false)
     private String firstName;
@@ -31,9 +40,12 @@ public class User {
     @Column(nullable = false)
     private String email;
 
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    private TransferRequest transferRequest;
+
+
     public User() {
     }
-
 
 
     public long getId() {
@@ -98,5 +110,13 @@ public class User {
 
     public void setEligibleForTransfer(boolean eligibleForTransfer) {
         this.eligibleForTransfer = eligibleForTransfer;
+    }
+
+    public TransferRequest getTransferRequest() {
+        return transferRequest;
+    }
+
+    public void setTransferRequest(TransferRequest transferRequest) {
+        this.transferRequest = transferRequest;
     }
 }
