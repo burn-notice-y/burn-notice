@@ -35,7 +35,7 @@ class LoggedInMenu extends Component {
 
     render() {
         if (this.state.redirect){
-            return (<Redirect to={"/user/login"}/>)
+            return (<Redirect to={"/"}/>)
         }
         return (
             <React.Fragment>

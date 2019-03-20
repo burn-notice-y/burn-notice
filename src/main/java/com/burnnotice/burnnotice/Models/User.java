@@ -3,16 +3,13 @@ package com.burnnotice.burnnotice.Models;
 import com.burnnotice.burnnotice.util.Password;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="users")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id",
-        scope = Long.class)
 public class User {
 
     @Id @GeneratedValue
@@ -41,6 +38,7 @@ public class User {
     private String email;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    @JsonBackReference
     private TransferRequest transferRequest;
 
 

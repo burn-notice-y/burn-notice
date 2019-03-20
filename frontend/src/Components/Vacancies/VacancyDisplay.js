@@ -39,5 +39,5 @@ const mapStateToProps = state => {
     return {
         user: state.user
     }
-}
+};
 export default connect(mapStateToProps, actions)(VacancyDisplay);

@@ -9,25 +9,10 @@ import java.util.List;
 
 @Entity
 @Table(name = "vacancies")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id",
-        scope = Long.class)
 public class Vacancy {
     @Id
     @GeneratedValue
     private long id;
-
-    @OneToOne(cascade = {CascadeType.ALL})
-    private FireStation station;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vacancy")
-    private List<TransferRequest> transferRequest;
-
-
-
-
-    @OneToOne(cascade = {CascadeType.ALL})
-    private FireStation district;
 
     @Column
     private boolean engine;
@@ -41,9 +26,22 @@ public class Vacancy {
     @Column
     private boolean temporary;
 
+    @OneToOne(cascade = {CascadeType.ALL})
+    private FireStation station;
+
+    // mapped relationship to vacancy
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vacancy")
+    @JsonBackReference
+    private List<TransferRequest> transferRequest;
+
+
+    @OneToOne(cascade = {CascadeType.ALL})
+    private FireStation district;
+
 
     public Vacancy() {
     }
+
 
     public long getId() {
         return id;

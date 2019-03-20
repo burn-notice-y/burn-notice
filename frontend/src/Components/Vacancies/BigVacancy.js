@@ -13,6 +13,7 @@ import NavigationIcon from '@material-ui/icons/Navigation';
 import axios from "axios";
 import * as actions from '../../store/actions';
 import { connect }  from 'react-redux';
+import {Link} from "react-router-dom";
 
 
 
@@ -163,10 +164,10 @@ class BigVacancy extends Component {
                 </div>
 
 
-                <Button gutterBottom variant="contained" className="vacancy-btn-color"><div onClick={this.apply}>
+                <Link to={"/transfer/create"}><Button gutterBottom variant="contained" className="vacancy-btn-color"><div onClick={this.apply}>
                     {applicable()}
                 </div>
-                </Button>
+                </Button></Link>
 
             </div>
         )
