@@ -66,6 +66,15 @@ This works like any other repository call
 
 - `Iterable<INTERFACE_NAME> = userDao.findBy_SOME_OTHER_METHOD();`
 
+## Expected Return
+The returned data from this particular Projection would be: 
+```
+{
+   "id": 5,
+   "firstName": "Bob",
+   "lastName": "Ross"
+}
+```
 
 ## Helpful Links:
 
