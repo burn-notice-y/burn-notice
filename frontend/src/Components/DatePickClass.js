@@ -1,5 +1,5 @@
 import { InlineDatePicker } from "material-ui-pickers";
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from 'prop-types';
 
 const DatePick = ({ labelDisplay, createDate, onChange}) => (
@@ -13,7 +13,7 @@ const DatePick = ({ labelDisplay, createDate, onChange}) => (
                 format={"MM/DD/YYYY"}
             />
         </div>
-    )
+    );
 
 
 DatePick.propTypes = {

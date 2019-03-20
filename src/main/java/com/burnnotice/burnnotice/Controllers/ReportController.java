@@ -7,8 +7,6 @@ import com.burnnotice.burnnotice.Repositories.ReportHighlights;
 import com.burnnotice.burnnotice.Repositories.ReportRepository;
 import com.burnnotice.burnnotice.Repositories.UserRepository;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -34,5 +32,35 @@ public class ReportController {
     @GetMapping("/api/reports")
     public Iterable<ReportHighlights> reportHighlights() {
         return reportDao.findAllBy();
+    }
+
+    @GetMapping("/api/one-report")
+    public Report findOneReport(@RequestParam long id){
+        return reportDao.findOne(id);
+    }
+
+    // find by name 1st or last
+    @GetMapping("/api/creator-report")
+    public List<ReportHighlights> findAllByCreator(@RequestParam String creatorName){
+        return reportDao.findAllByCreatorLastName(creatorName);
+    }
+
+    // find by date
+    @GetMapping("/api/date-report")
+    public List<ReportHighlights> findAllByDate(@RequestParam String createDate){
+        return reportDao.findAllByCreateDateLike(createDate);
+    }
+
+    // find by date range
+    @GetMapping("/api/date-range-report")
+    public List<ReportHighlights> findAllByDateRange(@RequestParam("start-date") String startDate,
+                                                     @RequestParam("end-date") String endDate){
+        return reportDao.findAllByCreateDateBetween(startDate, endDate);
+    }
+
+    // find by date range
+    @GetMapping("/api/type-report")
+    public List<ReportHighlights> findAllByDateType(@RequestParam String type){
+        return reportDao.findAllByTypeName(type);
     }
 }

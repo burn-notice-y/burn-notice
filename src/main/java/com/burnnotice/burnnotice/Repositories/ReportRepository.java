@@ -6,4 +6,12 @@ import java.util.List;
 
 public interface ReportRepository extends CrudRepository<Report, Long> {
     List<ReportHighlights> findAllBy();
+
+    List<ReportHighlights> findAllByCreatorLastName(String creatorLastName);
+
+    List<ReportHighlights> findAllByCreateDateLike(String createDate);
+
+    List<ReportHighlights> findAllByCreateDateBetween(String startDate, String endDate);
+
+    List<ReportHighlights> findAllByTypeName(String type);
 }
