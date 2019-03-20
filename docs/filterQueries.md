@@ -26,7 +26,6 @@ public interface OnlyNames {
         String getFirstName();
         String getLastName();
 }
-
 ```
 
 ## Implementation
@@ -75,6 +74,38 @@ The returned data from this particular Projection would be:
    "lastName": "Ross"
 }
 ```
+
+## Accessing Projections on other objects
+Say we need to access a class property on the class we're targeting
+
+The `User` has a `Dog` property on it, with the getter, `getDog()`
+
+We would first define the Projection for the dog:
+```
+public interface DogName {
+    String getName();
+}
+```
+
+Inside of the `OnlyNames` interface ( or a different one, as long as its targeting the `User`), we can access all the properties on the `User`, including the `Dog` property
+
+Inside of this interface, we have access to other interfaces, on other models. 
+
+So we could filter the `Dog`'s information as well
+
+So that would look like :
+```
+package com.projectName.Repositories;
+
+public interface OnlyNames {
+        Long getId();
+        String getFirstName();
+        String getLastName();
+        DogName getDog();
+}
+```
+
+So we are having the returned data type be: `DogName` which is just the `String name` on the `Dog`, while using the `User` getter to access the `Dog`
 
 ## Helpful Links:
 
