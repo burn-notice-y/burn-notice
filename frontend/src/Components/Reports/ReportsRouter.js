@@ -4,7 +4,7 @@ import CreateReport from './CreateReport';
 
 const ReportsRouter = () => (
     <Switch>
-        <Route path={"/reports/create"} render={() => <CreateReport/>}/>
+        <Route path={"/reports/create/:pageNumber"} render={(routeProps) => <CreateReport {...routeProps}/>}/>
     </Switch>
 );
 

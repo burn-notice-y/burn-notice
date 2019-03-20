@@ -1,6 +1,9 @@
 package com.burnnotice.burnnotice.Models;
 
+import com.fasterxml.jackson.annotation.*;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -36,21 +39,21 @@ public class Report {
 
     // one creator of the report
     @OneToOne
-    private User user;
+    private User creator;
 
     //type of report being submitted
     @OneToOne
     private ReportType type;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "report")
-    private List<ReportType> types;
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(
+            name="reports_users",
+            joinColumns={@JoinColumn(name="report_id")},
+            inverseJoinColumns={@JoinColumn(name="user_id")}
+    )
+    private List<User> users;
 
-
-
-    public Report() {
-
-    }
-
+    public Report() { }
 
     public long getId() {
         return id;
@@ -124,12 +127,12 @@ public class Report {
         this.description = description;
     }
 
-    public User getUser() {
-        return user;
+    public User getCreator() {
+        return creator;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setCreator(User creator) {
+        this.creator = creator;
     }
 
     public ReportType getType() {
@@ -140,12 +143,11 @@ public class Report {
         this.type = type;
     }
 
-
-    public List<ReportType> getTypes() {
-        return types;
+    public List<User> getUsers() {
+        return users;
     }
 
-    public void setTypes(List<ReportType> types) {
-        this.types = types;
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 }

@@ -12,10 +12,6 @@ public class ReportType {
     @Column(nullable = false)
     private String name;
 
-    @ManyToOne
-    @JoinColumn (name = "report_id")
-    private Report report;
-
     public long getId() {
         return id;
     }
@@ -30,14 +26,6 @@ public class ReportType {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Report getReport() {
-        return report;
-    }
-
-    public void setReport(Report report) {
-        this.report = report;
     }
 
     public ReportType() {

@@ -2,6 +2,7 @@ package com.burnnotice.burnnotice.Controllers;
 
 
 import com.burnnotice.burnnotice.Models.User;
+import com.burnnotice.burnnotice.Repositories.OnlyNames;
 import com.burnnotice.burnnotice.Repositories.UserRepository;
 import com.burnnotice.burnnotice.util.Password;
 import org.springframework.web.bind.annotation.*;
@@ -31,11 +32,14 @@ public class LoginController {
         }
     }
 
-
         @RequestMapping("/api/logout")
         public void checkoutUser(HttpServletRequest request) {
             HttpSession session = request.getSession();
             session.invalidate();
+        }
+        @GetMapping("/api/all-users")
+        public Iterable<OnlyNames> sendAllUsers(){
+            return userDao.findAllByChiefFalse();
         }
     }
 

@@ -1,10 +1,11 @@
 package com.burnnotice.burnnotice.Models;
 
 import com.burnnotice.burnnotice.util.Password;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
+import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="users")
@@ -35,6 +36,7 @@ public class User {
     @Column(nullable = false)
     private String email;
 
+
     @OneToOne(mappedBy = "user")
     @JsonBackReference(value = "user")
     private TransferRequest transferRequest;
@@ -42,6 +44,7 @@ public class User {
 
     public User() {
     }
+
 
 
     public long getId() {
@@ -108,6 +111,7 @@ public class User {
         this.eligibleForTransfer = eligibleForTransfer;
     }
 
+
     public TransferRequest getTransferRequest() {
         return transferRequest;
     }
@@ -115,4 +119,7 @@ public class User {
     public void setTransferRequest(TransferRequest transferRequest) {
         this.transferRequest = transferRequest;
     }
+
 }
+
+
