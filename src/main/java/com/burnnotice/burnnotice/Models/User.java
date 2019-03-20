@@ -6,6 +6,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -37,7 +38,7 @@ public class User {
 
     @ManyToMany(mappedBy = "users")
     @JsonBackReference
-    private List<Report> reports;
+    private List<Report> reports = new ArrayList<Report>();
 
     public User() { }
     public User(long id) { this.id = id; }
@@ -113,4 +114,7 @@ public class User {
     public void setReports(List<Report> reports) {
         this.reports = reports;
     }
+
 }
+
+

@@ -24,19 +24,18 @@ public class ReportController {
 
     @PostMapping("/api/create-report")
     public void createReport(@RequestBody Report report) {
-        List<User> users = new ArrayList<User>();
-        for (User user : report.getUsers()){
-            users.add(user);
-        }
-        report.setUsers(users);
-
         reportDao.save(report);
+        for (User user : report.getUsers()){
+            user.getReports().add(report);
+        }
     }
 
     // find all - return Iterable<Report>
     @GetMapping("/api/reports")
     public Iterable<Report> findAll() {
-
         return reportDao.findAll();
+        // make an empty list
+        // loop through the findAll,
+        // cherry pick from findAll, and put it in the empty list
     }
 }
