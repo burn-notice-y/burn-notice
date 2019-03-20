@@ -14,7 +14,7 @@
 
 }
 .time div {
-    width: 70%;
+    width: 90%;
 
 }
 
@@ -24,7 +24,9 @@
     display: flex;
 }
 .action-container {
-    text-align: center;
+    text-align: right;
+    width: 100%;
+    margin-bottom: 5vh;
 }
 .time-input > div {
     width: 40%;

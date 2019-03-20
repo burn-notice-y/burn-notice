@@ -1,34 +1,25 @@
 import { InlineDatePicker } from "material-ui-pickers";
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from 'prop-types';
 
-class DatePick extends Component {
-    state = {
-        selectedDate: new Date()
-    };
-
-    handleDateChange = event => {
-        // console.log(event)
-        this.setState({selectedDate: event})
-    };
-
-    render() {
-        return (<div className="picker">
+const DatePick = ({ labelDisplay, createDate, onChange}) => (
+<div className="picker">
             <InlineDatePicker
                 clearable
                 variant="outlined"
-                label={this.props.labelDisplay}
-                value={this.state.selectedDate}
-                onChange={this.handleDateChange}
+                label={labelDisplay}
+                value={createDate}
+                onChange={onChange('createDate')}
                 format={"MM/DD/YYYY"}
             />
-        </div>)
-    }
-}
+        </div>
+    );
 
 
 DatePick.propTypes = {
-    labelDisplay: PropTypes.string
+    labelDisplay: PropTypes.string,
+    createDate: PropTypes.any,
+    onChange: PropTypes.func
 };
 
 export default DatePick;

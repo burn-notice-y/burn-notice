@@ -7,7 +7,6 @@ import Typography from "@material-ui/core/Typography/Typography";
 
 const Report = props => {
 
-    console.log(props);
 
         return (
 

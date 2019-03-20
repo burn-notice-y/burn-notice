@@ -32,7 +32,6 @@ class Vacancy extends Component {
         let role = "";
         this.props.engine ? role = "Engine" : role = "Truck";
 
-
         return (
             <Card className={"vacancy-cont"}>
                 <CardContent>

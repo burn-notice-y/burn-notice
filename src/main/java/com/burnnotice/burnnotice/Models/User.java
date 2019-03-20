@@ -1,8 +1,10 @@
 package com.burnnotice.burnnotice.Models;
 
 import com.burnnotice.burnnotice.util.Password;
-
+import com.fasterxml.jackson.annotation.*;
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="users")
@@ -31,10 +33,12 @@ public class User {
     @Column(nullable = false)
     private String email;
 
-    public User() {
-    }
+    @ManyToMany(mappedBy = "users")
+    @JsonBackReference
+    private List<Report> reports = new ArrayList<Report>();
 
-
+    public User() { }
+    public User(long id) { this.id = id; }
 
     public long getId() {
         return id;
@@ -99,4 +103,15 @@ public class User {
     public void setEligibleForTransfer(boolean eligibleForTransfer) {
         this.eligibleForTransfer = eligibleForTransfer;
     }
+
+    public List<Report> getReports() {
+        return reports;
+    }
+
+    public void setReports(List<Report> reports) {
+        this.reports = reports;
+    }
+
 }
+
+

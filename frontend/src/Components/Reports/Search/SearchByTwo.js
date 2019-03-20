@@ -1,39 +1,36 @@
 import React, {Component} from 'react';
-import Typography from "@material-ui/core/Typography/Typography";
-import TextField from "@material-ui/core/TextField/TextField";
 import Button from "@material-ui/core/Button/Button";
-import TimePick from "../../TimePicker";
 import '../../../css/Reportdisplay.css';
+import DatePick from "../../DatePickClass";
+import ManyReports from "../ManyReports";
 
 
 class SearchByTwo extends Component {
 
+    state={
+        search:""
+    };
+
+    displayReports = () => {
+        this.setState({
+            displayReports: !this.state.displayReports
+        })
+    };
+
     render() {
+
+        if(this.state.displayReports) {
+            return <ManyReports/>;
+        }
 
         return(
         <div>
             <div className="time">
-                <div className="time1-cont">
-                    <TextField
-                        className={"time-input"}
-                        label="Start Date:"
-                        value={""}
-                        onChange={""}
-                        margin="normal"
-                        variant="outlined"/>
-                </div>
-                <div className="time2-cont">
-                    <TextField
-                        className={"time-input"}
-                        label="End Date:"
-                        value={""}
-                        onChange={""}
-                        margin="normal"
-                        variant="outlined"/>
-                </div>
+                <DatePick labelDisplay={"Start Date"}/>
+                <DatePick labelDisplay={"End Date"}/>
             </div>
             <div className="action-container">
-                <Button variant="contained" size="large" color="primary" className="date-search">
+                <Button variant="contained" color="primary" className="date-search" onClick={this.displayReports}>
                     Search
                 </Button>
             </div>

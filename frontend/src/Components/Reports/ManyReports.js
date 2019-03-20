@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import Report from "./Report";
 import reports from '../../data/reports';
 import Typography from "@material-ui/core/Typography/Typography";
@@ -8,26 +8,29 @@ import Typography from "@material-ui/core/Typography/Typography";
 class ManyReports extends Component {
 
     render() {
-        console.log(reports)
+        // this is mapping thru the report object and going thru each report. the ...report is called a spread operator
+        let display = null;
+        if (this.props.show) {
+            display = (
+                <div className="report-cont">
+                    <div className="report-header">
+                        <Typography component="h3" variant="h3" gutterBottom>
+                            Reports
+                        </Typography>
+                    </div>
+                    <div className="report-content">
 
-        return(
-            <div className="report-cont">
-                <div className="report-header">
-                    <Typography component="h3" variant="h3" gutterBottom>
-                        Reports
-                    </Typography>
+                        {reports.map(report => <Report key={report.id} test={"test"} {...report}/>)}
+                    </div>
                 </div>
-                <div className="report-content">
-                    {reports.map(report =>{
-                        console.log("happening");
-                        return (
-                     <Report key={report.id} test={"test"} {...report}/>
-                        )
-                    })}
-                </div>
-            </div>
-
+            )
+        }
+        return (
+            <Fragment>
+                {display}
+            </Fragment>
         )
+
     }
 }
 
