@@ -8,6 +8,7 @@ import ManyFirefighters from "../Firefighters/ManyFirefighters";
 import SearchByOne from "./Search/SearchByOne";
 import SearchByTwo from "./Search/SearchByTwo";
 import SearchByType from "./Search/SearchByType";
+import ManyReports from "./ManyReports";
 
 
 
@@ -85,6 +86,7 @@ console.log(this.state);
                     {this.determineSearchType(this.state.type)}
 
                 </div>
+                <ManyReports/>
 
         </div>
 

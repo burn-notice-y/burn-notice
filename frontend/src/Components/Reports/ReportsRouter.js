@@ -2,6 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import CreateReport from './CreateReport';
 import ReportDisplay from './ReportDisplay';
+import ManyReports from "./ManyReports";
 
 const ReportsRouter = () => (
     <Switch>

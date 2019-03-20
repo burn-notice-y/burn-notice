@@ -15,7 +15,7 @@ class SearchByTwo extends Component {
             <div className="time">
                 <div className="time1-cont">
                     <TextField
-                        id={`outlined-start-date`}
+                        className={"time-input"}
                         label="Start Date:"
                         value={""}
                         onChange={""}
@@ -24,17 +24,20 @@ class SearchByTwo extends Component {
                 </div>
                 <div className="time2-cont">
                     <TextField
-                        id={`outlined-end-date`}
+                        className={"time-input"}
                         label="End Date:"
                         value={""}
                         onChange={""}
                         margin="normal"
                         variant="outlined"/>
                 </div>
-                <Button variant="contained" color="primary" className="date-search">
+            </div>
+            <div className="action-container">
+                <Button variant="contained" size="large" color="primary" className="date-search">
                     Search
                 </Button>
             </div>
+
         </div>
 
 

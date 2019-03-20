@@ -1,27 +1,34 @@
 import React, {Component} from 'react';
-import allVacancies from "../../data/vacancies";
-import Vacancy from "../Vacancies/Vacancy";
-import PropTypes from "prop-types";
-import ManyVacancies from "../Vacancies/ManyVacancies";
+import Report from "./Report";
+import reports from '../../data/reports';
+import Typography from "@material-ui/core/Typography/Typography";
+
 
 
 class ManyReports extends Component {
 
     render() {
+        console.log(reports)
 
         return(
-            <div className="many-reports-cont">
-                <div className="report-body">
-                    {allVacancies.map(vacancy => <Vacancy admin={this.props.admin} key={vacancy.id} {...vacancy} />)}
+            <div className="report-cont">
+                <div className="report-header">
+                    <Typography component="h3" variant="h3" gutterBottom>
+                        Reports
+                    </Typography>
+                </div>
+                <div className="report-content">
+                    {reports.map(report =>{
+                        console.log("happening");
+                        return (
+                     <Report key={report.id} test={"test"} {...report}/>
+                        )
+                    })}
                 </div>
             </div>
 
         )
     }
 }
-
-ManyReports.propTypes = {
-    admin: PropTypes.bool
-};
 
 export default ManyReports;

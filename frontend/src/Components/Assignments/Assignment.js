@@ -41,6 +41,6 @@ const Assignment = props => {
             </CardActions>
         </Card>
     );
-}
+};
 
 export default Assignment
