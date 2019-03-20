@@ -1,4 +1,5 @@
 export default {
+    id:1,
     firstName: "Jermaine",
     lastName: "Cole",
     fireStation: {

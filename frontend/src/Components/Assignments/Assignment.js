@@ -41,7 +41,7 @@ const Assignment = ({ engine, startDate, endDate, station }) => {
             </CardActions>
         </Card>
     );
-}
+};
 
 export default Assignment
 
