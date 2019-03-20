@@ -143,7 +143,7 @@ class CreateReport extends Component {
             console.log(result)
         })
         .catch(error => console.log(error))
-    }
+    };
 
 
     render() {

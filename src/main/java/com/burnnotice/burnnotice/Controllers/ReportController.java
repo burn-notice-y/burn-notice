@@ -31,15 +31,7 @@ public class ReportController {
         }
     }
 
-    // find all - return Iterable<Report>
     @GetMapping("/api/reports")
-    public Iterable<Report> findAll() {
-        return reportDao.findAll();
-        // make an empty list
-        // loop through the findAll,
-        // cherry pick from findAll, and put it in the empty list
-    }
-    @GetMapping("/api/reports-2")
     public Iterable<ReportHighlights> reportHighlights() {
         return reportDao.findAllBy();
     }

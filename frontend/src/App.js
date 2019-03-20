@@ -55,7 +55,7 @@ class App extends Component {
 }
 
 App.propTypes = {
-    fetchUser: PropTypes.any.isRequired
+    fetchUser: PropTypes.func
 };
 
 const mapStateToProps = state => {
