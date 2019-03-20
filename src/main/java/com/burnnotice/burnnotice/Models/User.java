@@ -2,19 +2,12 @@ package com.burnnotice.burnnotice.Models;
 
 import com.burnnotice.burnnotice.util.Password;
 import com.fasterxml.jackson.annotation.*;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name="users")
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id",
-        scope = Long.class
-)
 public class User {
     @Id @GeneratedValue
     private long id;
@@ -40,10 +33,12 @@ public class User {
     @Column(nullable = false)
     private String email;
 
-    @OneToMany(mappedBy = "user")
-    private List<UserReport> reports;
+    @ManyToMany(mappedBy = "users")
+    @JsonBackReference
+    private List<Report> reports = new ArrayList<Report>();
 
     public User() { }
+    public User(long id) { this.id = id; }
 
     public long getId() {
         return id;
@@ -109,11 +104,14 @@ public class User {
         this.eligibleForTransfer = eligibleForTransfer;
     }
 
-    public List<UserReport> getReports() {
+    public List<Report> getReports() {
         return reports;
     }
 
-    public void setReports(List<UserReport> reports) {
+    public void setReports(List<Report> reports) {
         this.reports = reports;
     }
+
 }
+
+

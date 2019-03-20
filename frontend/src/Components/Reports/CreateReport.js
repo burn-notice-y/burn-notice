@@ -8,8 +8,7 @@ import {withRouter, Redirect, Switch, Route} from 'react-router-dom';
 import axios from 'axios';
 import {Typography} from '@material-ui/core'
 import PropTypes from 'prop-types';
-import differenceWith from 'lodash.differencewith';
-import difference from 'lodash.difference';
+import moment from 'moment';
 
 // Own Components
 import '../../css/CreateReport.css';
@@ -31,7 +30,7 @@ class CreateReport extends Component {
         description: "",
         timeArrived: "",
         timeDispatched: "",
-        createDate: new Date(),
+        createDate: moment().format("YYYY-MM-DD"),
         search: "",
         redirect: false,
         error: false,
@@ -39,18 +38,21 @@ class CreateReport extends Component {
         searchResult: [],
         primaryTeam: [],
         secondaryTeam: [],
-        modalOpen: false
+        modalOpen: false,
+        teamMemberTaken: false
     };
 
 
     inputHandler = type => event => {
         if (type === "createDate"){
             if(event > new Date()){
-                alert("Can you see the future?")
+                this.setState({
+                    modalOpen: true,
+                    dateWrong: true
+                });
             } else {
-                this.setState({createDate: event})
+                this.setState({createDate: moment(event).format("YYYY-MM-DD")})
             }
-            
         } else {
         this.setState({
             [type]: event.target.value
@@ -92,7 +94,10 @@ class CreateReport extends Component {
                 searchResult: searchResults
             })
         } else {
-            this.setState({modalOpen: true});
+            this.setState({
+                teamMemberTaken: true,
+                modalOpen: true
+            });
         }
     };
 
@@ -121,7 +126,11 @@ class CreateReport extends Component {
     };
 
     modalClose = () => {
-        this.setState({modalOpen: false})
+        this.setState({
+            teamMemberTaken: false,
+            dateWrong: false,
+            modalOpen: false
+        })
     };
 
     submitReport = () => {
@@ -131,31 +140,35 @@ class CreateReport extends Component {
             timeDispatched: this.state.timeDispatched,
             timeArrived: this.state.timeArrived,
             users: [
-                    {
-                        user: {id: 2}
-                        },
-                    {
-                        user: {id: 3}
-                        },
+                {id: 1}, {id: 2}
                 ],
             fireRetardantPresent: this.state.fireRetardant,
             primaryTeamActions: this.state.primaryTeamActions,
             secondaryTeamActions: this.state.secondaryTeamActions,
             description: this.state.description,
-            creator: {id: 1, firstName: "Kanye", lastName: "West"},
-            type: {id: 1, name: "Single Family Dwelling Fire"}
+            creator: {id: 1, firstName: "Kanye", lastName: "West", email: "jhsdhsdj"},
+            type: {id: 1, name: "Single Family Dwelling Fire" }
         }).then(result => {
             console.log(result)
         })
         .catch(error => console.log(error))
-    }
+    };
 
 
     render() {
         if (this.state.redirect) {
             return <Redirect to={"/reports"}/>
         }
-        console.log(this.state.primaryTeam);
+        console.log(this.state);
+        let modalMessage = "";
+        let modalHeader = "";
+        if (this.state.teamMemberTaken){
+            modalHeader = "Oops";
+            modalMessage = "That firefighter is already on a team"
+        }  else if(this.state.dateWrong) {
+            modalHeader = "Can you see into the future?";
+            modalMessage = "Please choose a valid date"
+        }
 
         return (
             <Fragment>
@@ -180,7 +193,7 @@ class CreateReport extends Component {
                     </div>
                 </div>
                 <OwnModal open={this.state.modalOpen} handleClose={this.modalClose}
-                          header={"Oops"} body={"That firefighter is already on a team"}
+                          header={modalHeader} body={modalMessage}
                           
                 />
             </Fragment>

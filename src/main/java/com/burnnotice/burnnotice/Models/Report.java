@@ -8,9 +8,6 @@ import java.util.List;
 
 @Entity
 @Table(name="reports")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
-        property  = "id",
-        scope = Long.class)
 public class Report {
 
     @Id @GeneratedValue
@@ -48,9 +45,13 @@ public class Report {
     @OneToOne
     private ReportType type;
 
-    //team involved ( friends list )
-    @OneToMany(mappedBy = "report")
-    private List<UserReport> users;
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(
+            name="reports_users",
+            joinColumns={@JoinColumn(name="report_id")},
+            inverseJoinColumns={@JoinColumn(name="user_id")}
+    )
+    private List<User> users;
 
     public Report() { }
 
@@ -142,11 +143,11 @@ public class Report {
         this.type = type;
     }
 
-    public List<UserReport> getUsers() {
+    public List<User> getUsers() {
         return users;
     }
 
-    public void setUsers(List<UserReport> users) {
+    public void setUsers(List<User> users) {
         this.users = users;
     }
 }
