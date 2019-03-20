@@ -14,7 +14,6 @@ public class User {
     @Id @GeneratedValue
     private long id;
 
-
     @Column(nullable = false)
     private String firstName;
 
@@ -36,16 +35,15 @@ public class User {
     @Column(nullable = false)
     private String email;
 
-
     @OneToOne(mappedBy = "user")
     @JsonBackReference(value = "user")
     private TransferRequest transferRequest;
 
+    @ManyToMany(mappedBy = "users")
+    @JsonBackReference
+    private List<Report> reports = new ArrayList<Report>();
 
-    public User() {
-    }
-
-
+    public User() { }
 
     public long getId() {
         return id;
@@ -111,7 +109,6 @@ public class User {
         this.eligibleForTransfer = eligibleForTransfer;
     }
 
-
     public TransferRequest getTransferRequest() {
         return transferRequest;
     }
@@ -120,6 +117,13 @@ public class User {
         this.transferRequest = transferRequest;
     }
 
+    public List<Report> getReports() {
+        return reports;
+    }
+
+    public void setReports(List<Report> reports) {
+        this.reports = reports;
+    }
 }
 
 
