@@ -11,6 +11,7 @@ import moment from 'moment';
 import "../../css/Firefighter.css"
 import axios from "axios";
 import * as PropTypes from "prop-types";
+import {Redirect} from "react-router-dom";
 
 
 
@@ -42,15 +43,26 @@ class CreateTransferReq extends Component{
     }
 
     apply = () => {
+        this.props.toggleLoading();
         axios.post("/api/submitApplication", {
             sentDate: moment().format('YYYY Do MM'),
             status: "Pending",
-            applicants: this.props.user,
+            user: this.state.user,
             vacancy: vacancy,
-        }).then(result => console.log(result))
+        }).then(() => {
+            this.props.toggleLoading();
+            this.setState({redirect: true});
+        }).catch(() => {
+            this.props.toggleLoading();
+            this.setState({error: true})
+        })
     };
 
     render() {
+        if (this.state.redirect){
+            this.props.fetchUser();
+            return <Redirect to={"/vacancy/show"}/>
+        }
         let fillDate = () => {
             if (vacancy.fillDate === "9999") {
                 return "Open";
@@ -163,9 +175,9 @@ class CreateTransferReq extends Component{
                                     disabled={true}/>
                             </div>
 
-                            <Button variant="contained" color="primary">
+                            <Button variant="contained" color="primary"><div onClick={this.apply}>
                                 Submit Application
-                            </Button>
+                            </div></Button>
                         </div>
                     </div>
 

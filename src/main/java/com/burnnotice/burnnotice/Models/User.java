@@ -2,11 +2,9 @@ package com.burnnotice.burnnotice.Models;
 
 import com.burnnotice.burnnotice.util.Password;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name="users")
@@ -37,8 +35,8 @@ public class User {
     @Column(nullable = false)
     private String email;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
-    @JsonBackReference
+    @OneToOne(mappedBy = "user")
+    @JsonBackReference(value = "user")
     private TransferRequest transferRequest;
 
 
