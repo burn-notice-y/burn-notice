@@ -1,4 +1,5 @@
 export default {
+    id: 2,
     fireStation: {
         id: 2,
         code: "40",
@@ -33,5 +34,5 @@ export default {
     engine: false,
     postDate: "2018-08-12",
     fillDate: "9999",
-    temporary: true
+    temporary: true,
 }

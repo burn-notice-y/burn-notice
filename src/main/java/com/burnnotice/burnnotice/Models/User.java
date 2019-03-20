@@ -2,6 +2,7 @@ package com.burnnotice.burnnotice.Models;
 
 import com.burnnotice.burnnotice.util.Password;
 import com.fasterxml.jackson.annotation.*;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,8 +10,10 @@ import java.util.List;
 @Entity
 @Table(name="users")
 public class User {
+
     @Id @GeneratedValue
     private long id;
+
 
     @Column(nullable = false)
     private String firstName;
@@ -33,12 +36,16 @@ public class User {
     @Column(nullable = false)
     private String email;
 
-    @ManyToMany(mappedBy = "users")
-    @JsonBackReference
-    private List<Report> reports = new ArrayList<Report>();
 
-    public User() { }
-    public User(long id) { this.id = id; }
+    @OneToOne(mappedBy = "user")
+    @JsonBackReference(value = "user")
+    private TransferRequest transferRequest;
+
+
+    public User() {
+    }
+
+
 
     public long getId() {
         return id;
@@ -104,12 +111,13 @@ public class User {
         this.eligibleForTransfer = eligibleForTransfer;
     }
 
-    public List<Report> getReports() {
-        return reports;
+
+    public TransferRequest getTransferRequest() {
+        return transferRequest;
     }
 
-    public void setReports(List<Report> reports) {
-        this.reports = reports;
+    public void setTransferRequest(TransferRequest transferRequest) {
+        this.transferRequest = transferRequest;
     }
 
 }

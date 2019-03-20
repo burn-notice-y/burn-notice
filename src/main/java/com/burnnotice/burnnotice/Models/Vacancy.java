@@ -1,6 +1,10 @@
 package com.burnnotice.burnnotice.Models;
 
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "vacancies")
@@ -8,13 +12,6 @@ public class Vacancy {
     @Id
     @GeneratedValue
     private long id;
-
-    @OneToOne(cascade = {CascadeType.ALL})
-    private FireStation station;
-
-
-    @OneToOne(cascade = {CascadeType.ALL})
-    private FireStation district;
 
     @Column
     private boolean engine;
@@ -28,9 +25,22 @@ public class Vacancy {
     @Column
     private boolean temporary;
 
+    @OneToOne(cascade = {CascadeType.ALL})
+    private FireStation station;
+
+    // mapped relationship to vacancy
+    @OneToMany(mappedBy = "vacancy")
+    @JsonManagedReference(value = "vacancy")
+    private List<TransferRequest> transferRequest;
+
+
+    @OneToOne(cascade = {CascadeType.ALL})
+    private FireStation district;
+
 
     public Vacancy() {
     }
+
 
     public long getId() {
         return id;
@@ -86,5 +96,13 @@ public class Vacancy {
 
     public void setDistrict(FireStation district) {
         this.district = district;
+    }
+
+    public List<TransferRequest> getTransferRequest() {
+        return transferRequest;
+    }
+
+    public void setTransferRequest(List<TransferRequest> transferRequest) {
+        this.transferRequest = transferRequest;
     }
 }

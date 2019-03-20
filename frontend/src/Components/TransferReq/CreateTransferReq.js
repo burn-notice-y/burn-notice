@@ -4,12 +4,14 @@ import {connect} from 'react-redux';
 import * as actions from '../../store/actions';
 import Typography from "@material-ui/core/Typography/Typography";
 import TextField from "@material-ui/core/TextField/TextField";
-import user from '../../data/user';
 import Button from '@material-ui/core/Button';
 import vacancy from "../../data/bigVacancy";
 import ManyFirefighters from "../Firefighters/ManyFirefighters";
 import moment from 'moment';
 import "../../css/Firefighter.css"
+import axios from "axios";
+import * as PropTypes from "prop-types";
+import {Redirect} from "react-router-dom";
 
 
 
@@ -20,18 +22,47 @@ import "../../css/Firefighter.css"
 
 class CreateTransferReq extends Component{
     state = {
+        editLocked: true,
         sap: "",
-        password: "",
         email: "",
         firstName: "",
         lastName: ""
     };
+
     componentDidMount(){
-        this.setState({...user})
+        // fetch the vacancy via axios.get()
+
+        // store vacancy to a variable
+
+        //
+
     }
 
-    render() {
+    static getDerivedStateFromProps(nextProps){
+        return {...nextProps}
+    }
 
+    apply = () => {
+        this.props.toggleLoading();
+        axios.post("/api/submitApplication", {
+            sentDate: moment().format('YYYY Do MM'),
+            status: "Pending",
+            user: this.state.user,
+            vacancy: vacancy,
+        }).then(() => {
+            this.props.toggleLoading();
+            this.setState({redirect: true});
+        }).catch(() => {
+            this.props.toggleLoading();
+            this.setState({error: true})
+        })
+    };
+
+    render() {
+        if (this.state.redirect){
+            this.props.fetchUser();
+            return <Redirect to={"/vacancy/show"}/>
+        }
         let fillDate = () => {
             if (vacancy.fillDate === "9999") {
                 return "Open";
@@ -52,7 +83,7 @@ class CreateTransferReq extends Component{
                 <div className="application-header">
                     <div className="top">
                         <Typography component="h3" variant="h4" gutterBottom className={"application-header"}>
-                            Review your Application
+                            {this.props.header}
                         </Typography>
                     </div>
                     <div className="input-cont">
@@ -63,7 +94,7 @@ class CreateTransferReq extends Component{
                                     value={vacancy.fireStation.code}
                                     margin="normal"
                                     variant="outlined"
-                                    disabled={vacancy.fireStation.code}/>
+                                    disabled={true}/>
                             </div>
                             <div className="reg-role reg-input">
                                 <TextField
@@ -71,7 +102,7 @@ class CreateTransferReq extends Component{
                                     value={role}
                                     margin="normal"
                                     variant="outlined"
-                                    disabled={role}/>
+                                    disabled={true}/>
                             </div>
                             <div className="reg-temporary reg-input">
                                 <TextField
@@ -79,7 +110,7 @@ class CreateTransferReq extends Component{
                                     value={temporary}
                                     margin="normal"
                                     variant="outlined"
-                                    disabled={temporary}/>
+                                    disabled={true}/>
                             </div>
                             <div className="reg-post-date reg-input">
                                 <TextField
@@ -87,7 +118,7 @@ class CreateTransferReq extends Component{
                                     value={postDate}
                                     margin="normal"
                                     variant="outlined"
-                                    disabled={postDate}/>
+                                    disabled={true}/>
                             </div>
                             <div className="reg-fill-date reg-input">
                                 <TextField
@@ -95,19 +126,17 @@ class CreateTransferReq extends Component{
                                     value={fillDate()}
                                     margin="normal"
                                     variant="outlined"
-                                    disabled={fillDate()}/>
+                                    disabled={true}/>
                             </div>
                             <div className="reg-crew reg-input">
                                 <br/>
-                                <Typography id="mff">
                                     <ManyFirefighters/>
-                                </Typography>
                             </div>
                             <br/>
                         </div>
                         <div className="top">
                             <Typography component="h3" variant="h4" gutterBottom className={"application-header"}>
-                                 Your Information
+                                {this.props.applicantHeader}
                             </Typography>
                         </div>
                     </div>
@@ -119,7 +148,7 @@ class CreateTransferReq extends Component{
                                     value={this.state.sap}
                                     margin="normal"
                                     variant="outlined"
-                                    disabled={this.state.sap}/>
+                                    disabled={true}/>
                             </div>
                             <div className="reg-email reg-input">
                                 <TextField
@@ -127,7 +156,7 @@ class CreateTransferReq extends Component{
                                     value={this.state.email}
                                     margin="normal"
                                     variant="outlined"
-                                    disabled={this.state.email}/>
+                                    disabled={true}/>
                             </div>
                             <div className="reg-firstname reg-input">
                                 <TextField
@@ -135,7 +164,7 @@ class CreateTransferReq extends Component{
                                     value={this.state.firstName}
                                     margin="normal"
                                     variant="outlined"
-                                    disabled={this.state.firstName}/>
+                                    disabled={true}/>
                             </div>
                             <div className="reg-lastname reg-input">
                                 <TextField
@@ -143,12 +172,12 @@ class CreateTransferReq extends Component{
                                     value={this.state.lastName}
                                     margin="normal"
                                     variant="outlined"
-                                    disabled={this.state.lastName}/>
+                                    disabled={true}/>
                             </div>
 
-                            <Button variant="contained" color="primary">
+                            <Button variant="contained" color="primary"><div onClick={this.apply}>
                                 Submit Application
-                            </Button>
+                            </div></Button>
                         </div>
                     </div>
 
@@ -161,8 +190,13 @@ class CreateTransferReq extends Component{
 
 const mapStateToProps = state => {
     return {
-        user: state.user
+        user: state.user,
     }
 };
 
+CreateTransferReq.propTypes = {
+    header: PropTypes.string,
+    applicant: PropTypes.object,
+    applicantHeader: PropTypes.string
+};
 export default connect(mapStateToProps, actions)(CreateTransferReq);

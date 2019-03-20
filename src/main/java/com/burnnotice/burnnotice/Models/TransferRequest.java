@@ -1,10 +1,13 @@
 package com.burnnotice.burnnotice.Models;
 
-import javax.annotation.Generated;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name="transfer_req")
+@Table(name="transfer_requests")
 public class TransferRequest {
 
     @Id @GeneratedValue
@@ -16,15 +19,23 @@ public class TransferRequest {
     @Column(nullable=false)
     private String status;
 
-    // OneToOne Here
+
+
+    @OneToOne
+    @JsonManagedReference(value = "user")
+    private User user;
+
+
+
+    // vacancy
+    @ManyToOne
+    @JsonBackReference(value = "vacancy")
+    private Vacancy vacancy;
+
+
 
     public TransferRequest() {
 
-    }
-
-    public TransferRequest(String sentDate, String status) {
-        this.sentDate = sentDate;
-        this.status = status;
     }
 
     public long getId() {
@@ -50,6 +61,25 @@ public class TransferRequest {
     public void setStatus(String status) {
         this.status = status;
     }
+
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Vacancy getVacancy() {
+        return vacancy;
+    }
+
+    public void setVacancy(Vacancy vacancy) {
+        this.vacancy = vacancy;
+    }
+
+
 }
 
 

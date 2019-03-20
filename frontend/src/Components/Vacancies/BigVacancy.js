@@ -10,6 +10,10 @@ import { withStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import DeleteIcon from '@material-ui/icons/Delete';
 import NavigationIcon from '@material-ui/icons/Navigation';
+import axios from "axios";
+import * as actions from '../../store/actions';
+import { connect }  from 'react-redux';
+import {Link} from "react-router-dom";
 
 
 
@@ -26,6 +30,9 @@ import NavigationIcon from '@material-ui/icons/Navigation';
 
 class BigVacancy extends Component {
 
+    state={
+
+    }
     determineAdmin = () => {
         if (this.props.admin) {
             return (
@@ -37,7 +44,20 @@ class BigVacancy extends Component {
             )
         }
     };
+
+
+    apply = () => {
+        axios.post("/api/submitApplication", {
+            sentDate: moment().format('YYYY Do MM'),
+            status: "Pending",
+            applicants: this.props.user,
+            vacancy: vacancy,
+        }).then(result => console.log(result))
+    };
+
+
     render(){
+        console.log(vacancy);
 
         let applicable = () =>
         {
@@ -49,7 +69,7 @@ class BigVacancy extends Component {
             {
                 return "Closed";
             }
-        }
+        };
 
         let postDate = moment(vacancy.postDate).format("MMMM Do YYYY");
 
@@ -144,14 +164,19 @@ class BigVacancy extends Component {
                 </div>
 
 
-                <Button gutterBottom variant="contained" className="vacancy-btn-color">
+                <Link to={"/transfer/create"}><Button gutterBottom variant="contained" className="vacancy-btn-color"><div onClick={this.apply}>
                     {applicable()}
-                </Button>
-
-
+                </div>
+                </Button></Link>
 
             </div>
         )
     }
 }
-export default BigVacancy;
+
+const mapStateToProps = state => {
+    return {
+        user: state.user
+    }
+}
+export default connect(mapStateToProps, actions)(BigVacancy);
