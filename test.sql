@@ -41,3 +41,4 @@ insert into fire_stations (name, captain_id, district_id) VALUES
 ('38', 7, 1),
 ('40', 15, 1);
 
+
