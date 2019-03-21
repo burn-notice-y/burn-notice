@@ -16,7 +16,6 @@ import Radio from "@material-ui/core/Radio/Radio";
 import moment from 'moment';
 import PropTypes from "prop-types";
 
-
 class CreateVacancy extends Component{
     state = {
         reportType: "",
