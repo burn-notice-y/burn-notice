@@ -1,6 +1,9 @@
 package com.burnnotice.burnnotice.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "districts")
@@ -12,9 +15,11 @@ public class District {
     private String name;
 
     @OneToOne
-    private User user;
+    private User chief;
 
-
+    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "district")
+    @JsonBackReference
+    private List<FireStation> stationList;
 
     public String getName() {
         return name;
@@ -24,12 +29,12 @@ public class District {
         this.name = name;
     }
 
-    public User getUser() {
-        return user;
+    public User getChief() {
+        return chief;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(User chief) {
+        this.chief = chief;
     }
 
     public Long getId() {
@@ -38,6 +43,18 @@ public class District {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public void setChief(User chief) {
+        this.chief = chief;
+    }
+
+    public List<FireStation> getStationList() {
+        return stationList;
+    }
+
+    public void setStationList(List<FireStation> stationList) {
+        this.stationList = stationList;
     }
 
     public District() {

@@ -40,8 +40,14 @@ public class User {
     private TransferRequest transferRequest;
 
     @ManyToMany(mappedBy = "users")
-    @JsonBackReference
+    @JsonBackReference(value = "report")
     private List<Report> reports = new ArrayList<Report>();
+
+    @ManyToMany(mappedBy = "currentCrew")
+    @JsonBackReference(value = "station")
+    private List<FireStation> stations = new ArrayList<FireStation>();
+
+
 
     public User() { }
 
@@ -123,6 +129,14 @@ public class User {
 
     public void setReports(List<Report> reports) {
         this.reports = reports;
+    }
+
+    public List<FireStation> getStations() {
+        return stations;
+    }
+
+    public void setStations(List<FireStation> stations) {
+        this.stations = stations;
     }
 }
 

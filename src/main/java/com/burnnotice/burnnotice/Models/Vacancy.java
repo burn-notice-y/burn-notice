@@ -25,7 +25,8 @@ public class Vacancy {
     @Column
     private boolean temporary;
 
-    @OneToOne(cascade = {CascadeType.ALL})
+    @ManyToOne
+    @JoinColumn(name = "station_id")
     private FireStation station;
 
     // mapped relationship to vacancy
@@ -33,10 +34,8 @@ public class Vacancy {
     @JsonManagedReference(value = "vacancy")
     private List<TransferRequest> transferRequest;
 
-
     @OneToOne(cascade = {CascadeType.ALL})
     private FireStation district;
-
 
     public Vacancy() {
     }
