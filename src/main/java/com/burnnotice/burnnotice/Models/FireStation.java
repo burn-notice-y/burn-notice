@@ -11,7 +11,9 @@ public class FireStation {
     private District district;
 
     @OneToOne
-    private User user;
+    private User captain;
+
+    private String name;
 
     public FireStation() {
     }
@@ -32,11 +34,19 @@ public class FireStation {
         this.district = district;
     }
 
-    public User getUser() {
-        return user;
+    public User getCaptain() {
+        return captain;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setCaptain(User captain) {
+        this.captain = captain;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
