@@ -5,18 +5,17 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.19</version>
-        <relativePath/>
+        <version>1.5.19.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.burnNotice</groupId>
     <artifactId>burn-notice</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Burn Notice</name>
-    <description>Demo project for Spring Boot</description>
+    <description>Burn Notice</description>
 
     <properties>
         <java.version>1.8</java.version>
-        <skipTests>true</skipTests>
     </properties>
 
     <dependencies>
@@ -44,6 +43,7 @@
             <version>0.4</version>
         </dependency>
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
@@ -110,6 +110,5 @@
             </plugin>
         </plugins>
     </build>
-
 
 </project>
