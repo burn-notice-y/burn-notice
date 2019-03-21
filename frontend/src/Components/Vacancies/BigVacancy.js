@@ -17,10 +17,6 @@ import {Link} from "react-router-dom";
 
 
 
-
-
-
-
 // show all of the properties from the vacancy object
 
 // use material UI and containers with flexbox to put them all pretty like
