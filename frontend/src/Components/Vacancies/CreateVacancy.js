@@ -34,9 +34,9 @@ class CreateVacancy extends Component{
         this.props.toggleLoading();
         axios.post("/api/create-vacancy", {
             ...this.state
-        }).then(res => {
+        }).then(() => {
             this.props.toggleLoading();
-            console.log(res)
+            this.setState({redirect: true})
         }).catch(error => {
             this.props.toggleLoading();
             console.log(error)
@@ -60,7 +60,7 @@ class CreateVacancy extends Component{
 
     render(){
         if (this.state.redirect){
-            return <Redirect to={"/vacancies"}/>
+            return <Redirect to={"/vacancies/show"}/>
         }
         console.log(this.state);
         return (
