@@ -17,6 +17,7 @@ import LibraryBooks from '@material-ui/icons/LibraryBooks';
 import LibraryAdd from '@material-ui/icons/LibraryAdd';
 import Assignment from '@material-ui/icons/Assignment';
 import Description from '@material-ui/icons/Description';
+import LocationCity from '@material-ui/icons/LocationCity';
 
 class UserHeader extends Component{
     state = {
@@ -31,6 +32,8 @@ class UserHeader extends Component{
                 return <LibraryAdd/>;
             case "Assignment History":
                 return <Assignment/>;
+            case "Station List":
+                return <LocationCity/>;    
             default: return;
         }
     };
@@ -41,7 +44,7 @@ class UserHeader extends Component{
                 <CardHeader title={"Burn Notice"}/>
                 <List>
                     <ListSubheader>Actions</ListSubheader>
-                    {[ ['Vacancies', '/vacancy/show'], ['Create Report', `/reports/create/1`], [`Assignment History`,`/assignments/show`]].map((text, index) => (
+                    {[['Vacancies', '/vacancy/show'], ['Create Report', `/reports/create/1`], [`Assignment History`, `/assignments/show`], ['Station List', '/stations/all']].map((text, index) => (
                             <ListItem button key={index}>
                                 <ListItemIcon>{text[0] === "Ads" ? <LibraryBooks/> : this.determineIcon(text[0]) }</ListItemIcon>
                                 <Link component={RouterLink} to={text[1]}><ListItemText primary={text[0]}/></Link>

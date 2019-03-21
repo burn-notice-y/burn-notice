@@ -37,7 +37,7 @@ class AdminHeader extends Component {
                 return <AssignmentTurnedIn/>;
             case "Assignment History":
                 return <Assignment/>;
-                case "Station List":
+            case "Station List":
                 return <LocationCity/>;
             default:
                 return;

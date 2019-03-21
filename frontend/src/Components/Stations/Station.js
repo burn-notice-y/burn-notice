@@ -25,7 +25,7 @@ const Station = props => (
             </Typography>
         </CardContent>
         <CardActions className={"vacancy-actions-cont"}>
-            <Link to={`/station/view/${props.id}`}><Button size="small">See more</Button></Link>
+            <Link to={`/stations/view/${props.id}`}><Button size="small">See more</Button></Link>
         </CardActions>
     </Card>
 );
