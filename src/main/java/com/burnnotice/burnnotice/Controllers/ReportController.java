@@ -39,7 +39,7 @@ public class ReportController {
         return reportDao.findOne(id);
     }
 
-    // find by name 1st or last
+    // find by last name
     @GetMapping("/api/creator-report")
     public List<ReportHighlights> findAllByCreator(@RequestParam String creatorName){
         return reportDao.findAllByCreatorLastName(creatorName);
@@ -58,7 +58,7 @@ public class ReportController {
         return reportDao.findAllByCreateDateBetween(startDate, endDate);
     }
 
-    // find by date range
+    // find by type
     @GetMapping("/api/type-report")
     public List<ReportHighlights> findAllByDateType(@RequestParam String type){
         return reportDao.findAllByTypeName(type);

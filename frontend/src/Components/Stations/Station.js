@@ -13,7 +13,7 @@ const Station = props => (
             <div className="vacancy-header-cont">
                 <div className="vacancy-header">
                     <Typography variant="h5" component="h2">
-                        Station {props.number}
+                        Station {props.name}
                     </Typography>
                 </div>
             </div>
@@ -39,6 +39,6 @@ Station.propTypes = {
     district: PropTypes.shape({
         name: PropTypes.string,
     }),
-    number: PropTypes.string,
-}
+    name: PropTypes.string,
+};
 export default Station;
