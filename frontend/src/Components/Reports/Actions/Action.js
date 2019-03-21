@@ -42,7 +42,7 @@ class Action extends Component {
 Action.propTypes = {
     age: PropTypes.string,
     submitReport: PropTypes.func,
-    
+
 }
 
 export default Action

@@ -1,0 +1,7 @@
+.station-cont {
+    margin: 3vh 0;
+}
+.all-stations-cont {
+    height: 85vh;
+    overflow: scroll;
+}

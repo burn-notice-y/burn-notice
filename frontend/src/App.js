@@ -15,6 +15,7 @@ import UserActionRouter from "./Components/User/UserActionsRouter";
 import AssignmentRouter from "./Components/Assignments/AssignmentsRouter";
 import TransferRouter from "./Components/TransferReq/TransferRouter";
 import ReportsRouter from "./Components/Reports/ReportsRouter";
+import StationRouter from "./Components/Stations/StationRouter";
 
 
 class App extends Component {
@@ -43,6 +44,7 @@ class App extends Component {
                         <Route path={"/assignments"} render={() => <AssignmentRouter/>}/>
                         <Route path={"/transfer"} render={() => <TransferRouter/>}/>
                         <Route path={"/reports"} render={() => <ReportsRouter/>}/>
+                        <Route path={"/stations"} render={() => <StationRouter/>}/>
                         <Route path={"/"} render={() => <Landing/>}/>
                     </Switch>
                     </main>
