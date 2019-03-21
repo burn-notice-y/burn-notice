@@ -87,8 +87,8 @@ class CreateVacancy extends Component{
                                 value={this.state.engine}
                                 onChange={this.inputHandler('engine')}
                             >
-                                <FormControlLabel value="engine" control={<Radio />} label="Engine" />
-                                <FormControlLabel value="truck" control={<Radio />} label="Truck" />
+                                <FormControlLabel value="true" control={<Radio />} label="Engine" />
+                                <FormControlLabel value="false" control={<Radio />} label="Truck" />
                             </RadioGroup>
                         </div>
 

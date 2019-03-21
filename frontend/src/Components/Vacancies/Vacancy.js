@@ -26,7 +26,6 @@ class Vacancy extends Component {
     };
 
     render() {
-console.log(this.props);
         let temporary = "";
         this.props.temporary ? temporary = "Yes" : temporary = "No";
         let role = "";

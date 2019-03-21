@@ -52,7 +52,7 @@ class AdminHeader extends Component {
                 <CardHeader title={"Burn Notice"} subheader={`Welcome, Chief ${this.props.user.lastName}`}/>
                 <List>
                     <ListSubheader>Actions</ListSubheader>
-                    {[['Vacancies', '/vacancy/show'], ['Create Vacancy', `/vacancy/create`], ['Review Requests', '/request'], [`Assignment History`, `/assignments/show`], ['Station List', '/stations']].map((text, index) => (
+                    {[['Vacancies', '/vacancy/show'], ['Create Vacancy', `/vacancy/create`], ['Review Requests', '/request'], [`Assignment History`, `/assignments/show`], ['Station List', '/stations/all']].map((text, index) => (
                             <ListItem button key={index}>
                                 <ListItemIcon>{text[0] === "Ads" ?
                                     <LibraryBooks/> : this.determineIcon(text[0])}</ListItemIcon>
