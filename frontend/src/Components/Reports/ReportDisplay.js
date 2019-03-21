@@ -12,6 +12,7 @@ import axios from "axios";
 import * as actions from '../../store/actions';
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
+import moment from 'moment';
 
 
 
@@ -22,13 +23,21 @@ import PropTypes from "prop-types";
 class ReportDisplay extends Component {
     state = {
         type:"",
+        oneDate: moment().format("YYYY-MM-DD"),
+        startDate: moment().format("YYYY-MM-DD"),
+        endDate: moment().format("YYYY-MM-DD"),
         displayReports: false,
     };
 
     inputHandler = type => event => {
-        this.setState({
-            [type]: event.target.value
-        })
+        if (type === "oneDate" || type === "startDate" || type === "endDate"){
+            this.setState({[type]: event})
+        } else {
+
+            this.setState({
+                [type]: event.target.value
+            })
+        }
     };
 
     showSearchResults = () => {
@@ -42,7 +51,7 @@ class ReportDisplay extends Component {
             case "By Date":
                 requestUrl = "/api/date-report";
                 break;
-            case "By Name":
+            case "By Last Name":
                 requestUrl = "/api/creator-report";
                 break;
             case "By Date Range":
@@ -66,13 +75,14 @@ class ReportDisplay extends Component {
         determineSearchType = pageStatus => {
         switch (pageStatus) {
             case "By Date":
-                return <SearchByOne type={"By Date"} searchShow={this.showSearchResults}/>;
-            case "By Name":
+                return <SearchByOne {...this.state} handleChange={this.inputHandler} searchShow={this.showSearchResults}/>;
+            case "By Last Name":
+                console.log("happening");
                 // pass "By Name" as a prop, so the SearchByOne component knows what to render
-                return <SearchByOne type={"By Last Name"} searchShow={this.showSearchResults}/>;
+                return <SearchByOne {...this.state} handleChange={this.inputHandler} searchShow={this.showSearchResults}/>;
             case "By Date Range":
             //     // no props needed because they only do one thing
-                return <SearchByTwo searchShow={this.showSearchResults}/>;
+                return <SearchByTwo {...this.state} searchShow={this.showSearchResults} handleChange={this.inputHandler}/>;
             case "By Type":
                 return <SearchByType searchShow={this.showSearchResults}/>;
             // default in case they all fail
@@ -83,6 +93,7 @@ class ReportDisplay extends Component {
 
     render() {
 
+        console.log(new Date());
         return (
 
 
