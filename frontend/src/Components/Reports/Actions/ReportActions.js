@@ -12,7 +12,7 @@ const determineAction = pageNumber => {
 
 const ReportActions = props => {
     return (
-    <div className="actions-cont">
+    <div className="actions-cont"/>
         )
 };
 

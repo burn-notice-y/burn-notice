@@ -29,6 +29,16 @@
 }
 
 .date {
-    width: 50%;
+    margin: 8vh 0 2vh 0;
+    display: flex;
+    justify-content: space-between;
     align-items: flex-end;
+}
+
+.search-name {
+    width: 60%;
+}
+
+search-icon {
+    align-items: center;
 }

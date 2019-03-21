@@ -31,7 +31,7 @@ class SearchByOne extends Component {
         switch (this.props.type){
             case "By Date":
                 return <div className={"date"}>
-                <DatePick value={this.props.value} argumentName={"oneDate"} handleChange={this.props.handleChange} labelDisplay={"Reports on this Date"}/>
+                    <DatePick value={this.props.value} argumentName={"oneDate"} handleChange={this.props.handleChange} labelDisplay={"Reports on this Date"}/>
                     <br/>
                     <Button variant="contained" color="primary" className="date-search" onClick={this.displayReports}>
                        Search
@@ -40,21 +40,24 @@ class SearchByOne extends Component {
                 </div>
 
             case "By Last Name":
-                return <Paper elevation={1} className={"search-cont"}>
-                    <input type="text" id={"search"}
-                           value={this.state.search}
-                           onChange={this.props.handleChange}
+                return <div className={"search-name"}>
+                        <Paper elevation={1} className={"search-cont"}>
+                        <input type="text" id={"name"}
+                           value={this.props.name}
+                           onChange={this.props.handleChange('name')}
                            placeholder={this.props.type}
                            autoComplete={"off"}
-                    />
-                    <IconButton aria-label="Search" onClick={() => this.props.searchShow()}>
+                        />
+                    <IconButton aria-label="Search" onClick={() => this.props.searchShow()} className={"search-icon"}>
                         <SearchIcon/>
                     </IconButton>
                     <Divider/>
                 </Paper>
+                </div>
+
         }
 
-    }
+    };
 
 
     render() {

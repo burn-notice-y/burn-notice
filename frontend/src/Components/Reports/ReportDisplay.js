@@ -23,6 +23,7 @@ import moment from 'moment';
 class ReportDisplay extends Component {
     state = {
         type:"",
+        name: "",
         oneDate: moment().format("YYYY-MM-DD"),
         startDate: moment().format("YYYY-MM-DD"),
         endDate: moment().format("YYYY-MM-DD"),
@@ -47,23 +48,29 @@ class ReportDisplay extends Component {
         this.props.toggleLoading();
 
         let requestUrl = "";
+        let queryString = "";
         switch (this.state.type) {
             case "By Date":
                 requestUrl = "/api/date-report";
+                queryString = `?createDate=${this.state.oneDate}`;
                 break;
             case "By Last Name":
                 requestUrl = "/api/creator-report";
+                queryString = `?creatorName=${this.state.name}`;
                 break;
             case "By Date Range":
                 requestUrl = "/api/date-range-report";
+                queryString = `?startDate=${this.state.startDate}endDate=${this.state.endDate}`;
                 break;
             case "By Type":
                 requestUrl = "/api/type-report";
+                queryString = `?type=${this.state.type}`;
                 break;
             default:
                 return;
         }
-        axios.get(requestUrl).then(result => {
+        console.log(requestUrl + queryString);
+        axios.get(requestUrl + queryString).then(result => {
             this.props.toggleLoading();
             this.setState({data: result.data, displayReports: true})
         }).catch(error => {
@@ -77,7 +84,6 @@ class ReportDisplay extends Component {
             case "By Date":
                 return <SearchByOne {...this.state} handleChange={this.inputHandler} searchShow={this.showSearchResults}/>;
             case "By Last Name":
-                console.log("happening");
                 // pass "By Name" as a prop, so the SearchByOne component knows what to render
                 return <SearchByOne {...this.state} handleChange={this.inputHandler} searchShow={this.showSearchResults}/>;
             case "By Date Range":
@@ -93,7 +99,7 @@ class ReportDisplay extends Component {
 
     render() {
 
-        console.log(new Date());
+
         return (
 
 
