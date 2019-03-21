@@ -13,50 +13,56 @@ import FormLabel from "@material-ui/core/FormLabel/FormLabel";
 import RadioGroup from "@material-ui/core/RadioGroup/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel/FormControlLabel";
 import Radio from "@material-ui/core/Radio/Radio";
+import moment from 'moment';
+import PropTypes from "prop-types";
 
 
 class CreateVacancy extends Component{
     state = {
         reportType: "",
         temporary: "",
+        engine: false,
+        postDate: moment().format("YYYY-MM-DD"),
+        fillDate: "9999",
+        station: { name: "40"},
         redirect: false,
         error: false,
         disabled: false,
     };
 
-    postToDb = () => {
-        axios.post("/api/create-user", {
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
-            sap: this.state.sap,
-            password: this.state.password,
-            email: this.state.email,
-            chief: false
-        }).then(() => {
-            // do stuff
-        })
-    };
-
-    register = () => {
-        // post to db here
-        //simulating with timeout
+    submit = () => {
         this.props.toggleLoading();
-        setTimeout(() => {
-            this.setState({redirect: true});
+        axios.post("/api/create-vacancy", {
+            ...this.state
+        }).then(res => {
             this.props.toggleLoading();
-        }, 2000)
+            console.log(res)
+        }).catch(error => {
+            this.props.toggleLoading();
+            console.log(error)
+        });
     };
 
     inputHandler = type => event => {
-        this.setState({
-            [type]: event.target.value
-        })
+        switch (type) {
+            case "postDate":
+                this.setState({postDate: event});
+                break;
+            case "station":
+                this.setState({station: {name: event.target.value}});
+                break;
+            default:
+                this.setState({
+                [type]: event.target.value
+            })
+        }
     };
 
     render(){
         if (this.state.redirect){
             return <Redirect to={"/vacancies"}/>
         }
+        console.log(this.state);
         return (
             <div className={"admin-create-vacancy"}>
                 <div className="vacancy-header">
@@ -66,7 +72,10 @@ class CreateVacancy extends Component{
                 </div>
                 <div className="input-cont">
                     <div className="vac-date-cont reg-input">
-                        <DatePickClass labelDisplay={"Start Date"}/>
+                        <DatePickClass labelDisplay={"Start Date"}
+                                       startDate={this.state.postDate} handleChange={this.inputHandler}
+                                       argumentName={"postDate"}
+                        />
                     </div>
                     <div className="vac-role-cont reg-input">
                         <FormLabel component="legend">Vacancy Role</FormLabel>
@@ -106,8 +115,8 @@ class CreateVacancy extends Component{
                             id="outlined-select-currency"
                             select
                             label="Station With Vacancy"
-                            value={this.state.reportType}
-                            onChange={this.inputHandler('reportType')}
+                            value={this.state.station.name}
+                            onChange={this.inputHandler('station')}
                             margin="normal"
                             variant="outlined"
                         >
@@ -121,11 +130,16 @@ class CreateVacancy extends Component{
                 </div>
                 <div className="actions-cont">
                     <div className="submit-reg-cont">
-                        <Button variant="contained" color="primary"><div onClick={this.register}>Continue</div></Button>
+                        <Button variant="contained" color="primary"><div onClick={this.submit}>Submit</div></Button>
                     </div>
                 </div>
             </div>
         )
     }
 }
+
+CreateVacancy.propTypes = {
+    toggleLoading: PropTypes.func
+};
+
 export default withRouter(connect(null, actions)(CreateVacancy));

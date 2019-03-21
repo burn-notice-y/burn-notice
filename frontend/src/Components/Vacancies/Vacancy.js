@@ -26,7 +26,7 @@ class Vacancy extends Component {
     };
 
     render() {
-
+console.log(this.props);
         let temporary = "";
         this.props.temporary ? temporary = "Yes" : temporary = "No";
         let role = "";
@@ -38,7 +38,7 @@ class Vacancy extends Component {
                     <div className="vacancy-header-cont">
                         <div className="vacancy-header">
                             <Typography variant="h5" component="h2">
-                                Station {this.props.fireStation.code}
+                                Station {this.props.station.name}
                             </Typography>
                         </div>
                         {this.determineAdmin()}
@@ -51,7 +51,7 @@ class Vacancy extends Component {
                     </Typography>
                 </CardContent>
                 <CardActions className={"vacancy-actions-cont"}>
-                    <Link to={`/transfer/create/${this.props.id}`}><Button size="small">See more</Button></Link>
+                    <Link to={`/vacancy/show/${this.props.id}`}><Button size="small">See more</Button></Link>
                 </CardActions>
             </Card>
         )
