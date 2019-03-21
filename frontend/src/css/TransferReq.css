@@ -1,0 +1,12 @@
+.viewTransfer{
+    width: 200px !important;
+    justify-content: center !important;
+    display: flex;
+}
+
+#outlined-select-Station{
+    width: 100% !important;
+    justify-content: center;
+    height: 85vh !important;
+    display: flex;
+}

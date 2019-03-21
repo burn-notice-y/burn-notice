@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
 import vacancy from "../../data/bigVacancy";
 import transferRequest from '../../data/transferRequest';
+import ViewTransferReq from "./ViewTransferReq";
 
 
 class TransferRouter extends Component{
@@ -30,6 +31,7 @@ class TransferRouter extends Component{
                 <Route path={"/transfer/create/:id"} render={() => <CreateTransferReq applicantHeader={applicantHeader}
                                                                                       header={header}
                                                                                       {...applicant}/>}/>
+                <Route path={"/transfer/view"}  render={() => <ViewTransferReq/>}/>
             </Switch>
         )
     }
