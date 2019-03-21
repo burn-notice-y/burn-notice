@@ -154,9 +154,7 @@ class BigVacancy extends Component {
                     />
                 </div>
                 <div>
-                    <Typography>
-                        <ManyFirefighters/>
-                    </Typography>
+                    <ManyFirefighters/>
                 </div>
 
 

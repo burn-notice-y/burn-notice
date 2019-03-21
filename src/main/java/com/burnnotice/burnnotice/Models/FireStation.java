@@ -1,8 +1,6 @@
 package com.burnnotice.burnnotice.Models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,7 +16,7 @@ public class FireStation {
     @OneToOne
     private User captain;
 
-    @ManyToMany(cascade = CascadeType.MERGE)
+    @ManyToMany
     @JoinTable(
             name="station_users",
             joinColumns={@JoinColumn(name="station_id")},
@@ -33,8 +31,7 @@ public class FireStation {
     @Column(unique = true)
     private String name;
 
-    public FireStation() {
-    }
+    public FireStation() { }
 
     public long getId() {
         return id;

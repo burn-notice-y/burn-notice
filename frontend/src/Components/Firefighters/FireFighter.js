@@ -17,10 +17,9 @@ class FireFighter extends Component {
     render() {
         return (
             <Fragment>
-                <Typography variant="h5" component="h2">
+                <Typography variant="subheading" component="h6">
                     {this.props.firstName} {this.props.lastName}
                 </Typography>
-                <Link to={`/firefighter/${this.props.id}`}><Button size="small">See more</Button></Link>
             </Fragment>
 
 

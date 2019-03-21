@@ -10,8 +10,6 @@ import * as actions from '../../store/actions';
 class Profile extends Component {
     state = {
         editLocked: true,
-        sap: "",
-        password: "",
         email: "",
         firstName: "",
         lastName: ""
@@ -48,6 +46,7 @@ class Profile extends Component {
         if (transferEligible){
             transferText = "Yes";
         }
+
         return (
             <div className={"big-edit-cont"}>
                 <div className="register-header">
