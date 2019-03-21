@@ -1,4 +1,4 @@
-import React  from 'react';
+import React, { Component }  from 'react';
 import PropTypes from 'prop-types';
 import TwoOptionSelect from "../../TwoOptionSelect";
 import TeamExpansion from "./TeamExpansion";
@@ -9,40 +9,48 @@ import Typography from "@material-ui/core/Typography/Typography";
 import Paper from "@material-ui/core/Paper/Paper";
 import Divider from "@material-ui/core/Divider/Divider";
 
-const TeamSelect = props => (
-    <div className="search-cont">
-        <div className="team-header">
-            <Typography component="h3" variant="h5" gutterBottom className={"registration-header"}>
-                Define the Teams
-            </Typography>
-        </div>
-        <div className={"search-cont"}>
-            <TwoOptionSelect inputHandler={props.inputHandler('team')}
-                             oneName={"Primary Team"} oneVal={"primaryTeam"}
-                             twoName={"Secondary Team"} twoVal={"secondaryTeam"}
-                             value={props.team} title={"Which team are you adding to?"}
-            />
-            <TeamExpansion teamName={"Primary Team"} teamMembers={props.primaryTeam}/>
-            <TeamExpansion teamName={"Secondary Team"} teamMembers={props.secondaryTeam}/>
+class TeamSelect extends Component {
+    state = {
+        newItems: 0,
+    };
 
+    additionHandler = type => {
+        if (type === "clear"){
+            console.log("clear")
+        } else {
+            console.log("else")
+        }
+    };
 
+    render() {
+        return (<div className="search-container">
+            <div className="team-header">
+                <Typography component="h3" variant="h5" gutterBottom className={"registration-header"}>
+                    Who Responded to this Call?
+                </Typography>
+            </div>
+            <div className={"search-cont"}>
+                <TeamExpansion teamName={"Responders"} teamMembers={this.props.primaryTeam} clearInput={this.additionHandler} newItems={this.state.newItems}/>
+                <div className={"search-input-cont"}>
+                    <Paper elevation={1} className={"search-input"}>
+                        <input type="text" id={"search"}
+                               value={this.props.search}
+                               onChange={this.props.inputHandler('search')}
+                               placeholder={"Search"}
+                               autoComplete={"off"}
+                        />
+                        <IconButton aria-label="Search" onClick={this.props.searchFirefighters}>
+                            <SearchIcon/>
+                        </IconButton>
+                        <Divider/>
+                    </Paper>
+                </div>
 
-            <Paper elevation={1} className={"search-cont"}>
-                <input type="text" id={"search"}
-                       value={props.search}
-                       onChange={props.inputHandler('search')}
-                       placeholder={"Search"}
-                       autoComplete={"off"}
-                />
-                <IconButton aria-label="Search" onClick={props.searchFirefighters}>
-                    <SearchIcon/>
-                </IconButton>
-                <Divider/>
-            </Paper>
-            <FirefighterSearchCont clearSearch={props.clearSearch} addFunction={props.addFiremanToTeam} team={props.team} searchResult={props.searchResult}/>
-        </div>
-    </div>
-);
+                <FirefighterSearchCont clearSearch={this.props.clearSearch} addFunction={this.props.addFiremanToTeam} team={this.props.team} searchResult={this.props.searchResult}/>
+            </div>
+        </div>)
+    }
+}
 
 TeamSelect.propTypes = {
     inputHandler: PropTypes.func,
@@ -52,6 +60,7 @@ TeamSelect.propTypes = {
     addFiremanToTeam: PropTypes.func,
     primaryTeam: PropTypes.array,
     secondaryTeam: PropTypes.array,
-    team: PropTypes.string
+    team: PropTypes.string,
+    newItems: PropTypes.number
 };
 export default TeamSelect;

@@ -57,3 +57,14 @@
 .clear {
     width: 30% !important;
 }
+.teams-cont > div,
+.search-input-cont > div {
+    width: 95%;
+}
+.teams-cont,
+.search-input-cont{
+    margin: 4vh 0;
+    display: flex;
+    justify-content: center;
+}
+

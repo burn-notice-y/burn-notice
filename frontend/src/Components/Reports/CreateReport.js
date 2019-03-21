@@ -39,7 +39,8 @@ class CreateReport extends Component {
         primaryTeam: [],
         secondaryTeam: [],
         modalOpen: false,
-        teamMemberTaken: false
+        teamMemberTaken: false,
+        newMembers: 0
     };
 
 
@@ -90,6 +91,7 @@ class CreateReport extends Component {
         if (goodToGo){
             searchResults.splice(selectedIndex, 1);
             this.setState({
+                newMembers: this.state.newMembers + 1,
                 [team]: [...this.state[team], fireman],
                 searchResult: searchResults
             })
@@ -154,17 +156,15 @@ class CreateReport extends Component {
         .catch(error => console.log(error))
     };
 
-
     render() {
         if (this.state.redirect) {
             return <Redirect to={"/reports"}/>
         }
-        console.log(this.state);
         let modalMessage = "";
         let modalHeader = "";
         if (this.state.teamMemberTaken){
             modalHeader = "Oops";
-            modalMessage = "That firefighter is already on a team"
+            modalMessage = "That firefighter is already the list"
         }  else if(this.state.dateWrong) {
             modalHeader = "Can you see into the future?";
             modalMessage = "Please choose a valid date"
@@ -194,7 +194,6 @@ class CreateReport extends Component {
                 </div>
                 <OwnModal open={this.state.modalOpen} handleClose={this.modalClose}
                           header={modalHeader} body={modalMessage}
-                          
                 />
             </Fragment>
         )
