@@ -52,5 +52,4 @@ public class FireStationController {
         return stationDao.findOne(id);
     }
 
-
 }
