@@ -14,16 +14,11 @@ import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 import moment from 'moment';
 
-
-
-
-
-
-
 class ReportDisplay extends Component {
     state = {
         type: "",
         name: "",
+        category: "",
         oneDate: moment().format("YYYY-MM-DD"),
         startDate: moment().format("YYYY-MM-DD"),
         endDate: moment().format("YYYY-MM-DD"),
@@ -60,11 +55,11 @@ class ReportDisplay extends Component {
                 break;
             case "By Date Range":
                 requestUrl = "/api/date-range-report";
-                queryString = `?startDate=${this.state.startDate}endDate=${this.state.endDate}`;
+                queryString = `?startDate=${this.state.startDate}&endDate=${this.state.endDate}`;
                 break;
             case "By Type":
                 requestUrl = "/api/type-report";
-                queryString = `?type=${this.state.type}`;
+                queryString = `?type=${this.state.category}`;
                 break;
             default:
                 return;
@@ -90,7 +85,7 @@ class ReportDisplay extends Component {
             //     // no props needed because they only do one thing
                 return <SearchByTwo {...this.state} searchShow={this.showSearchResults} handleChange={this.inputHandler}/>;
             case "By Type":
-                return <SearchByType searchShow={this.showSearchResults}/>;
+                return <SearchByType {...this.state} searchShow={this.showSearchResults} handleChange={this.inputHandler}/>;
             // default in case they all fail
             default: return;
         }
@@ -98,7 +93,7 @@ class ReportDisplay extends Component {
     // call this function inside of the return block, passing in `this.state.type` as the parameter
 
     render() {
-
+console.log(this.state);
 
         return (
 

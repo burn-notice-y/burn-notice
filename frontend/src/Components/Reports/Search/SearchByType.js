@@ -35,16 +35,13 @@ class SearchByType extends Component {
 
         return(
 
-            <div className="report-info">
-                <Typography component="h2" variant="h5" className={"report-d-header"}>
-                    Search By:
-                </Typography>
+            <div className="type-info">
                 <TextField className={"dropdown-type"}
                     id="outlined-select-currency"
                     select
                     label="Type of Report"
-                    value={this.state.type}
-                    onChange={this.inputHandler('type')}
+                    value={this.props.category}
+                    onChange={this.props.handleChange('category')}
                     margin="normal"
                     variant="outlined">
                     {reportCategories.map(option => (
