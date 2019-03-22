@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import Typography from "@material-ui/core/Typography/Typography";
 import ManyFirefighters from "../Firefighters/ManyFirefighters";
+import Fab from "@material-ui/core/Fab/Fab";
+import ArrowBack from '@material-ui/icons/ArrowBack';
 
 class BigStation extends Component {
     state = {
@@ -46,6 +48,9 @@ class BigStation extends Component {
                         </Typography>
                         <ManyFirefighters firemanList={station.currentCrew}/>
                     </div>
+                    <Fab className={"back-button"} onClick={() => this.props.history.goBack()}>
+                        <ArrowBack/>
+                    </Fab>
                 </Fragment>
             )
         }

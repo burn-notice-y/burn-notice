@@ -3,7 +3,7 @@ import Typography from "@material-ui/core/Typography/Typography";
 import '../../css/Reportdisplay.css';
 import TextField from "@material-ui/core/TextField/TextField";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
-import {reportCategories, reportDisplay} from '../../data/categories';
+import { reportDisplay } from '../../data/categories';
 import SearchByOne from "./Search/SearchByOne";
 import SearchByTwo from "./Search/SearchByTwo";
 import SearchByType from "./Search/SearchByType";
@@ -12,12 +12,6 @@ import axios from "axios";
 import * as actions from '../../store/actions';
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
-
-
-
-
-
-
 
 class ReportDisplay extends Component {
     state = {

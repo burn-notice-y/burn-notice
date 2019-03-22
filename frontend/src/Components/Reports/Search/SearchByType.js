@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Typography from "@material-ui/core/Typography/Typography";
 import TextField from "@material-ui/core/TextField/TextField";
-import {reportCategories, reportDisplay} from "../../../data/categories";
+import {reportCategories } from "../../../data/categories";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import ManyReports from "../ManyReports";
 

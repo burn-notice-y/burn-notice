@@ -5,7 +5,6 @@ import * as actions from '../../store/actions'
 import axios from 'axios';
 import AdminHeader from "./AdminHeader";
 import UserHeader from "./UserHeader";
-import Register from "../User/Register";
 
 class LoggedInMenu extends Component {
 

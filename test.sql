@@ -30,10 +30,10 @@ insert into types (id, name) values
 (7, 'Trash Fire');
 
 -- Step 3. make a new user through the website, make that user #16 a chief manually
+UPDATE users SET chief = true WHERE id = 16;
 
 -- Step 4. Run this block
 insert into districts(name, chief_id) values ('8-0', 16);
-
 
 -- Step 5. Run this block
 insert into fire_stations (name, captain_id, district_id) VALUES

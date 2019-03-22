@@ -34,9 +34,6 @@ public class Vacancy {
     @JsonManagedReference(value = "vacancy")
     private List<TransferRequest> transferRequest;
 
-    @OneToOne(cascade = {CascadeType.ALL})
-    private FireStation district;
-
     public Vacancy() {
     }
 
@@ -87,14 +84,6 @@ public class Vacancy {
 
     public void setStation(FireStation station) {
         this.station = station;
-    }
-
-    public FireStation getDistrict() {
-        return district;
-    }
-
-    public void setDistrict(FireStation district) {
-        this.district = district;
     }
 
     public List<TransferRequest> getTransferRequest() {

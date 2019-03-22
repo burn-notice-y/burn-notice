@@ -6,15 +6,28 @@
     overflow: scroll;
 }
 .big-station-cont {
-    height: 65vh;
+    height: 85vh;
     width: 85%;
+    overflow: scroll;
 }
 .station-header {
     text-align: center;
+}
+.station-header:after {
+    content: '';
+    clear: both;
+    height: 1px;
+    width: 100px;
+    color: blue;
 }
 .station-body {
     margin-top: 4vh;
 }
 .station-body h4 {
     margin: 3vh 0;
+}
+.back-button {
+    position: fixed !important;
+    bottom: 30px;
+    right: 30px;
 }

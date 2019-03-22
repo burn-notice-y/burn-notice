@@ -11,7 +11,7 @@ const ManyStations = props => (
             </Typography>
         </div>
         <div className="station-content">
-            {props.stationList.map(station => <Station {...station}/>)}
+            {props.stationList.map(station => <Station key={station.id} {...station}/>)}
         </div>
     </div>
 )
