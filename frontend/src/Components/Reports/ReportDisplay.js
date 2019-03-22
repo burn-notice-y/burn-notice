@@ -3,7 +3,7 @@ import Typography from "@material-ui/core/Typography/Typography";
 import '../../css/Reportdisplay.css';
 import TextField from "@material-ui/core/TextField/TextField";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
-import {reportCategories, reportDisplay} from '../../data/categories';
+import { reportDisplay } from '../../data/categories';
 import SearchByOne from "./Search/SearchByOne";
 import SearchByTwo from "./Search/SearchByTwo";
 import SearchByType from "./Search/SearchByType";
@@ -37,11 +37,7 @@ class ReportDisplay extends Component {
     };
 
     showSearchResults = () => {
-        // toggle loading spinner
-        // ask db for specified reports - axios.get().then(result =>
-        // . then ( once they come back ) result => this.setState({data: result.data, displayReports: true})
         this.props.toggleLoading();
-
         let requestUrl = "";
         let queryString = "";
         switch (this.state.type) {
@@ -74,6 +70,7 @@ class ReportDisplay extends Component {
         });
     };
 
+
         determineSearchType = pageStatus => {
         switch (pageStatus) {
             case "By Date":
@@ -90,14 +87,9 @@ class ReportDisplay extends Component {
             default: return;
         }
     };
-    // call this function inside of the return block, passing in `this.state.type` as the parameter
 
     render() {
-console.log(this.state);
-
         return (
-
-
             <div className="report-d-cont">
                 <div className="report-d-header">
                     <Typography component="h3" variant="h2" gutterBottom className={"report-d-header"}>

@@ -5,3 +5,16 @@
     height: 85vh;
     overflow: scroll;
 }
+.big-station-cont {
+    height: 65vh;
+    width: 85%;
+}
+.station-header {
+    text-align: center;
+}
+.station-body {
+    margin-top: 4vh;
+}
+.station-body h4 {
+    margin: 3vh 0;
+}

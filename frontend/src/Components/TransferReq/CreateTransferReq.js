@@ -1,4 +1,3 @@
-
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../store/actions';
@@ -13,29 +12,27 @@ import axios from "axios";
 import * as PropTypes from "prop-types";
 import {Redirect} from "react-router-dom";
 
-
-
-
-
-
-
-
 class CreateTransferReq extends Component{
     state = {
         editLocked: true,
         sap: "",
         email: "",
         firstName: "",
-        lastName: ""
+        lastName: "",
+        vacancy: null
     };
 
     componentDidMount(){
-        // fetch the vacancy via axios.get()
-
-        // store vacancy to a variable
-
-        //
-
+        this.props.toggleLoading();
+        axios.get(`/api/one-vacancy?id=${this.props.match.params.id}`)
+            .then(res => {
+                this.props.toggleLoading();
+                this.setState({vacancy: res.data})
+            })
+            .catch(error => {
+                this.props.toggleLoading();
+                console.log(error);
+            })
     }
 
     static getDerivedStateFromProps(nextProps){
@@ -59,23 +56,26 @@ class CreateTransferReq extends Component{
     };
 
     render() {
-        if (this.state.redirect){
-            this.props.fetchUser();
-            return <Redirect to={"/vacancy/show"}/>
+        if (this.state.vacancy === null){
+            return <div/>;
         }
-        let fillDate = () => {
-            if (vacancy.fillDate === "9999") {
-                return "Open";
-            } else {
-                return (moment(vacancy.fillDate).format("MMMM Do YYYY"));
-            }
-        };
-
+        console.log(this.state);
+        let vacancy = this.state.vacancy;
+        let fillDate = moment().format("MMMM Do YYYY");
+        let applyText = "Apply";
+        let canApply = true;
+        if (vacancy.fillDate !== "9999"){
+            applyText = "Closed";
+            canApply = false;
+            fillDate = "Closed"
+        }
         let postDate = moment(vacancy.postDate).format("MMMM Do YYYY");
+
         let temporary = "";
         vacancy.temporary ? temporary = "Yes" : temporary = "No";
         let role = "";
         vacancy.engine ? role = "Engine" : role = "Truck";
+
 
 
         return (
@@ -91,7 +91,7 @@ class CreateTransferReq extends Component{
                             <div className="reg-sation reg-input">
                                 <TextField
                                     label={"Station"}
-                                    value={vacancy.fireStation.code}
+                                    value={vacancy.station.name}
                                     margin="normal"
                                     variant="outlined"
                                     disabled={true}/>
@@ -123,7 +123,7 @@ class CreateTransferReq extends Component{
                             <div className="reg-fill-date reg-input">
                                 <TextField
                                     label="Fill Date"
-                                    value={fillDate()}
+                                    value={fillDate}
                                     margin="normal"
                                     variant="outlined"
                                     disabled={true}/>
@@ -175,8 +175,8 @@ class CreateTransferReq extends Component{
                                     disabled={true}/>
                             </div>
 
-                            <Button variant="contained" color="primary"><div onClick={this.apply}>
-                                Submit Application
+                            <Button variant="contained" color="primary" disabled={canApply}><div onClick={this.apply}>
+                                {applyText}
                             </div></Button>
                         </div>
                     </div>

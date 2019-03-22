@@ -1,32 +1,16 @@
-// individual firefighter overview
-
-// follow Vacancy for reference
-
-// accepts props as data values
-
-// example: div classname="firefighter-header" --> {this.props.fireman.name}
-
-import React, {Component, Fragment} from 'react';
-import {Link} from 'react-router-dom';
-import Button from '@material-ui/core/Button';
+import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import '../../css/Vacancy.css';
+import PropTypes from 'prop-types';
 
-class FireFighter extends Component {
+const FireFighter = ({ firstName, lastName }) => (
+    <Typography variant="subheading" component="h6">
+        {firstName} {lastName}
+    </Typography>
+);
 
-    render() {
-        return (
-            <Fragment>
-                <Typography variant="h5" component="h2">
-                    {this.props.firstName} {this.props.lastName}
-                </Typography>
-                <Link to={`/firefighter/${this.props.id}`}><Button size="small">See more</Button></Link>
-            </Fragment>
-
-
-        )
-    }
-}
-
+FireFighter.propTypes = {
+    firstName: PropTypes.string,
+    lastName: PropTypes.string
+};
 
 export default FireFighter;

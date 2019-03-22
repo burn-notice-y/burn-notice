@@ -1,4 +1,3 @@
-
 use burn_notice_db;
 -- Step 1. run this block
 

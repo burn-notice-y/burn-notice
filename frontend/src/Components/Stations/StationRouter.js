@@ -8,7 +8,7 @@ const StationRouter = () => {
     return (
         <Switch>
             <Route path="/stations/all" render={() => <StationDisplay/>}/>
-            <Route path="/stations/view/:id" render={() => <BigStation/>}/>
+            <Route path="/stations/view/:id" render={(routeProps) => <BigStation {...routeProps}/>}/>
         </Switch>
     );
 };
