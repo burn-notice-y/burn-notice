@@ -19,7 +19,7 @@ class ReportDisplay extends Component {
         type: "",
         name: "",
         category: "",
-        oneDate: moment().format("YYYY-MM-DD"),
+        createDate: moment().format("YYYY-MM-DD"),
         startDate: moment().format("YYYY-MM-DD"),
         endDate: moment().format("YYYY-MM-DD"),
         displayReports: false,
@@ -47,7 +47,7 @@ class ReportDisplay extends Component {
         switch (this.state.type) {
             case "By Date":
                 requestUrl = "/api/date-report";
-                queryString = `?createDate=${this.state.oneDate}`;
+                queryString = `?createDate=${this.state.createDate}`;
                 break;
             case "By Last Name":
                 requestUrl = "/api/creator-report";

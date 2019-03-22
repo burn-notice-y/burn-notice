@@ -19,20 +19,8 @@ class SearchByType extends Component {
         })
     };
 
-    displayReports = () => {
-        this.setState({
-            displayReports: !this.state.displayReports
-
-        })
-    };
 
     render() {
-
-        if(this.state.displayReports) {
-            return <ManyReports/>;
-        }
-
-
         return(
 
             <div className="type-info">

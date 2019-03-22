@@ -15,7 +15,7 @@ class SearchByOne extends Component {
         switch (this.props.type){
             case "By Date":
                 return <div className={"date"}>
-                    <DatePick value={this.props.oneDate} argumentName={"oneDate"} handleChange={this.props.handleChange} labelDisplay={"Reports on this Date"}/>
+                    <DatePick value={this.props.createDate} argumentName={"oneDate"} handleChange={this.props.handleChange} labelDisplay={"Reports on this Date"}/>
                     <div className={"button-cont"}>
                     <Button variant="contained" color="primary" className="date-search" onClick={this.props.searchShow}>
                        Search
