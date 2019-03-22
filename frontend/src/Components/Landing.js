@@ -9,7 +9,8 @@ import * as actions from '../store/actions';
 class Landing extends Component {
 
     componentDidMount(){
-        this.props.fetchUser()
+        this.props.fetchUser();
+
     }
 
     render(){
@@ -38,4 +39,5 @@ class Landing extends Component {
         )
     }
 }
+
 export default connect(null, actions)(Landing);
