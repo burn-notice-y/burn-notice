@@ -11,34 +11,17 @@ import Button from "@material-ui/core/Button/Button";
 
 class SearchByOne extends Component {
 
-    state={
-        search:""
-    };
-
-
-
-    displayReports = () => {
-        if (this.state.displayReports){
-            return <ManyReports/>
-        }
-        this.setState({
-            displayReports: !this.state.displayReports
-
-        })
-    };
-
     determineSearchType = () => {
         switch (this.props.type){
             case "By Date":
                 return <div className={"date"}>
-                    <DatePick value={this.props.value} argumentName={"oneDate"} handleChange={this.props.handleChange} labelDisplay={"Reports on this Date"}/>
-                    <br/>
-                    <Button variant="contained" color="primary" className="date-search" onClick={this.displayReports}>
+                    <DatePick value={this.props.oneDate} argumentName={"oneDate"} handleChange={this.props.handleChange} labelDisplay={"Reports on this Date"}/>
+                    <div className={"button-cont"}>
+                    <Button variant="contained" color="primary" className="date-search" onClick={this.props.searchShow}>
                        Search
                     </Button>
-
+                    </div>
                 </div>
-
             case "By Last Name":
                 return <div className={"search-name"}>
                         <Paper elevation={1} className={"search-cont"}>
@@ -48,7 +31,7 @@ class SearchByOne extends Component {
                            placeholder={this.props.type}
                            autoComplete={"off"}
                         />
-                    <IconButton aria-label="Search" onClick={() => this.props.searchShow()} className={"search-icon"}>
+                    <IconButton aria-label="Search" onClick={this.props.searchShow}>
                         <SearchIcon/>
                     </IconButton>
                     <Divider/>
@@ -67,7 +50,8 @@ class SearchByOne extends Component {
                 {this.determineSearchType()}
             </Fragment>
 
-        )
+
+    )
     }
 }
 

@@ -13,16 +13,16 @@ class SearchByTwo extends Component {
     };
 
     displayReports = () => {
+        if (this.state.displayReports){
+            return <ManyReports/>
+        }
         this.setState({
             displayReports: !this.state.displayReports
+
         })
     };
 
     render() {
-
-        if(this.state.displayReports) {
-            return <ManyReports/>;
-        }
 
         return(
         <div>
@@ -31,7 +31,7 @@ class SearchByTwo extends Component {
                 <DatePick labelDisplay={"End Date"} argumentName={"endDate"} value={this.props.endDate} handleChange={this.props.handleChange}/>
             </div>
             <div className="action-container">
-                <Button variant="contained" color="primary" className="date-search" onClick={this.displayReports}>
+                <Button variant="contained" color="primary" className="date-search" onClick={this.props.searchShow}>
                     Search
                 </Button>
             </div>

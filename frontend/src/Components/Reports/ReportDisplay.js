@@ -22,7 +22,7 @@ import moment from 'moment';
 
 class ReportDisplay extends Component {
     state = {
-        type:"",
+        type: "",
         name: "",
         oneDate: moment().format("YYYY-MM-DD"),
         startDate: moment().format("YYYY-MM-DD"),
@@ -119,7 +119,7 @@ class ReportDisplay extends Component {
                         Search By:
                     </Typography>
                 </div>
-                <div className="">
+                <div className="big-search">
                     <TextField className={"dropdown"}
                                id="outlined-select-currency"
                                select

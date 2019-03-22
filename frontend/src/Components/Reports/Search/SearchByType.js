@@ -4,6 +4,7 @@ import TextField from "@material-ui/core/TextField/TextField";
 import {reportCategories, reportDisplay} from "../../../data/categories";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import ManyReports from "../ManyReports";
+import Button from "@material-ui/core/Button/Button";
 
 
 class SearchByType extends Component {
@@ -38,7 +39,7 @@ class SearchByType extends Component {
                 <Typography component="h2" variant="h5" className={"report-d-header"}>
                     Search By:
                 </Typography>
-                <TextField className={"dropdown"}
+                <TextField className={"dropdown-type"}
                     id="outlined-select-currency"
                     select
                     label="Type of Report"
@@ -52,6 +53,9 @@ class SearchByType extends Component {
                         </MenuItem>
                     ))}
                 </TextField>
+                <Button variant="contained" color="primary" className="type-search" onClick={this.props.searchShow}>
+                    Search
+                </Button>
             </div>
 
 
