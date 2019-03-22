@@ -23,7 +23,7 @@ public class VacancyController
     @GetMapping("/api/all-vacancies")
     public Iterable<VacancyHighlights> viewAllVacancies()
     {
-        return vacDao.findAllBy();
+        return vacDao.findAllByOrderByIdDesc();
     }
 
     @GetMapping("/api/one-vacancy")

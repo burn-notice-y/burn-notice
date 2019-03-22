@@ -3,9 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import CreateTransferReq from "./CreateTransferReq";
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
-import vacancy from "../../data/bigVacancy";
 import transferRequest from '../../data/transferRequest';
-
 
 class TransferRouter extends Component{
     state ={

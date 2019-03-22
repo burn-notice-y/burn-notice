@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ManyStations from './ManyStations';
-import stationList from '../../data/stationsArray';
 import axios from 'axios';
 import * as actions from '../../store/actions';
 import { connect } from 'react-redux';

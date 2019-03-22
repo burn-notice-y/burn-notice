@@ -1,4 +1,3 @@
-
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../store/actions';
@@ -13,13 +12,6 @@ import axios from "axios";
 import * as PropTypes from "prop-types";
 import {Redirect} from "react-router-dom";
 
-
-
-
-
-
-
-
 class CreateTransferReq extends Component{
     state = {
         editLocked: true,
@@ -28,15 +20,6 @@ class CreateTransferReq extends Component{
         firstName: "",
         lastName: ""
     };
-
-    componentDidMount(){
-        // fetch the vacancy via axios.get()
-
-        // store vacancy to a variable
-
-        //
-
-    }
 
     static getDerivedStateFromProps(nextProps){
         return {...nextProps}
