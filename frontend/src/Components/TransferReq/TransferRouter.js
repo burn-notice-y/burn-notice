@@ -19,15 +19,17 @@ class TransferRouter extends Component{
         let applicantHeader = "Review Your Application";
         let header = "Review Your Application";
         if (applicant && applicant.chief){
-            header = "Applicants Information";
-            applicantHeader = "Review the Application";
+            header = "Review the Application";
+            applicantHeader = "Applicants Information";
             applicant = transferRequest;
         }
         return (
             <Switch>
-                <Route path={"/transfer/create/:id"} render={() => <CreateTransferReq applicantHeader={applicantHeader}
-                                                                                      header={header}
-                                                                                      {...applicant}/>}/>
+                <Route path={"/transfer/create/:id"} render={(routeProps) =>
+                    <CreateTransferReq applicantHeader={applicantHeader}
+                                       header={header}
+                                       {...routeProps}
+                                       {...applicant}/>}/>
             </Switch>
         )
     }
