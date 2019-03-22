@@ -6,5 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface VacancyRepository extends CrudRepository<Vacancy, Long> {
-    List<VacancyHighlights> findAllBy();
+    List<VacancyHighlights> findAllByOrderByIdDesc();
 }

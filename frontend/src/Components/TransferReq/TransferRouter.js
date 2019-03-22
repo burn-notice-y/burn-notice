@@ -3,9 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import CreateTransferReq from "./CreateTransferReq";
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
-import vacancy from "../../data/bigVacancy";
 import transferRequest from '../../data/transferRequest';
-
 
 class TransferRouter extends Component{
     state ={
@@ -21,15 +19,17 @@ class TransferRouter extends Component{
         let applicantHeader = "Review Your Application";
         let header = "Review Your Application";
         if (applicant && applicant.chief){
-            header = "Applicants Information";
-            applicantHeader = "Review the Application";
+            header = "Review the Application";
+            applicantHeader = "Applicants Information";
             applicant = transferRequest;
         }
         return (
             <Switch>
-                <Route path={"/transfer/create/:id"} render={() => <CreateTransferReq applicantHeader={applicantHeader}
-                                                                                      header={header}
-                                                                                      {...applicant}/>}/>
+                <Route path={"/transfer/create/:id"} render={(routeProps) =>
+                    <CreateTransferReq applicantHeader={applicantHeader}
+                                       header={header}
+                                       {...routeProps}
+                                       {...applicant}/>}/>
             </Switch>
         )
     }
