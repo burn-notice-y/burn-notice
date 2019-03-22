@@ -27,3 +27,8 @@
 .time-input > div {
     width: 40%;
 }
+
+.date {
+    width: 50%;
+    align-items: flex-end;
+}

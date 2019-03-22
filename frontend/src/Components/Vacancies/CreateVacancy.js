@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component, Fragment} from 'react';
 import * as actions from '../../store/actions'
 import { connect } from 'react-redux';
 import { withRouter, Redirect } from 'react-router-dom';
@@ -15,7 +15,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel/FormControlLabe
 import Radio from "@material-ui/core/Radio/Radio";
 import moment from 'moment';
 import PropTypes from "prop-types";
-
+import OwnModal from "../OwnModal";
 
 class CreateVacancy extends Component{
     state = {
@@ -25,6 +25,9 @@ class CreateVacancy extends Component{
         postDate: moment().format("YYYY-MM-DD"),
         fillDate: "9999",
         station: { name: "40"},
+        modalHeader: "",
+        modalBody: "",
+        modalOpen: false,
         redirect: false,
         error: false,
         disabled: false,
@@ -34,9 +37,9 @@ class CreateVacancy extends Component{
         this.props.toggleLoading();
         axios.post("/api/create-vacancy", {
             ...this.state
-        }).then(res => {
+        }).then(() => {
             this.props.toggleLoading();
-            console.log(res)
+            this.setState({redirect: true})
         }).catch(error => {
             this.props.toggleLoading();
             console.log(error)
@@ -46,7 +49,15 @@ class CreateVacancy extends Component{
     inputHandler = type => event => {
         switch (type) {
             case "postDate":
-                this.setState({postDate: event});
+                if (event > moment()){
+                    this.setState({postDate: event});
+                } else {
+                    this.setState({
+                        modalOpen: true,
+                        modalHeader: "Please look into the future",
+                        modalBody: "Are they supposed to start yesterday?"
+                    })
+                }
                 break;
             case "station":
                 this.setState({station: {name: event.target.value}});
@@ -57,13 +68,20 @@ class CreateVacancy extends Component{
             })
         }
     };
+    modalClose = () => {
+        this.setState({
+            modalHeader: "",
+            modalBody: "",
+            modalOpen: false
+        })
+    };
 
     render(){
         if (this.state.redirect){
-            return <Redirect to={"/vacancies"}/>
+            return <Redirect to={"/vacancy/show"}/>
         }
-        console.log(this.state);
         return (
+        <Fragment>
             <div className={"admin-create-vacancy"}>
                 <div className="vacancy-header">
                     <Typography component="h3" variant="h3" gutterBottom className={"registration-header"}>
@@ -73,7 +91,7 @@ class CreateVacancy extends Component{
                 <div className="input-cont">
                     <div className="vac-date-cont reg-input">
                         <DatePickClass labelDisplay={"Start Date"}
-                                       startDate={this.state.postDate} handleChange={this.inputHandler}
+                                       value={this.state.postDate} handleChange={this.inputHandler}
                                        argumentName={"postDate"}
                         />
                     </div>
@@ -134,6 +152,10 @@ class CreateVacancy extends Component{
                     </div>
                 </div>
             </div>
+            <OwnModal open={this.state.modalOpen} handleClose={this.modalClose}
+        header={this.state.modalHeader} body={this.state.modalBody}
+        />
+        </Fragment>
         )
     }
 }

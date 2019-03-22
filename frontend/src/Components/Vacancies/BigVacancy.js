@@ -6,29 +6,28 @@ import moment from 'moment';
 import ManyFirefighters from '../Firefighters/ManyFirefighters';
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import { withStyles } from '@material-ui/core/styles';
-import Fab from '@material-ui/core/Fab';
 import DeleteIcon from '@material-ui/icons/Delete';
-import NavigationIcon from '@material-ui/icons/Navigation';
 import axios from "axios";
 import * as actions from '../../store/actions';
 import { connect }  from 'react-redux';
 import {Link} from "react-router-dom";
 
-
-
-// show all of the properties from the vacancy object
-
-// use material UI and containers with flexbox to put them all pretty like
-
-// give current crew as props to ManyFirefighters,
-// which then maps over the array and returns a Firefighter component for each one
-
 class BigVacancy extends Component {
+    state = { vacancy: null };
 
-    state={
-
+    componentDidMount(){
+        this.props.toggleLoading();
+        axios.get(`/api/one-vacancy?id=${this.props.match.params.id}`)
+            .then(res => {
+                this.props.toggleLoading();
+                this.setState({vacancy: res.data})
+            })
+            .catch(error => {
+                this.props.toggleLoading();
+                console.log(error);
+            })
     }
+
     determineAdmin = () => {
         if (this.props.admin) {
             return (
@@ -41,7 +40,6 @@ class BigVacancy extends Component {
         }
     };
 
-
     apply = () => {
         axios.post("/api/submitApplication", {
             sentDate: moment().format('YYYY Do MM'),
@@ -51,120 +49,131 @@ class BigVacancy extends Component {
         }).then(result => console.log(result))
     };
 
-
     render(){
-        console.log(vacancy);
-
-        let applicable = () =>
-        {
-            if(vacancy.fillDate === "9999")
-            {
-                return "Apply";
-            }
-            else
-            {
-                return "Closed";
-            }
-        };
-
+        if (this.state.vacancy === null){
+            return <div/>;
+        }
+        console.log(this.state);
+        let vacancy = this.state.vacancy;
+        let vacancyText = moment(vacancy.fillDate).format("MMMM Do YYYY");
+        let applyText = "Apply";
+        let canApply = true;
+        if (vacancy.fillDate !== "9999"){
+            applyText = "Closed";
+            canApply = false;
+            vacancyText = "Closed"
+        }
         let postDate = moment(vacancy.postDate).format("MMMM Do YYYY");
-
-        let fillDate = () => {
-            if(vacancy.fillDate === "9999") {
-                return "Open";
-            } else {
-                return (moment(vacancy.fillDate).format("MMMM Do YYYY"))
-            }
-        };
 
         let temporary = "";
         vacancy.temporary ? temporary = "Yes" : temporary = "No";
         let role = "";
         vacancy.engine ? role = "Engine" : role = "Truck";
 
-        function ListDividers(props)
-        {
-            const {classes} = props;
-        }
-
-
         return (
+            <div className={"big-edit-cont"}>
+                <div className="application-header">
+                    <div className="top">
+                        <Typography component="h3" variant="h4" gutterBottom className={"application-header"}>
+                            {this.props.header}
+                        </Typography>
+                    </div>
+                    <div className="input-cont">
+                        <div className="apply">
+                            <div className="reg-sation reg-input">
+                                <TextField
+                                    label={"Station"}
+                                    value={this.state.vacancy.station.name}
+                                    margin="normal"
+                                    variant="outlined"
+                                    disabled={true}/>
+                            </div>
+                            <div className="reg-role reg-input">
+                                <TextField
+                                    label="Role"
+                                    value={role}
+                                    margin="normal"
+                                    variant="outlined"
+                                    disabled={true}/>
+                            </div>
+                            <div className="reg-temporary reg-input">
+                                <TextField
+                                    label="Temporary"
+                                    value={temporary}
+                                    margin="normal"
+                                    variant="outlined"
+                                    disabled={true}/>
+                            </div>
+                            <div className="reg-post-date reg-input">
+                                <TextField
+                                    label="Post Date"
+                                    value={postDate}
+                                    margin="normal"
+                                    variant="outlined"
+                                    disabled={true}/>
+                            </div>
+                            <div className="reg-fill-date reg-input">
+                                <TextField
+                                    label="Fill Date"
+                                    value={vacancyText}
+                                    margin="normal"
+                                    variant="outlined"
+                                    disabled={true}/>
+                            </div>
+                            <div className="reg-crew reg-input">
+                                <br/>
+                                <ManyFirefighters/>
+                            </div>
+                            <br/>
+                        </div>
+                        <div className="top">
+                            <Typography component="h3" variant="h4" gutterBottom className={"application-header"}>
+                                {this.props.applicantHeader}
+                            </Typography>
+                        </div>
+                    </div>
+                    <div className="input-cont">
+                        <div className="editable">
+                            <div className="reg-sap reg-input">
+                                <TextField
+                                    label="SAP"
+                                    value={this.state.sap}
+                                    margin="normal"
+                                    variant="outlined"
+                                    disabled={true}/>
+                            </div>
+                            <div className="reg-email reg-input">
+                                <TextField
+                                    label="Email"
+                                    value={this.state.email}
+                                    margin="normal"
+                                    variant="outlined"
+                                    disabled={true}/>
+                            </div>
+                            <div className="reg-firstname reg-input">
+                                <TextField
+                                    label="First Name"
+                                    value={this.state.firstName}
+                                    margin="normal"
+                                    variant="outlined"
+                                    disabled={true}/>
+                            </div>
+                            <div className="reg-lastname reg-input">
+                                <TextField
+                                    label="Last Name"
+                                    value={this.state.lastName}
+                                    margin="normal"
+                                    variant="outlined"
+                                    disabled={true}/>
+                            </div>
 
-            <div className="vacancy-scroll">
-                <Typography variant="h2">
-                    Vacancy Details
-                </Typography>
+                            <Button variant="contained" color="primary" disabled={canApply}><div onClick={this.apply}>
+                                Submit Application
+                            </div></Button>
+                        </div>
+                    </div>
 
-
-                <div>
-                    <TextField
-                        disabled
-                        id="outlined-disabled"
-                        label="Station"
-                        defaultValue={vacancy.fireStation.code}
-                        className="text-field-width"
-                        margin="normal"
-                        variant="outlined"
-                    />
                 </div>
-                <div>
-                    <TextField
-                        disabled
-                        id="outlined-disabled"
-                        label="Role"
-                        className="text-field-width"
-                        defaultValue={role}
-                        margin="normal"
-                        variant="outlined"
-                    />
-                </div>
-
-                <div>
-                    <TextField
-                        disabled
-                        id="Temporary"
-                        label="Temporary"
-                        className="text-field-width"
-                        defaultValue={temporary}
-                        margin="normal"
-                        variant="outlined"
-                    />
-                </div>
-
-                <div>
-                    <TextField
-                        disabled
-                        id="outlined-disabled"
-                        label="Post Date"
-                        className="text-field-width"
-                        defaultValue={postDate}
-                        margin="normal"
-                        variant="outlined"
-                    />
-                </div>
-                <div>
-                    <TextField
-                        disabled
-                        id="outlined-disabled"
-                        label="Fill Date"
-                        className="text-field-width "
-                        defaultValue={fillDate()}
-                        margin="normal"
-                        variant="outlined"
-                    />
-                </div>
-                <div>
-                    <Typography>
-                        <ManyFirefighters/>
-                    </Typography>
-                </div>
-
-
-                <Link to={"/transfer/create"}><Button gutterBottom variant="contained" className="vacancy-btn-color"><div onClick={this.apply}>
-                    {applicable()}
-                </div>
-                </Button></Link>
-
             </div>
         )
     }
