@@ -175,7 +175,7 @@ class CreateTransferReq extends Component{
                                     disabled={true}/>
                             </div>
 
-                            <Button variant="contained" color="primary" disabled={canApply}><div onClick={this.apply}>
+                            <Button variant="contained" color="primary" ><div onClick={this.apply}>
                                 {applyText}
                             </div></Button>
                         </div>
