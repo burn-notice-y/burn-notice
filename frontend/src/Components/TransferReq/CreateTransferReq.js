@@ -11,6 +11,8 @@ import "../../css/Firefighter.css"
 import axios from "axios";
 import * as PropTypes from "prop-types";
 import {Redirect} from "react-router-dom";
+import VacancyInfo from './VacancyInfo';
+import VacancyUserInfo from "./VacancyUserInfo";
 
 class CreateTransferReq extends Component{
     state = {
@@ -88,46 +90,10 @@ class CreateTransferReq extends Component{
                     </div>
                     <div className="input-cont">
                         <div className="apply">
-                            <div className="reg-sation reg-input">
-                                <TextField
-                                    label={"Station"}
-                                    value={vacancy.station.name}
-                                    margin="normal"
-                                    variant="outlined"
-                                    disabled={true}/>
-                            </div>
-                            <div className="reg-role reg-input">
-                                <TextField
-                                    label="Role"
-                                    value={role}
-                                    margin="normal"
-                                    variant="outlined"
-                                    disabled={true}/>
-                            </div>
-                            <div className="reg-temporary reg-input">
-                                <TextField
-                                    label="Temporary"
-                                    value={temporary}
-                                    margin="normal"
-                                    variant="outlined"
-                                    disabled={true}/>
-                            </div>
-                            <div className="reg-post-date reg-input">
-                                <TextField
-                                    label="Post Date"
-                                    value={postDate}
-                                    margin="normal"
-                                    variant="outlined"
-                                    disabled={true}/>
-                            </div>
-                            <div className="reg-fill-date reg-input">
-                                <TextField
-                                    label="Fill Date"
-                                    value={fillDate}
-                                    margin="normal"
-                                    variant="outlined"
-                                    disabled={true}/>
-                            </div>
+                            <VacancyInfo fillDate={fillDate} postDate={postDate} role={role} temporary={temporary}
+                                         stationName={vacancy.station.name}
+
+                                         />
                             <div className="reg-crew reg-input">
                                 <br/>
                                     <ManyFirefighters/>
@@ -141,46 +107,8 @@ class CreateTransferReq extends Component{
                         </div>
                     </div>
                     <div className="input-cont">
-                        <div className="editable">
-                            <div className="reg-sap reg-input">
-                                <TextField
-                                    label="SAP"
-                                    value={this.state.sap}
-                                    margin="normal"
-                                    variant="outlined"
-                                    disabled={true}/>
-                            </div>
-                            <div className="reg-email reg-input">
-                                <TextField
-                                    label="Email"
-                                    value={this.state.email}
-                                    margin="normal"
-                                    variant="outlined"
-                                    disabled={true}/>
-                            </div>
-                            <div className="reg-firstname reg-input">
-                                <TextField
-                                    label="First Name"
-                                    value={this.state.firstName}
-                                    margin="normal"
-                                    variant="outlined"
-                                    disabled={true}/>
-                            </div>
-                            <div className="reg-lastname reg-input">
-                                <TextField
-                                    label="Last Name"
-                                    value={this.state.lastName}
-                                    margin="normal"
-                                    variant="outlined"
-                                    disabled={true}/>
-                            </div>
-
-                            <Button variant="contained" color="primary" disabled={canApply}><div onClick={this.apply}>
-                                {applyText}
-                            </div></Button>
-                        </div>
+                        <VacancyUserInfo {...this.state} apply={this.apply} canApply={canApply} applyText={applyText}/>
                     </div>
-
                 </div>
             </div>
         )
