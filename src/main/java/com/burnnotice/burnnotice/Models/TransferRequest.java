@@ -29,7 +29,7 @@ public class TransferRequest {
 
     // vacancy
     @ManyToOne
-    @JsonBackReference(value = "vacancy")
+    @JoinColumn(name = "vacancy_id")
     private Vacancy vacancy;
 
 
