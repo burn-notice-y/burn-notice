@@ -3,7 +3,6 @@ import {Link as RouterLink } from 'react-router-dom';
 import {connect} from 'react-redux';
 import * as actions from '../../store/actions'
 import Link from '@material-ui/core/Link'
-import axios from 'axios';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
