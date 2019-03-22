@@ -1,24 +1,6 @@
-drop database burn_notice_db;
-
-create database if not exists burn_notice_db;
-use burn_notice_db;
-
-
-
-select * from users;
-
-insert into types (id, name) values (1, 'Overhaul');
-
-insert into districts(name, chief_id) values ('8-0', 1);
-
-
-delete from reports;
-
-
-select * from reports;
 
 use burn_notice_db;
-
+-- Step 1. run this block
 
 insert into users (chief, eligible_for_transfer, email, first_name, last_name, password, sap) values
 (false, true, 'mail@mail.mail', 'Kevin', 'Malone', 'pass', '123459'),
@@ -37,7 +19,7 @@ insert into users (chief, eligible_for_transfer, email, first_name, last_name, p
 (false, true, 'mail@mail.mail', 'Andy', 'Bernard', 'pass', '12224'),
 (false, true, 'mail@mail.mail', 'Michael', 'Scott', 'pass', '1134');
 
-
+-- Step 2. run this block
 
 insert into types (id, name) values
 (1, 'Single Family Dwelling Fire'),
@@ -48,9 +30,16 @@ insert into types (id, name) values
 (6, 'Train Derailment'),
 (7, 'Trash Fire');
 
+-- Step 3. make a new user through the website, make that user #16 a chief manually
+
+-- Step 4. Run this block
 insert into districts(name, chief_id) values ('8-0', 16);
 
+
+-- Step 5. Run this block
 insert into fire_stations (name, captain_id, district_id) VALUES
 ('11', 6 , 1),
 ('38', 7, 1),
 ('40', 15, 1);
+
+UPDATE users SET chief = true WHERE id = 16;
