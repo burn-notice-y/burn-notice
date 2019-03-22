@@ -16,8 +16,10 @@ import moment from 'moment';
 
 class ReportDisplay extends Component {
     state = {
-        type:"",
-        oneDate: moment().format("YYYY-MM-DD"),
+        type: "",
+        name: "",
+        category: "",
+        createDate: moment().format("YYYY-MM-DD"),
         startDate: moment().format("YYYY-MM-DD"),
         endDate: moment().format("YYYY-MM-DD"),
         displayReports: false,
@@ -37,23 +39,29 @@ class ReportDisplay extends Component {
     showSearchResults = () => {
         this.props.toggleLoading();
         let requestUrl = "";
+        let queryString = "";
         switch (this.state.type) {
             case "By Date":
                 requestUrl = "/api/date-report";
+                queryString = `?createDate=${this.state.createDate}`;
                 break;
             case "By Last Name":
                 requestUrl = "/api/creator-report";
+                queryString = `?creatorName=${this.state.name}`;
                 break;
             case "By Date Range":
                 requestUrl = "/api/date-range-report";
+                queryString = `?startDate=${this.state.startDate}&endDate=${this.state.endDate}`;
                 break;
             case "By Type":
                 requestUrl = "/api/type-report";
+                queryString = `?type=${this.state.category}`;
                 break;
             default:
                 return;
         }
-        axios.get(requestUrl).then(result => {
+        console.log(requestUrl + queryString);
+        axios.get(requestUrl + queryString).then(result => {
             this.props.toggleLoading();
             this.setState({data: result.data, displayReports: true})
         }).catch(error => {
@@ -62,22 +70,22 @@ class ReportDisplay extends Component {
         });
     };
 
-    determineSearchType = pageStatus => {
-    switch (pageStatus) {
-        case "By Date":
-            return <SearchByOne {...this.state} handleChange={this.inputHandler} searchShow={this.showSearchResults}/>;
-        case "By Last Name":
-            console.log("happening");
-            // pass "By Name" as a prop, so the SearchByOne component knows what to render
-            return <SearchByOne {...this.state} handleChange={this.inputHandler} searchShow={this.showSearchResults}/>;
-        case "By Date Range":
-        //     // no props needed because they only do one thing
-            return <SearchByTwo {...this.state} searchShow={this.showSearchResults} handleChange={this.inputHandler}/>;
-        case "By Type":
-            return <SearchByType searchShow={this.showSearchResults}/>;
-        // default in case they all fail
-        default: return;
-    }
+
+        determineSearchType = pageStatus => {
+        switch (pageStatus) {
+            case "By Date":
+                return <SearchByOne {...this.state} handleChange={this.inputHandler} searchShow={this.showSearchResults}/>;
+            case "By Last Name":
+                // pass "By Name" as a prop, so the SearchByOne component knows what to render
+                return <SearchByOne {...this.state} handleChange={this.inputHandler} searchShow={this.showSearchResults}/>;
+            case "By Date Range":
+            //     // no props needed because they only do one thing
+                return <SearchByTwo {...this.state} searchShow={this.showSearchResults} handleChange={this.inputHandler}/>;
+            case "By Type":
+                return <SearchByType {...this.state} searchShow={this.showSearchResults} handleChange={this.inputHandler}/>;
+            // default in case they all fail
+            default: return;
+        }
     };
 
     render() {
@@ -98,7 +106,7 @@ class ReportDisplay extends Component {
                         Search By:
                     </Typography>
                 </div>
-                <div className="">
+                <div className="big-search">
                     <TextField className={"dropdown"}
                                id="outlined-select-currency"
                                select

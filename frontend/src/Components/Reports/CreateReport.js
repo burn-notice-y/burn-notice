@@ -149,7 +149,7 @@ class CreateReport extends Component {
             secondaryTeamActions: this.state.secondaryTeamActions,
             description: this.state.description,
             creator: {id: 1, firstName: "Kanye", lastName: "West", email: "jhsdhsdj"},
-            type: {id: 1, name: "Single Family Dwelling Fire" }
+            type: {id: 2, name: "Single Family Dwelling Fire" }
         }).then(result => {
             console.log(result)
         })

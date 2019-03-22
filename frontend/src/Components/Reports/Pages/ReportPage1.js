@@ -31,7 +31,7 @@ const ReportPage1 = ({ inputHandler, reportType, chemicals, fireRetardant, creat
         </div>
         <div className="reg-input">
 
-            <DatePickClass labelDisplay={"Incident Date"} onChange={inputHandler} createDate={createDate}/>
+            <DatePickClass labelDisplay={"Incident Date"} handleChange={inputHandler} argumentName={"createDate"} value={createDate}/>
         </div>
         <div className="time">
             <div className="time1-cont">

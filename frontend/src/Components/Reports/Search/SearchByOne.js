@@ -11,50 +11,36 @@ import Button from "@material-ui/core/Button/Button";
 
 class SearchByOne extends Component {
 
-    state={
-        search:""
-    };
-
-
-
-    displayReports = () => {
-        if (this.state.displayReports){
-            return <ManyReports/>
-        }
-        this.setState({
-            displayReports: !this.state.displayReports
-
-        })
-    };
-
     determineSearchType = () => {
         switch (this.props.type){
             case "By Date":
                 return <div className={"date"}>
-                <DatePick value={this.props.value} argumentName={"oneDate"} handleChange={this.props.handleChange} labelDisplay={"Reports on this Date"}/>
-                    <br/>
-                    <Button variant="contained" color="primary" className="date-search" onClick={this.displayReports}>
+                    <DatePick value={this.props.createDate} argumentName={"oneDate"} handleChange={this.props.handleChange} labelDisplay={"Reports on this Date"}/>
+                    <div className={"button-cont"}>
+                    <Button variant="contained" color="primary" className="date-search" onClick={this.props.searchShow}>
                        Search
                     </Button>
-
+                    </div>
                 </div>
-
             case "By Last Name":
-                return <Paper elevation={1} className={"search-cont"}>
-                    <input type="text" id={"search"}
-                           value={this.state.search}
-                           onChange={this.props.handleChange}
+                return <div className={"search-name"}>
+                        <Paper elevation={1} className={"search-cont"}>
+                        <input type="text" id={"name"}
+                           value={this.props.name}
+                           onChange={this.props.handleChange('name')}
                            placeholder={this.props.type}
                            autoComplete={"off"}
-                    />
-                    <IconButton aria-label="Search" onClick={() => this.props.searchShow()}>
+                        />
+                    <IconButton aria-label="Search" onClick={this.props.searchShow}>
                         <SearchIcon/>
                     </IconButton>
                     <Divider/>
                 </Paper>
+                </div>
+
         }
 
-    }
+    };
 
 
     render() {
@@ -64,7 +50,8 @@ class SearchByOne extends Component {
                 {this.determineSearchType()}
             </Fragment>
 
-        )
+
+    )
     }
 }
 

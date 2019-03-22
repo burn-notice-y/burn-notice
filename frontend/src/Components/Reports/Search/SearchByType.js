@@ -4,6 +4,7 @@ import TextField from "@material-ui/core/TextField/TextField";
 import {reportCategories, reportDisplay} from "../../../data/categories";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import ManyReports from "../ManyReports";
+import Button from "@material-ui/core/Button/Button";
 
 
 class SearchByType extends Component {
@@ -18,32 +19,17 @@ class SearchByType extends Component {
         })
     };
 
-    displayReports = () => {
-        this.setState({
-            displayReports: !this.state.displayReports
-
-        })
-    };
 
     render() {
-
-        if(this.state.displayReports) {
-            return <ManyReports/>;
-        }
-
-
         return(
 
-            <div className="report-info">
-                <Typography component="h2" variant="h5" className={"report-d-header"}>
-                    Search By:
-                </Typography>
-                <TextField className={"dropdown"}
+            <div className="type-info">
+                <TextField className={"dropdown-type"}
                     id="outlined-select-currency"
                     select
                     label="Type of Report"
-                    value={this.state.type}
-                    onChange={this.inputHandler('type')}
+                    value={this.props.category}
+                    onChange={this.props.handleChange('category')}
                     margin="normal"
                     variant="outlined">
                     {reportCategories.map(option => (
@@ -52,6 +38,9 @@ class SearchByType extends Component {
                         </MenuItem>
                     ))}
                 </TextField>
+                <Button variant="contained" color="primary" className="type-search" onClick={this.props.searchShow}>
+                    Search
+                </Button>
             </div>
 
 

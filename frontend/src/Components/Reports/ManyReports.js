@@ -20,7 +20,7 @@ class ManyReports extends Component {
                     </div>
                     <div className="report-content">
 
-                        {reports.map(report => <Report key={report.id} test={"test"} {...report}/>)}
+                        {this.props.data.map(report => <Report key={report.id} test={"test"} {...report}/>)}
                     </div>
                 </div>
             )

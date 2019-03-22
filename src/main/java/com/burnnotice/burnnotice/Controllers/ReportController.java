@@ -53,8 +53,8 @@ public class ReportController {
 
     // find by date range
     @GetMapping("/api/date-range-report")
-    public List<ReportHighlights> findAllByDateRange(@RequestParam("start-date") String startDate,
-                                                     @RequestParam("end-date") String endDate){
+    public List<ReportHighlights> findAllByDateRange(@RequestParam String startDate,
+                                                     @RequestParam String endDate){
         return reportDao.findAllByCreateDateBetween(startDate, endDate);
     }
 
