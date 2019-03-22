@@ -23,9 +23,6 @@ class Profile extends Component {
         this.setState({editLocked: !this.state.editLocked})
     };
 
-
-
-
     inputHandler = type => event => {
         this.setState({
             [type]: event.target.value
@@ -37,6 +34,7 @@ class Profile extends Component {
     };
 
     render() {
+        console.log(this.props.user);
         let actionName = "cancel";
         if (this.state.editLocked){
             actionName = "edit"

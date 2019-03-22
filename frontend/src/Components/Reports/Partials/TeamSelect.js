@@ -1,6 +1,5 @@
 import React, { Component }  from 'react';
 import PropTypes from 'prop-types';
-import TwoOptionSelect from "../../TwoOptionSelect";
 import TeamExpansion from "./TeamExpansion";
 import IconButton from "@material-ui/core/IconButton/IconButton";
 import SearchIcon from "@material-ui/icons/Search";

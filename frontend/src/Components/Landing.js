@@ -13,6 +13,28 @@ class Landing extends Component {
     }
 
     render(){
+        let greeting = null;
+        if (this.props.user){
+            greeting = (
+                <div className="greeting">
+                    <Typography component="h3" variant="h5">
+                        Welcome, {this.props.user.firstName}
+                    </Typography>
+                </div>
+            )
+        } else if (this.props.user === null ){
+            greeting = null;
+
+        } else {
+            greeting = (
+                <div className="action-info-cont">
+                    <Link to={"/user/register"}><Button variant="contained" color="primary" className={"landing-button"}>
+                        Create an Account
+                    </Button>
+                    </Link>
+                </div>
+            )
+        }
         return (
             <div className="full-cont">
                 <div className="landing-cont">
@@ -26,16 +48,18 @@ class Landing extends Component {
                             An efficient, yet user friendly portal for the members of the San Antonio Fire Department to track all of their HR needs
                         </Typography>
                     </div>
-                    <div className="action-info-cont">
-                        <Link to={"/user/register"}><Button variant="contained" color="primary" className={"landing-button"}>
-                            Create an Account
-                            </Button>
-                        </Link>
-                    </div>
+                    {greeting}
+
                 </div>
             </div>
 
         )
     }
 }
-export default connect(null, actions)(Landing);
+
+const mapStateToProps = state => {
+    return {
+        user: state.user
+    }
+};
+export default connect(mapStateToProps, actions)(Landing);

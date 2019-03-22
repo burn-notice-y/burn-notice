@@ -32,7 +32,6 @@ class TransferRouter extends Component{
                                        {...routeProps}
                                        {...applicant}/>}/>
                 <Route path={"/transfer/view"}  render={() => <TransferReqDisplay />}/>
-
             </Switch>
         )
     }
