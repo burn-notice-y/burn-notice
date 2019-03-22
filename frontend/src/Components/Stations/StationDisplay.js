@@ -4,6 +4,7 @@ import ManyStations from './ManyStations';
 import axios from 'axios';
 import * as actions from '../../store/actions';
 import { connect } from 'react-redux';
+import Typography from "@material-ui/core/Typography/Typography";
 
 class StationDisplay extends Component {
     state ={
@@ -26,7 +27,12 @@ class StationDisplay extends Component {
     }
     render() {
         return (
-            <div className="all-stations-cont">   
+            <div className="all-stations-cont">
+                    <div className="station-header">
+                        <Typography component="h3" variant="h4" gutterBottom className={"registration-header"}>
+                            Stations in your District
+                        </Typography>
+                    </div>
                 <ManyStations stationList={this.state.stations}/>
             </div>
         );

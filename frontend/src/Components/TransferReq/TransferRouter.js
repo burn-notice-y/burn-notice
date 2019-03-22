@@ -25,11 +25,13 @@ class TransferRouter extends Component{
         }
         return (
             <Switch>
-                <Route path={"/transfer/create/:id"} render={(routeProps) =>
-                    <CreateTransferReq applicantHeader={applicantHeader}
-                                       header={header}
-                                       {...routeProps}
-                                       {...applicant}/>}/>
+                <Route path={"/transfer/create/:id"}
+                       render={(routeProps) => <CreateTransferReq
+                           applicantHeader={applicantHeader}
+                           header={header}
+                           {...routeProps}
+                           {...applicant}/>}
+                />
             </Switch>
         )
     }

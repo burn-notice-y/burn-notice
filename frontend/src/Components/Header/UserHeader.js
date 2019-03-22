@@ -42,6 +42,7 @@ class UserHeader extends Component{
         const navItems = (
             <div className={"nav-items-test"}>
                 <CardHeader title={"Burn Notice"}/>
+                <CardHeader title={"Burn Notice"} subheader={`Welcome, ${this.props.user.firstName} ${this.props.user.lastName}`}/>
                 <List>
                     <ListSubheader>Actions</ListSubheader>
                     {[['Vacancies', '/vacancy/show'], ['Create Report', `/reports/create/1`], [`Assignment History`, `/assignments/show`], ['Station List', '/stations/all']].map((text, index) => (

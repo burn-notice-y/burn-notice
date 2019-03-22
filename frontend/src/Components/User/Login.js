@@ -18,7 +18,6 @@ class Login extends Component {
       redirect: false
     };
 
-
     login = () => {
         this.props.toggleLoading();
         axios.post("/api/login", `sap=${this.state.sap}&password=${this.state.password}`)
@@ -56,7 +55,7 @@ class Login extends Component {
                     </Typography>
                 </div>
                 <div className="form-cont">
-                    <div className="input-cont">
+                    <div className="login-input-cont">
                         <TextField
                             error={this.state.error}
                             id={`outlined-username`}
@@ -67,7 +66,7 @@ class Login extends Component {
                             variant="outlined"
                         />
                     </div>
-                    <div className="input-cont">
+                    <div className="login-input-cont">
                         <TextField
                             error={this.state.error}
                             id={`outlined-password`}

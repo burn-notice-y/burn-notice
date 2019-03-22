@@ -2,23 +2,36 @@
     margin: 3vh 0;
 }
 .all-stations-cont {
-    height: 85vh;
+    height: 90vh;
+    padding-top: 5%;
     overflow: scroll;
+    text-align: center;
+    width: 90%;
+}
+.station-content {
+    padding-left: 7px;
 }
 .big-station-cont {
     height: 85vh;
     width: 85%;
+    display: flex;
+    justify-content: center;
+}
+.inside-big-station {
+    width: 95%;
+    height: 85vh;
     overflow: scroll;
 }
 .station-header {
     text-align: center;
 }
 .station-header:after {
-    content: '';
-    clear: both;
-    height: 1px;
-    width: 100px;
-    color: blue;
+    content: " ";
+    display: block;
+    margin: 0 auto;
+    width: 50%;
+    padding-top: 20px;
+    border-bottom: 1px solid #a8a8a8;
 }
 .station-body {
     margin-top: 4vh;
@@ -30,4 +43,10 @@
     position: fixed !important;
     bottom: 30px;
     right: 30px;
+}
+.station-cont {
+    width: 98%;
+}
+.fireman-cont {
+    margin: 3vh 0;
 }

@@ -94,11 +94,9 @@ class CreateTransferReq extends Component{
                                          stationName={vacancy.station.name}
 
                                          />
-                            <div className="reg-crew reg-input">
-                                <br/>
-                                    <ManyFirefighters/>
+                            <div className={"fireman-cont"}>
+                                <ManyFirefighters firemanList={this.state.vacancy.station.currentCrew}/>
                             </div>
-                            <br/>
                         </div>
                         <div className="top">
                             <Typography component="h3" variant="h4" gutterBottom className={"application-header"}>
