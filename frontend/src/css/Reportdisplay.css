@@ -15,15 +15,51 @@
 }
 
 .date-search {
-    width: 10%;
-    height: 50%;
+    width: 20%;
+    height: 40px;
     display: flex;
 }
 .action-container {
     text-align: right;
-    width: 100%;
+    width: 95%;
     margin-bottom: 5vh;
 }
 .time-input > div {
     width: 40%;
 }
+
+.date {
+    margin: 8vh 0 2vh 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.search-name {
+    width: 60%;
+}
+.button-cont {
+    padding-top: 7px;
+}
+.big-search {
+    padding-left: 20px;
+}
+
+.dropdown-type {
+    width: 55%;
+
+}
+
+.type-search {
+    width: 20%;
+    height: 40px;
+    display: flex;
+}
+
+.type-info {
+    margin: 3vh 0 2vh 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+

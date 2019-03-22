@@ -4,6 +4,7 @@ import CreateTransferReq from "./CreateTransferReq";
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
 import transferRequest from '../../data/transferRequest';
+import TransferReqDisplay from "./TransferReqDisplay";
 
 class TransferRouter extends Component{
     state ={
@@ -25,13 +26,12 @@ class TransferRouter extends Component{
         }
         return (
             <Switch>
-                <Route path={"/transfer/create/:id"}
-                       render={(routeProps) => <CreateTransferReq
-                           applicantHeader={applicantHeader}
-                           header={header}
-                           {...routeProps}
-                           {...applicant}/>}
-                />
+                <Route path={"/transfer/create/:id"} render={(routeProps) =>
+                    <CreateTransferReq applicantHeader={applicantHeader}
+                                       header={header}
+                                       {...routeProps}
+                                       {...applicant}/>}/>
+                <Route path={"/transfer/view"}  render={() => <TransferReqDisplay />}/>
             </Switch>
         )
     }

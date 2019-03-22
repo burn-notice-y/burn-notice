@@ -2,15 +2,11 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../store/actions';
 import Typography from "@material-ui/core/Typography/Typography";
-import TextField from "@material-ui/core/TextField/TextField";
-import Button from '@material-ui/core/Button';
 import vacancy from "../../data/bigVacancy";
 import ManyFirefighters from "../Firefighters/ManyFirefighters";
 import moment from 'moment';
 import "../../css/Firefighter.css"
 import axios from "axios";
-import * as PropTypes from "prop-types";
-import {Redirect} from "react-router-dom";
 import VacancyInfo from './VacancyInfo';
 import VacancyUserInfo from "./VacancyUserInfo";
 

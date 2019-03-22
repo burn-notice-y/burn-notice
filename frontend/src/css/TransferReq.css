@@ -1,0 +1,20 @@
+.viewTransfer{
+    width: 100%;
+    height: 25vh !important;
+    margin-bottom: 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stationSelect-cont {
+    margin: 0 20px;
+}
+
+#station-select {
+
+}
+
+.transferReq-cont{
+}
+

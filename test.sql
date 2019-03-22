@@ -57,4 +57,8 @@ insert into fire_stations (name, captain_id, district_id) VALUES
 ('38', 7, 1),
 ('40', 15, 1);
 
+<<<<<<< HEAD
 
+=======
+UPDATE users SET chief = true WHERE id = 16;
+>>>>>>> e4e86e33739a1eda7159e8c8185ee9a46d071831

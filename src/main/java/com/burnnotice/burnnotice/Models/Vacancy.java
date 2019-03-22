@@ -1,8 +1,6 @@
 package com.burnnotice.burnnotice.Models;
 
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.*;
 import java.util.List;
 
@@ -31,7 +29,7 @@ public class Vacancy {
 
     // mapped relationship to vacancy
     @OneToMany(mappedBy = "vacancy")
-    @JsonManagedReference(value = "vacancy")
+    @JsonBackReference(value = "vacancy")
     private List<TransferRequest> transferRequest;
 
     public Vacancy() {

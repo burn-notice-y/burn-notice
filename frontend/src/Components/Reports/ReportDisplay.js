@@ -12,43 +12,56 @@ import axios from "axios";
 import * as actions from '../../store/actions';
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
+import moment from 'moment';
 
 class ReportDisplay extends Component {
     state = {
-        type:"",
+        type: "",
+        name: "",
+        category: "",
+        createDate: moment().format("YYYY-MM-DD"),
+        startDate: moment().format("YYYY-MM-DD"),
+        endDate: moment().format("YYYY-MM-DD"),
         displayReports: false,
     };
 
     inputHandler = type => event => {
-        this.setState({
-            [type]: event.target.value
-        })
+        if (type === "oneDate" || type === "startDate" || type === "endDate"){
+            this.setState({[type]: event})
+        } else {
+
+            this.setState({
+                [type]: event.target.value
+            })
+        }
     };
 
     showSearchResults = () => {
-        // toggle loading spinner
-        // ask db for specified reports - axios.get().then(result =>
-        // . then ( once they come back ) result => this.setState({data: result.data, displayReports: true})
         this.props.toggleLoading();
-
         let requestUrl = "";
+        let queryString = "";
         switch (this.state.type) {
             case "By Date":
                 requestUrl = "/api/date-report";
+                queryString = `?createDate=${this.state.createDate}`;
                 break;
-            case "By Name":
+            case "By Last Name":
                 requestUrl = "/api/creator-report";
+                queryString = `?creatorName=${this.state.name}`;
                 break;
             case "By Date Range":
                 requestUrl = "/api/date-range-report";
+                queryString = `?startDate=${this.state.startDate}&endDate=${this.state.endDate}`;
                 break;
             case "By Type":
                 requestUrl = "/api/type-report";
+                queryString = `?type=${this.state.category}`;
                 break;
             default:
                 return;
         }
-        axios.get(requestUrl).then(result => {
+        console.log(requestUrl + queryString);
+        axios.get(requestUrl + queryString).then(result => {
             this.props.toggleLoading();
             this.setState({data: result.data, displayReports: true})
         }).catch(error => {
@@ -57,29 +70,26 @@ class ReportDisplay extends Component {
         });
     };
 
+
         determineSearchType = pageStatus => {
         switch (pageStatus) {
             case "By Date":
-                return <SearchByOne type={"By Date"} searchShow={this.showSearchResults}/>;
-            case "By Name":
+                return <SearchByOne {...this.state} handleChange={this.inputHandler} searchShow={this.showSearchResults}/>;
+            case "By Last Name":
                 // pass "By Name" as a prop, so the SearchByOne component knows what to render
-                return <SearchByOne type={"By Last Name"} searchShow={this.showSearchResults}/>;
+                return <SearchByOne {...this.state} handleChange={this.inputHandler} searchShow={this.showSearchResults}/>;
             case "By Date Range":
             //     // no props needed because they only do one thing
-                return <SearchByTwo searchShow={this.showSearchResults}/>;
+                return <SearchByTwo {...this.state} searchShow={this.showSearchResults} handleChange={this.inputHandler}/>;
             case "By Type":
-                return <SearchByType searchShow={this.showSearchResults}/>;
+                return <SearchByType {...this.state} searchShow={this.showSearchResults} handleChange={this.inputHandler}/>;
             // default in case they all fail
             default: return;
         }
     };
-    // call this function inside of the return block, passing in `this.state.type` as the parameter
 
     render() {
-
         return (
-
-
             <div className="report-d-cont">
                 <div className="report-d-header">
                     <Typography component="h3" variant="h2" gutterBottom className={"report-d-header"}>
@@ -96,7 +106,7 @@ class ReportDisplay extends Component {
                         Search By:
                     </Typography>
                 </div>
-                <div className="">
+                <div className="big-search">
                     <TextField className={"dropdown"}
                                id="outlined-select-currency"
                                select

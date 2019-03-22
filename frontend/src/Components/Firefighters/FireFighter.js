@@ -1,21 +1,16 @@
-import React, {Component, Fragment} from 'react';
+import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import '../../css/Vacancy.css';
+import PropTypes from 'prop-types';
 
-class FireFighter extends Component {
+const FireFighter = ({ firstName, lastName }) => (
+    <Typography variant="subheading" component="h6">
+        {firstName} {lastName}
+    </Typography>
+);
 
-    render() {
-        return (
-            <Fragment>
-                <Typography variant="subheading" component="h6">
-                    {this.props.firstName} {this.props.lastName}
-                </Typography>
-            </Fragment>
-
-
-        )
-    }
-}
-
+FireFighter.propTypes = {
+    firstName: PropTypes.string,
+    lastName: PropTypes.string
+};
 
 export default FireFighter;
