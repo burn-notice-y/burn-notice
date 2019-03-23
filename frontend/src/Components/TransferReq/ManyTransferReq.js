@@ -1,15 +1,14 @@
 import React from 'react';
 import TransferReq from '../TransferReq/TransferReq'
 import PropTypes from 'prop-types';
-import {Typography} from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
 
-
-const ManyTransferReq = ({ admin, manyTransferReq }) => {
+const ManyTransferReq = ({ admin, manyTransferReq, executedSearch }) => {
     let emptyDisplay = null;
-    if (manyTransferReq.length === 0){
+    if (manyTransferReq.length === 0 && executedSearch){
         emptyDisplay = (
-            <Typography component={"h2"} variant={"h3"}>
-                No Transfer Requests have been made to this station
+            <Typography component={"h2"} variant={"h4"}>
+                No applications have been made to this station
             </Typography>
         )
     }

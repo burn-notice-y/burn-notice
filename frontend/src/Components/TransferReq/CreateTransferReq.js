@@ -9,6 +9,7 @@ import "../../css/Firefighter.css"
 import axios from "axios";
 import VacancyInfo from './VacancyInfo';
 import VacancyUserInfo from "./VacancyUserInfo";
+import * as PropTypes from "prop-types";
 
 class CreateTransferReq extends Component{
     state = {

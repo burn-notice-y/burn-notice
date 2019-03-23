@@ -10,25 +10,22 @@ import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 import Button from "@material-ui/core/Button";
 
-
-// this component is the admin's view of Vacancies in their district
-
 class TransferReqDisplay extends Component{
-    // if chief is true, send chief to ManyTransferReq
     state= {
+        executedSearch: false,
         manyTransferReq: [],
         station: ""
     };
-    componentDidMount(){
-
-    }
 
     fetchTransfers = () => {
         this.props.toggleLoading();
         axios.get(`/api/findTransferByStation?stationName=${this.state.station}`)
             .then(res => {
                 this.props.toggleLoading();
-                this.setState({manyTransferReq: res.data})
+                this.setState({
+                    executedSearch: true,
+                    manyTransferReq: res.data
+                })
             })
             .catch(error => {
                 this.props.toggleLoading();
