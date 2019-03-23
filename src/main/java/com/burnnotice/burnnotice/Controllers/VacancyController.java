@@ -4,6 +4,7 @@ import com.burnnotice.burnnotice.Models.Vacancy;
 import com.burnnotice.burnnotice.Repositories.FireStationRepository;
 import com.burnnotice.burnnotice.Repositories.VacancyHighlights;
 import com.burnnotice.burnnotice.Repositories.VacancyRepository;
+import com.burnnotice.burnnotice.Repositories.VacancyTransfer;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -27,9 +28,8 @@ public class VacancyController
     }
 
     @GetMapping("/api/one-vacancy")
-    public Vacancy findOneVacancy(@RequestParam("id") long id)
-    {
-        return vacDao.findOne(id);
+    public VacancyTransfer findOneVacancy(@RequestParam("id") long id) {
+        return vacDao.findById(id);
     }
 
     @PostMapping("/api/create-vacancy")

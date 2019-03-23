@@ -18,7 +18,10 @@ class Login extends Component {
       redirect: false
     };
 
-    login = () => {
+    login = event => {
+        console.log(event.charCode);
+        event.preventDefault();
+        event.stopPropagation();
         this.props.toggleLoading();
         axios.post("/api/login", `sap=${this.state.sap}&password=${this.state.password}`)
             .then(() => {
@@ -54,40 +57,43 @@ class Login extends Component {
                         Use your SAP number, and your custom password
                     </Typography>
                 </div>
-                <div className="form-cont">
-                    <div className="login-input-cont">
-                        <TextField
-                            error={this.state.error}
-                            id={`outlined-username`}
-                            label="SAP"
-                            value={this.state.sap}
-                            onChange={this.inputHandler('sap')}
-                            margin="normal"
-                            variant="outlined"
-                        />
+                <form>
+                    <div className="form-cont">
+
+                        <div className="login-input-cont">
+                            <TextField
+                                error={this.state.error}
+                                id={`outlined-username`}
+                                label="SAP"
+                                value={this.state.sap}
+                                onChange={this.inputHandler('sap')}
+                                margin="normal"
+                                variant="outlined"
+                            />
+                        </div>
+                        <div className="login-input-cont">
+                            <TextField
+                                error={this.state.error}
+                                id={`outlined-password`}
+                                label="Password"
+                                type="password"
+                                value={this.state.password}
+                                onChange={this.inputHandler('password')}
+                                margin="normal"
+                                variant="outlined"
+                            />
+                        </div>
                     </div>
-                    <div className="login-input-cont">
-                        <TextField
-                            error={this.state.error}
-                            id={`outlined-password`}
-                            label="Password"
-                            type="password"
-                            value={this.state.password}
-                            onChange={this.inputHandler('password')}
-                            margin="normal"
-                            variant="outlined"
-                        />
+                    <div className="login-actions-cont">
+                        <div className="submit-login-cont">
+                            <Button type={"submit"} variant="contained" color="primary" className={"login-button"} onClick={this.login}>Continue</Button>
+                        </div>
+                        <div className="login-instead-cont">
+                            <Link to={"/forgot-password"}><Button color="primary">Forgot Password</Button></Link>
+                        </div>
                     </div>
+                </form>
                 </div>
-                <div className="login-actions-cont">
-                    <div className="submit-login-cont">
-                        <Button variant="contained" color="primary" className={"login-button"}><div onClick={this.login}>Continue</div></Button>
-                    </div>
-                    <div className="login-instead-cont">
-                        <Link to={"/forgot-password"}><Button color="primary">Forgot Password</Button></Link>
-                    </div>
-                </div>
-            </div>
         )
     }
 }

@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface VacancyRepository extends CrudRepository<Vacancy, Long> {
     List<VacancyHighlights> findAllByOrderByIdDesc();
+    VacancyTransfer findById(Long id);
 }
