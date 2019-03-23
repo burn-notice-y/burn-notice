@@ -38,7 +38,7 @@ const VacancyUserInfo = props => (
                 disabled={true}/>
         </div>
 
-        <Button variant="contained" color="primary" disabled={props.canApply}>
+        <Button variant="contained" color="primary" disabled={props.cannotApply}>
             <div onClick={props.apply}>
                 {props.applyText}
             </div>

@@ -32,7 +32,7 @@ insert into users (chief, eligible_for_transfer, email, first_name, last_name, p
 (false, true, 'mail@mail.mail', 'Rick', 'Ross', 'pass', '8822221'),
 (false, true, 'mail@mail.mail', 'Wiz', 'Khalifa', 'pass', '88221'),
 (false, true, 'mail@mail.mail', 'Andre', '3000', 'pass', '88231'),
-(false, true, 'mail@mail.mail', 'Kodak', 'Black', 'pass', '88521'),
+(false, true, 'mail@mail.mail', 'Kodak', 'Black', 'pass', '88521');
 
 -- Step 2. run this block
 
@@ -57,8 +57,3 @@ insert into fire_stations (name, captain_id, district_id) VALUES
 ('38', 7, 1),
 ('40', 15, 1);
 
-<<<<<<< HEAD
-
-=======
-UPDATE users SET chief = true WHERE id = 16;
->>>>>>> e4e86e33739a1eda7159e8c8185ee9a46d071831

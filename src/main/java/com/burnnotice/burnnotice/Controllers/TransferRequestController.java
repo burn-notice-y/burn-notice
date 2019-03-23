@@ -25,7 +25,8 @@ public class TransferRequestController {
 
     @PostMapping("/api/submitApplication")
     public void submitApplication(@RequestBody TransferRequest transferRequest) {
-       transferDao.save(transferRequest);
+
+        transferDao.save(transferRequest);
     }
 
     @GetMapping("/api/findTransferByStation")

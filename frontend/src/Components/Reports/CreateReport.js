@@ -24,9 +24,7 @@ class CreateReport extends Component {
         reportType: "",
         chemicals: "",
         fireRetardant: "",
-        primaryTeamActions: "",
-        secondaryTeamActions: "",
-        team: "primaryTeam",
+        teamActions: "",
         description: "",
         timeArrived: "",
         timeDispatched: "",
@@ -36,13 +34,11 @@ class CreateReport extends Component {
         error: false,
         disabled: false,
         searchResult: [],
-        primaryTeam: [],
-        secondaryTeam: [],
+        teamMembers: [],
         modalOpen: false,
         teamMemberTaken: false,
         newMembers: 0
     };
-
 
     inputHandler = type => event => {
         if (type === "createDate"){
@@ -77,30 +73,39 @@ class CreateReport extends Component {
         }
     };
 
-    addFiremanToTeam = (team, fireman) => {
+    addFiremanToTeam = fireman => {
         let searchResults = [...this.state.searchResult];
         const selectedIndex = searchResults.findIndex(result => {
             return result.id === fireman.id
         });
         let goodToGo = true;
-        [...this.state[team]].forEach(result => {
+        [...this.state.teamMembers].forEach(result => {
             if (result.id === fireman.id){
                 goodToGo = false;
             }
         });
         if (goodToGo){
             searchResults.splice(selectedIndex, 1);
-            this.setState({
-                newMembers: this.state.newMembers + 1,
-                [team]: [...this.state[team], fireman],
+            this.setState(prevState => ({
+                newMembers: prevState.newMembers + 1,
+                teamMembers: [...prevState.teamMembers, fireman],
                 searchResult: searchResults
-            })
+            }))
         } else {
             this.setState({
                 teamMemberTaken: true,
                 modalOpen: true
             });
         }
+    };
+
+    removeFiremanFromTeam = firemanId => {
+        let updatedRoster = this.state.teamMembers.filter(teamMember => teamMember.id !== firemanId);
+        this.setState({teamMembers: updatedRoster})
+    };
+
+    clearNotifications = () => {
+        this.setState({newMembers: 0})
     };
 
     determinePage = () => {
@@ -114,6 +119,8 @@ class CreateReport extends Component {
                                      addFiremanToTeam={this.addFiremanToTeam}
                                      searchFirefighters={this.searchFirefighters}
                                      clearSearch={this.clearSearch}
+                                     clearNotifications={this.clearNotifications}
+                                     removeFiremanFromTeam={this.removeFiremanFromTeam}
                 />;
             default:
                 return;
