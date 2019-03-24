@@ -60,6 +60,13 @@ class ReviewTransferReq extends Component{
         })
     };
 
+    actionOnRequest = action => {
+      switch (action) {
+          case "approve":
+
+      }
+    };
+
     render() {
         if (this.state.vacancy === null){
             return <div/>;
@@ -79,7 +86,6 @@ class ReviewTransferReq extends Component{
                 helperText = "You are not eligible for transfer"
             }
         }
-        console.log(this.state);
         return (
             <div className={"big-edit-cont"}>
                 <div className="application-header">
@@ -109,7 +115,9 @@ class ReviewTransferReq extends Component{
                                          cannotApply={cannotApply}
                                          applyText={applyText}
                                          chief={this.state.chief}
-                                         helperText={helperText}/>
+                                         helperText={helperText}
+                                         actionOnRequest={this.actionOnRequest}
+                        />
                     </div>
                 </div>
             </div>

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Button from "@material-ui/core/Button/Button";
 import Typography from "@material-ui/core/Typography/Typography";
 
-const TransferActions = ({ chief, cannotApply, apply, applyText, helperText }) => {
+const TransferActions = ({ chief, cannotApply, apply, applyText, helperText, actionOnRequest }) => {
     let actions = (
         <div className="user-actions">
             <Button variant="contained" color="primary" disabled={cannotApply}>
@@ -17,14 +17,14 @@ const TransferActions = ({ chief, cannotApply, apply, applyText, helperText }) =
         actions = (
             <div className="chief-actions">
                 <div className="deny">
-                    <div onClick={() => console.log("deny")}>
+                    <div onClick={() => actionOnRequest("deny")}>
                         <Button variant="contained" color="secondary">
                             Deny
                         </Button>
                     </div>
                 </div>
                 <div className="approve">
-                    <div onClick={() => console.log("approve")}>
+                    <div onClick={() => actionOnRequest("approve")}>
                         <Button variant="contained" className={"approve-button"}>
                             Approve
                         </Button>

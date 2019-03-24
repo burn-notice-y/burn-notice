@@ -55,7 +55,8 @@ VacancyUserInfo.propTypes = {
     cannotApply: PropTypes.bool,
     email: PropTypes.string,
     helperText: PropTypes.string,
-    chief: PropTypes.bool
+    chief: PropTypes.bool,
+    actionOnRequest: PropTypes.func
 };
 
 export default VacancyUserInfo;
