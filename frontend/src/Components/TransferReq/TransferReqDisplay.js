@@ -10,25 +10,22 @@ import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 import Button from "@material-ui/core/Button";
 
-
-// this component is the admin's view of Vacancies in their district
-
 class TransferReqDisplay extends Component{
-    // if chief is true, send chief to ManyTransferReq
     state= {
+        executedSearch: false,
         manyTransferReq: [],
         station: ""
     };
-    componentDidMount(){
-
-    }
 
     fetchTransfers = () => {
         this.props.toggleLoading();
         axios.get(`/api/findTransferByStation?stationName=${this.state.station}`)
             .then(res => {
                 this.props.toggleLoading();
-                this.setState({manyTransferReq: res.data})
+                this.setState({
+                    executedSearch: true,
+                    manyTransferReq: res.data
+                })
             })
             .catch(error => {
                 this.props.toggleLoading();
@@ -51,9 +48,9 @@ class TransferReqDisplay extends Component{
             <div className="view-vacancy-cont">
                 <div className="view-vacancy-header">
                     <Typography variant="h5" component="h2">
-                        View all Requests by Station #
+                        View all Requests by Station
                     </Typography>
-                    <div className="reg-input viewTransfer">
+                    <div className="transfer-select-cont">
                         <div className="stationSelect-cont">
                             <TextField
                                 select

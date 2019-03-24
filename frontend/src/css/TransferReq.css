@@ -1,20 +1,34 @@
-.viewTransfer{
+.transfer-select-cont {
     width: 100%;
-    height: 25vh !important;
-    margin-bottom: 5%;
+    margin: 5% 0;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
-
-.stationSelect-cont {
-    margin: 0 20px;
+.view-vacancy-header > h2 {
+    text-align: center;
 }
-
+.chief-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 3vh;
+}
+.deny {
+    margin-right: 30px;
+}
+.approve-button {
+    background-color: #4caa44 !important;
+    color: white !important;
+}
 #station-select {
-
+    width: 90%;
 }
-
-.transferReq-cont{
+.stationSelect-cont {
+    width: 56%;
+    display: flex;
+    align-items: center;
 }
-
+.stationSelect-cont div{
+    width: 84% !important;
+}

@@ -21,8 +21,13 @@ import LocationCity from '@material-ui/icons/LocationCity';
 
 class UserHeader extends Component{
     state = {
-        redirect: false
+        firstName: "",
+        lastName: ""
     };
+
+    static getDerivedStateFromProps(nextState){
+        return {...nextState.user}
+    }
 
     determineIcon = text => {
         switch (text) {
@@ -41,8 +46,7 @@ class UserHeader extends Component{
     render(){
         const navItems = (
             <div className={"nav-items-test"}>
-                <CardHeader title={"Burn Notice"}/>
-                <CardHeader title={"Burn Notice"} subheader={`Welcome, ${this.props.user.firstName} ${this.props.user.lastName}`}/>
+                <CardHeader title={"Burn Notice"} subheader={`Welcome, ${this.state.firstName} ${this.state.lastName}`}/>
                 <List>
                     <ListSubheader>Actions</ListSubheader>
                     {[['Vacancies', '/vacancy/show'], ['Create Report', `/reports/create/1`], [`Assignment History`, `/assignments/show`], ['Station List', '/stations/all']].map((text, index) => (
@@ -91,6 +95,7 @@ class UserHeader extends Component{
 }
 const mapStateToProps = state => {
     return {
+        user: state.user,
         menuShown: state.menuShown
     }
 };

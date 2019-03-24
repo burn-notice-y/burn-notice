@@ -22,12 +22,20 @@ public class Assignment
     private boolean engine;
 
     @OneToOne
-    private User station;
+    private FireStation station;
 
     @OneToOne
     private User user;
 
     public Assignment() {
+    }
+
+    public Assignment(String startDate, String endDate, boolean engine, FireStation station, User user) {
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.engine = engine;
+        this.station = station;
+        this.user = user;
     }
 
     public long getId()
@@ -70,13 +78,11 @@ public class Assignment
         this.engine = engine;
     }
 
-    public User getStation()
-    {
+    public FireStation getStation() {
         return station;
     }
 
-    public void setStation(User station)
-    {
+    public void setStation(FireStation station) {
         this.station = station;
     }
 

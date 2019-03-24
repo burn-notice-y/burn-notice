@@ -50,7 +50,7 @@ class CreateVacancy extends Component{
         switch (type) {
             case "postDate":
                 if (event > moment()){
-                    this.setState({postDate: event});
+                    this.setState({postDate: event.format("YYYY-MM-DD")});
                 } else {
                     this.setState({
                         modalOpen: true,
@@ -77,6 +77,7 @@ class CreateVacancy extends Component{
     };
 
     render(){
+        console.log(this.state)
         if (this.state.redirect){
             return <Redirect to={"/vacancy/show"}/>
         }

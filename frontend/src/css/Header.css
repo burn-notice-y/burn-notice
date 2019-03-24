@@ -4,6 +4,8 @@
     justify-content: space-between;
     height: 50px;
     background-color: #9d1112;
+    position: fixed;
+    z-index: 100;
 }
 .logo-cont {
     display: flex;

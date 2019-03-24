@@ -2,21 +2,25 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../store/actions';
 import Typography from "@material-ui/core/Typography/Typography";
-import vacancy from "../../data/bigVacancy";
 import ManyFirefighters from "../Firefighters/ManyFirefighters";
 import moment from 'moment';
 import "../../css/Firefighter.css"
 import axios from "axios";
 import VacancyInfo from './VacancyInfo';
 import VacancyUserInfo from "./VacancyUserInfo";
+import * as PropTypes from "prop-types";
+import {Redirect} from "react-router-dom";
 
-class CreateTransferReq extends Component{
+class ReviewTransferReq extends Component{
     state = {
         editLocked: true,
+        id: "",
         sap: "",
         email: "",
         firstName: "",
         lastName: "",
+        eligibleForTransfer: "",
+        chief: false,
         vacancy: null
     };
 
@@ -34,16 +38,28 @@ class CreateTransferReq extends Component{
     }
 
     static getDerivedStateFromProps(nextProps){
-        return {...nextProps}
+        return {...nextProps.user}
     }
 
-    apply = () => {
+    actionOnRequest = action => {
+        let url = "";
+      switch (action) {
+          case "approve": url = "/api/approve-transfer";
+            break;
+          case "deny": url = "/api/deny-request";
+              break;
+          default: url = "/api/submitApplication"
+      }
         this.props.toggleLoading();
-        axios.post("/api/submitApplication", {
-            sentDate: moment().format('YYYY Do MM'),
+        axios.post(url, {
+            sentDate: moment().format("YYYY-MM-DD"),
             status: "Pending",
-            user: this.state.user,
-            vacancy: vacancy,
+            user: {
+                id: this.state.id
+            },
+            vacancy: {
+                id: this.state.vacancy.id
+            }
         }).then(() => {
             this.props.toggleLoading();
             this.setState({redirect: true});
@@ -57,25 +73,25 @@ class CreateTransferReq extends Component{
         if (this.state.vacancy === null){
             return <div/>;
         }
-        console.log(this.state);
-        let vacancy = this.state.vacancy;
-        let fillDate = moment().format("MMMM Do YYYY");
-        let applyText = "Apply";
-        let canApply = true;
-        if (vacancy.fillDate !== "9999"){
-            applyText = "Closed";
-            canApply = false;
-            fillDate = "Closed"
+        if (this.state.redirect && this.state.chief){
+            return <Redirect to={"/transfer/view"}/>
+        } else if (this.state.redirect){
+            return <Redirect to={"/vacancy/show"}/>
         }
-        let postDate = moment(vacancy.postDate).format("MMMM Do YYYY");
-
-        let temporary = "";
-        vacancy.temporary ? temporary = "Yes" : temporary = "No";
-        let role = "";
-        vacancy.engine ? role = "Engine" : role = "Truck";
-
-
-
+        let vacancy = this.state.vacancy;
+        let fillDate = moment(vacancy.fillDate, "MMMM Do YYYY");
+        let applyText = "Closed";
+        let cannotApply = true;
+        let helperText = "";
+        if (vacancy.fillDate === "9999"){
+            fillDate = "Open";
+            applyText = "Apply";
+            if (this.state.eligibleForTransfer){
+                cannotApply = false;
+            } else {
+                helperText = "You are not eligible for transfer"
+            }
+        }
         return (
             <div className={"big-edit-cont"}>
                 <div className="application-header">
@@ -86,7 +102,7 @@ class CreateTransferReq extends Component{
                     </div>
                     <div className="input-cont">
                         <div className="apply">
-                            <VacancyInfo fillDate={fillDate} postDate={postDate} role={role} temporary={temporary}
+                            <VacancyInfo fillDate={fillDate} postDate={moment(vacancy.postDate).format("MMMM Do YYYY")} role={vacancy.engine ? "Engine" : "Truck"} temporary={vacancy.temporary ? "Yes" : "No"}
                                          stationName={vacancy.station.name}
 
                                          />
@@ -101,7 +117,13 @@ class CreateTransferReq extends Component{
                         </div>
                     </div>
                     <div className="input-cont">
-                        <VacancyUserInfo {...this.state} apply={this.apply} canApply={canApply} applyText={applyText}/>
+                        <VacancyUserInfo {...this.state} apply={this.apply}
+                                         cannotApply={cannotApply}
+                                         applyText={applyText}
+                                         chief={this.state.chief}
+                                         helperText={helperText}
+                                         actionOnRequest={this.actionOnRequest}
+                        />
                     </div>
                 </div>
             </div>
@@ -116,9 +138,9 @@ const mapStateToProps = state => {
     }
 };
 
-CreateTransferReq.propTypes = {
+ReviewTransferReq.propTypes = {
     header: PropTypes.string,
     applicant: PropTypes.object,
     applicantHeader: PropTypes.string
 };
-export default connect(mapStateToProps, actions)(CreateTransferReq);
+export default connect(mapStateToProps, actions)(ReviewTransferReq);

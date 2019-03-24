@@ -14,7 +14,8 @@ class MainRouter extends PureComponent {
             case null:
                 return <div/>;
             case false:
-                return <Redirect to={"/visitor/login"}/>
+                return <Redirect to={"/visitor/login"}/>;
+            default: break;
         }
         return (
             <Switch>

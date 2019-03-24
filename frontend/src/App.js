@@ -14,7 +14,8 @@ import MainRouter from "./MainRouter";
 import Register from "./Components/User/Register";
 import Login from "./Components/User/Login";
 import Profile from "./Components/User/Profile";
-
+import Popup from "./Components/Popup";
+import OwnModal from "./Components/OwnModal";
 
 class App extends Component {
     componentDidMount() {
@@ -44,7 +45,10 @@ class App extends Component {
                         <Route path={"/"} render={() => <Landing/>}/>
                     </Switch>
                     </main>
-                    <CircularProgress className={`spinner ${spinnerStyle}`} />
+                    <CircularProgress className={`spinner ${spinnerStyle}`}/>
+                    <Popup {...this.props.popup} close={this.props.closePopup}/>
+                    <OwnModal handleClose={this.props.closeModal} {...this.props.modal}
+                    />
                 </Fragment>
             </BrowserRouter>
             </MuiPickersUtilsProvider>
@@ -53,13 +57,24 @@ class App extends Component {
 }
 
 App.propTypes = {
-    fetchUser: PropTypes.func
+    fetchUser: PropTypes.func,
+    menuShown: PropTypes.bool,
+    isLoading: PropTypes.bool,
+    modal: PropTypes.object,
+    popup: PropTypes.shape({
+        show: PropTypes.bool,
+        message: PropTypes.string
+    }),
+    closePopup: PropTypes.func,
+    closeModal: PropTypes.func
 };
 
 const mapStateToProps = state => {
     return {
         menuShown: state.menuShown,
-        isLoading: state.isLoading
+        isLoading: state.isLoading,
+        modal: state.modal,
+        popup: state.popup
     }
 };
 export default connect(mapStateToProps, actions)(App);

@@ -6,17 +6,28 @@ import '../../css/Profile.css';
 import user from '../../data/user';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
+import axios from "axios";
+import * as PropTypes from "prop-types";
 
 class Profile extends Component {
     state = {
         editLocked: true,
+        id: "",
         email: "",
         firstName: "",
-        lastName: ""
+        lastName: "",
+        sap: "",
     };
 
-    static getDerivedStateFromProps(nextProps){
-        return {...nextProps.user}
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (nextProps.user && nextProps.user.id != null){
+            if (nextProps.user.id !== prevState.id){
+                return {...nextProps.user}
+            }
+            return null;
+        } else {
+            return {...nextProps.user}
+        }
     }
 
     toggleEdit = () => {
@@ -24,17 +35,27 @@ class Profile extends Component {
     };
 
     inputHandler = type => event => {
+        console.log(event.target.value)
         this.setState({
             [type]: event.target.value
         })
     };
 
     saveUserUpdate = () => {
-        // put to db with user changes using state
+        this.props.toggleLoading();
+        axios.post("/api/edit-profile", {...this.state})
+            .then(() => {
+                this.props.toggleLoading();
+                this.props.showPopup("Success!");
+                this.setState({editLocked: true});
+                setTimeout(() => {
+                    this.props.closePopup()
+                }, 4000)
+            })
+        //
     };
 
     render() {
-        console.log(this.props.user);
         let actionName = "cancel";
         if (this.state.editLocked){
             actionName = "edit"
@@ -44,7 +65,7 @@ class Profile extends Component {
         if (transferEligible){
             transferText = "Yes";
         }
-
+        console.log(this.state);
         return (
             <div className={"big-edit-cont"}>
                 <div className="register-header">
@@ -131,7 +152,7 @@ class Profile extends Component {
                 </div>
                 <div className="actions-cont">
                         <Button variant="contained" color="primary">
-                            <div onClick={this.register}>Save</div>
+                            <div onClick={this.saveUserUpdate}>Save</div>
                         </Button>
                     </div>
             </div>
@@ -143,5 +164,11 @@ const mapStateToProps = state => {
     return {
         user: state.user
     }
+};
+
+Profile.propTypes = {
+    showPopup: PropTypes.func,
+    toggleLoading: PropTypes.func,
+    closePopup :PropTypes.func
 };
 export default connect(mapStateToProps, actions)(Profile);

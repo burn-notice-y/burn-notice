@@ -3,7 +3,11 @@ import {
     FETCH_USER,
     MENU_SHOWN,
     CLOSE_MENU,
-    TOGGLE_LOADING
+    TOGGLE_LOADING,
+    SHOW_POPUP,
+    CLOSE_POPUP,
+    SHOW_MODAL,
+    CLOSE_MODAL
 } from "./types";
 
 import axios from 'axios';
@@ -23,4 +27,17 @@ export const closeMenu = () => dispatch => {
 export const toggleLoading = () => dispatch => {
     dispatch({type: TOGGLE_LOADING})
 };
+export const showPopup = message => dispatch => {
+    dispatch({type: SHOW_POPUP, payload: message})
+};
+export const closePopup = () => dispatch => {
+    dispatch({type: CLOSE_POPUP})
+};
+export const showModal = messages => dispatch => {
+    dispatch({type: SHOW_MODAL, payload: messages})
+};
+export const closeModal = () => dispatch => {
+    dispatch({type: CLOSE_MODAL})
+};
+
  

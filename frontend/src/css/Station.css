@@ -50,3 +50,14 @@
 .fireman-cont {
     margin: 3vh 0;
 }
+.transfer-card {
+    width: 90%;
+    margin: 4% 0;
+}
+.many-transferReq-cont {
+    display: flex;
+    justify-content: center;
+}
+.transferReq-body {
+    width: 90%;
+}

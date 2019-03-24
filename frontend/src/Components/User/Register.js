@@ -117,9 +117,9 @@ class Register extends Component{
                         />
                     </div>
                 </div>
-                <div className="actions-cont">
+                <div className="register-actions-cont">
                     <div className="login-instead-cont">
-                        <Link to={"/login"}><Button color="primary">Sign in instead</Button></Link>
+                        <Link to={"/visitor/login"}><Button color="primary">Sign in instead</Button></Link>
                     </div>
                     <div className="submit-reg-cont">
                         <Button variant="contained" color="primary"><div onClick={this.register}>Continue</div></Button>

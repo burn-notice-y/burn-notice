@@ -9,7 +9,7 @@ const ManyAssignments = () => (
 
             <div className="assignments-cont">
                 <div className="assignment-header">
-                    <Typography component="h3" variant="h3" gutterBottom>
+                    <Typography component="h3" variant="h4" gutterBottom>
                         View your Assignments
                     </Typography>
                 </div>
