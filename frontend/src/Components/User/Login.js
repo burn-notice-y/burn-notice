@@ -30,6 +30,7 @@ class Login extends Component {
             })
             .catch(() => {
                 this.props.toggleLoading();
+                this.props.showModal(["Oops","Looks like that combination didn't match what we have", "Please try again"]);
                 this.setState({error: true})
             })
     };
@@ -99,7 +100,8 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-    toggleLoading: PropTypes.any.isRequired
+    toggleLoading: PropTypes.func,
+    showModal: PropTypes.func
 };
 
 export default withRouter(connect(null, actions)(Login));

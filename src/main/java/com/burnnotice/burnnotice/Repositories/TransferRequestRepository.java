@@ -8,4 +8,6 @@ import java.util.List;
 public interface TransferRequestRepository extends CrudRepository<TransferRequest, Long> {
     List<TransferReqHighlights> findAllByVacancy_Station_Name(String stationName);
 
+
+
 }

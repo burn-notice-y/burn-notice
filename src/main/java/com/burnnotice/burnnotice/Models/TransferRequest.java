@@ -19,7 +19,7 @@ public class TransferRequest {
     @Column(nullable=false)
     private String status = "Pending";
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JsonManagedReference(value = "user")
     private User user;
 

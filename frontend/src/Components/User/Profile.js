@@ -31,10 +31,10 @@ class Profile extends Component {
 
     saveUserUpdate = () => {
         // put to db with user changes using state
+        ///api/edit-profile
     };
 
     render() {
-        console.log(this.props.user);
         let actionName = "cancel";
         if (this.state.editLocked){
             actionName = "edit"

@@ -32,15 +32,24 @@ public class LoginController {
         }
     }
 
-        @RequestMapping("/api/logout")
-        public void checkoutUser(HttpServletRequest request) {
-            HttpSession session = request.getSession();
-            session.invalidate();
-        }
-        @GetMapping("/api/all-users")
-        public Iterable<OnlyNames> sendAllUsers(){
-            return userDao.findAllByChiefFalse();
-        }
+    @RequestMapping("/api/logout")
+    public void checkoutUser(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        session.invalidate();
     }
+    @GetMapping("/api/all-users")
+    public Iterable<OnlyNames> sendAllUsers(){
+        return userDao.findAllByChiefFalse();
+    }
+
+    @PostMapping("/api/edit-profile")
+    public void editProfile(@RequestBody User editedUser){
+        User dbUser = userDao.findOne(editedUser.getId());
+        dbUser.setFirstName(editedUser.getFirstName());
+        dbUser.setFirstName(editedUser.getLastName());
+        dbUser.setFirstName(editedUser.getEmail());
+        userDao.save(dbUser);
+    }
+}
 
 

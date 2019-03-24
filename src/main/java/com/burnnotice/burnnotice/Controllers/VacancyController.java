@@ -1,10 +1,7 @@
 package com.burnnotice.burnnotice.Controllers;
 
 import com.burnnotice.burnnotice.Models.Vacancy;
-import com.burnnotice.burnnotice.Repositories.FireStationRepository;
-import com.burnnotice.burnnotice.Repositories.VacancyHighlights;
-import com.burnnotice.burnnotice.Repositories.VacancyRepository;
-import com.burnnotice.burnnotice.Repositories.VacancyTransfer;
+import com.burnnotice.burnnotice.Repositories.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;

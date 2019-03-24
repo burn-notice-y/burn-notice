@@ -10,13 +10,16 @@ import VacancyInfo from './VacancyInfo';
 import VacancyUserInfo from "./VacancyUserInfo";
 import * as PropTypes from "prop-types";
 
-class CreateTransferReq extends Component{
+class ReviewTransferReq extends Component{
     state = {
         editLocked: true,
+        id: "",
         sap: "",
         email: "",
         firstName: "",
         lastName: "",
+        eligibleForTransfer: "",
+        chief: false,
         vacancy: null
     };
 
@@ -34,19 +37,23 @@ class CreateTransferReq extends Component{
     }
 
     static getDerivedStateFromProps(nextProps){
-        return {...nextProps}
+        return {...nextProps.user}
     }
 
     apply = () => {
         this.props.toggleLoading();
         axios.post("/api/submitApplication", {
-            sentDate: moment().format('YYYY-MM-DD'),
-            user: { id: this.props.user.id},
-            vacancy: {id: this.state.vacancy.id},
-        }).then((res) => {
+            sentDate: moment().format("YYYY-MM-DD"),
+            status: "Pending",
+            user: {
+                id: this.state.id
+            },
+            vacancy: {
+                id: this.state.vacancy.id
+            }
+        }).then(() => {
             this.props.toggleLoading();
-            console.log(res);
-            // this.setState({redirect: true});
+            this.setState({redirect: true});
         }).catch(() => {
             this.props.toggleLoading();
             this.setState({error: true})
@@ -57,16 +64,22 @@ class CreateTransferReq extends Component{
         if (this.state.vacancy === null){
             return <div/>;
         }
-        console.log(this.state);
+
         let vacancy = this.state.vacancy;
-        let fillDate = moment(vacancy.fillDate).format("MMMM Do YYYY");
+        let fillDate = moment(vacancy.fillDate, "MMMM Do YYYY");
         let applyText = "Closed";
         let cannotApply = true;
+        let helperText = "";
         if (vacancy.fillDate === "9999"){
+            fillDate = "Open";
             applyText = "Apply";
-            cannotApply = false;
-            fillDate = "Open"
+            if (this.state.eligibleForTransfer){
+                cannotApply = false;
+            } else {
+                helperText = "You are not eligible for transfer"
+            }
         }
+        console.log(this.state);
         return (
             <div className={"big-edit-cont"}>
                 <div className="application-header">
@@ -92,7 +105,11 @@ class CreateTransferReq extends Component{
                         </div>
                     </div>
                     <div className="input-cont">
-                        <VacancyUserInfo {...this.state} apply={this.apply} cannotApply={cannotApply} applyText={applyText}/>
+                        <VacancyUserInfo {...this.state} apply={this.apply}
+                                         cannotApply={cannotApply}
+                                         applyText={applyText}
+                                         chief={this.state.chief}
+                                         helperText={helperText}/>
                     </div>
                 </div>
             </div>
@@ -107,9 +124,9 @@ const mapStateToProps = state => {
     }
 };
 
-CreateTransferReq.propTypes = {
+ReviewTransferReq.propTypes = {
     header: PropTypes.string,
     applicant: PropTypes.object,
     applicantHeader: PropTypes.string
 };
-export default connect(mapStateToProps, actions)(CreateTransferReq);
+export default connect(mapStateToProps, actions)(ReviewTransferReq);

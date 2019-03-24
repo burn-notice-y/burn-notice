@@ -6,11 +6,12 @@ import '../css/OwnModal.css';
 
 
 const OwnModal = props => {
+    console.log(props);
     return (
         <Modal
             aria-labelledby="simple-modal-title"
             aria-describedby="simple-modal-description"
-            open={props.open}
+            open={props.shown}
             onClose={props.handleClose}
         >
             <div className={"modal-cont"}>
@@ -30,7 +31,7 @@ const OwnModal = props => {
 
 
 OwnModal.propTypes = {
-    open: PropTypes.bool,
+    shown: PropTypes.bool,
     handleClose: PropTypes.func,
     header: PropTypes.string,
     body: PropTypes.string,
