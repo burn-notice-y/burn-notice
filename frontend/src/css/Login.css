@@ -3,6 +3,10 @@
     width: 70%;
 }
 
+.login-actions-cont {
+    margin-top: 4vh;
+}
+
 .login-input-cont div {
     width: 100%;
 }

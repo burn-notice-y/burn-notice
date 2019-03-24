@@ -4,7 +4,6 @@
 }
 .assignments-content {
     height: 65vh;
-    overflow: scroll;
 }
 .assignment {
     margin: 3vh 0;
@@ -14,4 +13,12 @@
 }
 .date {
     margin: 1vh 0 !important;
+}
+.assignment-header h3:after {
+    content: " ";
+    display: block;
+    margin: 0 auto;
+    width: 50%;
+    padding-top: 20px;
+    border-bottom: 1px solid #a8a8a8;
 }

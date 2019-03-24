@@ -46,8 +46,8 @@ public class LoginController {
     public void editProfile(@RequestBody User editedUser){
         User dbUser = userDao.findOne(editedUser.getId());
         dbUser.setFirstName(editedUser.getFirstName());
-        dbUser.setFirstName(editedUser.getLastName());
-        dbUser.setFirstName(editedUser.getEmail());
+        dbUser.setLastName(editedUser.getLastName());
+        dbUser.setEmail(editedUser.getEmail());
         userDao.save(dbUser);
     }
 }

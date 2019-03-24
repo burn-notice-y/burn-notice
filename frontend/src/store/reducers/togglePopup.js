@@ -1,14 +1,14 @@
 import {SHOW_POPUP, CLOSE_POPUP } from "../actions/types";
 
-export default (state = false, action) => {
+export default (state = {show: false}, action) => {
     switch (action.type){
         case SHOW_POPUP:
             return {
-                show: !state,
+                show: !state.show,
                 message: action.payload
             };
         case CLOSE_POPUP:
-            return false;
+            return {show: false};
         default:
             return state
     }

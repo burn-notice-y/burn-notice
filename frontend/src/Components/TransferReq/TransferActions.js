@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import Button from "@material-ui/core/Button/Button";
 import Typography from "@material-ui/core/Typography/Typography";
 
-const TransferActions = ({ chief, cannotApply, apply, applyText, helperText, actionOnRequest }) => {
+const TransferActions = ({ chief, cannotApply, applyText, helperText, actionOnRequest }) => {
     let actions = (
         <div className="user-actions">
             <Button variant="contained" color="primary" disabled={cannotApply}>
-                <div onClick={apply}>
+                <div onClick={() => actionOnRequest("apply")}>
                     {applyText}
                 </div>
             </Button>

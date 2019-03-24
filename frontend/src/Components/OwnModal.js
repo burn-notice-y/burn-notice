@@ -5,30 +5,26 @@ import Modal from '@material-ui/core/Modal';
 import '../css/OwnModal.css';
 
 
-const OwnModal = props => {
-    console.log(props);
-    return (
-        <Modal
-            aria-labelledby="simple-modal-title"
-            aria-describedby="simple-modal-description"
-            open={props.shown}
-            onClose={props.handleClose}
-        >
-            <div className={"modal-cont"}>
-                <Typography variant="h6" id="modal-title">
-                    {props.header}
-                </Typography>
-                <Typography variant="subtitle1" id="simple-modal-description">
-                    {props.body}
-                </Typography>
-                <Typography variant="subtitle2" className={"modal-directions"}>
-                    {props.directions}
-                </Typography>
-            </div>
-        </Modal>
-    )
-};
-
+const OwnModal = props => (
+    <Modal
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+        open={props.shown}
+        onClose={props.handleClose}
+    >
+        <div className={"modal-cont"}>
+            <Typography variant="h6" id="modal-title">
+                {props.header}
+            </Typography>
+            <Typography variant="subtitle1" id="simple-modal-description">
+                {props.body}
+            </Typography>
+            <Typography variant="subtitle2" className={"modal-directions"}>
+                {props.directions}
+            </Typography>
+        </div>
+    </Modal>
+);
 
 OwnModal.propTypes = {
     shown: PropTypes.bool,

@@ -1,4 +1,11 @@
-
+.view-vacancy-header h2:after{
+    content: " ";
+    display: block;
+    margin: 0 auto;
+    width: 50%;
+    padding-top: 20px;
+    border-bottom: 1px solid #a8a8a8;
+}
 
 .vacancy-cont {
     margin: 4vh 0;
@@ -42,37 +49,6 @@
 
 .card-size {
     width: 80vh !important;
-}
-
-
-.divider-class
-{
-
-    background-color: rgba(157, 17, 18, 0.6) !important;
-}
-.vacancy-scroll
-{
-    overflow: scroll;
-    height: 85vh;
-}
-
-.text-field-width
-{
-    width: 100%;
-}
-
-#outline-disabled
-{
-    font-size: 800vh;
-    color: blue !important;
-}
-
-.vacancy-btn-color
-{
-    background-color: dodgerblue !important;
-    width: 100% !important;
-    height: 8vh !important;
-    justify-content: center !important;
 }
 
 

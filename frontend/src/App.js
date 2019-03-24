@@ -61,7 +61,10 @@ App.propTypes = {
     menuShown: PropTypes.bool,
     isLoading: PropTypes.bool,
     modal: PropTypes.object,
-    popup: PropTypes.bool,
+    popup: PropTypes.shape({
+        show: PropTypes.bool,
+        message: PropTypes.string
+    }),
     closePopup: PropTypes.func,
     closeModal: PropTypes.func
 };

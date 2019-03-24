@@ -19,9 +19,8 @@ public class VacancyController
 
 
     @GetMapping("/api/all-vacancies")
-    public Iterable<VacancyHighlights> viewAllVacancies()
-    {
-        return vacDao.findAllByOrderByIdDesc();
+    public Iterable<VacancyHighlights> viewAllVacancies() {
+        return vacDao.findAllByAndFillDateEqualsOrderByIdDesc("9999");
     }
 
     @GetMapping("/api/one-vacancy")

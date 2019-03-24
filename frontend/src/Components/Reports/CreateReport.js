@@ -180,15 +180,15 @@ class CreateReport extends Component {
         return (
             <Fragment>
                 <div className={"create-report-cont"} id={"top"}>
-                    <div className="register-header">
-                        <Typography component="h3" variant="h3" gutterBottom className={"registration-header"}>
+                    <div className="report-header-cont">
+                        <Typography component="h3" variant="h4" gutterBottom className={"report-header"}>
                             File a Report
                         </Typography>
-                        <div className="page-nav">
-                            <Typography component="h3" variant="h6" gutterBottom className={"registration-header"}>
-                                Page: {this.props.match.params.pageNumber}
-                            </Typography>
-                        </div>
+                    </div>
+                    <div className="page-nav">
+                        <Typography component="h3" variant="h6" gutterBottom className={"registration-header"}>
+                            Page: {this.props.match.params.pageNumber}
+                        </Typography>
                     </div>
                     <div className="input-cont">
                         <Switch>

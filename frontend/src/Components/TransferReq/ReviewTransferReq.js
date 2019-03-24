@@ -9,6 +9,7 @@ import axios from "axios";
 import VacancyInfo from './VacancyInfo';
 import VacancyUserInfo from "./VacancyUserInfo";
 import * as PropTypes from "prop-types";
+import {Redirect} from "react-router-dom";
 
 class ReviewTransferReq extends Component{
     state = {
@@ -40,9 +41,17 @@ class ReviewTransferReq extends Component{
         return {...nextProps.user}
     }
 
-    apply = () => {
+    actionOnRequest = action => {
+        let url = "";
+      switch (action) {
+          case "approve": url = "/api/approve-transfer";
+            break;
+          case "deny": url = "/api/deny-request";
+              break;
+          default: url = "/api/submitApplication"
+      }
         this.props.toggleLoading();
-        axios.post("/api/submitApplication", {
+        axios.post(url, {
             sentDate: moment().format("YYYY-MM-DD"),
             status: "Pending",
             user: {
@@ -60,18 +69,15 @@ class ReviewTransferReq extends Component{
         })
     };
 
-    actionOnRequest = action => {
-      switch (action) {
-          case "approve":
-
-      }
-    };
-
     render() {
         if (this.state.vacancy === null){
             return <div/>;
         }
-
+        if (this.state.redirect && this.state.chief){
+            return <Redirect to={"/transfer/view"}/>
+        } else if (this.state.redirect){
+            return <Redirect to={"/vacancy/show"}/>
+        }
         let vacancy = this.state.vacancy;
         let fillDate = moment(vacancy.fillDate, "MMMM Do YYYY");
         let applyText = "Closed";

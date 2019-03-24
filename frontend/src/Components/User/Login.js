@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
-import { Link, withRouter, Redirect } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -86,12 +86,7 @@ class Login extends Component {
                         </div>
                     </div>
                     <div className="login-actions-cont">
-                        <div className="submit-login-cont">
                             <Button type={"submit"} variant="contained" color="primary" className={"login-button"} onClick={this.login}>Continue</Button>
-                        </div>
-                        <div className="login-instead-cont">
-                            <Link to={"/forgot-password"}><Button color="primary">Forgot Password</Button></Link>
-                        </div>
                     </div>
                 </form>
                 </div>

@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TextField from "@material-ui/core/TextField/TextField";
-import Button from "@material-ui/core/Button/Button";
-import Typography from "@material-ui/core/Typography/Typography";
 import TransferActions from "./TransferActions";
 
 const VacancyUserInfo = props => {
