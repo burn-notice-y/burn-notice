@@ -57,5 +57,5 @@ Loading Toggle
     opacity: 1;
 }
 .success-p {
-    color: white;
+    color: white !important;
 }

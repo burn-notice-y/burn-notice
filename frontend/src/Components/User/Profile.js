@@ -50,7 +50,7 @@ class Profile extends Component {
                 this.setState({editLocked: true});
                 setTimeout(() => {
                     this.props.closePopup()
-                }, 3000)
+                }, 4000)
             })
         //
     };
