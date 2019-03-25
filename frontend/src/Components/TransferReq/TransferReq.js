@@ -10,7 +10,12 @@ import moment from 'moment';
 import '../../css/TransferReq.css';
 
 const TransferReq = props => {
-    console.log(props);
+    let status = "blue";
+    switch (props.status) {
+        case "Denied": status = "red"; break;
+        case "Approved": status ="green"; break;
+        default: break;
+    }
     return (
         <Card className={"transfer-card"}>
             <CardContent>
@@ -30,7 +35,7 @@ const TransferReq = props => {
                     Sent Date: {moment(props.sentDate).format("MMMM Do YYYY")}
                 </Typography>
                 <Typography color="textSecondary">
-                    Status: {props.status}
+                    Status: <span style={{color: status}}>{props.status}</span>
                 </Typography>
             </CardContent>
             <CardActions className={"vacancy-actions-cont"}>
@@ -45,7 +50,8 @@ TransferReq.propTypes = {
     sentDate: PropTypes.string,
     firstName: PropTypes.string,
     lastName: PropTypes.string,
-    vacancy: PropTypes.object
+    vacancy: PropTypes.object,
+    status: PropTypes.string,
 };
 
 export default TransferReq;

@@ -31,7 +31,7 @@ const VacancyInfo = ({stationName, role, temporary, postDate, fillDate}) => {
             </div>
             <div className="reg-post-date reg-input">
                 <TextField
-                    label="Post Date"
+                    label="Start Date"
                     value={postDate}
                     margin="normal"
                     variant="outlined"

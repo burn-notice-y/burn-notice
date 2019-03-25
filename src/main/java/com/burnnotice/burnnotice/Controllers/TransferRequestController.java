@@ -44,7 +44,13 @@ public class TransferRequestController {
 
     @GetMapping("/api/findTransferByStation")
     public List<TransferReqHighlights> findAllByStation(@RequestParam String stationName) {
+        System.out.println(stationName);
         return transferDao.findAllByVacancy_Station_NameAndStatusContains(stationName, "Pending");
+    }
+
+    @GetMapping("/api/one-transfer")
+    public TransferRequest findOne(@RequestParam long id){
+        return transferDao.findOne(id);
     }
 
     @PostMapping("/api/approve-transfer")
@@ -64,10 +70,19 @@ public class TransferRequestController {
                 new Assignment(vacancy.getPostDate(), "9999", vacancy.isEngine(), station, applicant);
         assignmentDao.save(newAssignment);
 
+        // end most current assignment with the start date of the vacancy
+
         // set status to approved
         TransferRequest transferRequest = transferDao.findOne(request.getId());
         transferRequest.setStatus("Approved");
         transferDao.save(transferRequest);
+
+        // set all other applications for the vacancy to "Filled"
+        List<TransferRequest> applications = transferDao.findAllByVacancyId(vacancy.getId());
+        for (TransferRequest application: applications){
+            application.setStatus("Filled");
+        }
+        transferDao.save(applications);
     }
 
     @PostMapping("/api/deny-transfer")
