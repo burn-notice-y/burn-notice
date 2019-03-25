@@ -52,6 +52,7 @@ class ReviewTransferReq extends Component{
       }
         this.props.toggleLoading();
         axios.post(url, {
+            id: this.props.match.params.id,
             sentDate: moment().format("YYYY-MM-DD"),
             status: "Pending",
             user: {
@@ -73,10 +74,10 @@ class ReviewTransferReq extends Component{
         if (this.state.vacancy === null){
             return <div/>;
         }
-        if (this.state.redirect && this.state.chief){
+        if (this.state.redirect && !this.state.chief){
+            return <Redirect to={`/transfer/view/${this.state.id}`}/>
+        } else if (this.state.redirect) {
             return <Redirect to={"/transfer/view"}/>
-        } else if (this.state.redirect){
-            return <Redirect to={"/vacancy/show"}/>
         }
         let vacancy = this.state.vacancy;
         let fillDate = moment(vacancy.fillDate, "MMMM Do YYYY");

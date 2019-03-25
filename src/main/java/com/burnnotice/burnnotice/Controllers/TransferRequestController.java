@@ -44,7 +44,13 @@ public class TransferRequestController {
 
     @GetMapping("/api/findTransferByStation")
     public List<TransferReqHighlights> findAllByStation(@RequestParam String stationName) {
+        System.out.println(stationName);
         return transferDao.findAllByVacancy_Station_NameAndStatusContains(stationName, "Pending");
+    }
+
+    @GetMapping("/api/one-transfer")
+    public TransferRequest findOne(@RequestParam long id){
+        return transferDao.findOne(id);
     }
 
     @PostMapping("/api/approve-transfer")
@@ -52,11 +58,13 @@ public class TransferRequestController {
         // notify user
         User applicant = userDao.findOne(request.getUser().getId());
 
+
         // close vacancy
         Vacancy vacancy = vacDao.findOne(request.getVacancy().getId());
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         vacancy.setFillDate(dateFormat.format(new Date()));
         vacDao.save(vacancy);
+
 
         // populate assignment history with start date of assignment the same as vacancy start
         FireStation station = stationDao.findOne(vacancy.getStation().getId());
@@ -64,10 +72,28 @@ public class TransferRequestController {
                 new Assignment(vacancy.getPostDate(), "9999", vacancy.isEngine(), station, applicant);
         assignmentDao.save(newAssignment);
 
+
+        // end most current assignment with the start date of the vacancy
+
+
         // set status to approved
         TransferRequest transferRequest = transferDao.findOne(request.getId());
         transferRequest.setStatus("Approved");
         transferDao.save(transferRequest);
+
+
+        // set all other applications for the vacancy to "Filled"
+        List<TransferRequest> applications = transferDao.findAllByVacancyId(vacancy.getId());
+        for (TransferRequest application: applications){
+            application.setStatus("Filled");
+        }
+        transferDao.save(applications);
+
+
+        // Set every pending user's eligibility for transfer back to true
+
+        // Add an association between the successful applicant and the accepting fire station
+
     }
 
     @PostMapping("/api/deny-transfer")

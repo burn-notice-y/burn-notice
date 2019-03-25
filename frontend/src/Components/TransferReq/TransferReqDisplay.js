@@ -13,7 +13,7 @@ import Button from "@material-ui/core/Button";
 class TransferReqDisplay extends Component{
     state= {
         executedSearch: false,
-        manyTransferReq: [],
+        transferRequests: [],
         station: ""
     };
 
@@ -22,9 +22,10 @@ class TransferReqDisplay extends Component{
         axios.get(`/api/findTransferByStation?stationName=${this.state.station}`)
             .then(res => {
                 this.props.toggleLoading();
+                console.log(res.data)
                 this.setState({
                     executedSearch: true,
-                    manyTransferReq: res.data
+                    transferRequests: res.data
                 })
             })
             .catch(error => {
