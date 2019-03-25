@@ -120,7 +120,11 @@ class Register extends Component{
                         />
                     </div>
                     <div className="reg-last-name reg-input">
-                        <DropDown items={fireStations} value={this.state.station} inputHandler={this.inputHandler} inputArgument={"station"}/>
+                        <DropDown items={fireStations}
+                                  value={this.state.station}
+                                  label={"Your Station"}
+                                  inputHandler={this.inputHandler}
+                                  inputArgument={"station"}/>
                     </div>
                 </div>
                 <div className="register-actions-cont">
