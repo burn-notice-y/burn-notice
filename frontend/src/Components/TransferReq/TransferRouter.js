@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import CreateTransferReq from "./CreateTransferReq";
+import CreateTransferReq from "./ReviewTransferReq";
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
 import transferRequest from '../../data/transferRequest';
