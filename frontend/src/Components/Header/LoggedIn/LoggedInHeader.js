@@ -6,8 +6,9 @@ import axios from 'axios';
 import AdminHeader from "./AdminHeader";
 import UserHeader from "./UserHeader";
 import UserDesktopHeader from "./UserDesktopHeader";
+import * as PropTypes from "prop-types";
 
-class LoggedInMenu extends Component {
+class LoggedInHeader extends Component {
 
     state = {
         redirect: false
@@ -29,7 +30,7 @@ class LoggedInMenu extends Component {
             default:
                 return (
                     <Fragment>
-                        <AdminHeader logout={this.logout} closeMenu={this.props.closeMenu}/>
+                        <AdminHeader logout={this.logout} closeMenu={this.props.closeMenu} user={this.props.user} menuShown={this.props.menuShown}/>
                         <UserDesktopHeader logout={this.logout} closeMenu={this.props.closeMenu}
                                            user={this.props.user}
                         />
@@ -59,12 +60,19 @@ class LoggedInMenu extends Component {
     }
 }
 
+LoggedInHeader.propTypes = {
+    user: PropTypes.object,
+    menuShown: PropTypes.bool,
+};
+
+
 const mapStateToProps = state => {
     return {
-        user: state.user
+        user: state.user,
+        menuShown: state.menuShown
     }
 };
-export default connect(mapStateToProps, actions)(LoggedInMenu);
+export default connect(mapStateToProps, actions)(LoggedInHeader);
 
 
 

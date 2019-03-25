@@ -6,14 +6,10 @@ import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import CardHeader from '@material-ui/core/CardHeader';
-import LibraryAdd from '@material-ui/icons/LibraryAdd';
-import AssignmentTurnedIn from '@material-ui/icons/AssignmentTurnedIn';
-import Assignment from '@material-ui/icons/Assignment';
-
-import Description from '@material-ui/icons/Description';
 import PropTypes from "prop-types";
 import UserActions from "./UserActions";
 import AdminActions from "./AdminActions";
+import TopNavBar from "../TopBar";
 
 class AdminHeader extends Component {
     state = {
@@ -22,6 +18,8 @@ class AdminHeader extends Component {
 
     render() {
         return (
+            <div className="mobile mobile-admin-header">
+                <TopNavBar/>
             <Drawer variant={"temporary"} open={this.props.menuShown} onClose={this.props.closeMenu.bind(this)}>
                 <div className={"close-div"}
                      tabIndex={0}
@@ -41,6 +39,7 @@ class AdminHeader extends Component {
                     </div>
                 </div>
             </Drawer>
+            </div>
         )
     }
 }
