@@ -62,4 +62,5 @@ const mapStateToProps = state => {
         user: state.user
     }
 };
+
 export default connect(mapStateToProps, actions)(Landing);

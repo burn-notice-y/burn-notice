@@ -43,6 +43,7 @@ class ReviewTransferReq extends Component{
 
     actionOnRequest = action => {
         let url = "";
+
       switch (action) {
           case "approve": url = "/api/approve-transfer";
             break;
@@ -50,6 +51,7 @@ class ReviewTransferReq extends Component{
               break;
           default: url = "/api/submitApplication"
       }
+
         this.props.toggleLoading();
         axios.post(url, {
             id: this.props.match.params.id,
@@ -106,7 +108,9 @@ class ReviewTransferReq extends Component{
                             <VacancyInfo fillDate={fillDate} postDate={moment(vacancy.postDate).format("MMMM Do YYYY")} role={vacancy.engine ? "Engine" : "Truck"} temporary={vacancy.temporary ? "Yes" : "No"}
                                          stationName={vacancy.station.name}
 
+
                                          />
+
                             <div className={"fireman-cont"}>
                                 <ManyFirefighters firemanList={this.state.vacancy.station.currentCrew}/>
                             </div>
