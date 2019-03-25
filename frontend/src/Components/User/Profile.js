@@ -46,6 +46,7 @@ class Profile extends Component {
         if (transferEligible){
             transferText = "Yes";
         }
+        console.log(this.props);
 
         return (
             <div className={"big-edit-cont"}>

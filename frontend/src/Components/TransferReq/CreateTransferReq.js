@@ -76,7 +76,7 @@ class CreateTransferReq extends Component{
         let role = "";
         vacancy.engine ? role = "Engine" : role = "Truck";
 
-
+        console.log(this.props);
 
         return (
             <div className={"big-edit-cont"}>
@@ -191,6 +191,7 @@ class CreateTransferReq extends Component{
 const mapStateToProps = state => {
     return {
         user: state.user,
+        menuShown: state.menuShown
     }
 };
 

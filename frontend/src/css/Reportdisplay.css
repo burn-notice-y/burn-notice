@@ -63,3 +63,7 @@
     align-items: center;
 }
 
+
+.report-body h5 {
+    margin-top: 2vh;
+}
