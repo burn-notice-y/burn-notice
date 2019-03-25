@@ -1,0 +1,49 @@
+.transfer-select-cont {
+    width: 100%;
+    margin: 5% 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.view-vacancy-header > h2 {
+    text-align: center;
+}
+.chief-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 3vh;
+}
+.deny {
+    margin-right: 30px;
+}
+.approve-button {
+    background-color: #4caa44 !important;
+    color: white !important;
+}
+#station-select {
+    width: 90%;
+}
+.stationSelect-cont {
+    width: 56%;
+    display: flex;
+    align-items: center;
+}
+.stationSelect-cont div{
+    width: 84% !important;
+}
+.user-requests-cont {
+    height: 85vh;
+    width: 85%;
+}
+.user-req-header-cont h2 {
+    text-align: center;
+}
+.user-req-header-cont h2:after {
+    content: " ";
+    display: block;
+    margin: 0 auto;
+    width: 50%;
+    padding-top: 20px;
+    border-bottom: 1px solid #a8a8a8;
+}

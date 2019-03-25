@@ -151,10 +151,10 @@ class Profile extends Component {
 
                 </div>
                 <div className="actions-cont">
-                    <Button variant="contained" color="primary">
-                        <div onClick={this.saveUserUpdate}>Save</div>
-                    </Button>
-                </div>
+                        <Button variant="contained" color="primary">
+                            <div onClick={this.saveUserUpdate}>Save</div>
+                        </Button>
+                    </div>
             </div>
         )
     }

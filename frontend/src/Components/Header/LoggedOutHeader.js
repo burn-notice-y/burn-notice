@@ -31,7 +31,7 @@ class LoggedOutMenu extends Component{
                     {['Login', 'Register'].map((text, index) => (
                         <ListItem button key={text}>
                             <ListItemIcon>{index % 2 === 0 ? <Person/> : <PersonAdd/>}</ListItemIcon>
-                            <Link component={RouterLink} to={index % 2 === 0 ? "/user/login": "/user/register"}><ListItemText primary={text}/></Link>
+                            <Link component={RouterLink} to={index % 2 === 0 ? "/visitor/login": "/visitor/register"}><ListItemText primary={text}/></Link>
                         </ListItem>
                     ))}
                 </List>

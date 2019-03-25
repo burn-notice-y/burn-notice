@@ -2,9 +2,15 @@
     height: 75vh;
     width: 70%;
 }
-.input-cont div {
+
+.login-actions-cont {
+    margin-top: 4vh;
+}
+
+.login-input-cont div {
     width: 100%;
 }
+
 .login-button {
     width: 100%;
 }

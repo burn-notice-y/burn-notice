@@ -17,22 +17,15 @@ public class TransferRequest {
     private String sentDate;
 
     @Column(nullable=false)
-    private String status;
+    private String status = "Pending";
 
-
-
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JsonManagedReference(value = "user")
     private User user;
 
-
-
-    // vacancy
     @ManyToOne
-    @JsonBackReference(value = "vacancy")
+    @JoinColumn(name = "vacancy_id")
     private Vacancy vacancy;
-
-
 
     public TransferRequest() {
 

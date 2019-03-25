@@ -11,10 +11,10 @@ import IconButton from "@material-ui/core/IconButton/IconButton";
 import Badge from "@material-ui/core/Badge/Badge";
 
 const TeamExpansion = props => (
-    <div className="teams-cont" onClick={() => props.clearInput("clear")}>
+    <div className="teams-cont" onClick={props.clearNotifications}>
         <ExpansionPanel>
             <ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>} >
-                <Badge badgeContent={props.newItems} color="secondary">
+                <Badge badgeContent={props.newMembers} color="secondary">
                     <Typography>{props.teamName} </Typography>
                 </Badge>
             </ExpansionPanelSummary>
@@ -25,7 +25,7 @@ const TeamExpansion = props => (
                             <Typography component="p" variant="subtitle2" key={teamMember.id}>
                                 {teamMember.firstName} {teamMember.lastName}
                             </Typography>
-                            <IconButton aria-label="Search">
+                            <IconButton aria-label="Search" onClick={() => props.removeFiremanFromTeam(teamMember.id)}>
                                 <ClearIcon/>
                             </IconButton>
                         </div>
@@ -43,8 +43,9 @@ TeamExpansion.propTypes = {
         firstName: PropTypes.string,
         lastName: PropTypes.string
     })),
-    clearInput: PropTypes.func,
-    newItems: PropTypes.number
+    clearNotifications: PropTypes.func,
+    newMembers: PropTypes.number,
+    removeFiremanFromTeam: PropTypes.func
 };
 
 export default TeamExpansion;

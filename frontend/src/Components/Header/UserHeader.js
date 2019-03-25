@@ -11,25 +11,34 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import CardHeader from '@material-ui/core/CardHeader';
-import Person from '@material-ui/icons/Person';
-import PersonOutline from '@material-ui/icons/PersonOutline';
 import LibraryBooks from '@material-ui/icons/LibraryBooks';
 import LibraryAdd from '@material-ui/icons/LibraryAdd';
 import Assignment from '@material-ui/icons/Assignment';
 import Description from '@material-ui/icons/Description';
 import LocationCity from '@material-ui/icons/LocationCity';
+import ListAlt from '@material-ui/icons/ListAlt';
+import Store from '@material-ui/icons/Store';
+import Search from '@material-ui/icons/Search';
+import PersonalActions from "./PersonalActions";
+import * as PropTypes from "prop-types";
+import DropDownList from "./DropDownList";
+
 
 class UserHeader extends Component{
     state = {
-        redirect: false
+        firstName: "",
+        lastName: "",
+        open: false
     };
+
+    static getDerivedStateFromProps(nextState){
+        return {...nextState.user}
+    }
 
     determineIcon = text => {
         switch (text) {
             case "Vacancies":
-                return <Description/>;
-            case "Create Report":
-                return <LibraryAdd/>;
+                return <Store/>;
             case "Assignment History":
                 return <Assignment/>;
             case "Station List":
@@ -39,57 +48,65 @@ class UserHeader extends Component{
     };
 
     render(){
-        const navItems = (
-            <div className={"nav-items-test"}>
-                <CardHeader title={"Burn Notice"}/>
-                <List>
-                    <ListSubheader>Actions</ListSubheader>
-                    {[['Vacancies', '/vacancy/show'], ['Create Report', `/reports/create/1`], [`Assignment History`, `/assignments/show`], ['Station List', '/stations/all']].map((text, index) => (
-                            <ListItem button key={index}>
-                                <ListItemIcon>{text[0] === "Ads" ? <LibraryBooks/> : this.determineIcon(text[0]) }</ListItemIcon>
-                                <Link component={RouterLink} to={text[1]}><ListItemText primary={text[0]}/></Link>
-                            </ListItem>
-                        )
-                    )}
-                </List>
-                <Divider/>
-                <List>
-                    <ListSubheader>Personal</ListSubheader>
-                    <ListItem button>
-                        <ListItemIcon><Person/></ListItemIcon>
-                        <Link component={RouterLink} to={"/user/profile"}><ListItemText primary={"Profile"}/></Link>
-                    </ListItem>
-
-                    <ListItem button>
-                        <ListItemIcon><PersonOutline/></ListItemIcon>
-                        <div className={"close-div"}
-                             tabIndex={0}
-                             role="button"
-                             onClick={this.props.logout}>
-                            <ListItemText primary={"Logout"}/></div>
-                    </ListItem>
-                </List>
-            </div>
-        );
-
-
-
         return (
             <Drawer variant={"temporary"} open={this.props.menuShown} onClose={this.props.closeMenu.bind(this)}>
                 <div className={"close-div"}
                      tabIndex={0}
                      role="button"
-                     onClick={this.props.closeMenu}
-                     onKeyDown={this.props.closeMenu}
                      onScrollCapture={this.props.closeMenu}>
-                    {navItems}
+                    <div className={"nav-items-test"}>
+                        <CardHeader title={"Burn Notice"} subheader={`Welcome, ${this.state.firstName} ${this.state.lastName}`}/>
+                        <List>
+                            <ListSubheader>Actions</ListSubheader>
+                            <DropDownList closeMenu={this.props.closeMenu}
+                                          primaryText={"Reports"}
+                                          mainIcon={<ListAlt/>}
+                                          listItems={[
+                                              [<LibraryAdd/>, "Create Report", "/reports/create/1"],
+                                              [<Description/>, "My Reports", "/reports"]
+                                          ]}
+                            />
+                            <DropDownList closeMenu={this.props.closeMenu}
+                                          primaryText={"Vacancies"}
+                                          mainIcon={<Store/>}
+                                          listItems={[
+                                              [<Search/>, 'Search', `/vacancy/show`],
+                                              [<Description/>, 'My Applications', `/transfer/view/${this.props.user ? this.props.user.id : ""}`]
+
+                                          ]}
+                            />
+
+
+
+                            {[[`Assignment History`, `/assignments/show/${this.props.user ? this.props.user.id : ""}`], ['Station List', '/stations/all']].map((text, index) => (
+                                <Link component={RouterLink} to={text[1]} className={"link"} key={index}>
+                                    <ListItem button key={index} onClick={this.props.closeMenu}>
+                                        <ListItemIcon>{text[0] === "Ads" ? <LibraryBooks/> : this.determineIcon(text[0]) }</ListItemIcon>
+                                        <ListItemText primary={text[0]}/>
+                                    </ListItem>
+                                </Link>
+                                )
+                            )}
+                        </List>
+                        <Divider/>
+                        <PersonalActions closeMenu={this.props.closeMenu} logout={this.props.logout}/>
+                    </div>
                 </div>
             </Drawer>
         )
     }
 }
+
+UserHeader.propTypes = {
+    closeMenu: PropTypes.func,
+    menuShown: PropTypes.bool,
+    logout: PropTypes.func,
+
+};
+
 const mapStateToProps = state => {
     return {
+        user: state.user,
         menuShown: state.menuShown
     }
 };

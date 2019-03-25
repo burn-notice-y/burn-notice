@@ -15,6 +15,7 @@ Loading Toggle
     justify-content: center;
     height: 95vh;
     opacity: 1;
+    padding-top: 50px;
 }
 .loading-active {
     filter: blur(3px);
@@ -34,4 +35,27 @@ Loading Toggle
     opacity: 1;
     width: 50px !important;
     height: 50px !important;
+}
+.success-message {
+    background-color: #4caa44;
+    width: 60vw;
+    position: absolute;
+    bottom: -70px;
+    left: 10px;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4%;
+    color: white;
+    transition: all 0.4s ease-in-out;
+    opacity: 0;
+}
+.popup-active {
+    bottom: 10px;
+    left: 10px;
+    opacity: 1;
+}
+.success-p {
+    color: white !important;
 }

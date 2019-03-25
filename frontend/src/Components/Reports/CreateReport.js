@@ -16,17 +16,13 @@ import ReportPage1 from "./Pages/ReportPage1";
 import ReportsPage2 from "./Pages/ReportPage2";
 import ReportsPage3 from "./Pages/ReportPage3";
 import Action from "./Actions/Action";
-import OwnModal from "../OwnModal";
-
 
 class CreateReport extends Component {
     state = {
         reportType: "",
         chemicals: "",
         fireRetardant: "",
-        primaryTeamActions: "",
-        secondaryTeamActions: "",
-        team: "primaryTeam",
+        teamActions: "",
         description: "",
         timeArrived: "",
         timeDispatched: "",
@@ -36,22 +32,15 @@ class CreateReport extends Component {
         error: false,
         disabled: false,
         searchResult: [],
-        primaryTeam: [],
-        secondaryTeam: [],
-        modalOpen: false,
-        teamMemberTaken: false,
+        teamMembers: [],
         newMembers: 0
     };
 
-
     inputHandler = type => event => {
         if (type === "createDate"){
-            if(event > new Date()){
-                this.setState({
-                    modalOpen: true,
-                    dateWrong: true
-                });
-            } else {
+            if(event > new Date()) {
+                this.props.openModal()
+            }  else {
                 this.setState({createDate: moment(event).format("YYYY-MM-DD")})
             }
         } else {
@@ -77,30 +66,39 @@ class CreateReport extends Component {
         }
     };
 
-    addFiremanToTeam = (team, fireman) => {
+    addFiremanToTeam = fireman => {
         let searchResults = [...this.state.searchResult];
         const selectedIndex = searchResults.findIndex(result => {
             return result.id === fireman.id
         });
         let goodToGo = true;
-        [...this.state[team]].forEach(result => {
+        [...this.state.teamMembers].forEach(result => {
             if (result.id === fireman.id){
                 goodToGo = false;
             }
         });
         if (goodToGo){
             searchResults.splice(selectedIndex, 1);
-            this.setState({
-                newMembers: this.state.newMembers + 1,
-                [team]: [...this.state[team], fireman],
+            this.setState(prevState => ({
+                newMembers: prevState.newMembers + 1,
+                teamMembers: [...prevState.teamMembers, fireman],
                 searchResult: searchResults
-            })
+            }))
         } else {
             this.setState({
                 teamMemberTaken: true,
                 modalOpen: true
             });
         }
+    };
+
+    removeFiremanFromTeam = firemanId => {
+        let updatedRoster = this.state.teamMembers.filter(teamMember => teamMember.id !== firemanId);
+        this.setState({teamMembers: updatedRoster})
+    };
+
+    clearNotifications = () => {
+        this.setState({newMembers: 0})
     };
 
     determinePage = () => {
@@ -114,6 +112,8 @@ class CreateReport extends Component {
                                      addFiremanToTeam={this.addFiremanToTeam}
                                      searchFirefighters={this.searchFirefighters}
                                      clearSearch={this.clearSearch}
+                                     clearNotifications={this.clearNotifications}
+                                     removeFiremanFromTeam={this.removeFiremanFromTeam}
                 />;
             default:
                 return;
@@ -160,28 +160,19 @@ class CreateReport extends Component {
         if (this.state.redirect) {
             return <Redirect to={"/reports"}/>
         }
-        let modalMessage = "";
-        let modalHeader = "";
-        if (this.state.teamMemberTaken){
-            modalHeader = "Oops";
-            modalMessage = "That firefighter is already the list"
-        }  else if(this.state.dateWrong) {
-            modalHeader = "Can you see into the future?";
-            modalMessage = "Please choose a valid date"
-        }
 
         return (
             <Fragment>
                 <div className={"create-report-cont"} id={"top"}>
-                    <div className="register-header">
-                        <Typography component="h3" variant="h3" gutterBottom className={"registration-header"}>
+                    <div className="report-header-cont">
+                        <Typography component="h3" variant="h4" gutterBottom className={"report-header"}>
                             File a Report
                         </Typography>
-                        <div className="page-nav">
-                            <Typography component="h3" variant="h6" gutterBottom className={"registration-header"}>
-                                Page: {this.props.match.params.pageNumber}
-                            </Typography>
-                        </div>
+                    </div>
+                    <div className="page-nav">
+                        <Typography component="h3" variant="h6" gutterBottom className={"registration-header"}>
+                            Page: {this.props.match.params.pageNumber}
+                        </Typography>
                     </div>
                     <div className="input-cont">
                         <Switch>
@@ -192,9 +183,6 @@ class CreateReport extends Component {
                         <Action page={this.props.match.params.pageNumber} submitReport={this.submitReport}/>
                     </div>
                 </div>
-                <OwnModal open={this.state.modalOpen} handleClose={this.modalClose}
-                          header={modalHeader} body={modalMessage}
-                />
             </Fragment>
         )
     }

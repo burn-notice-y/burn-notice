@@ -10,13 +10,12 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import PropTypes from 'prop-types';
 import { MuiPickersUtilsProvider } from 'material-ui-pickers';
 import MomentUtils from '@date-io/moment';
-import VacancyRouter from "./Components/Vacancies/VacancyRouter";
-import UserActionRouter from "./Components/User/UserActionsRouter";
-import AssignmentRouter from "./Components/Assignments/AssignmentsRouter";
-import TransferRouter from "./Components/TransferReq/TransferRouter";
-import ReportsRouter from "./Components/Reports/ReportsRouter";
-import StationRouter from "./Components/Stations/StationRouter";
-
+import MainRouter from "./MainRouter";
+import Register from "./Components/User/Register";
+import Login from "./Components/User/Login";
+import Profile from "./Components/User/Profile";
+import Popup from "./Components/Popup";
+import OwnModal from "./Components/OwnModal";
 
 class App extends Component {
     componentDidMount() {
@@ -39,16 +38,17 @@ class App extends Component {
                     <TopNavBar/>
                     <main className={`main-content-cont ${loadingStyle}`}>
                     <Switch>
-                        <Route path={"/vacancy"} render={() => <VacancyRouter/>}/>
-                        <Route path={"/user"} render={() => <UserActionRouter/>}/>
-                        <Route path={"/assignments"} render={() => <AssignmentRouter/>}/>
-                        <Route path={"/transfer"} render={() => <TransferRouter/>}/>
-                        <Route path={"/reports"} render={() => <ReportsRouter/>}/>
-                        <Route path={"/stations"} render={() => <StationRouter/>}/>
+                        <Route path={"/visitor/register"} render={() => <Register/>}/>
+                        <Route path={"/visitor/login"} render={() => <Login/>}/>
+                        <Route path={"/user/profile"} render={() => <Profile />}/>
+                        <Route path={"/:path"} render={(routeProps) => <MainRouter {...routeProps}/>}/>
                         <Route path={"/"} render={() => <Landing/>}/>
                     </Switch>
                     </main>
-                    <CircularProgress className={`spinner ${spinnerStyle}`} />
+                    <CircularProgress className={`spinner ${spinnerStyle}`}/>
+                    <Popup {...this.props.popup} close={this.props.closePopup}/>
+                    <OwnModal handleClose={this.props.closeModal} {...this.props.modal}
+                    />
                 </Fragment>
             </BrowserRouter>
             </MuiPickersUtilsProvider>
@@ -57,13 +57,24 @@ class App extends Component {
 }
 
 App.propTypes = {
-    fetchUser: PropTypes.func
+    fetchUser: PropTypes.func,
+    menuShown: PropTypes.bool,
+    isLoading: PropTypes.bool,
+    modal: PropTypes.object,
+    popup: PropTypes.shape({
+        show: PropTypes.bool,
+        message: PropTypes.string
+    }),
+    closePopup: PropTypes.func,
+    closeModal: PropTypes.func
 };
 
 const mapStateToProps = state => {
     return {
         menuShown: state.menuShown,
-        isLoading: state.isLoading
+        isLoading: state.isLoading,
+        modal: state.modal,
+        popup: state.popup
     }
 };
 export default connect(mapStateToProps, actions)(App);

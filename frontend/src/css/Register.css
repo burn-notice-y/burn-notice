@@ -1,8 +1,9 @@
 .big-register-cont {
     height: 83vh;
 }
-.actions-cont {
+.register-actions-cont {
     display: flex;
+    width: 100%;
     justify-content: space-between;
     margin-top: 5vh;
 }

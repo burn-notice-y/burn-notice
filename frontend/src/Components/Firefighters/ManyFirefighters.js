@@ -15,19 +15,16 @@ const ExpansionPanelSummary = (props => <MuiExpansionPanelSummary {...props} />)
 ExpansionPanelSummary.muiName = 'ExpansionPanelSummary';
 
 
-const ManyFirefighters = ({ firemanList }) => {
-    console.log(firemanList);
-    return (
-        <ExpansionPanel id="ff_content">
-            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>}>
-                <Typography id="ff_title">Current Crew</Typography>
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails id="ff_body">
-                {[].map(firefighter => <Firefighter key={firefighter.id} {...firefighter} />)}
-            </ExpansionPanelDetails>
-        </ExpansionPanel>
-    );
-}
+const ManyFirefighters = ({ firemanList }) => (
+    <ExpansionPanel id="ff_content">
+        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>}>
+            <Typography id="ff_title">Current Crew</Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails id="ff_body">
+            {firemanList.map(firefighter => <Firefighter key={firefighter.id} {...firefighter} />)}
+        </ExpansionPanelDetails>
+    </ExpansionPanel>
+);
 
 ManyFirefighters.propTypes = {
     firemanList: PropTypes.array

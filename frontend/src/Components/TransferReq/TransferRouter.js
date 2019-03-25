@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import CreateTransferReq from "./ReviewTransferReq";
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
 import transferRequest from '../../data/transferRequest';
+import TransferReqDisplay from "./TransferReqDisplay";
+import UserTransferReqs from "./UserTransferReqs";
 
 class TransferRouter extends Component{
     state ={
@@ -25,11 +27,13 @@ class TransferRouter extends Component{
         }
         return (
             <Switch>
-                <Route path={"/transfer/create/:id"} render={(routeProps) =>
+                <Route path={"/transfer/review/:id"} render={routeProps =>
                     <CreateTransferReq applicantHeader={applicantHeader}
                                        header={header}
                                        {...routeProps}
                                        {...applicant}/>}/>
+                <Route path={"/transfer/view/:id"}  render={routeProps => <UserTransferReqs {...routeProps.match.params}/>}/>
+                <Route path={"/transfer/view"}  render={() => <TransferReqDisplay />}/>
             </Switch>
         )
     }
@@ -41,4 +45,4 @@ const mapStateToProps = state => {
     }
 };
 
-export default connect(mapStateToProps, actions)(TransferRouter);
+export default withRouter(connect(mapStateToProps, actions)(TransferRouter));

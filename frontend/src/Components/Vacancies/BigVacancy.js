@@ -10,7 +10,6 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import axios from "axios";
 import * as actions from '../../store/actions';
 import { connect }  from 'react-redux';
-import {Link} from "react-router-dom";
 
 class BigVacancy extends Component {
     state = { vacancy: null };

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
-import { Link, withRouter, Redirect } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -18,8 +18,10 @@ class Login extends Component {
       redirect: false
     };
 
-
-    login = () => {
+    login = event => {
+        console.log(event.charCode);
+        event.preventDefault();
+        event.stopPropagation();
         this.props.toggleLoading();
         axios.post("/api/login", `sap=${this.state.sap}&password=${this.state.password}`)
             .then(() => {
@@ -28,6 +30,7 @@ class Login extends Component {
             })
             .catch(() => {
                 this.props.toggleLoading();
+                this.props.showModal(["Oops","Looks like that combination didn't match what we have", "Please try again"]);
                 this.setState({error: true})
             })
     };
@@ -55,46 +58,45 @@ class Login extends Component {
                         Use your SAP number, and your custom password
                     </Typography>
                 </div>
-                <div className="form-cont">
-                    <div className="input-cont">
-                        <TextField
-                            error={this.state.error}
-                            id={`outlined-username`}
-                            label="SAP"
-                            value={this.state.sap}
-                            onChange={this.inputHandler('sap')}
-                            margin="normal"
-                            variant="outlined"
-                        />
+                <form>
+                    <div className="form-cont">
+
+                        <div className="login-input-cont">
+                            <TextField
+                                error={this.state.error}
+                                id={`outlined-username`}
+                                label="SAP"
+                                value={this.state.sap}
+                                onChange={this.inputHandler('sap')}
+                                margin="normal"
+                                variant="outlined"
+                            />
+                        </div>
+                        <div className="login-input-cont">
+                            <TextField
+                                error={this.state.error}
+                                id={`outlined-password`}
+                                label="Password"
+                                type="password"
+                                value={this.state.password}
+                                onChange={this.inputHandler('password')}
+                                margin="normal"
+                                variant="outlined"
+                            />
+                        </div>
                     </div>
-                    <div className="input-cont">
-                        <TextField
-                            error={this.state.error}
-                            id={`outlined-password`}
-                            label="Password"
-                            type="password"
-                            value={this.state.password}
-                            onChange={this.inputHandler('password')}
-                            margin="normal"
-                            variant="outlined"
-                        />
+                    <div className="login-actions-cont">
+                            <Button type={"submit"} variant="contained" color="primary" className={"login-button"} onClick={this.login}>Continue</Button>
                     </div>
+                </form>
                 </div>
-                <div className="login-actions-cont">
-                    <div className="submit-login-cont">
-                        <Button variant="contained" color="primary" className={"login-button"}><div onClick={this.login}>Continue</div></Button>
-                    </div>
-                    <div className="login-instead-cont">
-                        <Link to={"/forgot-password"}><Button color="primary">Forgot Password</Button></Link>
-                    </div>
-                </div>
-            </div>
         )
     }
 }
 
 Login.propTypes = {
-    toggleLoading: PropTypes.any.isRequired
+    toggleLoading: PropTypes.func,
+    showModal: PropTypes.func
 };
 
 export default withRouter(connect(null, actions)(Login));

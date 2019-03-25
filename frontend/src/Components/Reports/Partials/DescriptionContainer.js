@@ -6,23 +6,12 @@ const DescriptionContainer = props => (
     <div className="description-cont">
         <div className="reg-email reg-input">
             <TextField
-                label="Primary Team Actions"
+                label="Team Actions"
                 type="text"
-                value={props.primaryTeamActions}
-                onChange={props.inputHandler('primaryTeamActions')}
+                value={props.teamActions}
+                onChange={props.inputHandler('teamActions')}
                 margin="normal"
                 multiline
-                variant="outlined"
-            />
-        </div>
-        <div className="reg-email reg-input">
-            <TextField
-                label="Secondary Team Actions"
-                multiline
-                type="text"
-                value={props.secondaryTeamActions}
-                onChange={props.inputHandler('secondaryTeamActions')}
-                margin="normal"
                 variant="outlined"
             />
         </div>
@@ -42,8 +31,7 @@ const DescriptionContainer = props => (
 );
 
 DescriptionContainer.propTypes = {
-    primaryTeamActions: PropTypes.string,
-    secondaryTeamActions: PropTypes.string,
+    teamActions: PropTypes.string,
     description: PropTypes.string,
     inputHandler: PropTypes.func
 };
