@@ -74,7 +74,6 @@ insert into station_users (station_id, user_id) values
 (3, 31),
 (3, 26),
 (3, 24),
-(3, 31),
 (3, 18),
 (3, 8),
 (4, 28),

@@ -16,6 +16,7 @@ import Login from "./Components/User/Login";
 import Profile from "./Components/User/Profile";
 import Popup from "./Components/Popup";
 import OwnModal from "./Components/OwnModal";
+import UserDesktopHeader from "./Components/Header/LoggedIn/UserDesktopHeader";
 
 class App extends Component {
     componentDidMount() {
@@ -34,8 +35,7 @@ class App extends Component {
             <MuiPickersUtilsProvider utils={MomentUtils}>
             <BrowserRouter>
                 <Fragment>
-                    <Header/>
-                    <TopNavBar/>
+                    <Header user={this.props.user}/>
                     <main className={`main-content-cont ${loadingStyle}`}>
                     <Switch>
                         <Route path={"/visitor/register"} render={() => <Register/>}/>
@@ -66,7 +66,9 @@ App.propTypes = {
         message: PropTypes.string
     }),
     closePopup: PropTypes.func,
-    closeModal: PropTypes.func
+    closeModal: PropTypes.func,
+    user: PropTypes.object,
+
 };
 
 const mapStateToProps = state => {
@@ -74,7 +76,8 @@ const mapStateToProps = state => {
         menuShown: state.menuShown,
         isLoading: state.isLoading,
         modal: state.modal,
-        popup: state.popup
+        popup: state.popup,
+        user: state.user
     }
 };
 export default connect(mapStateToProps, actions)(App);

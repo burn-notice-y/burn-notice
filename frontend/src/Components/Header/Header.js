@@ -1,28 +1,19 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import LoggedOutMenu from './LoggedOutHeader';
-import LoggedInMenu from './LoggedInHeader';
+import LoggedOutHeader from './LoggedOut/LoggedOutHeader';
+import LoggedInHeader from './LoggedIn/LoggedInHeader';
+import * as PropTypes from "prop-types";
 
-class Header extends Component{
+const Header = ({ user }) => (
+    <Fragment>
+        {user ? <LoggedInHeader/> : <LoggedOutHeader/>}
+    </Fragment>
+);
 
-    determineLogin = () => {
-        switch(this.props.user){
-            case null:
-                return;
-            case false:
-                return <LoggedOutMenu/>;
-            default:
-                return <LoggedInMenu/>;
-        }
-    };
-    render(){
-        return (
-            <Fragment>
-                {this.determineLogin()}
-            </Fragment>
-        )
-    }
-}
+Header.propTypes = {
+    user: PropTypes.object,
+};
+
 const mapStateToProps = state => {
     return {
         user: state.user

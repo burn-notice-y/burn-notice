@@ -59,3 +59,12 @@ Loading Toggle
 .success-p {
     color: white !important;
 }
+
+@media only screen and (min-width: 780px){
+    .main-content-cont {
+        margin-left: 240px;
+        padding-left: 20px;
+        padding-top: 100px;
+        justify-content: flex-start;
+    }
+}

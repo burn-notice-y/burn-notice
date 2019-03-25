@@ -8,6 +8,8 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import DropDown from "../DropDown";
+import {fireStations} from '../../data/categories';
 
 
 
@@ -20,7 +22,8 @@ class Register extends Component{
         lastName: "",
         redirect: false,
         error: false,
-        disabled: false
+        disabled: false,
+        station: "40"
 
     };
 
@@ -115,6 +118,13 @@ class Register extends Component{
                             margin="normal"
                             variant="outlined"
                         />
+                    </div>
+                    <div className="reg-last-name reg-input">
+                        <DropDown items={fireStations}
+                                  value={this.state.station}
+                                  label={"Your Station"}
+                                  inputHandler={this.inputHandler}
+                                  inputArgument={"station"}/>
                     </div>
                 </div>
                 <div className="register-actions-cont">

@@ -1,3 +1,7 @@
+.desktop {
+    display: none;
+}
+
 .top-nav-cont {
     display: flex;
     width: 100%;
@@ -43,4 +47,30 @@
     padding-left: 15px;
     display: flex;
     justify-content: space-between;
+}
+.top-bar {
+    z-index: 100;
+}
+.perm-drawer > div {
+    z-index: 1000;
+    margin-top: 60px;
+    padding-top: 10px;
+    height: 100vh;
+    overflow: scroll;
+}
+
+.list-cont {
+    padding-top: 80px !important;
+}
+
+@media only screen and (min-width: 780px){
+    .desktop {
+        display: block;
+    }
+    .mobile {
+        display: none;
+    }
+    .top-bar {
+        background-color: #9d1112 !important;
+    }
 }
