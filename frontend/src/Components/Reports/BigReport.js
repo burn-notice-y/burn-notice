@@ -6,12 +6,16 @@ import PropTypes from "prop-types";
 import props from "../../data/exampleReports";
 import * as actions from '../../store/actions';
 import { connect } from 'react-redux';
+import report from "../../data/bigReport";
+import CardContent from "@material-ui/core/CardContent/CardContent";
+import Card from "@material-ui/core/Card/Card";
 
 
 class BigReport extends Component {
 
     state = {
         report: null
+
     };
 
     componentDidMount() {
@@ -30,33 +34,79 @@ class BigReport extends Component {
     showStation = () => {
         if (this.state.report !== null) {
             let report = this.state.report;
+            let exposedToChemicals = "";
+            report.exposedToChemicals ? exposedToChemicals = "Yes" : exposedToChemicals = "No";
+            let fireRetardantPresent = "";
+            report.fireRetardantPresent ? fireRetardantPresent = "Yes" : fireRetardantPresent = "No";
             return (
                 <Fragment>
-                    <div className="station-header">
+                    <div className="report-header">
                         <Typography component="h3" variant="h2">
-                            Creator: {`${report.creator.firstName} ${report.creator.lastName}`}
+                            Report Details
                         </Typography>
                     </div>
-                    <div className="station-body">
-                        <Typography component="h4" variant="h5">
-                            Create Date: {report.createDate}
+                    <Card>
+                    <CardContent>
+                    <div>
+                        <Typography component="h5" variant="h6">
+                            Creator:
                         </Typography>
-                        <Typography component="h4" variant="h5">
-                            Report Type: {report.type.name}
-                        </Typography>
-                        <Typography component="h4" variant="h5">
-                            Exposed to Chemicals: {report.exposedToChemicals}
-                        </Typography>
-                        <Typography>
-                            Time Dispatched: {report.timeDispatched}
-                        </Typography>
-                        <Typography>
-                            Time Arrived: {report.timeArrived}
-                        </Typography>
-                        <Typography>
-                            Fire Retardant Present: {report.fireRetardantPresent}
+                        <Typography component={"p"} variant="subtitle1">
+                            {`${report.creator.firstName} ${report.creator.lastName}`}
                         </Typography>
                     </div>
+                    <div className="report-body">
+                        <Typography component="h5" variant="h6">
+                            Create Date:
+                        </Typography>
+                        <Typography component="p" variant="subtitle1">
+                            {report.createDate}
+                        </Typography>
+                        <Typography component="h5" variant="h6">
+                            Report Type:
+                        </Typography>
+                        <Typography component={"p"} variant={"subtitle1"}>
+                            {report.type.name}
+                        </Typography>
+                        <Typography component="h5" variant="h6">
+                            Exposed to Chemicals:
+                        </Typography>
+                        <Typography component={"p"} variant={"subtitle1"}>
+                            {exposedToChemicals}
+                        </Typography>
+                        <Typography component="h5" variant="h6">
+                            Time Dispatched:
+                        </Typography>
+                        <Typography component={"p"} variant={"subtitle1"}>
+                            {report.timeDispatched}
+                        </Typography>
+                        <Typography component="h5" variant="h6">
+                            Time Arrived:
+                        </Typography>
+                        <Typography component="p" variant="subtitle1">
+                            {report.timeArrived}
+                        </Typography>
+                        <Typography component="h5" variant="h6">
+                            Fire Retardant Present:
+                        </Typography>
+                        <Typography component="p" variant="subtitle1">
+                            {fireRetardantPresent}
+                        </Typography>
+                        <Typography component="h5" variant="h6">
+                            Team Actions:
+                        </Typography>
+                        <Typography component="p" variant="subtitle1">
+                            {/*{report.teamActions}*/}
+                        </Typography>
+                        <Typography component="h5" variant="h6">
+                            Description:
+                        </Typography>
+                        <Typography component="p" variant="subtitle1">
+                            {report.description}
+                        </Typography>
+                    </div>
+                    </CardContent>
+                    </Card>
                 </Fragment>
             )
         }
@@ -64,7 +114,10 @@ class BigReport extends Component {
 
 
     render() {
-    console.log(this.props);
+
+    console.log(this.state);
+    console.log(report.description);
+
         return (
             <Fragment>
                 <div>
