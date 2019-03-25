@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ManyTransferReq from "./ManyTransferReq";
 import { connect } from 'react-redux';
@@ -20,6 +20,7 @@ class UserTransferReqs extends Component {
             })
             .catch(() => this.props.toggleLoading())
     }
+
 
     render() {
         return (

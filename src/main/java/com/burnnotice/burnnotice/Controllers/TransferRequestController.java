@@ -76,12 +76,6 @@ public class TransferRequestController {
         // end most current assignment with the start date of the vacancy
 
 
-        // set status to approved
-        TransferRequest transferRequest = transferDao.findOne(request.getId());
-        transferRequest.setStatus("Approved");
-        transferDao.save(transferRequest);
-
-
         // set all other applications for the vacancy to "Filled"
         List<TransferRequest> applications = transferDao.findAllByVacancyId(vacancy.getId());
         for (TransferRequest application: applications){
@@ -90,9 +84,16 @@ public class TransferRequestController {
         transferDao.save(applications);
 
 
+        // set status to approved
+        TransferRequest transferRequest = transferDao.findOne(request.getId());
+        transferRequest.setStatus("Approved");
+        transferDao.save(transferRequest);
+
         // Set every pending user's eligibility for transfer back to true
 
+
         // Add an association between the successful applicant and the accepting fire station
+
 
     }
 

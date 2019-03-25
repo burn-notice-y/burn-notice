@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import { Redirect } from 'react-router-dom';
 import {connect} from 'react-redux';
-import * as actions from '../../store/actions'
+import * as actions from '../../../store/actions/index'
 import axios from 'axios';
 import AdminHeader from "./AdminHeader";
 import UserHeader from "./UserHeader";
+import UserDesktopHeader from "./UserDesktopHeader";
 
 class LoggedInMenu extends Component {
 
@@ -17,9 +18,23 @@ class LoggedInMenu extends Component {
             case null:
                 return;
             case false:
-                return <UserHeader logout={this.logout}/>;
+                return (
+                    <Fragment>
+                        <UserHeader logout={this.logout} closeMenu={this.props.closeMenu}/>
+                        <UserDesktopHeader logout={this.logout} closeMenu={this.props.closeMenu}
+                                           user={this.props.user}
+                        />
+                    </Fragment>
+                );
             default:
-                return <AdminHeader logout={this.logout}/>;
+                return (
+                    <Fragment>
+                        <AdminHeader logout={this.logout} closeMenu={this.props.closeMenu}/>
+                        <UserDesktopHeader logout={this.logout} closeMenu={this.props.closeMenu}
+                                           user={this.props.user}
+                        />
+                    </Fragment>
+                );
         }
     };
 
