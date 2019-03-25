@@ -9,7 +9,7 @@ const FirefighterInd = ({id, firstName, lastName, addFunction }) => (
             <Typography component={"p"} variant="subtitle2">
             {firstName} {lastName}
             </Typography>
-            <Button variant="contained" color="primary" onClick={() => addFunction({ firstName, id, lastName })}>Add</Button>
+            <Button variant="contained" color="primary" size="small" onClick={() => addFunction({ firstName, id, lastName })}>Add</Button>
         </div>
     );
 

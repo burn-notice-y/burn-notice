@@ -16,8 +16,6 @@ import ReportPage1 from "./Pages/ReportPage1";
 import ReportsPage2 from "./Pages/ReportPage2";
 import ReportsPage3 from "./Pages/ReportPage3";
 import Action from "./Actions/Action";
-import OwnModal from "../OwnModal";
-
 
 class CreateReport extends Component {
     state = {
@@ -35,19 +33,14 @@ class CreateReport extends Component {
         disabled: false,
         searchResult: [],
         teamMembers: [],
-        modalOpen: false,
-        teamMemberTaken: false,
         newMembers: 0
     };
 
     inputHandler = type => event => {
         if (type === "createDate"){
-            if(event > new Date()){
-                this.setState({
-                    modalOpen: true,
-                    dateWrong: true
-                });
-            } else {
+            if(event > new Date()) {
+                this.props.openModal()
+            }  else {
                 this.setState({createDate: moment(event).format("YYYY-MM-DD")})
             }
         } else {
@@ -167,15 +160,6 @@ class CreateReport extends Component {
         if (this.state.redirect) {
             return <Redirect to={"/reports"}/>
         }
-        let modalMessage = "";
-        let modalHeader = "";
-        if (this.state.teamMemberTaken){
-            modalHeader = "Oops";
-            modalMessage = "That firefighter is already the list"
-        }  else if(this.state.dateWrong) {
-            modalHeader = "Can you see into the future?";
-            modalMessage = "Please choose a valid date"
-        }
 
         return (
             <Fragment>
@@ -199,9 +183,6 @@ class CreateReport extends Component {
                         <Action page={this.props.match.params.pageNumber} submitReport={this.submitReport}/>
                     </div>
                 </div>
-                <OwnModal open={this.state.modalOpen} handleClose={this.modalClose}
-                          header={modalHeader} body={modalMessage}
-                />
             </Fragment>
         )
     }

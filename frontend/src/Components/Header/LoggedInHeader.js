@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component, Fragment } from 'react';
 import { Redirect } from 'react-router-dom';
 import {connect} from 'react-redux';
 import * as actions from '../../store/actions'
@@ -37,9 +37,9 @@ class LoggedInMenu extends Component {
             return (<Redirect to={"/"}/>)
         }
         return (
-            <React.Fragment>
+            <Fragment>
                 {this.determineAdmin()}
-            </React.Fragment>
+            </Fragment>
         )
     }
 }
