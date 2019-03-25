@@ -27,10 +27,9 @@ public class TransferRequestController {
         this.assignmentDao = assignmentDao;
     }
 
-    @GetMapping("/api/findAllTransferReq")
-    public Iterable<TransferRequest> findTransferByStation()
-    {
-        return transferDao.findAll();
+    @GetMapping("/api/user-transfer-req")
+    public List<TransferReqHighlights> findTransferByStation(@RequestParam long id) {
+        return transferDao.findAllByUserId(id);
     }
 
     @PostMapping("/api/submitApplication")

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import LoggedOutMenu from './LoggedOutHeader';
 import LoggedInMenu from './LoggedInHeader';
@@ -17,9 +17,9 @@ class Header extends Component{
     };
     render(){
         return (
-            <React.Fragment>
+            <Fragment>
                 {this.determineLogin()}
-            </React.Fragment>
+            </Fragment>
         )
     }
 }

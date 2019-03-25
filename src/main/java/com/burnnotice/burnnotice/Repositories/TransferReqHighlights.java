@@ -8,4 +8,5 @@ public interface TransferReqHighlights {
     String getSentDate();
     OnlyNames getUser();
     VacancyFromTransfer getVacancy();
+    String getStatus();
 }

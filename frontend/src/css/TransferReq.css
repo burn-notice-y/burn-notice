@@ -32,3 +32,18 @@
 .stationSelect-cont div{
     width: 84% !important;
 }
+.user-requests-cont {
+    height: 85vh;
+    width: 85%;
+}
+.user-req-header-cont h2 {
+    text-align: center;
+}
+.user-req-header-cont h2:after {
+    content: " ";
+    display: block;
+    margin: 0 auto;
+    width: 50%;
+    padding-top: 20px;
+    border-bottom: 1px solid #a8a8a8;
+}

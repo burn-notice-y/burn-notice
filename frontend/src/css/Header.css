@@ -35,3 +35,12 @@
 .list-item {
     width: 100%;
 }
+.link {
+    display: flex;
+    justify-content: space-between;
+}
+.sub-link {
+    padding-left: 15px;
+    display: flex;
+    justify-content: space-between;
+}

@@ -5,7 +5,7 @@ import ManyAssignments from "./ManyAssignments";
 
 const AssignmentsRouter = () => (
     <Switch>
-        <Route path={"/assignments/show"} render={() => <ManyAssignments/>}/>
+        <Route path={"/assignments/show/:id"} render={routeProps => <ManyAssignments {...routeProps.match.params}/>}/>
         <Route path={"/assignments/:id"} render={() => <BigAssignment/>}/>
 
     </Switch>
