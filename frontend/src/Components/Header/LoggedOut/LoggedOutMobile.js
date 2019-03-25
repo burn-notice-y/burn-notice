@@ -5,11 +5,13 @@ import Drawer from '@material-ui/core/Drawer';
 import * as PropTypes from "prop-types";
 import LoggedOutContent from "./LoggedOutContent";
 import AboutSection from "../AboutSection";
+import TopNavBar from "../TopBar";
 
 class LoggedOutMobile extends Component{
     render(){
         return (
             <div className={"mobile mobile-header"}>
+                <TopNavBar/>
                 <Drawer variant={"temporary"} className={"mobile"} open={this.props.menuShown} onClose={() => this.props.closeMenu()}>
                     <div className={"close-div"}
                          tabIndex={0}
