@@ -106,7 +106,7 @@ class BigVacancy extends Component {
                         </div>
                         <div className="top">
                             <Typography component="h3" variant="h4" gutterBottom className={"application-header"}>
-                                {this.props.applicantHeader}
+                                Your Information
                             </Typography>
                         </div>
                     </div>

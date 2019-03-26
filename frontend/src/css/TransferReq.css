@@ -58,7 +58,15 @@
         justify-content: space-between;
     }
     .actions-container {
-        margin-top: 10vh;
+        margin-top: 6vh;
         width: 90%;
+    }
+    .transfer-actions-container {
+        margin-top: 5vh;
+        display: flex;
+        justify-content: flex-end;
+    }
+    .transfer-actions-container > div {
+        margin-right: 20px;
     }
 }
