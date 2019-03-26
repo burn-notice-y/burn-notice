@@ -11,6 +11,7 @@ const ReportsRouter = () => (
         <Route path={"/reports/create/:pageNumber"} render={(routeProps) => <CreateReport {...routeProps}/>}/>
         <Route path={"/reports/view/:id"} render={(routeProps) => <BigReport {...routeProps}/>}/>
         <Route path={"/reports/:id"} render={(routeProps) => <UserReportDisplay {...routeProps}/>}/>
+
     </Switch>
 );
 
