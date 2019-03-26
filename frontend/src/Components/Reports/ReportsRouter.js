@@ -10,7 +10,8 @@ const ReportsRouter = () => (
         <Route path={"/reports/display"} render={() => <ReportDisplay/>}/>
         <Route path={"/reports/create/:pageNumber"} render={(routeProps) => <CreateReport {...routeProps}/>}/>
         <Route path={"/reports/view/:id"} render={(routeProps) => <BigReport {...routeProps}/>}/>
-        <Route path={"/reports"} render={() => <UserReportDisplay/>}/>
+        <Route path={"/reports/:id"} render={(routeProps) => <UserReportDisplay {...routeProps}/>}/>
+
     </Switch>
 );
 

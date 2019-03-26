@@ -39,14 +39,6 @@
 .user-req-header-cont h2 {
     text-align: center;
 }
-.user-req-header-cont h2:after {
-    content: " ";
-    display: block;
-    margin: 0 auto;
-    width: 50%;
-    padding-top: 20px;
-    border-bottom: 1px solid #a8a8a8;
-}
 
 @media only screen and (min-width: 786px){
     .transfer-group {
@@ -68,5 +60,9 @@
     }
     .transfer-actions-container > div {
         margin-right: 20px;
+    }
+    .user-transfer-divider {
+        width: 60% !important;
+        margin: 2vh 20% !important;
     }
 }
