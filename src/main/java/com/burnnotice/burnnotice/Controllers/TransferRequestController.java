@@ -65,25 +65,7 @@ public class TransferRequestController {
         // - [ ] test each block
 
         User applicant = userDao.findOne(request.getUser().getId());
-        Email from = new Email("info@burn-notice.com");
-        String subject = "Transfer Request Approved!";
-        Email to = new Email(applicant.getEmail());
-        Content content = new Content("text/html", "<h1>You have been approved!<h1><br>" + applicant.getFirstName() + " " + applicant.getLastName() + " has been approved for transfer to station" + request.getVacancy().getStation().getName());
-        Mail mail = new Mail(from, subject, to, content);
 
-        SendGrid sg = new SendGrid(sendGridAPIKey);
-        Request newRequest = new Request();
-        try {
-            newRequest.setMethod(Method.POST);
-            newRequest.setEndpoint("mail/send");
-            newRequest.setBody(mail.build());
-            Response response = sg.api(newRequest);
-            System.out.println(response.getStatusCode());
-            System.out.println(response.getBody());
-            System.out.println(response.getHeaders());
-        } catch (IOException ex) {
-            throw ex;
-        }
 
         // find all users that were not accepted, and send them an email
 
@@ -95,11 +77,11 @@ public class TransferRequestController {
                 user.setEligibleForTransfer(true);
                 userList.add(user);
             }
-
         });
-        // notifies each user after setting user eligibility to transfer to false
 
-        String stationName = request.getVacancy().getStation().getName();
+        // notifies each user after setting user eligibility to transfer to false
+        Vacancy vacancy = vacDao.findOne(request.getVacancy().getId());
+        String stationName = stationDao.findOne(vacancy.getStation().getId()).getName();
 
         for (User user : userList) {
             Email denied_from = new Email("info@burn-notice.com");
@@ -107,24 +89,24 @@ public class TransferRequestController {
             Email denied_to = new Email(user.getEmail());
             Content denied_content = new Content("text/html", "<h1>Your Request has been denied<h1><br><p>Dear " + user.getFirstName() + " " + user.getLastName() + ", We Regret to inform you that your transfer to station" + stationName  + "has been denied</p>");
             Mail denied_mail = new Mail(denied_from, denied_subject, denied_to, denied_content);
-
-            SendGrid denied_sg = new SendGrid(sendGridAPIKey);
             Request deniedRequest = new Request();
-            try {
-                deniedRequest.setMethod(Method.POST);
-                deniedRequest.setEndpoint("mail/send");
-                deniedRequest.setBody(denied_mail.build());
-                Response response = denied_sg.api(newRequest);
-            } catch (IOException ex) {
-                throw ex;
-            }
+            SendGrid sg = new SendGrid(sendGridAPIKey);
+            sendEmail(deniedRequest, denied_mail, sg);
 
         }
+        Email from = new Email("info@burn-notice.com");
+        String subject = "Transfer Request Approved!";
+        Email to = new Email(applicant.getEmail());
+        Content content = new Content("text/html", "<h1>You have been approved!<h1><br><div>" + applicant.getFirstName() + " " + applicant.getLastName() + "  has been approved for transfer to station " + stationName + "</div>");
+        Mail mail = new Mail(from, subject, to, content);
+        Request newRequest = new Request();
+        SendGrid newSg = new SendGrid(sendGridAPIKey);
+        sendEmail(newRequest, mail, newSg);
 
 
         // close vacancy -- done
 
-        Vacancy vacancy = vacDao.findOne(request.getVacancy().getId());
+
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         vacancy.setFillDate(dateFormat.format(new Date()));
         vacDao.save(vacancy);
@@ -173,17 +155,9 @@ public class TransferRequestController {
         Email to = new Email(applicant.getEmail());
         Content content = new Content("text/html", "<h1>Application Denied<h1><br>" + applicant.getFirstName() + " " + applicant.getLastName() + " has been denied for transfer to station" + request.getVacancy().getStation().getName());
         Mail mail = new Mail(from, subject, to, content);
-
-        SendGrid sg = new SendGrid(sendGridAPIKey);
         Request newRequest = new Request();
-        try {
-            newRequest.setMethod(Method.POST);
-            newRequest.setEndpoint("mail/send");
-            newRequest.setBody(mail.build());
-            Response response = sg.api(newRequest);
-        } catch (IOException ex) {
-            throw ex;
-        }
+        SendGrid newSg = new SendGrid(sendGridAPIKey);
+        sendEmail(newRequest, mail, newSg);
 
 
         // set status to denied
@@ -195,5 +169,19 @@ public class TransferRequestController {
     @PostMapping("/api/test")
     public Assignment test(){
         return assignmentDao.findAllByUserIdOrderByIdDesc(33).get(0);
+    }
+
+    public void sendEmail(Request request, Mail mail, SendGrid sg) throws IOException{
+        try {
+            request.setMethod(Method.POST);
+            request.setEndpoint("mail/send");
+            request.setBody(mail.build());
+            Response response = sg.api(request);
+            System.out.println(response.getStatusCode());
+            System.out.println(response.getBody());
+            System.out.println(response.getHeaders());
+        } catch (IOException ex) {
+            throw ex;
+        }
     }
 }

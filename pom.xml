@@ -48,6 +48,11 @@
             <artifactId>sendgrid-java</artifactId>
             <version>4.3.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.sendgrid</groupId>
+            <artifactId>sendgrid-java</artifactId>
+            <version>4.3.0</version>
+        </dependency>
     </dependencies>
 
     <build>
