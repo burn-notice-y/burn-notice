@@ -59,7 +59,6 @@ public class TransferRequestController {
     @Value("${sendgrid_api_key}") String sendGridAPIKey;
     @PostMapping("/api/approve-transfer")
     public void approveRequest( @RequestBody TransferRequest request) throws IOException {
-
         User applicant = userDao.findOne(request.getUser().getId());
 
         Vacancy vacancy = vacDao.findOne(request.getVacancy().getId());
