@@ -115,38 +115,4 @@ public class TransferRequestController {
         transferDao.save(transferRequest);
     }
 
-    @PostMapping("/api/test")
-    public void test(@RequestBody TransferRequest request){
-
-        User applicant = userDao.findOne(request.getUser().getId());
-
-        // close vacancy
-        Vacancy vacancy = vacDao.findOne(request.getVacancy().getId());
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        vacancy.setFillDate(dateFormat.format(new Date()));
-//        vacDao.save(vacancy);
-
-
-        // populate assignment history with start date of assignment the same as vacancy start
-        FireStation station = stationDao.findOne(vacancy.getStation().getId());
-        Assignment newAssignment =
-                new Assignment(vacancy.getPostDate(), "9999", vacancy.isEngine(), station, applicant);
-        assignmentDao.save(newAssignment);
-
-
-        // end most current assignment with the start date of the vacancy
-        Assignment currentAssignment = assignmentDao.findByEndDateAndUserId("9999", applicant.getId());
-        System.out.println(currentAssignment.getEndDate());
-        currentAssignment.setEndDate(vacancy.getPostDate());
-//        assignmentDao.save(currentAssignment);
-
-
-        // set all other applications for the vacancy to "Filled"
-        List<TransferRequest> applications = transferDao.findAllByVacancyId(vacancy.getId());
-        for (TransferRequest application: applications){
-            application.setStatus("Filled");
-        }
-//        transferDao.save(applications);
-
-    }
 }

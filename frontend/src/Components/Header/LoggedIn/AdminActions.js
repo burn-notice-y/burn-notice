@@ -15,7 +15,7 @@ import Description from "@material-ui/icons/Description";
 import LibraryAdd from "@material-ui/icons/LibraryAdd";
 import Search from "@material-ui/icons/Search";
 import NoteAdd from "@material-ui/icons/NoteAdd";
-import Store from "@material-ui/core/SvgIcon/SvgIcon";
+import Store from "@material-ui/icons/Store";
 
 const AdminActions = ({ closeMenu, user}) => {
     return (

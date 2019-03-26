@@ -17,5 +17,5 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     LoggedInUser findUserBySap(String sap);
 
-    User getFirstById();
+    User findFirstByOrderByIdDesc();
 }

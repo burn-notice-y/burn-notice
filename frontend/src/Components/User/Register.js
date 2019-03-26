@@ -39,7 +39,7 @@ class Register extends Component{
             password: this.state.password,
             email: this.state.email,
         }).then(() => {
-            axios.post("/api/add-station", `stationId=${this.state.station}`)
+            axios.post("/api/add-station", `stationName=${this.state.station}`)
                 .then(result => {
                     console.log(result);
                     this.props.toggleLoading();

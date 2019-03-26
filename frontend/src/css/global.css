@@ -67,7 +67,6 @@ Loading Toggle
         padding-left: 20px;
         flex-shrink: 0;
         padding-top: 100px;
-        justify-content: flex-start;
     }
     .success-message {
         padding: 2%;
