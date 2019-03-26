@@ -39,10 +39,11 @@
 #search:focus {
     outline: 0;
 }
-.multi-action-cont {
+.two-actions-cont {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    margin-top: 10vh !important;
 }
 .team-member-cont {
     display: flex;
@@ -70,6 +71,10 @@
 .results {
     width: 100%;
     margin-right: 20px;
+}
+.single-action-cont {
+    margin-top: 2vh;
+    text-align: right;
 }
 
 @media only screen and (min-width: 786px){

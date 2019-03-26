@@ -15,6 +15,9 @@ import Description from "@material-ui/icons/Description";
 import LibraryAdd from "@material-ui/icons/LibraryAdd";
 import NoteAdd from "@material-ui/icons/NoteAdd";
 import Store from "@material-ui/icons/Store";
+import Search from "@material-ui/icons/Search";
+import AssignmentTurnedIn from "@material-ui/icons/AssignmentTurnedIn";
+import Assignment from "@material-ui/icons/Assignment";
 
 const AdminActions = ({ closeMenu, user}) => {
     return (
@@ -32,15 +35,15 @@ const AdminActions = ({ closeMenu, user}) => {
                           primaryText={"Vacancies"}
                           mainIcon={<Store/>}
                           listItems={[
-                              [<NoteAdd/>,  'All Vacancies', `/vacancy/show`],
+                              [<Search/>,  'All Vacancies', `/vacancy/show`],
                               [<NoteAdd/>,  'Create Vacancy', `/vacancy/create`],
-                              [<ListAlt/> ,'Review Requests', '/transfer/view']
+                              [<AssignmentTurnedIn/> ,'Review Requests', '/transfer/view']
                           ]}
             />
             {[[`Assignment History`, `/assignments/show/${user ? user.id : ""}`], ['Station List', '/stations/all']].map((text, index) => (
             <ListItem button key={index} onClick={closeMenu}>
                 <ListItemIcon>{text[0] === "Assignment History" ?
-                    <Description/> : <LocationCity/> }</ListItemIcon>
+                    <Assignment/> : <LocationCity/> }</ListItemIcon>
                 <Link to={text[1]}><ListItemText primary={text[0]}/></Link>
             </ListItem>
             ))}

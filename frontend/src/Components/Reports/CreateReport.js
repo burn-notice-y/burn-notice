@@ -168,7 +168,6 @@ class CreateReport extends Component {
         if (this.state.redirect) {
             return <Redirect to={`/reports/${this.state.id}`}/>
         }
-        console.log(this.state);
         return (
             <Fragment>
                 <div className={"create-report-cont"} id={"top"}>
@@ -189,9 +188,7 @@ class CreateReport extends Component {
                         </Switch>
                     </div>
                     <Divider/>
-                    <div className="actions-cont">
-                        <Action page={this.props.match.params.pageNumber} submitReport={this.submitReport}/>
-                    </div>
+                    <Action page={this.props.match.params.pageNumber} submitReport={this.submitReport}/>
                 </div>
             </Fragment>
         )

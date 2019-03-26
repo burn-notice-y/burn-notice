@@ -36,7 +36,6 @@ class Profile extends Component {
     };
 
     inputHandler = type => event => {
-        console.log(event.target.value)
         this.setState({
             [type]: event.target.value
         })
@@ -152,7 +151,7 @@ class Profile extends Component {
                                 </Typography>
                             </div>
                         </div>
-                        <div className="actions-cont">
+                        <div className="prof-actions-cont">
                             <Button variant="contained" color="primary" type={"submit"} onClick={this.saveUserUpdate}>Save
                             </Button>
                         </div>
