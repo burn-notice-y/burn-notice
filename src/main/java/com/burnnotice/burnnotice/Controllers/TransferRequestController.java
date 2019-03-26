@@ -57,7 +57,7 @@ public class TransferRequestController {
         return transferDao.findOne(id);
     }
 
-    @Value("{$sendgrid_api_key}") String sendGridAPIKey;
+    @Value("${sendgrid_api_key}") String sendGridAPIKey;
     @PostMapping("/api/approve-transfer")
     public void approveRequest( @RequestBody TransferRequest request) throws IOException {
         // to do
@@ -82,16 +82,20 @@ public class TransferRequestController {
         // notifies each user after setting user eligibility to transfer to false
         Vacancy vacancy = vacDao.findOne(request.getVacancy().getId());
         String stationName = stationDao.findOne(vacancy.getStation().getId()).getName();
+        List<TransferRequest> applications = transferDao.findAllByVacancyId(vacancy.getId());
 
-        for (User user : userList) {
+
+        for (TransferRequest application : applications) {
             Email denied_from = new Email("info@burn-notice.com");
-            String denied_subject = "Transfer Request Denied!";
-            Email denied_to = new Email(user.getEmail());
-            Content denied_content = new Content("text/html", "<h1>Your Request has been denied<h1><br><p>Dear " + user.getFirstName() + " " + user.getLastName() + ", We Regret to inform you that your transfer to station" + stationName  + "has been denied</p>");
-            Mail denied_mail = new Mail(denied_from, denied_subject, denied_to, denied_content);
-            Request deniedRequest = new Request();
-            SendGrid sg = new SendGrid(sendGridAPIKey);
-            sendEmail(deniedRequest, denied_mail, sg);
+            if (application.getUser().getId() != applicant.getId()){
+                String denied_subject = "Transfer Request Denied!";
+                Email denied_to = new Email(application.getUser().getEmail());
+                Content denied_content = new Content("text/html", "<h1>Your Request has been denied<h1><br><p>Dear " + application.getUser().getFirstName() + " " + application.getUser().getLastName() + ", We Regret to inform you that your transfer to station" + stationName  + "has been denied</p>");
+                Mail denied_mail = new Mail(denied_from, denied_subject, denied_to, denied_content);
+                Request deniedRequest = new Request();
+                SendGrid sg = new SendGrid(sendGridAPIKey);
+                sendEmail(deniedRequest, denied_mail, sg);
+            }
 
         }
         Email from = new Email("info@burn-notice.com");
@@ -128,7 +132,6 @@ public class TransferRequestController {
         transferDao.save(transferRequest);
 
         // set all other applications for the vacancy to "Filled" -- needs testing
-        List<TransferRequest> applications = transferDao.findAllByVacancyId(vacancy.getId());
         for (TransferRequest application: applications){
             application.setStatus("Filled");
         }
