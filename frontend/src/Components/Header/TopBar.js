@@ -8,9 +8,6 @@ const TopNavBar = (props) => {
         <React.Fragment>
             <div className="top-nav-cont">
                 <div className="menu-tog" onClick={props.toggleMenu}><i className="fas fa-bars"/></div>
-                <div className="logo-cont">
-                    <img src="/images/company-logo.png" id="company-logo" alt="company logo"/>
-                </div>
             </div>
         </React.Fragment>
     )
