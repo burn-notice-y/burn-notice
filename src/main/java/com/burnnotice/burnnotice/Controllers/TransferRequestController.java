@@ -63,7 +63,6 @@ public class TransferRequestController {
 
         User applicant = userDao.findOne(request.getUser().getId());
 
-        // notifies each user after setting user eligibility to transfer to false
         Vacancy vacancy = vacDao.findOne(request.getVacancy().getId());
         List<TransferRequest> applications = transferDao.findAllByVacancyId(vacancy.getId());
 
