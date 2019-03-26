@@ -3,17 +3,18 @@ import React from "react";
 import PropTypes from 'prop-types';
 
 const DatePick = ({ labelDisplay, value, handleChange, argumentName}) => (
-<div className="picker">
-            <InlineDatePicker
-                clearable
-                variant="outlined"
-                label={labelDisplay}
-                value={value}
-                onChange={handleChange(argumentName)}
-                format={"YYYY-MM-DD"}
-            />
-        </div>
-    );
+    <div className="picker">
+        <InlineDatePicker
+            clearable
+            variant="outlined"
+            label={labelDisplay}
+            value={value}
+            onChange={handleChange(argumentName)}
+            format={"MMMM Do YYYY"}
+        />
+    </div>
+);
+
 
 DatePick.propTypes = {
     labelDisplay: PropTypes.string,

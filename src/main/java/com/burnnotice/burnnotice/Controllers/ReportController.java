@@ -25,6 +25,7 @@ public class ReportController {
     public void createReport(@RequestBody Report report) {
         reportDao.save(report);
         for (User user : report.getUsers()){
+            System.out.println(user.getId());
             user.getReports().add(report);
         }
     }

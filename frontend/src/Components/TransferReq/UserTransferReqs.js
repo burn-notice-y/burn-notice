@@ -13,6 +13,7 @@ class UserTransferReqs extends Component {
     };
 
     componentDidMount(){
+        this.props.fetchUser();
         this.props.toggleLoading();
         axios.get(`/api/user-transfer-req?id=${this.props.id}`)
             .then(res => {
@@ -31,7 +32,7 @@ class UserTransferReqs extends Component {
                         Your Applications
                     </Typography>
                 </div>
-                <Divider/>
+                <Divider className={"user-transfer-divider"}/>
                 <ManyTransferReq admin={false} {...this.state}/>
             </div>
         );
@@ -41,6 +42,7 @@ class UserTransferReqs extends Component {
 UserTransferReqs.propTypes = {
     toggleLoading: PropTypes.func,
     id: PropTypes.string,
+    fetchUser: PropTypes.func,
 };
 
 
