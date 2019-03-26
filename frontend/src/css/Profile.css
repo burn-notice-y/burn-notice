@@ -13,3 +13,24 @@
     display: flex;
     justify-content: flex-end;
 }
+.overview {
+    width: 70%;
+    float: left;
+}
+.actions-cont {
+    margin-top: 25px;
+    float: right;
+}
+
+@media only screen and (min-width: 786px) {
+    .big-edit-cont {
+        width: 45%;
+        margin-left: 20%;
+    }
+    .reg-input div {
+        width: 100%;
+    }
+    .prof-input div {
+        width: 100%!important;
+    }
+}

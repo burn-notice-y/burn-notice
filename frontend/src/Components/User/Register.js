@@ -10,6 +10,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import DropDown from "../DropDown";
 import {fireStations} from '../../data/categories';
+import Divider from "@material-ui/core/Divider/Divider";
+import * as PropTypes from "prop-types";
 
 
 
@@ -26,7 +28,9 @@ class Register extends Component{
         station: "40"
     };
 
-    register = () => {
+    register = event => {
+        event.preventDefault();
+        event.stopPropagation();
         this.props.toggleLoading();
         axios.post("/api/register", {
             firstName: this.state.firstName,
@@ -42,9 +46,12 @@ class Register extends Component{
                     this.setState({redirect: true})
                 }).catch(() => {
                     this.props.toggleLoading();
-                    this.setState({error: false})
+                    this.setState({error: true})
             })
-        })
+            }).catch(() => {
+                this.props.toggleLoading();
+                this.setState({error: true})
+            })
     };
 
     inputHandler = type => event => {
@@ -64,9 +71,11 @@ class Register extends Component{
                     <Typography component="h3" variant="h4" gutterBottom className={"registration-header"}>
                         Create your Account
                     </Typography>
+                    <Divider/>
                 </div>
+                <form >
                 <div className="input-cont">
-                    <div className="reg-sap reg-input">
+                    <div className="reg-group reg-input">
                         <TextField
                             error={this.state.error}
                             id={`outlined-username`}
@@ -75,9 +84,8 @@ class Register extends Component{
                             onChange={this.inputHandler('sap')}
                             margin="normal"
                             variant="outlined"
+                            required
                         />
-                    </div>
-                    <div className="reg-password reg-input">
                         <TextField
                             error={this.state.error}
                             id={`outlined-password`}
@@ -87,20 +95,11 @@ class Register extends Component{
                             onChange={this.inputHandler('password')}
                             margin="normal"
                             variant="outlined"
+                            required
                         />
                     </div>
-                    <div className="reg-email reg-input">
-                        <TextField
-                            error={this.state.error}
-                            label="Email"
-                            type="email"
-                            value={this.state.email}
-                            onChange={this.inputHandler('email')}
-                            margin="normal"
-                            variant="outlined"
-                        />
-                    </div>
-                    <div className="reg-first-name reg-input">
+                    <div className="reg-group reg-input">
+
                         <TextField
                             error={this.state.error}
                             label="First Name"
@@ -109,9 +108,8 @@ class Register extends Component{
                             onChange={this.inputHandler('firstName')}
                             margin="normal"
                             variant="outlined"
+                            required
                         />
-                    </div>
-                    <div className="reg-last-name reg-input">
                         <TextField
                             error={this.state.error}
                             label="Last Name"
@@ -120,9 +118,21 @@ class Register extends Component{
                             onChange={this.inputHandler('lastName')}
                             margin="normal"
                             variant="outlined"
+                            required
                         />
                     </div>
-                    <div className="reg-last-name reg-input">
+
+                    <div className="reg-group reg-input">
+                        <TextField
+                            error={this.state.error}
+                            label="Email"
+                            type="email"
+                            value={this.state.email}
+                            onChange={this.inputHandler('email')}
+                            margin="normal"
+                            variant="outlined"
+                            required
+                        />
                         <DropDown items={fireStations}
                                   value={this.state.station}
                                   label={"Your Station"}
@@ -130,17 +140,25 @@ class Register extends Component{
                                   inputArgument={"station"}/>
                     </div>
                 </div>
+
                 <div className="register-actions-cont">
                     <div className="login-instead-cont">
                         <Link to={"/visitor/login"}><Button color="primary">Sign in instead</Button></Link>
                     </div>
                     <div className="submit-reg-cont">
-                        <Button variant="contained" color="primary"><div onClick={this.register}>Continue</div></Button>
+                        <Button variant="contained" color="primary" type={"submit"} onClick={this.register}>Continue</Button>
                     </div>
                 </div>
+                </form>
 
             </div>
         )
     }
 }
+Register.propTypes = {
+    fetchUser: PropTypes.func,
+    toggleLoading: PropTypes.func,
+
+
+};
 export default withRouter(connect(null, actions)(Register));

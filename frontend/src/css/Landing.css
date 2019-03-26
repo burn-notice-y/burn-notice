@@ -25,3 +25,15 @@
 .greeting {
     margin-bottom: 4vh;
 }
+
+@media only screen and (min-width: 786px){
+    .full-cont {
+        width: 85%;
+    }
+    .landing-cont {
+        height: 50vh;
+    }
+    .landing-header-cont h2 {
+        text-align: center;
+    }
+}

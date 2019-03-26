@@ -15,7 +15,6 @@ import List from "@material-ui/core/List/List";
 const LoggedOutContent = () => {
     return (
         <Fragment>
-            <CardHeader title={"Burn Notice"}/>
             <List>
                 <ListItem button>
                     <ListItemIcon>{<VideoLabel/>}</ListItemIcon>
