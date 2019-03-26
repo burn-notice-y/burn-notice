@@ -13,7 +13,6 @@ import DropDownList from "../DropDownList";
 import ListAlt from "@material-ui/icons/ListAlt";
 import Description from "@material-ui/icons/Description";
 import LibraryAdd from "@material-ui/icons/LibraryAdd";
-import Search from "@material-ui/icons/Search";
 import NoteAdd from "@material-ui/icons/NoteAdd";
 import Store from "@material-ui/icons/Store";
 
@@ -39,7 +38,7 @@ const AdminActions = ({ closeMenu, user}) => {
                           ]}
             />
             {[[`Assignment History`, `/assignments/show/${user ? user.id : ""}`], ['Station List', '/stations/all']].map((text, index) => (
-            <ListItem button key={index}>
+            <ListItem button key={index} onClick={closeMenu}>
                 <ListItemIcon>{text[0] === "Assignment History" ?
                     <Description/> : <LocationCity/> }</ListItemIcon>
                 <Link to={text[1]}><ListItemText primary={text[0]}/></Link>
