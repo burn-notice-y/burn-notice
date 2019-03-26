@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
-import vacancy from '../../data/bigVacancy';
 import Typography from "@material-ui/core/Typography/Typography";
-import IconButton from "@material-ui/core/IconButton/IconButton";
 import moment from 'moment';
 import ManyFirefighters from '../Firefighters/ManyFirefighters';
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import DeleteIcon from '@material-ui/icons/Delete';
 import axios from "axios";
 import * as actions from '../../store/actions';
 import { connect }  from 'react-redux';
@@ -48,7 +43,7 @@ class BigVacancy extends Component {
             sentDate: moment().format('YYYY-MM-DD'),
             status: "Pending",
             user: {id: this.state.id },
-            vacancy: {id: vacancy.id },
+            vacancy: {id: this.props.match.params.id },
         }).then(result => {
             this.props.toggleLoading();
             this.setState({redirect: true});
@@ -80,6 +75,7 @@ class BigVacancy extends Component {
                 helperText = "You are not eligible for transfer"
             }
         }
+
         let captain = "";
             //this.state.vacancy.station.captain.firstName + " " + this.state.vacancy.station.captain.lastName;
 
