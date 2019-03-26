@@ -23,7 +23,7 @@ const UserActions = ({ closeMenu, user}) => {
                          mainIcon={<ListAlt/>}
                          listItems={[
                              [<LibraryAdd/>, "Create Report", "/reports/create/1"],
-                             [<Description/>, "My Reports", "/reports"]
+                             [<Description/>, "My Reports", `/reports/${user ? user.id : ""}`]
                          ]}
            />
            <DropDownList closeMenu={closeMenu}
@@ -31,8 +31,7 @@ const UserActions = ({ closeMenu, user}) => {
                          mainIcon={<Store/>}
                          listItems={[
                              [<Search/>, 'Search', `/vacancy/show`],
-                             [
-                                 <Description/>, 'My Applications', `/transfer/view/${user ? user.id : ""}`]
+                             [<Description/>, 'My Applications', `/transfer/view/${user ? user.id : ""}`]
 
                          ]}
            />

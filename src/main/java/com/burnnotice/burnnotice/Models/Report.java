@@ -29,10 +29,7 @@ public class Report {
     private String fireRetardantPresent;
 
     @Column(nullable=false)
-    private String primaryTeamActions;
-
-    @Column(nullable=false)
-    private String secondaryTeamActions;
+    private String teamActions;
 
     @Column(nullable=false)
     private String description;
@@ -103,20 +100,12 @@ public class Report {
         this.fireRetardantPresent = fireRetardantPresent;
     }
 
-    public String getPrimaryTeamActions() {
-        return primaryTeamActions;
+    public String getTeamActions() {
+        return teamActions;
     }
 
-    public void setPrimaryTeamActions(String primaryTeamActions) {
-        this.primaryTeamActions = primaryTeamActions;
-    }
-
-    public String getSecondaryTeamActions() {
-        return secondaryTeamActions;
-    }
-
-    public void setSecondaryTeamActions(String secondaryTeamActions) {
-        this.secondaryTeamActions = secondaryTeamActions;
+    public void setTeamActions(String teamActions) {
+        this.teamActions = teamActions;
     }
 
     public String getDescription() {

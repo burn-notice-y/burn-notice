@@ -25,8 +25,8 @@ const ReportPage1 = ({ inputHandler, reportType, chemicals, fireRetardant, creat
                     variant="outlined"
                     className={"report-dropdown"}
                 >
-                    {reportCategories.map(option => (
-                        <MenuItem key={option} value={option}>
+                    {reportCategories.map((option, index) => (
+                        <MenuItem key={option} value={index + 1}>
                             {option}
                         </MenuItem>
                     ))}

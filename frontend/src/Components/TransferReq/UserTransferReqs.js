@@ -31,7 +31,7 @@ class UserTransferReqs extends Component {
                         Your Applications
                     </Typography>
                 </div>
-                <Divider/>
+                <Divider className={"user-transfer-divider"}/>
                 <ManyTransferReq admin={false} {...this.state}/>
             </div>
         );

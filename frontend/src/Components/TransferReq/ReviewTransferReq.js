@@ -49,14 +49,13 @@ class ReviewTransferReq extends Component{
             break;
           case "deny": url = "/api/deny-request";
               break;
-          default: url = "/api/submitApplication"
+          default: url = ""
       }
 
         this.props.toggleLoading();
         axios.post(url, {
             id: this.props.match.params.id,
             sentDate: moment().format("YYYY-MM-DD"),
-            status: "Pending",
             user: {
                 id: this.state.id
             },
