@@ -8,7 +8,6 @@ import List from "@material-ui/core/List/List";
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import Link from "react-router-dom/es/Link";
-import {Link as RouterLink} from "react-router-dom";
 
 class DropDownList extends Component {
     state = {

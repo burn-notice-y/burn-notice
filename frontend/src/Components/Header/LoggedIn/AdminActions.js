@@ -15,6 +15,7 @@ import Description from "@material-ui/icons/Description";
 import LibraryAdd from "@material-ui/icons/LibraryAdd";
 import Search from "@material-ui/icons/Search";
 import NoteAdd from "@material-ui/icons/NoteAdd";
+import Store from "@material-ui/icons/Store";
 
 const AdminActions = ({ closeMenu, user}) => {
     return (
@@ -30,9 +31,9 @@ const AdminActions = ({ closeMenu, user}) => {
             />
             <DropDownList closeMenu={closeMenu}
                           primaryText={"Vacancies"}
-                          mainIcon={<ListAlt/>}
+                          mainIcon={<Store/>}
                           listItems={[
-                              [<Search/>, 'Search', '/vacancy/show'],
+                              [<Search/>, 'Search', `/vacancy/show`],
                               [<NoteAdd/>,  'Create Vacancy', `/vacancy/create`],
                               [<ListAlt/> ,'Review Requests', '/transfer/view']
                           ]}
@@ -41,7 +42,7 @@ const AdminActions = ({ closeMenu, user}) => {
             <ListItem button key={index}>
                 <ListItemIcon>{text[0] === "Assignment History" ?
                     <Description/> : <LocationCity/> }</ListItemIcon>
-                <Link component={RouterLink} to={text[1]}><ListItemText primary={text[0]}/></Link>
+                <Link to={text[1]}><ListItemText primary={text[0]}/></Link>
             </ListItem>
             ))}
 

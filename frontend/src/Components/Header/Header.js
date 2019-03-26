@@ -4,6 +4,7 @@ import LoggedOutHeader from './LoggedOut/LoggedOutHeader';
 import LoggedInHeader from './LoggedIn/LoggedInHeader';
 import * as PropTypes from "prop-types";
 
+
 const Header = ({ user }) => (
     <Fragment>
         {user ? <LoggedInHeader/> : <LoggedOutHeader/>}

@@ -58,7 +58,7 @@ class ReviewTransferReq extends Component{
             sentDate: moment().format("YYYY-MM-DD"),
             status: "Pending",
             user: {
-                id: 33
+                id: this.state.id
             },
             vacancy: {
                 id: this.state.vacancy.id

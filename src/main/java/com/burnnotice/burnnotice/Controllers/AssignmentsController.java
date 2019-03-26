@@ -3,6 +3,7 @@ package com.burnnotice.burnnotice.Controllers;
 import com.burnnotice.burnnotice.Models.Assignment;
 import com.burnnotice.burnnotice.Repositories.AssignmentRepository;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 

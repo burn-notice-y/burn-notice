@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {Link as RouterLink } from 'react-router-dom';
 import {connect} from 'react-redux';
 import * as actions from '../../../store/actions/index'
 import Drawer from '@material-ui/core/Drawer';
