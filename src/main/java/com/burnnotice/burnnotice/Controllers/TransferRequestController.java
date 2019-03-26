@@ -2,12 +2,15 @@ package com.burnnotice.burnnotice.Controllers;
 
 import com.burnnotice.burnnotice.Models.*;
 import com.burnnotice.burnnotice.Repositories.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import com.sendgrid.*;
 
 
 @RestController
@@ -53,10 +56,31 @@ public class TransferRequestController {
         return transferDao.findOne(id);
     }
 
+    @Value("{$sendgrid_api_key}") String sendGridAPIKey;
     @PostMapping("/api/approve-transfer")
-    public void approveRequest( @RequestBody TransferRequest request) {
-        // notify user
+    public void approveRequest( @RequestBody TransferRequest request) throws IOException {
+        // notify user by email
         User applicant = userDao.findOne(request.getUser().getId());
+
+        Email from = new Email("info@burn-notice.com");
+        String subject = "Transfer Request Approved!";
+        Email to = new Email(applicant.getEmail());
+        Content content = new Content("text/html", "<h1>You have been approved!<h1><br>" + applicant.getFirstName() + applicant.getLastName() + " has been approved for transfer to station" + request.getVacancy().getStation().getName());
+        Mail mail = new Mail(from, subject, to, content);
+
+        SendGrid sg = new SendGrid(sendGridAPIKey);
+        Request newRequest = new Request();
+        try {
+            newRequest.setMethod(Method.POST);
+            newRequest.setEndpoint("mail/send");
+            newRequest.setBody(mail.build());
+            Response response = sg.api(newRequest);
+            System.out.println(response.getStatusCode());
+            System.out.println(response.getBody());
+            System.out.println(response.getHeaders());
+        } catch (IOException ex) {
+            throw ex;
+        }
 
 
         // close vacancy
