@@ -51,12 +51,10 @@
 .top-bar {
     z-index: 100;
 }
-.perm-drawer > div {
+
+.drawer > div {
     z-index: 1000;
-    margin-top: 60px;
-    padding-top: 10px;
-    height: 100vh;
-    overflow: scroll;
+    padding: 25px 0 100px 0;
 }
 
 .list-cont {

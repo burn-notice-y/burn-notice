@@ -5,11 +5,10 @@ import * as actions from '../../../store/actions/index'
 import axios from 'axios';
 import AdminHeader from "./AdminHeader";
 import UserHeader from "./UserHeader";
-import UserDesktopHeader from "./UserDesktopHeader";
 import * as PropTypes from "prop-types";
+import DesktopUser from "./DesktopUser";
 
 class LoggedInHeader extends Component {
-
     state = {
         redirect: false
     };
@@ -22,7 +21,7 @@ class LoggedInHeader extends Component {
                 return (
                     <Fragment>
                         <UserHeader logout={this.logout} closeMenu={this.props.closeMenu}/>
-                        <UserDesktopHeader logout={this.logout} closeMenu={this.props.closeMenu}
+                        <DesktopUser logout={this.logout} closeMenu={this.props.closeMenu}
                                            user={this.props.user}
                         />
                     </Fragment>
@@ -31,7 +30,7 @@ class LoggedInHeader extends Component {
                 return (
                     <Fragment>
                         <AdminHeader logout={this.logout} closeMenu={this.props.closeMenu} user={this.props.user} menuShown={this.props.menuShown}/>
-                        <UserDesktopHeader logout={this.logout} closeMenu={this.props.closeMenu}
+                        <DesktopUser logout={this.logout} closeMenu={this.props.closeMenu}
                                            user={this.props.user}
                         />
                     </Fragment>

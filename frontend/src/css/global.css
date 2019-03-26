@@ -64,6 +64,7 @@ Loading Toggle
     .main-content-cont {
         margin-left: 240px;
         padding-left: 20px;
+        flex-shrink: 0;
         padding-top: 100px;
         justify-content: flex-start;
     }

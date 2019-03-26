@@ -3,7 +3,6 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 import * as actions from './store/actions';
 import './css/global.css';
-import TopNavBar from './Components/Header/TopBar';
 import Landing from './Components/Landing';
 import Header from './Components/Header/Header';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -16,7 +15,6 @@ import Login from "./Components/User/Login";
 import Profile from "./Components/User/Profile";
 import Popup from "./Components/Popup";
 import OwnModal from "./Components/OwnModal";
-import UserDesktopHeader from "./Components/Header/LoggedIn/UserDesktopHeader";
 
 class App extends Component {
     componentDidMount() {

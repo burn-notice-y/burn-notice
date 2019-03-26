@@ -1,7 +1,5 @@
 import React from 'react';
 import List from "@material-ui/core/List/List";
-import Person from '@material-ui/icons/Person';
-import PersonAdd from '@material-ui/icons/PersonAdd';
 import DropDownList from "./DropDownList";
 import * as PropTypes from "prop-types";
 import Public from '@material-ui/icons/Public';

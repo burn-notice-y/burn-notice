@@ -24,7 +24,6 @@ class Register extends Component{
         error: false,
         disabled: false,
         station: "40"
-
     };
 
     register = () => {
@@ -36,11 +35,15 @@ class Register extends Component{
             password: this.state.password,
             email: this.state.email,
         }).then(() => {
-            this.props.toggleLoading();
-            this.setState({redirect: true})
-        }).catch(() => {
-            this.props.toggleLoading();
-            this.setState({error: false})
+            axios.post("/api/add-station", `stationId=${this.state.station}`)
+                .then(result => {
+                    console.log(result);
+                    this.props.toggleLoading();
+                    this.setState({redirect: true})
+                }).catch(() => {
+                    this.props.toggleLoading();
+                    this.setState({error: false})
+            })
         })
     };
 

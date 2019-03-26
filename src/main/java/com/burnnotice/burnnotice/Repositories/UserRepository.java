@@ -16,4 +16,6 @@ public interface UserRepository extends CrudRepository<User, Long> {
     Iterable<OnlyNames> findAllByChiefFalse();
 
     LoggedInUser findUserBySap(String sap);
+
+    User getFirstById();
 }
