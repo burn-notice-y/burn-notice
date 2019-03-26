@@ -1,6 +1,6 @@
 .assignments-cont {
     height: 85vh;
-    width: 80%;
+    width: 80vh;
 }
 .assignments-content {
     height: 65vh;
@@ -22,4 +22,5 @@
     padding-top: 20px;
     border-bottom: 1px solid #a8a8a8;
 }
+
 
