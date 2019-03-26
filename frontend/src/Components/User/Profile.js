@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
 import axios from "axios";
 import * as PropTypes from "prop-types";
+import Divider from "@material-ui/core/Divider/Divider";
 
 class Profile extends Component {
     state = {
@@ -20,7 +21,7 @@ class Profile extends Component {
     };
 
     static getDerivedStateFromProps(nextProps, prevState) {
-        if (nextProps.user && nextProps.user.id != null){
+        if (nextProps.user && nextProps.user.id !== ""){
             if (nextProps.user.id !== prevState.id){
                 return {...nextProps.user}
             }
@@ -41,7 +42,9 @@ class Profile extends Component {
         })
     };
 
-    saveUserUpdate = () => {
+    saveUserUpdate = event => {
+        event.preventDefault();
+        event.stopPropagation();
         this.props.toggleLoading();
         axios.post("/api/edit-profile", {...this.state})
             .then(() => {
@@ -65,7 +68,6 @@ class Profile extends Component {
         if (transferEligible){
             transferText = "Yes";
         }
-        console.log(this.state);
         return (
             <div className={"big-edit-cont"}>
                 <div className="register-header">
@@ -73,6 +75,7 @@ class Profile extends Component {
                         <Typography component="h3" variant="h4" gutterBottom className={"registration-header"}>
                             Your Profile
                         </Typography>
+                        <Divider/>
                         <div className="edit-cont">
                             <Button variant="contained" color="primary">
                                 <div onClick={this.toggleEdit}>{actionName}</div>
@@ -85,9 +88,9 @@ class Profile extends Component {
                     </Typography>
                 </div>
                 <div className="input-cont">
-
+                    <form>
                     <div className="editable">
-                        <div className="reg-email reg-input">
+                        <div className="reg-email prof-input">
                             <TextField
                                 label="Email"
                                 type="email"
@@ -98,7 +101,7 @@ class Profile extends Component {
                                 disabled={this.state.editLocked}
                             />
                         </div>
-                        <div className="reg-first-name reg-input">
+                        <div className="reg-first-name prof-input">
                             <TextField
                                 label="First Name"
                                 type="text"
@@ -109,7 +112,7 @@ class Profile extends Component {
                                 disabled={this.state.editLocked}
                             />
                         </div>
-                        <div className="reg-last-name reg-input">
+                        <div className="reg-last-name prof-input">
                             <TextField
                                 label="Last Name"
                                 type="text"
@@ -122,39 +125,42 @@ class Profile extends Component {
                         </div>
                     </div>
                     <div className="static">
-                        <div className="static-header">
-                            <Typography component="h3" variant="h6" gutterBottom className={"edit-transfer"}>
-                                Overview:
-                            </Typography>
+                        <div className="overview">
+                            <div className="static-header">
+                                <Typography component="h3" variant="h6" gutterBottom className={"edit-transfer"}>
+                                    Overview:
+                                </Typography>
+                            </div>
+                            <div className="edit-transfer-cont reg-input">
+                                <Typography component="p" variant="subtitle2" gutterBottom className={"edit-transfer"}>
+                                    SAP: {this.state.sap}
+                                </Typography>
+                            </div>
+                            <div className="edit-transfer-cont reg-input">
+                                <Typography component="p" variant="subtitle2" gutterBottom className={"edit-transfer"}>
+                                    Eligible For Transfer: {transferText}
+                                </Typography>
+                            </div>
+                            <div className="edit-station-cont reg-input">
+                                <Typography component="p" variant="subtitle2" gutterBottom className={"edit-transfer"}>
+                                    Current Station: {user.fireStation.code}
+                                </Typography>
+                            </div>
+                            <div className="edit-station-cont reg-input">
+                                <Typography component="p" variant="subtitle2" gutterBottom className={"edit-transfer"}>
+                                    Current District: {user.fireStation.district}
+                                </Typography>
+                            </div>
                         </div>
-                        <div className="edit-transfer-cont reg-input">
-                            <Typography component="p" variant="subtitle2" gutterBottom className={"edit-transfer"}>
-                                SAP: {this.state.sap}
-                            </Typography>
-                        </div>
-                        <div className="edit-transfer-cont reg-input">
-                            <Typography component="p" variant="subtitle2" gutterBottom className={"edit-transfer"}>
-                                Eligible For Transfer: {transferText}
-                            </Typography>
-                        </div>
-                        <div className="edit-station-cont reg-input">
-                            <Typography component="p" variant="subtitle2" gutterBottom className={"edit-transfer"}>
-                                Current Station: {user.fireStation.code}
-                            </Typography>
-                        </div>
-                        <div className="edit-station-cont reg-input">
-                            <Typography component="p" variant="subtitle2" gutterBottom className={"edit-transfer"}>
-                                Current District: {user.fireStation.district}
-                            </Typography>
+                        <div className="actions-cont">
+                            <Button variant="contained" color="primary" type={"submit"} onClick={this.saveUserUpdate}>Save
+                            </Button>
                         </div>
                     </div>
+                    </form>
 
                 </div>
-                <div className="actions-cont">
-                        <Button variant="contained" color="primary">
-                            <div onClick={this.saveUserUpdate}>Save</div>
-                        </Button>
-                    </div>
+
             </div>
         )
     }

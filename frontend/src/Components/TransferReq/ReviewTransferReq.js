@@ -21,15 +21,15 @@ class ReviewTransferReq extends Component{
         lastName: "",
         eligibleForTransfer: "",
         chief: false,
-        vacancy: null
+        request: null
     };
 
     componentDidMount(){
         this.props.toggleLoading();
-        axios.get(`/api/one-vacancy?id=${this.props.match.params.id}`)
+        axios.get(`/api/one-transfer?id=${this.props.match.params.id}`)
             .then(res => {
                 this.props.toggleLoading();
-                this.setState({vacancy: res.data})
+                this.setState({request: res.data})
             })
             .catch(error => {
                 this.props.toggleLoading();
@@ -58,7 +58,7 @@ class ReviewTransferReq extends Component{
             sentDate: moment().format("YYYY-MM-DD"),
             status: "Pending",
             user: {
-                id: 33
+                id: this.state.id
             },
             vacancy: {
                 id: this.state.vacancy.id
@@ -73,7 +73,7 @@ class ReviewTransferReq extends Component{
     };
 
     render() {
-        if (this.state.vacancy === null){
+        if (this.state.request === null){
             return <div/>;
         }
         if (this.state.redirect && !this.state.chief){
@@ -81,12 +81,12 @@ class ReviewTransferReq extends Component{
         } else if (this.state.redirect) {
             return <Redirect to={"/transfer/view"}/>
         }
-        let vacancy = this.state.vacancy;
-        let fillDate = moment(vacancy.fillDate, "MMMM Do YYYY");
+        let request = this.state.request;
+        let fillDate = moment("2019-03-20").format("MMMM Do YYYY");
         let applyText = "Closed";
         let cannotApply = true;
         let helperText = "";
-        if (vacancy.fillDate === "9999"){
+        if (request.vacancy.fillDate === "9999"){
             fillDate = "Open";
             applyText = "Apply";
             if (this.state.eligibleForTransfer){
@@ -95,6 +95,8 @@ class ReviewTransferReq extends Component{
                 helperText = "You are not eligible for transfer"
             }
         }
+        let captain = this.state.request.vacancy.station.captain.firstName + " " + this.state.request.vacancy.station.captain.lastName;
+
         return (
             <div className={"big-edit-cont"}>
                 <div className="application-header">
@@ -105,14 +107,14 @@ class ReviewTransferReq extends Component{
                     </div>
                     <div className="input-cont">
                         <div className="apply">
-                            <VacancyInfo fillDate={fillDate} postDate={moment(vacancy.postDate).format("MMMM Do YYYY")} role={vacancy.engine ? "Engine" : "Truck"} temporary={vacancy.temporary ? "Yes" : "No"}
-                                         stationName={vacancy.station.name}
+                            <VacancyInfo fillDate={fillDate} postDate={moment(request.vacancy.postDate).format("MMMM Do YYYY")} role={request.vacancy.engine ? "Engine" : "Truck"} temporary={request.vacancy.temporary ? "Yes" : "No"}
+                                         stationName={request.vacancy.station.name} captain={captain}
 
 
                                          />
 
                             <div className={"fireman-cont"}>
-                                <ManyFirefighters firemanList={this.state.vacancy.station.currentCrew}/>
+                                <ManyFirefighters firemanList={this.state.request.vacancy.station.currentCrew}/>
                             </div>
                         </div>
                         <div className="top">
@@ -122,7 +124,7 @@ class ReviewTransferReq extends Component{
                         </div>
                     </div>
                     <div className="input-cont">
-                        <VacancyUserInfo {...this.state} apply={this.apply}
+                        <VacancyUserInfo {...request.user} apply={this.apply}
                                          cannotApply={cannotApply}
                                          applyText={applyText}
                                          chief={this.state.chief}

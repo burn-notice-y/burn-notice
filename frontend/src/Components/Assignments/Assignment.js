@@ -18,7 +18,7 @@ const Assignment = ({ engine, startDate, endDate, station }) => {
         closeDate = moment(endDate).format('MMMM Do YYYY');
     }
     return (
-        <Card className={"assignment"}>
+        <Card className={"assignment-cont"}>
             <CardContent>
                 <Typography color="textSecondary" gutterBottom>
                     Role: {role}
@@ -36,9 +36,6 @@ const Assignment = ({ engine, startDate, endDate, station }) => {
                     End: {closeDate}
                 </Typography>
             </CardContent>
-            <CardActions>
-                <Button size="small">Learn More</Button>
-            </CardActions>
         </Card>
     );
 };

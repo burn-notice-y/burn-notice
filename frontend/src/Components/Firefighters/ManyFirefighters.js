@@ -21,7 +21,11 @@ const ManyFirefighters = ({ firemanList }) => (
             <Typography id="ff_title">Current Crew</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails id="ff_body">
-            {firemanList.map(firefighter => <Firefighter key={firefighter.id} {...firefighter} />)}
+            {firemanList.map((firefighter, index) => (
+                <div className={index % 2 ?  "fireman-group" : ""}>
+                    <Firefighter key={firefighter.id} {...firefighter} />
+                </div>
+                ))}
         </ExpansionPanelDetails>
     </ExpansionPanel>
 );

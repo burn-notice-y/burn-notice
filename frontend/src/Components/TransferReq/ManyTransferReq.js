@@ -7,8 +7,8 @@ const ManyTransferReq = ({ admin, transferRequests, executedSearch }) => {
     let emptyDisplay = null;
     if (transferRequests.length === 0 && executedSearch){
         emptyDisplay = (
-            <Typography component={"h2"} variant={"h4"}>
-                No applications have been made to this station
+            <Typography component={"h2"} variant={"h5"}>
+                No pending requests for this station
             </Typography>
         )
     }

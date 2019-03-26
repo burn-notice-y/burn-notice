@@ -23,3 +23,12 @@
 .submit-login-cont {
     margin-bottom: 3vh;
 }
+@media only screen and (min-width: 786px) {
+    .login-cont {
+        width: 50%;
+    }
+
+    .login-input-cont div {
+        width: 100%;
+    }
+}

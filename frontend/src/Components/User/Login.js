@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import '../../css/Login.css';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import Divider from "@material-ui/core/Divider/Divider";
 
 
 class Login extends Component {
@@ -52,6 +53,7 @@ class Login extends Component {
                     <Typography component="h3" variant="h2" gutterBottom className={"login-header"}>
                         Sign in
                     </Typography>
+                    <Divider/>
                 </div>
                 <div className="login-info">
                     <Typography component="p" gutterBottom className={"login-header"}>

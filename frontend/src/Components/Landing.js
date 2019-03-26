@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions';
+import Divider from "@material-ui/core/Divider/Divider";
 
 class Landing extends Component {
 
@@ -42,6 +43,7 @@ class Landing extends Component {
                         <Typography component="h2" variant="h2" gutterBottom>
                             Burn Notice
                         </Typography>
+                        <Divider/>
                     </div>
                     <div className="landing-info-cont">
                         <Typography component="p" gutterBottom>

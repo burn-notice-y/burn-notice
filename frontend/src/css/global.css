@@ -50,6 +50,7 @@ Loading Toggle
     color: white;
     transition: all 0.4s ease-in-out;
     opacity: 0;
+    box-shadow: 11px 11px 31px -7px rgba(111, 111, 111, 0.75);
 }
 .popup-active {
     bottom: 10px;
@@ -63,8 +64,13 @@ Loading Toggle
 @media only screen and (min-width: 780px){
     .main-content-cont {
         margin-left: 240px;
-        padding-left: 20px;
+        flex-shrink: 0;
         padding-top: 100px;
-        justify-content: flex-start;
+    }
+    .success-message {
+        padding: 2%;
+        z-index: 100000;
+        width: 30vw;
+        left: 15%;
     }
 }

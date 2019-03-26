@@ -51,5 +51,19 @@
     width: 80vh !important;
 }
 
+@media only screen and (min-width: 786px) {
+    .admin-create-vacancy {
+        width: 80%;
+        height: 70vh;
+    }
+    .actions-cont {
+        float: none !important;
+        width: 100%;
+    }
+    .input-cont {
+        margin-top: 4vh;
+    }
+}
+
 
 

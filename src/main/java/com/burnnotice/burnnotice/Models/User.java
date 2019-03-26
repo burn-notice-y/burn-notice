@@ -35,7 +35,7 @@ public class User {
     @Column(nullable = false)
     private String email;
 
-    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "user")
     @JsonBackReference(value = "user")
     private TransferRequest transferRequest;
 

@@ -8,4 +8,6 @@ import java.util.List;
 public interface FireStationRepository extends CrudRepository<FireStation, Long> {
     List<StationHighlights> findAllBy();
     FireStation findByName(String name);
+
+
 }

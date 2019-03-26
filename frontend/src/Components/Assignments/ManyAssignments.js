@@ -6,6 +6,7 @@ import * as actions from '../../store/actions';
 import axios from 'axios';
 import '../../css/Assignments.css';
 import * as PropTypes from "prop-types";
+import Divider from "@material-ui/core/Divider/Divider";
 
 
 class ManyAssignments extends Component {
@@ -38,6 +39,7 @@ class ManyAssignments extends Component {
                         View your Assignments
                     </Typography>
                 </div>
+                <Divider className={"assignment-divider"}/>
                 <div className="assignments-content">
                     {this.state.assignments.map(assignment => <Assignment key={assignment.id} {...assignment}/>)}
                 </div>

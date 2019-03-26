@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface TransferRequestRepository extends CrudRepository<TransferRequest, Long> {
 
-    List<TransferReqHighlights> findAllByVacancy_Station_NameAndStatusContains(String stationName, String status);
+    List<TransferReqHighlights> findAllByVacancy_Station_NameAndStatusIsStartingWith(String stationName, String status);
 
     List<TransferReqHighlights> findAllByUserId(long id);
 
