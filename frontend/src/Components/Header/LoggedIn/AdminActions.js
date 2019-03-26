@@ -33,6 +33,7 @@ const AdminActions = ({ closeMenu, user}) => {
                           primaryText={"Vacancies"}
                           mainIcon={<Store/>}
                           listItems={[
+                              [<NoteAdd/>,  'All Vacancies', `/vacancy/show`],
                               [<NoteAdd/>,  'Create Vacancy', `/vacancy/create`],
                               [<ListAlt/> ,'Review Requests', '/transfer/view']
                           ]}

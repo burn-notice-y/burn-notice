@@ -60,7 +60,7 @@ class ReviewTransferReq extends Component{
                 id: this.state.request.user.id
             },
             vacancy: {
-                id: this.state.request.id
+                id: this.state.request.vacancy.id
             }
         }).then(() => {
             this.props.toggleLoading();
@@ -95,7 +95,7 @@ class ReviewTransferReq extends Component{
             }
         }
         let captain = this.state.request.vacancy.station.captain.firstName + " " + this.state.request.vacancy.station.captain.lastName;
-        console.log(this.state.request.user.id);
+        console.log(this.state);
 
         return (
             <div className={"big-edit-cont"}>
