@@ -13,6 +13,7 @@ const DescriptionContainer = props => (
                 margin="normal"
                 multiline
                 variant="outlined"
+                required
             />
         </div>
         <div className="reg-last-name reg-input">
@@ -25,6 +26,7 @@ const DescriptionContainer = props => (
                 margin="normal"
                 variant="outlined"
                 helperText={"Anything important that wasn't covered by other fields"}
+                required
             />
         </div>
     </div>

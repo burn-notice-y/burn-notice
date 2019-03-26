@@ -10,9 +10,24 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import axios from "axios";
 import * as actions from '../../store/actions';
 import { connect }  from 'react-redux';
+import VacancyInfo from "../TransferReq/VacancyInfo";
+import VacancyUserInfo from "../TransferReq/VacancyUserInfo";
+import Redirect from "react-router-dom/es/Redirect";
+import Divider from "@material-ui/core/Divider/Divider";
+import * as PropTypes from "prop-types";
 
 class BigVacancy extends Component {
-    state = { vacancy: null };
+    state = {
+        vacancy: null,
+        id: "",
+        firstName: "",
+        lastName: "",
+    };
+
+    static getDerivedStateFromProps(nextProps) {
+        return {...nextProps.user}
+    }
+
 
     componentDidMount(){
         this.props.toggleLoading();
@@ -27,160 +42,97 @@ class BigVacancy extends Component {
             })
     }
 
-    determineAdmin = () => {
-        if (this.props.admin) {
-            return (
-                <div className="delete-cont">
-                    <IconButton aria-label="Delete">
-                        <DeleteIcon />
-                    </IconButton>
-                </div>
-            )
-        }
-    };
-
     apply = () => {
+        this.props.toggleLoading();
         axios.post("/api/submitApplication", {
-            sentDate: moment().format('YYYY Do MM'),
+            sentDate: moment().format('YYYY-MM-DD'),
             status: "Pending",
-            applicants: this.props.user,
-            vacancy: vacancy,
-        }).then(result => console.log(result))
+            user: {id: this.state.id },
+            vacancy: {id: vacancy.id },
+        }).then(result => {
+            this.props.toggleLoading();
+            this.setState({redirect: true});
+            console.log(result)
+        }).catch(error => {
+            this.props.toggleLoading();
+            console.log(error);
+        })
     };
 
     render(){
         if (this.state.vacancy === null){
             return <div/>;
         }
-        console.log(this.state);
-        let vacancy = this.state.vacancy;
-        let vacancyText = moment(vacancy.fillDate).format("MMMM Do YYYY");
-        let applyText = "Apply";
-        let canApply = true;
-        if (vacancy.fillDate !== "9999"){
-            applyText = "Closed";
-            canApply = false;
-            vacancyText = "Closed"
+        if (this.state.redirect){
+            return <Redirect to={`/transfer/view/${this.state.id}`}/>
         }
-        let postDate = moment(vacancy.postDate).format("MMMM Do YYYY");
-
-        let temporary = "";
-        vacancy.temporary ? temporary = "Yes" : temporary = "No";
-        let role = "";
-        vacancy.engine ? role = "Engine" : role = "Truck";
+        let vacancy = this.state.vacancy;
+        let fillDate = moment("2019-03-20").format("MMMM Do YYYY");
+        let applyText = "Closed";
+        let cannotApply = true;
+        let helperText = "";
+        if (vacancy.fillDate === "9999"){
+            fillDate = "Open";
+            applyText = "Apply";
+            if (this.state.eligibleForTransfer){
+                cannotApply = false;
+            } else {
+                helperText = "You are not eligible for transfer"
+            }
+        }
+        let captain = "";
+            //this.state.vacancy.station.captain.firstName + " " + this.state.vacancy.station.captain.lastName;
 
         return (
             <div className={"big-edit-cont"}>
                 <div className="application-header">
                     <div className="top">
                         <Typography component="h3" variant="h4" gutterBottom className={"application-header"}>
-                            {this.props.header}
+                            Apply to this vacancy
                         </Typography>
                     </div>
+                        <Divider/>
                     <div className="input-cont">
                         <div className="apply">
-                            <div className="reg-sation reg-input">
-                                <TextField
-                                    label={"Station"}
-                                    value={this.state.vacancy.station.name}
-                                    margin="normal"
-                                    variant="outlined"
-                                    disabled={true}/>
+                            <VacancyInfo fillDate={fillDate} postDate={moment(vacancy.postDate).format("MMMM Do YYYY")} role={vacancy.engine ? "Engine" : "Truck"} temporary={vacancy.temporary ? "Yes" : "No"}
+                                         stationName={vacancy.station.name} captain={captain}
+
+
+                            />
+
+                            <div className={"fireman-cont"}>
+                                <ManyFirefighters firemanList={this.state.vacancy.station.currentCrew}/>
                             </div>
-                            <div className="reg-role reg-input">
-                                <TextField
-                                    label="Role"
-                                    value={role}
-                                    margin="normal"
-                                    variant="outlined"
-                                    disabled={true}/>
-                            </div>
-                            <div className="reg-temporary reg-input">
-                                <TextField
-                                    label="Temporary"
-                                    value={temporary}
-                                    margin="normal"
-                                    variant="outlined"
-                                    disabled={true}/>
-                            </div>
-                            <div className="reg-post-date reg-input">
-                                <TextField
-                                    label="Post Date"
-                                    value={postDate}
-                                    margin="normal"
-                                    variant="outlined"
-                                    disabled={true}/>
-                            </div>
-                            <div className="reg-fill-date reg-input">
-                                <TextField
-                                    label="Fill Date"
-                                    value={vacancyText}
-                                    margin="normal"
-                                    variant="outlined"
-                                    disabled={true}/>
-                            </div>
-                            <div className="reg-crew reg-input">
-                                <br/>
-                                <ManyFirefighters/>
-                            </div>
-                            <br/>
                         </div>
                         <div className="top">
                             <Typography component="h3" variant="h4" gutterBottom className={"application-header"}>
-                                {this.props.applicantHeader}
+                                Your Information
                             </Typography>
                         </div>
                     </div>
                     <div className="input-cont">
-                        <div className="editable">
-                            <div className="reg-sap reg-input">
-                                <TextField
-                                    label="SAP"
-                                    value={this.state.sap}
-                                    margin="normal"
-                                    variant="outlined"
-                                    disabled={true}/>
-                            </div>
-                            <div className="reg-email reg-input">
-                                <TextField
-                                    label="Email"
-                                    value={this.state.email}
-                                    margin="normal"
-                                    variant="outlined"
-                                    disabled={true}/>
-                            </div>
-                            <div className="reg-firstname reg-input">
-                                <TextField
-                                    label="First Name"
-                                    value={this.state.firstName}
-                                    margin="normal"
-                                    variant="outlined"
-                                    disabled={true}/>
-                            </div>
-                            <div className="reg-lastname reg-input">
-                                <TextField
-                                    label="Last Name"
-                                    value={this.state.lastName}
-                                    margin="normal"
-                                    variant="outlined"
-                                    disabled={true}/>
-                            </div>
-
-                            <Button variant="contained" color="primary" disabled={canApply}><div onClick={this.apply}>
-                                Submit Application
-                            </div></Button>
-                        </div>
+                        <VacancyUserInfo {...this.state} actionOnRequest={this.apply}
+                                         cannotApply={cannotApply}
+                                         applyText={applyText}
+                                         chief={this.state.chief}
+                                         helperText={helperText}
+                        />
                     </div>
-
                 </div>
             </div>
         )
     }
 }
+BigVacancy.propTypes = {
+    toggleLoading: PropTypes.func,
+    toggleModal: PropTypes.func,
+    user: PropTypes.object,
+};
+
 
 const mapStateToProps = state => {
     return {
         user: state.user
     }
-}
+};
 export default connect(mapStateToProps, actions)(BigVacancy);

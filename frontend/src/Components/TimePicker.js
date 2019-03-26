@@ -22,6 +22,7 @@ class TimePick extends Component{
                     label={this.props.label}
                     value={this.state.selectedTime}
                     onChange={this.handleChange}
+                    required
                 />
             </div>
         )

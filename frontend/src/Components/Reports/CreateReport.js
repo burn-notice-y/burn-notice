@@ -16,12 +16,14 @@ import ReportPage1 from "./Pages/ReportPage1";
 import ReportsPage2 from "./Pages/ReportPage2";
 import ReportsPage3 from "./Pages/ReportPage3";
 import Action from "./Actions/Action";
+import Divider from "@material-ui/core/Divider/Divider";
 
 class CreateReport extends Component {
     state = {
-        reportType: "",
-        chemicals: "",
-        fireRetardant: "",
+        id: "",
+        reportType: 1,
+        chemicals: "true",
+        fireRetardant: "true",
         teamActions: "",
         description: "",
         timeArrived: "",
@@ -35,6 +37,11 @@ class CreateReport extends Component {
         teamMembers: [],
         newMembers: 0
     };
+
+    static getDerivedStateFromProps(nextProps) {
+        return {...nextProps.user}
+    }
+
 
     inputHandler = type => event => {
         if (type === "createDate"){
@@ -127,40 +134,41 @@ class CreateReport extends Component {
         })
     };
 
-    modalClose = () => {
-        this.setState({
-            teamMemberTaken: false,
-            dateWrong: false,
-            modalOpen: false
-        })
-    };
-
     submitReport = () => {
-        axios.post("/api/create-report", {
-            createDate: this.state.createDate,
-            exposedToChemicals: this.state.chemicals,
-            timeDispatched: this.state.timeDispatched,
-            timeArrived: this.state.timeArrived,
-            users: [
-                {id: 1}, {id: 2}
-                ],
-            fireRetardantPresent: this.state.fireRetardant,
-            primaryTeamActions: this.state.primaryTeamActions,
-            secondaryTeamActions: this.state.secondaryTeamActions,
-            description: this.state.description,
-            creator: {id: 1, firstName: "Kanye", lastName: "West", email: "jhsdhsdj"},
-            type: {id: 2, name: "Single Family Dwelling Fire" }
-        }).then(result => {
-            console.log(result)
-        })
-        .catch(error => console.log(error))
+        // go through each property
+        if (this.state.timeArrived === "" || this.state.timeDispatched === ""
+            || this.state.teamActions === "" || this.state.description === ""){
+                this.props.showModal(["Oops", "One or more fields were left blank. Ensure that all required fields are filled out", "Please try again"])
+        } else {
+            // ensure that they are not empty strings
+            this.props.toggleLoading();
+            axios.post("/api/create-report", {
+                createDate: this.state.createDate,
+                exposedToChemicals: this.state.chemicals,
+                timeDispatched: this.state.timeDispatched,
+                timeArrived: this.state.timeArrived,
+                users: this.state.teamMembers,
+                fireRetardantPresent: this.state.fireRetardant,
+                teamActions: this.state.teamActions,
+                description: this.state.description,
+                creator: {id: this.state.id},
+                type: {id: this.state.reportType}
+            }).then(() => {
+                this.props.toggleLoading();
+                this.setState({redirect: true})
+            })
+                .catch(() => {
+                    this.props.toggleLoading();
+                    this.props.showModal(["Oops", "Something went wrong", "Please try again later"])
+                })
+        }
     };
 
     render() {
         if (this.state.redirect) {
-            return <Redirect to={"/reports"}/>
+            return <Redirect to={`/reports/${this.state.id}`}/>
         }
-
+        console.log(this.state);
         return (
             <Fragment>
                 <div className={"create-report-cont"} id={"top"}>
@@ -168,6 +176,7 @@ class CreateReport extends Component {
                         <Typography component="h3" variant="h4" gutterBottom className={"report-header"}>
                             File a Report
                         </Typography>
+                        <Divider variant="middle"/>
                     </div>
                     <div className="page-nav">
                         <Typography component="h3" variant="h6" gutterBottom className={"registration-header"}>
@@ -179,6 +188,7 @@ class CreateReport extends Component {
                             <Route path={"/reports/create/:id"} render={() => this.determinePage()}/>
                         </Switch>
                     </div>
+                    <Divider/>
                     <div className="actions-cont">
                         <Action page={this.props.match.params.pageNumber} submitReport={this.submitReport}/>
                     </div>
@@ -189,7 +199,16 @@ class CreateReport extends Component {
 }
 
 CreateReport.propTypes = {
-    pageNumber: PropTypes.string
+    pageNumber: PropTypes.string,
+    user: PropTypes.object,
+    toggleLoading: PropTypes.func,
+    showModal: PropTypes.func,
 };
 
-export default withRouter(connect(null, actions)(CreateReport));
+const mapStateToProps = state => {
+    return {
+        user: state.user
+    }
+};
+
+export default withRouter(connect(mapStateToProps, actions)(CreateReport));

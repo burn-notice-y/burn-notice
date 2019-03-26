@@ -49,7 +49,7 @@ public class TransferRequestController {
     @GetMapping("/api/findTransferByStation")
     public List<TransferReqHighlights> findAllByStation(@RequestParam String stationName) {
         System.out.println(stationName);
-        return transferDao.findAllByVacancy_Station_NameAndStatusContains(stationName, "Pending");
+        return transferDao.findAllByVacancy_Station_NameAndStatusIsStartingWith(stationName, "P");
     }
 
     @GetMapping("/api/one-transfer")
@@ -64,11 +64,7 @@ public class TransferRequestController {
         // - [ ]  Make each block into a method
         // - [ ] test each block
 
-
-        // notify user -- in progress
-
         User applicant = userDao.findOne(request.getUser().getId());
-
         Email from = new Email("info@burn-notice.com");
         String subject = "Transfer Request Approved!";
         Email to = new Email(applicant.getEmail());
@@ -127,25 +123,27 @@ public class TransferRequestController {
 
 
         // close vacancy -- done
+
         Vacancy vacancy = vacDao.findOne(request.getVacancy().getId());
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         vacancy.setFillDate(dateFormat.format(new Date()));
         vacDao.save(vacancy);
 
+        // working
+        Assignment targetAssignment = assignmentDao.findAllByUserIdOrderByIdDesc(applicant.getId()).get(0);
+        targetAssignment.setEndDate(vacancy.getPostDate());
+        assignmentDao.save(targetAssignment);
 
-        // end most current assignment with the start date of the vacancy
-        // -- change to this query -> findAllByUserIdOrderByIdDesc
-        Assignment currentAssignment = assignmentDao.findByEndDateAndUserId("9999", applicant.getId());
-        System.out.println(currentAssignment.getEndDate());
-        currentAssignment.setEndDate(vacancy.getPostDate());
-        assignmentDao.save(currentAssignment);
-
-        // populate assignment history with start
-        // date of assignment the same as vacancy start -- not fully functional
+        // -- working
         FireStation station = stationDao.findOne(vacancy.getStation().getId());
         Assignment newAssignment =
                 new Assignment(vacancy.getPostDate(), "9999", vacancy.isEngine(), station, applicant);
         assignmentDao.save(newAssignment);
+
+        // working
+        TransferRequest transferRequest = transferDao.findOne(request.getId());
+        transferRequest.setStatus("Approved");
+        transferDao.save(transferRequest);
 
         // set all other applications for the vacancy to "Filled" -- needs testing
         List<TransferRequest> applications = transferDao.findAllByVacancyId(vacancy.getId());
@@ -154,16 +152,12 @@ public class TransferRequestController {
         }
         transferDao.save(applications);
 
-
-        // set status to approved -- done
-        TransferRequest transferRequest = transferDao.findOne(request.getId());
-        transferRequest.setStatus("Approved");
-        transferDao.save(transferRequest);
-
         // Set every pending user's eligibility for transfer back to true
 
 
         // Add an association between the successful applicant and the accepting fire station
+        station.getCurrentCrew().add(applicant);
+        stationDao.save(station);
     }
 
     @PostMapping("/api/deny-transfer")
@@ -198,4 +192,8 @@ public class TransferRequestController {
         transferDao.save(transferRequest);
     }
 
+    @PostMapping("/api/test")
+    public Assignment test(){
+        return assignmentDao.findAllByUserIdOrderByIdDesc(33).get(0);
+    }
 }

@@ -1,11 +1,4 @@
-.view-vacancy-header h2:after{
-    content: " ";
-    display: block;
-    margin: 0 auto;
-    width: 50%;
-    padding-top: 20px;
-    border-bottom: 1px solid #a8a8a8;
-}
+
 
 .vacancy-cont {
     margin: 4vh 0;
@@ -57,7 +50,11 @@
         height: 70vh;
     }
     .actions-cont {
-        width: 60%;
+        float: none !important;
+        width: 100%;
+    }
+    .input-cont {
+        margin-top: 4vh;
     }
 }
 
