@@ -95,6 +95,7 @@ class ReviewTransferReq extends Component{
                 helperText = "You are not eligible for transfer"
             }
         }
+        let captain = this.state.request.vacancy.station.captain.firstName + " " + this.state.request.vacancy.station.captain.lastName;
 
         return (
             <div className={"big-edit-cont"}>
@@ -107,7 +108,7 @@ class ReviewTransferReq extends Component{
                     <div className="input-cont">
                         <div className="apply">
                             <VacancyInfo fillDate={fillDate} postDate={moment(request.vacancy.postDate).format("MMMM Do YYYY")} role={request.vacancy.engine ? "Engine" : "Truck"} temporary={request.vacancy.temporary ? "Yes" : "No"}
-                                         stationName={request.vacancy.station.name}
+                                         stationName={request.vacancy.station.name} captain={captain}
 
 
                                          />
@@ -127,7 +128,6 @@ class ReviewTransferReq extends Component{
                                          cannotApply={cannotApply}
                                          applyText={applyText}
                                          chief={this.state.chief}
-
                                          helperText={helperText}
                                          actionOnRequest={this.actionOnRequest}
                         />

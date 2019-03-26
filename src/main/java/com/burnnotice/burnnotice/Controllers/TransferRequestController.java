@@ -45,7 +45,7 @@ public class TransferRequestController {
     @GetMapping("/api/findTransferByStation")
     public List<TransferReqHighlights> findAllByStation(@RequestParam String stationName) {
         System.out.println(stationName);
-        return transferDao.findAllByVacancy_Station_NameAndStatusContains(stationName, "Pending");
+        return transferDao.findAllByVacancy_Station_NameAndStatusIsStartingWith(stationName, "P");
     }
 
     @GetMapping("/api/one-transfer")

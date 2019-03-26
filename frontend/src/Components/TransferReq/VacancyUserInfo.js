@@ -7,37 +7,31 @@ const VacancyUserInfo = props => {
 
     return (
         <div className="editable">
-            <div className="reg-sap reg-input">
-                <TextField
-                    label="SAP"
-                    value={props.sap}
-                    margin="normal"
-                    variant="outlined"
-                    disabled={true}/>
-            </div>
-            <div className="reg-email reg-input">
-                <TextField
-                    label="Email"
-                    value={props.email}
-                    margin="normal"
-                    variant="outlined"
-                    disabled={true}/>
-            </div>
-            <div className="reg-firstname reg-input">
-                <TextField
-                    label="First Name"
-                    value={props.firstName}
-                    margin="normal"
-                    variant="outlined"
-                    disabled={true}/>
-            </div>
-            <div className="reg-lastname reg-input">
-                <TextField
-                    label="Last Name"
-                    value={props.lastName}
-                    margin="normal"
-                    variant="outlined"
-                    disabled={true}/>
+            <div className="user-transfer-group">
+                <div className="reg-sap reg-input">
+                    <TextField
+                        label="SAP"
+                        value={props.sap}
+                        margin="normal"
+                        variant="outlined"
+                        disabled={true}/>
+                </div>
+                <div className="reg-firstname reg-input">
+                    <TextField
+                        label="First Name"
+                        value={props.firstName}
+                        margin="normal"
+                        variant="outlined"
+                        disabled={true}/>
+                </div>
+                <div className="reg-lastname reg-input">
+                    <TextField
+                        label="Last Name"
+                        value={props.lastName}
+                        margin="normal"
+                        variant="outlined"
+                        disabled={true}/>
+                </div>
             </div>
             <TransferActions {...props}/>
         </div>

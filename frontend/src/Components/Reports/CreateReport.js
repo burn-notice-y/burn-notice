@@ -16,6 +16,7 @@ import ReportPage1 from "./Pages/ReportPage1";
 import ReportsPage2 from "./Pages/ReportPage2";
 import ReportsPage3 from "./Pages/ReportPage3";
 import Action from "./Actions/Action";
+import Divider from "@material-ui/core/Divider/Divider";
 
 class CreateReport extends Component {
     state = {
@@ -168,6 +169,7 @@ class CreateReport extends Component {
                         <Typography component="h3" variant="h4" gutterBottom className={"report-header"}>
                             File a Report
                         </Typography>
+                        <Divider variant="middle"/>
                     </div>
                     <div className="page-nav">
                         <Typography component="h3" variant="h6" gutterBottom className={"registration-header"}>
@@ -179,6 +181,7 @@ class CreateReport extends Component {
                             <Route path={"/reports/create/:id"} render={() => this.determinePage()}/>
                         </Switch>
                     </div>
+                    <Divider/>
                     <div className="actions-cont">
                         <Action page={this.props.match.params.pageNumber} submitReport={this.submitReport}/>
                     </div>

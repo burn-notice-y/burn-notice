@@ -50,7 +50,7 @@ class Vacancy extends Component {
                     </Typography>
                 </CardContent>
                 <CardActions className={"vacancy-actions-cont"}>
-                    <Link to={`/transfer/review/${this.props.id}`}><Button size="small">See more</Button></Link>
+                    <Link to={`/vacancy/apply/${this.props.id}`}><Button size="small">See more</Button></Link>
                 </CardActions>
             </Card>
         )

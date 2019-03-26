@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
 import axios from 'axios';
 import Typography from "@material-ui/core/Typography/Typography";
+import Divider from "@material-ui/core/Divider/Divider";
 
 class UserTransferReqs extends Component {
     state = {
@@ -30,6 +31,7 @@ class UserTransferReqs extends Component {
                         Your Applications
                     </Typography>
                 </div>
+                <Divider/>
                 <ManyTransferReq admin={false} {...this.state}/>
             </div>
         );

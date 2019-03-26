@@ -32,9 +32,9 @@ class App extends Component {
         return (
             <MuiPickersUtilsProvider utils={MomentUtils}>
             <BrowserRouter>
-                <Fragment>
+                <div className={`content ${loadingStyle}`}>
                     <Header user={this.props.user}/>
-                    <main className={`main-content-cont ${loadingStyle}`}>
+                    <main className={`main-content-cont `}>
                     <Switch>
                         <Route path={"/visitor/register"} render={() => <Register/>}/>
                         <Route path={"/visitor/login"} render={() => <Login/>}/>
@@ -47,7 +47,7 @@ class App extends Component {
                     <Popup {...this.props.popup} close={this.props.closePopup}/>
                     <OwnModal handleClose={this.props.closeModal} {...this.props.modal}
                     />
-                </Fragment>
+                </div>
             </BrowserRouter>
             </MuiPickersUtilsProvider>
         );

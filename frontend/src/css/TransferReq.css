@@ -47,7 +47,26 @@
     padding-top: 20px;
     border-bottom: 1px solid #a8a8a8;
 }
-.transfer-group {
-    display: flex;
-    justify-content: space-between;
+
+@media only screen and (min-width: 786px){
+    .transfer-group {
+        display: flex;
+        justify-content: space-between;
+    }
+    .user-transfer-group {
+        display: flex;
+        justify-content: space-between;
+    }
+    .actions-container {
+        margin-top: 6vh;
+        width: 90%;
+    }
+    .transfer-actions-container {
+        margin-top: 5vh;
+        display: flex;
+        justify-content: flex-end;
+    }
+    .transfer-actions-container > div {
+        margin-right: 20px;
+    }
 }

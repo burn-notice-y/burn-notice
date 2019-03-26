@@ -6,11 +6,13 @@ import Typography from "@material-ui/core/Typography/Typography";
 const TransferActions = ({ chief, cannotApply, applyText, helperText, actionOnRequest }) => {
     let actions = (
         <div className="user-actions">
+            <div>
             <Button variant="contained" color="primary" disabled={cannotApply}>
-                <div onClick={() => actionOnRequest("apply")}>
+                <div onClick={actionOnRequest}>
                     {applyText}
                 </div>
             </Button>
+            </div>
         </div>
     );
     if (chief){
@@ -35,7 +37,7 @@ const TransferActions = ({ chief, cannotApply, applyText, helperText, actionOnRe
         )
     }
     return (
-        <div className={"actions-container"}>
+        <div className={"transfer-actions-container"}>
             {actions}
             <Typography variant="subtitle2" component="p">
                 {helperText}
