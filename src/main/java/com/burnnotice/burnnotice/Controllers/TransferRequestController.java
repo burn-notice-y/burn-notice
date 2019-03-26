@@ -102,8 +102,6 @@ public class TransferRequestController {
 
 
         // Add an association between the successful applicant and the accepting fire station
-
-
     }
 
     @PostMapping("/api/deny-transfer")
