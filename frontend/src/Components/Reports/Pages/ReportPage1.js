@@ -6,6 +6,7 @@ import DatePickClass from "../../DatePickClass";
 import TimePick from "../../TimePicker";
 import TwoOptionSelect from "../../TwoOptionSelect";
 import Typography from "@material-ui/core/Typography/Typography";
+import Divider from "@material-ui/core/Divider/Divider";
 
 const ReportPage1 = ({ inputHandler, reportType, chemicals, fireRetardant, createDate }) => (
     <div className="page-1">
@@ -13,26 +14,31 @@ const ReportPage1 = ({ inputHandler, reportType, chemicals, fireRetardant, creat
             Incident Details:
         </Typography>
         <div className="vacancy-cat reg-input">
-            <TextField
-                id="outlined-select-currency"
-                select
-                label="Type of Report"
-                value={reportType}
-                onChange={inputHandler('reportType')}
-                margin="normal"
-                variant="outlined"
-            >
-                {reportCategories.map(option => (
-                    <MenuItem key={option} value={option}>
-                        {option}
-                    </MenuItem>
-                ))}
-            </TextField>
-        </div>
-        <div className="reg-input">
+            <div className="report-group">
+                <TextField
+                    id="report-dropdown"
+                    select
+                    label="Type of Report"
+                    value={reportType}
+                    onChange={inputHandler('reportType')}
+                    margin="normal"
+                    variant="outlined"
+                    className={"report-dropdown"}
+                >
+                    {reportCategories.map(option => (
+                        <MenuItem key={option} value={option}>
+                            {option}
+                        </MenuItem>
+                    ))}
+                </TextField>
+                <div className="reg-input">
 
-            <DatePickClass labelDisplay={"Incident Date"} handleChange={inputHandler} argumentName={"createDate"} value={createDate}/>
+                    <DatePickClass labelDisplay={"Incident Date"} handleChange={inputHandler} argumentName={"createDate"} value={createDate}/>
+                </div>
+            </div>
+
         </div>
+
         <div className="time">
             <div className="time1-cont">
                 <TimePick label={"Time Dispatched"} helper={"Format: XX:XX"} onChange={inputHandler}/>
@@ -41,13 +47,16 @@ const ReportPage1 = ({ inputHandler, reportType, chemicals, fireRetardant, creat
                 <TimePick label={"Time Arrived"} helper={"24hr time"} onChange={inputHandler}/>
             </div>
         </div>
-        <TwoOptionSelect title={"Exposure to Chemicals?"} value={chemicals}
-                         inputHandler={inputHandler('chemicals')}
-                         oneVal={"true"} oneName={"Yes"} twoVal={"false"} twoName={"No"}
-        />
-        <TwoOptionSelect title={"Fire Retardant Present?"} value={fireRetardant}
-                         inputHandler={inputHandler('fireRetardant')} oneName={"Yes"} oneVal={"true"} twoName={"No"} twoVal={"false"}
-        />
+        <div className="radio">
+            <TwoOptionSelect title={"Exposure to Chemicals?"} value={chemicals}
+                             inputHandler={inputHandler('chemicals')}
+                             oneVal={"true"} oneName={"Yes"} twoVal={"false"} twoName={"No"}
+            />
+            <TwoOptionSelect title={"Fire Retardant Present?"} value={fireRetardant}
+                             inputHandler={inputHandler('fireRetardant')} oneName={"Yes"} oneVal={"true"} twoName={"No"} twoVal={"false"}
+            />
+        </div>
+
     </div>
 );
 

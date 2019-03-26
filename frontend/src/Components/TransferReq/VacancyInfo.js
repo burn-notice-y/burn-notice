@@ -67,7 +67,8 @@ VacancyInfo.propTypes = {
     role: PropTypes.string,
     temporary: PropTypes.string,
     postDate: PropTypes.string,
-    fillDate: PropTypes.string
+    fillDate: PropTypes.string,
+    captain: PropTypes.string,
 };
 
 export default VacancyInfo;

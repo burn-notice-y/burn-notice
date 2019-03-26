@@ -57,7 +57,11 @@
         height: 70vh;
     }
     .actions-cont {
-        width: 60%;
+        float: none !important;
+        width: 100%;
+    }
+    .input-cont {
+        margin-top: 4vh;
     }
 }
 

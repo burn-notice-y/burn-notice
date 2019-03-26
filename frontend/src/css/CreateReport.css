@@ -72,3 +72,39 @@
     margin-right: 20px;
 }
 
+@media only screen and (min-width: 786px){
+    .report-group {
+        display: flex;
+        justify-content: space-between;
+    }
+    .time div {
+        width: 85%;
+    }
+    .time {
+        width: 90%;
+    }
+    .create-report-cont {
+        padding-left: 10px;
+        width: 65%;
+    }
+    .report-dropdown {
+        margin-top: 10px !important;
+    }
+    .radio {
+        display: flex;
+        justify-content: flex-start;
+    }
+    .radio div {
+        width: 43%;
+    }
+    .input-cont {
+        width: 100%;
+    }
+    .report-header-cont h3 {
+        text-align: left;
+    }
+    .page-nav {
+        margin-top: 5vh;
+    }
+}
+
