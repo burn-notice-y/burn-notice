@@ -57,14 +57,41 @@ public class TransferRequestController {
         return transferDao.findOne(id);
     }
 
-    @Value("{$sendgrid_api_key}") String sendGridAPIKey;
+    @Value("${sendgrid_api_key}") String sendGridAPIKey;
     @PostMapping("/api/approve-transfer")
     public void approveRequest( @RequestBody TransferRequest request){
 
         User applicant = userDao.findOne(request.getUser().getId());
 
         Vacancy vacancy = vacDao.findOne(request.getVacancy().getId());
+        String stationName = stationDao.findOne(vacancy.getStation().getId()).getName();
         List<TransferRequest> applications = transferDao.findAllByVacancyId(vacancy.getId());
+
+
+        for (TransferRequest application : applications) {
+            Email denied_from = new Email("info@burn-notice.com");
+            if (application.getUser().getId() != applicant.getId()){
+                String denied_subject = "Transfer Request Denied!";
+                Email denied_to = new Email(application.getUser().getEmail());
+                Content denied_content = new Content("text/html", "<h1>Your Request has been denied<h1><br><p>Dear " + application.getUser().getFirstName() + " " + application.getUser().getLastName() + ", We Regret to inform you that your transfer to station" + stationName  + "has been denied</p>");
+                Mail denied_mail = new Mail(denied_from, denied_subject, denied_to, denied_content);
+                Request deniedRequest = new Request();
+                SendGrid sg = new SendGrid(sendGridAPIKey);
+                sendEmail(deniedRequest, denied_mail, sg);
+            }
+
+        }
+        Email from = new Email("info@burn-notice.com");
+        String subject = "Transfer Request Approved!";
+        Email to = new Email(applicant.getEmail());
+        Content content = new Content("text/html", "<h1>You have been approved!<h1><br><div>" + applicant.getFirstName() + " " + applicant.getLastName() + "  has been approved for transfer to station " + stationName + "</div>");
+        Mail mail = new Mail(from, subject, to, content);
+        Request newRequest = new Request();
+        SendGrid newSg = new SendGrid(sendGridAPIKey);
+        sendEmail(newRequest, mail, newSg);
+
+
+        // close vacancy -- done
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         vacancy.setFillDate(dateFormat.format(new Date()));
@@ -83,6 +110,7 @@ public class TransferRequestController {
 
 
         // set all other applications for the vacancy to "Filled" -- needs testing
+
 
         for (TransferRequest application: applications){
             application.setStatus("Filled");
