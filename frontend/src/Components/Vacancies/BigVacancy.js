@@ -14,6 +14,7 @@ import VacancyInfo from "../TransferReq/VacancyInfo";
 import VacancyUserInfo from "../TransferReq/VacancyUserInfo";
 import Redirect from "react-router-dom/es/Redirect";
 import Divider from "@material-ui/core/Divider/Divider";
+import * as PropTypes from "prop-types";
 
 class BigVacancy extends Component {
     state = {
@@ -42,12 +43,20 @@ class BigVacancy extends Component {
     }
 
     apply = () => {
+        this.props.toggleLoading();
         axios.post("/api/submitApplication", {
-            sentDate: moment().format('YYYY Do MM'),
+            sentDate: moment().format('YYYY-MM-DD'),
             status: "Pending",
-            applicants: this.props.user,
-            vacancy: vacancy,
-        }).then(result => console.log(result))
+            user: {id: this.state.id },
+            vacancy: {id: vacancy.id },
+        }).then(result => {
+            this.props.toggleLoading();
+            this.setState({redirect: true});
+            console.log(result)
+        }).catch(error => {
+            this.props.toggleLoading();
+            console.log(error);
+        })
     };
 
     render(){
@@ -102,12 +111,11 @@ class BigVacancy extends Component {
                         </div>
                     </div>
                     <div className="input-cont">
-                        <VacancyUserInfo {...this.state} apply={this.apply}
+                        <VacancyUserInfo {...this.state} actionOnRequest={this.apply}
                                          cannotApply={cannotApply}
                                          applyText={applyText}
                                          chief={this.state.chief}
                                          helperText={helperText}
-                                         actionOnRequest={this.actionOnRequest}
                         />
                     </div>
                 </div>
@@ -115,6 +123,12 @@ class BigVacancy extends Component {
         )
     }
 }
+BigVacancy.propTypes = {
+    toggleLoading: PropTypes.func,
+    toggleModal: PropTypes.func,
+    user: PropTypes.object,
+};
+
 
 const mapStateToProps = state => {
     return {

@@ -7,7 +7,7 @@ const TransferActions = ({ chief, cannotApply, applyText, helperText, actionOnRe
     let actions = (
         <div className="user-actions">
             <Button variant="contained" color="primary" disabled={cannotApply}>
-                <div onClick={() => actionOnRequest("apply")}>
+                <div onClick={actionOnRequest}>
                     {applyText}
                 </div>
             </Button>
