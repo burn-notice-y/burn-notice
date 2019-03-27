@@ -67,7 +67,7 @@ App.propTypes = {
     }),
     closePopup: PropTypes.func,
     closeModal: PropTypes.func,
-    user: PropTypes.object,
+    user: PropTypes.any,
 
 };
 

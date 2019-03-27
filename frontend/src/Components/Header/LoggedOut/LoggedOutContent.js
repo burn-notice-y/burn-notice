@@ -9,25 +9,28 @@ import Person from '@material-ui/icons/Person';
 import PersonAdd from '@material-ui/icons/PersonAdd';
 import VideoLabel from '@material-ui/icons/VideoLabel';
 import List from "@material-ui/core/List/List";
+import AboutSection from "../AboutSection";
 
 const LoggedOutContent = () => {
     return (
         <Fragment>
             <List>
-                <ListItem button>
-                    <ListItemIcon>{<VideoLabel/>}</ListItemIcon>
-                    <Link component={RouterLink} to={"/"}><ListItemText primary={'Home'}/></Link>
-                </ListItem>
+                <Link component={RouterLink} to={"/"}>
+                    <ListItem button>
+                        <ListItemIcon>{<VideoLabel/>}</ListItemIcon>
+                        <ListItemText primary={'Home'}/>
+                    </ListItem>
+                </Link>
             </List>
 
             <List>
                 <ListSubheader>Users</ListSubheader>
                 {['Login', 'Register'].map((text, index) => (
-                        <Link component={RouterLink} to={index % 2 === 0 ? "/visitor/login": "/visitor/register"} className={"router-link"}>
-                    <ListItem button key={text}>
-                        <ListItemIcon>{index % 2 === 0 ? <Person/> : <PersonAdd/>}</ListItemIcon>
-                            <ListItemText primary={text}/>
-                    </ListItem>
+                        <Link component={RouterLink} key={text} to={index % 2 === 0 ? "/visitor/login": "/visitor/register"} className={"router-link"}>
+                            <ListItem button>
+                                <ListItemIcon>{index % 2 === 0 ? <Person/> : <PersonAdd/>}</ListItemIcon>
+                                    <ListItemText primary={text}/>
+                            </ListItem>
                         </Link>
                 ))}
             </List>

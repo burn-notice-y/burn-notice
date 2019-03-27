@@ -40,12 +40,12 @@ const AdminActions = ({ closeMenu, user}) => {
                           ]}
             />
             {[[`Assignment History`, `/assignments/show/${user ? user.id : ""}`], ['Station List', '/stations/all']].map((text, index) => (
-            <ListItem button key={index} onClick={closeMenu}>
                 <Link to={text[1]} className={"router-link"}>
-                    <ListItemIcon>{text[0] === "Assignment History" ? <Assignment/> : <LocationCity/> }</ListItemIcon>
-                    <ListItemText primary={text[0]}/>
+                    <ListItem button key={index} onClick={closeMenu}>
+                        <ListItemIcon>{text[0] === "Assignment History" ? <Assignment/> : <LocationCity/> }</ListItemIcon>
+                        <ListItemText primary={text[0]}/>
+                    </ListItem>
                 </Link>
-            </ListItem>
             ))}
 
         </Fragment>

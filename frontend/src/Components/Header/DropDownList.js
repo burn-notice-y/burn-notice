@@ -34,14 +34,14 @@ class DropDownList extends Component {
                 <Collapse in={this.state.open} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
                         {this.props.listItems.map((itemArray, index) => (
-                            <ListItem button key={index}>
-                                <Link to={itemArray[2]} className={"sub-link"}>
-                                <ListItemIcon>
-                                    {itemArray[0]}
-                                </ListItemIcon>
+                            <Link to={itemArray[2]} className={"sub-link"}>
+                                <ListItem button key={index}>
+                                    <ListItemIcon>
+                                     {itemArray[0]}
+                                    </ListItemIcon>
                                     <ListItemText inset primary={itemArray[1]} onClick={this.props.closeMenu}/>
-                                </Link>
-                            </ListItem>
+                                </ListItem>
+                            </Link>
                         ))}
 
                     </List>

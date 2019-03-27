@@ -13,13 +13,13 @@ const AboutSection = ({ closeMenu }) => (
     <Fragment>
         <ListSubheader>Information</ListSubheader>
         <List>
-            {[[`Contact`, `/visitor/contact}`], ['About Us', '/visitor/about']].map((text, index) => (
-            <ListItem button key={index} onClick={closeMenu}>
-                <Link to={text[1]} className={"router-link"}>
+            {[['About Us', '/visitor/about']].map((text, index) => (
+            <Link to={text[1]} className={"router-link"}>
+                <ListItem button key={index} onClick={closeMenu}>
                     <ListItemIcon>{text[0] === "Contact" ? <Email/> : <About/> }</ListItemIcon>
                     <ListItemText primary={text[0]}/>
-                </Link>
-            </ListItem>))}
+                </ListItem>
+            </Link>))}
         </List>
     </Fragment>
 );

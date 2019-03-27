@@ -14,22 +14,16 @@ import List from "@material-ui/core/List/List";
 const PersonalActions = ({closeMenu, logout}) => (
     <List>
         <ListSubheader>Personal</ListSubheader>
-        <ListItem button>
-            <Link component={RouterLink} to={"/user/profile"} className={"router-link"}>
+        <Link component={RouterLink} to={"/user/profile"} className={"router-link"}>
+            <ListItem button>
             <ListItemIcon><Person/></ListItemIcon>
                 <ListItemText primary={"Profile"} onClick={closeMenu}/>
-            </Link>
-        </ListItem>
-            <div className={"close-div router-link"}
-                 tabIndex={0}
-                 role="button"
-                 onClick={logout}
-                 >
-        <ListItem button>
+            </ListItem>
+        </Link>
+        <ListItem button onClick={logout}>
             <ListItemIcon><PersonOutline/></ListItemIcon>
                 <ListItemText primary={"Logout"}/>
         </ListItem>
-            </div>
     </List>
 );
 
