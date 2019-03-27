@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import TextField from "@material-ui/core/TextField/TextField";
 
-const DropDown = ({label, value, inputHandler, items, id, inputArgument}) => {
+const DropDown = ({label, value, inputHandler, items, targeter, inputArgument}) => {
     return (
-        <div className="vacancy-cat reg-input">
+        <div className={targeter}>
             <TextField
-                id= {id}
                 select
                 label={label}
                 value={value}
@@ -27,7 +26,7 @@ const DropDown = ({label, value, inputHandler, items, id, inputArgument}) => {
 
 DropDown.propTypes = {
     label: PropTypes.string,
-    value: PropTypes.string,
+    value: PropTypes.any,
     inputHandler: PropTypes.func,
     items: PropTypes.array,
     id: PropTypes.string,

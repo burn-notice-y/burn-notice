@@ -1,25 +1,18 @@
 import React, {Component, Fragment} from 'react';
 import Report from "./Report";
 import Typography from "@material-ui/core/Typography/Typography";
+import PropTypes from "prop-types";
 
 
 
-class ManyReports extends Component {
-
-    render() {
+const ManyReports = ({ show, data}) => {
         // this is mapping thru the report object and going thru each report. the ...report is called a spread operator
         let display = null;
-        if (this.props.show) {
+        if (show) {
             display = (
                 <div className="report-cont">
-                    <div className="report-header">
-                        <Typography component="h3" variant="h3" gutterBottom>
-                            Reports
-                        </Typography>
-                    </div>
                     <div className="report-content">
-
-                        {this.props.data.map(report => <Report key={report.id} test={"test"} {...report}/>)}
+                        {data.map(report => <Report key={report.id} {...report}/>)}
                     </div>
                 </div>
             )
@@ -29,8 +22,11 @@ class ManyReports extends Component {
                 {display}
             </Fragment>
         )
+};
 
-    }
-}
+ManyReports.propTypes = {
+    data: PropTypes.arrayOf(PropTypes.object),
+    show: PropTypes.bool,
+};
 
 export default ManyReports;

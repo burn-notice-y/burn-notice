@@ -36,7 +36,6 @@ class Profile extends Component {
     };
 
     inputHandler = type => event => {
-        console.log(event.target.value)
         this.setState({
             [type]: event.target.value
         })
@@ -45,17 +44,20 @@ class Profile extends Component {
     saveUserUpdate = event => {
         event.preventDefault();
         event.stopPropagation();
+        if (this.state.editLocked) {
+            this.props.showModal(["Oops", "Editing is locked", "Click the edit button to make changes"])
+        } else {
         this.props.toggleLoading();
-        axios.post("/api/edit-profile", {...this.state})
-            .then(() => {
-                this.props.toggleLoading();
-                this.props.showPopup("Success!");
-                this.setState({editLocked: true});
-                setTimeout(() => {
-                    this.props.closePopup()
-                }, 4000)
-            })
-        //
+            axios.post("/api/edit-profile", {...this.state})
+                .then(() => {
+                    this.props.toggleLoading();
+                    this.props.showPopup("Success!");
+                    this.setState({editLocked: true});
+                    // setTimeout(() => {
+                    //     this.props.closePopup()
+                    // }, 4000)
+                })
+        }
     };
 
     render() {
@@ -87,7 +89,7 @@ class Profile extends Component {
                         Press the edit button to make changes
                     </Typography>
                 </div>
-                <div className="input-cont">
+                <div className="prof-input-cont">
                     <form>
                     <div className="editable">
                         <div className="reg-email prof-input">
@@ -152,7 +154,7 @@ class Profile extends Component {
                                 </Typography>
                             </div>
                         </div>
-                        <div className="actions-cont">
+                        <div className="prof-actions-cont">
                             <Button variant="contained" color="primary" type={"submit"} onClick={this.saveUserUpdate}>Save
                             </Button>
                         </div>

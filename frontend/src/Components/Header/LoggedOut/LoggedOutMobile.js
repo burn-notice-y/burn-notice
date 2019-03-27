@@ -6,6 +6,7 @@ import * as PropTypes from "prop-types";
 import LoggedOutContent from "./LoggedOutContent";
 import AboutSection from "../AboutSection";
 import TopNavBar from "../TopBar";
+import CardHeader from "@material-ui/core/CardHeader/CardHeader";
 
 class LoggedOutMobile extends Component{
     render(){
@@ -20,6 +21,7 @@ class LoggedOutMobile extends Component{
                          onKeyDown={this.props.closeMenu}
                          onScrollCapture={this.props.closeMenu}>
                         <div className={"nav-items-test"}>
+                            <CardHeader title={"Burn Notice"}/>
                             <LoggedOutContent/>
                             <AboutSection/>
                         </div>

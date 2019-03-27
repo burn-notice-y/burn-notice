@@ -15,23 +15,25 @@ const TeamSelect = props => (
                 Who Responded to this Call?
             </Typography>
         </div>
-        <div className={"search-cont"}>
+        <div className={"team-search-cont"}>
             <TeamExpansion teamName={"Responders"} teamMembers={props.teamMembers} removeFiremanFromTeam={props.removeFiremanFromTeam}
                            clearNotifications={props.clearNotifications} newMembers={props.newMembers}/>
+                <form>
             <div className={"search-input-cont"}>
-                <Paper elevation={1} className={"search-input"}>
-                    <input type="text" id={"search"}
-                           value={props.search}
-                           onChange={props.inputHandler('search')}
-                           placeholder={"Search"}
-                           autoComplete={"off"}
-                    />
-                    <IconButton aria-label="Search" onClick={props.searchFirefighters}>
-                        <SearchIcon/>
-                    </IconButton>
-                    <Divider/>
-                </Paper>
+                    <Paper elevation={1} className={"search-input"}>
+                        <input type="text" id={"search"}
+                               value={props.search}
+                               onChange={props.inputHandler('search')}
+                               placeholder={"Search"}
+                               autoComplete={"off"}
+                        />
+                        <IconButton aria-label="Search" onClick={props.searchFirefighters} type={"submit"}>
+                            <SearchIcon/>
+                        </IconButton>
+                        <Divider/>
+                    </Paper>
             </div>
+                </form>
 
             <FirefighterSearchCont clearSearch={props.clearSearch} addFunction={props.addFiremanToTeam}
                                    searchResult={props.searchResult}/>

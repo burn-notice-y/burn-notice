@@ -9,10 +9,14 @@ class Action extends Component {
     linkOrSubmit = pageStatus => {
         switch (pageStatus) {
             case "1":
-                return <Link to={"/reports/create/2"}><Button color="primary" variant="contained">Next</Button></Link>;
+                return (
+                    <div className={"single-action-cont"}>
+                        <Link to={"/reports/create/2"}><Button color="primary" variant="contained">Next</Button></Link>
+                    </div>
+            )
             case "3":
                 return (
-                    <div className={"multi-action-cont"}>
+                    <div className={"two-actions-cont"}>
                         <Link to={`/reports/create/${Number(pageStatus) - 1}`}><Button variant="contained"
                                                                                        color="default">Previous</Button></Link>
                         <Button variant="contained" color="primary" onClick={this.props.submitReport}>Submit</Button>
@@ -20,7 +24,7 @@ class Action extends Component {
                 );
             default:
                 return (
-                    <div className={"multi-action-cont"}>
+                    <div className={"two-actions-cont"}>
                         <Link to={`/reports/create/${Number(pageStatus) - 1}`}><Button variant="contained"
                                                                                        color="default">Previous</Button></Link>
                         <Link to={`/reports/create/${Number(pageStatus) + 1}`}><Button variant="contained"

@@ -60,6 +60,12 @@
 .list-cont {
     padding-top: 80px !important;
 }
+.nav-items-test {
+    padding-top: 20px;
+}
+.router-link {
+    display: flex !important;
+}
 
 @media only screen and (min-width: 780px){
     .desktop {

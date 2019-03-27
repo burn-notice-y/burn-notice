@@ -15,8 +15,7 @@
     justify-content: space-between;
 }
 .admin-create-vacancy {
-    height: 85vh;
-    overflow: scroll;
+    height: 75vh;
 }
 .picker {
     margin-top: 10px;
@@ -43,8 +42,30 @@
 .card-size {
     width: 80vh !important;
 }
+.vacancy-divider {
+    margin-top: 3vh;
+}
+.search-cont {
+    display: flex;
+    justify-content: space-between;
+}
+.vacancy-filter {
+    width: 45%;
+}
+.vacancy-district-cont {
+    margin: 4vh !important;
+}
+.no-vac {
+    height: 24vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 @media only screen and (min-width: 786px) {
+    .view-vacancy-cont {
+        width: 60% !important;
+    }
     .admin-create-vacancy {
         width: 80%;
         height: 70vh;
@@ -55,6 +76,16 @@
     }
     .input-cont {
         margin-top: 4vh;
+    }
+    .vacancy-body {
+        width: 100%;
+    }
+    .many-vacancies-cont {
+        display: flex;
+        justify-content: center;
+    }
+    .view-vacancy-header h2{
+        margin-bottom: 3vh;
     }
 }
 

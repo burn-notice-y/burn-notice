@@ -8,6 +8,7 @@ import PersonalActions from "../PersonalActions";
 import * as PropTypes from "prop-types";
 import TopNavBar from "../TopBar";
 import UserActions from "./UserActions";
+import AboutSection from "../AboutSection";
 
 class UserHeader extends Component {
     state = {
@@ -36,6 +37,7 @@ class UserHeader extends Component {
                                 <UserActions closeMenu={this.props.closeMenu} user={this.props.user}/>
                             </List>
                             <PersonalActions closeMenu={this.props.closeMenu} logout={this.props.logout}/>
+                            <AboutSection/>
                         </div>
                     </div>
                 </Drawer>

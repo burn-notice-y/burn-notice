@@ -12,7 +12,7 @@ const Header = ({ user }) => (
 );
 
 Header.propTypes = {
-    user: PropTypes.object,
+    user: PropTypes.any,
 };
 
 const mapStateToProps = state => {

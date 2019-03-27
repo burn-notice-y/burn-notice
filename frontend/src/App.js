@@ -32,22 +32,24 @@ class App extends Component {
         return (
             <MuiPickersUtilsProvider utils={MomentUtils}>
             <BrowserRouter>
-                <div className={`content ${loadingStyle}`}>
-                    <Header user={this.props.user}/>
-                    <main className={`main-content-cont `}>
-                    <Switch>
-                        <Route path={"/visitor/register"} render={() => <Register/>}/>
-                        <Route path={"/visitor/login"} render={() => <Login/>}/>
-                        <Route path={"/user/profile"} render={() => <Profile />}/>
-                        <Route path={"/:path"} render={(routeProps) => <MainRouter {...routeProps}/>}/>
-                        <Route path={"/"} render={() => <Landing/>}/>
-                    </Switch>
-                    </main>
+                <Fragment>
+                    <div className={`content ${loadingStyle}`}>
+                        <Header user={this.props.user}/>
+                        <main className={`main-content-cont `}>
+                        <Switch>
+                            <Route path={"/visitor/register"} render={() => <Register/>}/>
+                            <Route path={"/visitor/login"} render={() => <Login/>}/>
+                            <Route path={"/user/profile"} render={() => <Profile />}/>
+                            <Route path={"/:path"} render={(routeProps) => <MainRouter {...routeProps}/>}/>
+                            <Route path={"/"} render={() => <Landing/>}/>
+                        </Switch>
+                        </main>
+                        <Popup {...this.props.popup} close={this.props.closePopup}/>
+                        <OwnModal handleClose={this.props.closeModal} {...this.props.modal}
+                        />
+                    </div>
                     <CircularProgress className={`spinner ${spinnerStyle}`}/>
-                    <Popup {...this.props.popup} close={this.props.closePopup}/>
-                    <OwnModal handleClose={this.props.closeModal} {...this.props.modal}
-                    />
-                </div>
+            </Fragment>
             </BrowserRouter>
             </MuiPickersUtilsProvider>
         );

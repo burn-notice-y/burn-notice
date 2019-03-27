@@ -15,16 +15,14 @@ const ExpansionPanelSummary = (props => <MuiExpansionPanelSummary {...props} />)
 ExpansionPanelSummary.muiName = 'ExpansionPanelSummary';
 
 
-const ManyFirefighters = ({ firemanList }) => (
+const ManyFirefighters = ({ firemanList, title }) => (
     <ExpansionPanel id="ff_content">
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>}>
-            <Typography id="ff_title">Current Crew</Typography>
+            <Typography id="ff_title">{title || "he"}</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails id="ff_body">
-            {firemanList.map((firefighter, index) => (
-                <div className={index % 2 ?  "fireman-group" : ""}>
-                    <Firefighter key={firefighter.id} {...firefighter} />
-                </div>
+            {firemanList.map(firefighter=> (
+                    <Firefighter key={firefighter.id} {...firefighter}/>
                 ))}
         </ExpansionPanelDetails>
     </ExpansionPanel>

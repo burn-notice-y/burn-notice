@@ -1,8 +1,6 @@
 .create-report-cont {
     width: 80%;
-    height: 85vh;
-    overflow: scroll;
-    -webkit-overflow-scrolling: touch;
+    height: 75vh;
     scroll-behavior: smooth;
 }
 ::-webkit-scrollbar {
@@ -39,10 +37,11 @@
 #search:focus {
     outline: 0;
 }
-.multi-action-cont {
+.two-actions-cont {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    margin-top: 10vh !important;
 }
 .team-member-cont {
     display: flex;
@@ -71,6 +70,19 @@
     width: 100%;
     margin-right: 20px;
 }
+.single-action-cont {
+    margin-top: 2vh;
+    text-align: right;
+    width: 95%;
+}
+.primary-display {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.primary-display div {
+    margin-right: 10px;
+}
 
 @media only screen and (min-width: 786px){
     .report-group {
@@ -85,7 +97,7 @@
     }
     .create-report-cont {
         padding-left: 10px;
-        width: 65%;
+        width: 80%;
     }
     .report-dropdown {
         margin-top: 10px !important;
@@ -105,6 +117,19 @@
     }
     .page-nav {
         margin-top: 5vh;
+    }
+    .report-cat div {
+        width: 94%;
+    }
+    .report-divider {
+        width: 80%;
+        margin: 3vh 0 !important;
+    }
+    .two-actions-cont {
+        width: 75%;
+    }
+    .page3 {
+        width: 80%;
     }
 }
 

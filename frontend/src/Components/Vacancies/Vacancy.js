@@ -40,7 +40,11 @@ class Vacancy extends Component {
                                 Station {this.props.station.name}
                             </Typography>
                         </div>
-                        {this.determineAdmin()}
+                        {this.props.admin ? (<div className="delete-cont">
+                            <IconButton aria-label="Delete">
+                                <DeleteIcon />
+                            </IconButton>
+                        </div>) : ""}
                     </div>
                     <Typography color="textSecondary" gutterBottom>
                         Role: {role}
@@ -50,8 +54,11 @@ class Vacancy extends Component {
                     </Typography>
                 </CardContent>
                 <CardActions className={"vacancy-actions-cont"}>
-                    <Link to={`/vacancy/apply/${this.props.id}`}><Button size="small">See more</Button></Link>
-                </CardActions>
+                {this.props.admin ? (<Link to={`/transfer/vacancy/${this.props.id}`}><Button size="small">See Requests</Button></Link>) : (
+                    <Link to={`/vacancy/apply/${this.props.id}`}><Button size="small">Continue</Button></Link>
+                )}
+                    </CardActions>
+
             </Card>
         )
     }

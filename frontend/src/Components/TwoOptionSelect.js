@@ -13,7 +13,7 @@ const TwoOptionSelect = props => (
                 className="role-cont group"
                 name="engine"
                 value={props.value}
-                onChange={props.inputHandler}
+                onChange={props.inputHandler(props.argument)}
             >
                 <FormControlLabel value={props.oneVal} control={<Radio/>} label={props.oneName}/>
                 <FormControlLabel value={props.twoVal} control={<Radio/>} label={props.twoName}/>
@@ -30,7 +30,8 @@ TwoOptionSelect.propTypes = {
     oneVal: PropTypes.string,
     twoVal: PropTypes.string,
     oneName: PropTypes.string,
-    twoName: PropTypes.string
+    twoName: PropTypes.string,
+    argument: PropTypes.any,
 };
 
 export default TwoOptionSelect;

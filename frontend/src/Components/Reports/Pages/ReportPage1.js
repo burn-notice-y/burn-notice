@@ -3,17 +3,16 @@ import PropTypes from 'prop-types';
 import {MenuItem, TextField} from "@material-ui/core";
 import {reportCategories} from "../../../data/categories";
 import DatePickClass from "../../DatePickClass";
-import TimePick from "../../TimePicker";
+import TimePick from "../../TimePick";
 import TwoOptionSelect from "../../TwoOptionSelect";
 import Typography from "@material-ui/core/Typography/Typography";
-import Divider from "@material-ui/core/Divider/Divider";
 
 const ReportPage1 = ({ inputHandler, reportType, chemicals, fireRetardant, createDate }) => (
     <div className="page-1">
         <Typography variant="subheading" component="p">
             Incident Details:
         </Typography>
-        <div className="vacancy-cat reg-input">
+        <div className="report-cat">
             <div className="report-group">
                 <TextField
                     id="report-dropdown"
@@ -41,19 +40,21 @@ const ReportPage1 = ({ inputHandler, reportType, chemicals, fireRetardant, creat
 
         <div className="time">
             <div className="time1-cont">
-                <TimePick label={"Time Dispatched"} helper={"Format: XX:XX"} onChange={inputHandler}/>
+                <TimePick label={"Time Dispatched"} helperText={"Format: XX:XX"} onChange={inputHandler}/>
             </div>
             <div className="time2-cont">
-                <TimePick label={"Time Arrived"} helper={"24hr time"} onChange={inputHandler}/>
+                <TimePick label={"Time Arrived"} helperText={"24hr time"} onChange={inputHandler}/>
             </div>
         </div>
         <div className="radio">
             <TwoOptionSelect title={"Exposure to Chemicals?"} value={chemicals}
-                             inputHandler={inputHandler('chemicals')}
+                             inputHandler={inputHandler}
                              oneVal={"true"} oneName={"Yes"} twoVal={"false"} twoName={"No"}
+                             argument={"chemicals"}
             />
             <TwoOptionSelect title={"Fire Retardant Present?"} value={fireRetardant}
-                             inputHandler={inputHandler('fireRetardant')} oneName={"Yes"} oneVal={"true"} twoName={"No"} twoVal={"false"}
+                             argument={"fireRetardant"}
+                             inputHandler={inputHandler} oneName={"Yes"} oneVal={"true"} twoName={"No"} twoVal={"false"}
             />
         </div>
 
@@ -62,7 +63,7 @@ const ReportPage1 = ({ inputHandler, reportType, chemicals, fireRetardant, creat
 
 ReportPage1.propTypes = {
     inputHandler: PropTypes.func,
-    reportType: PropTypes.string,
+    reportType: PropTypes.number,
     chemicals: PropTypes.string,
     fireRetardant: PropTypes.string
 };

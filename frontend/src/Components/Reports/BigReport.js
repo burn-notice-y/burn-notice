@@ -1,14 +1,14 @@
 import React, {Component, Fragment} from 'react';
 import axios from "axios";
 import Typography from "@material-ui/core/Typography/Typography";
-import ManyFirefighters from "../Firefighters/ManyFirefighters";
 import PropTypes from "prop-types";
-import props from "../../data/exampleReports";
 import * as actions from '../../store/actions';
 import { connect } from 'react-redux';
 import report from "../../data/bigReport";
 import CardContent from "@material-ui/core/CardContent/CardContent";
 import Card from "@material-ui/core/Card/Card";
+import Divider from "@material-ui/core/Divider/Divider";
+import ManyFirefighters from "../Firefighters/ManyFirefighters";
 
 
 class BigReport extends Component {
@@ -39,14 +39,13 @@ class BigReport extends Component {
             let fireRetardantPresent = "";
             report.fireRetardantPresent ? fireRetardantPresent = "Yes" : fireRetardantPresent = "No";
             return (
-                <Fragment>
+                <div className={"big-report"}>
                     <div className="report-header">
                         <Typography component="h3" variant="h2">
                             Report Details
                         </Typography>
                     </div>
-                    <Card>
-                    <CardContent>
+                    <Divider className={"big-report-divider"}/>
                     <div>
                         <Typography component="h5" variant="h6">
                             Creator:
@@ -96,7 +95,7 @@ class BigReport extends Component {
                             Team Actions:
                         </Typography>
                         <Typography component="p" variant="subtitle1">
-                            {/*{report.teamActions}*/}
+                            {report.teamActions}
                         </Typography>
                         <Typography component="h5" variant="h6">
                             Description:
@@ -104,10 +103,11 @@ class BigReport extends Component {
                         <Typography component="p" variant="subtitle1">
                             {report.description}
                         </Typography>
+                        <div className="team-members-cont">
+                            <ManyFirefighters title={"Team Members"} firemanList={report.users}/>
+                        </div>
                     </div>
-                    </CardContent>
-                    </Card>
-                </Fragment>
+                </div>
             )
         }
     };
@@ -120,9 +120,7 @@ class BigReport extends Component {
 
         return (
             <Fragment>
-                <div>
                 {this.showStation()}
-                </div>
             </Fragment>
 
         )

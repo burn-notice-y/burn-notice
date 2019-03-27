@@ -31,8 +31,8 @@ public class ReportController {
     }
 
     @GetMapping("/api/reports")
-    public Iterable<ReportHighlights> reportHighlights() {
-        return reportDao.findAllBy();
+    public Iterable<ReportHighlights> findByCreatorId(@RequestParam long id) {
+        return reportDao.findAllByCreatorId(id);
     }
 
     @GetMapping("/api/one-report")

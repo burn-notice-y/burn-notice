@@ -12,7 +12,7 @@
     padding-left: 7px;
 }
 .big-station-cont {
-    height: 85vh;
+    height: 70vh;
     width: 85%;
     display: flex;
     justify-content: center;
@@ -60,4 +60,31 @@
 }
 .transferReq-body {
     width: 90%;
+}
+.fireman-block {
+    display: flex;
+    align-items: center;
+}
+.fireman {
+    margin-right: 50px !important;
+    display: flex;
+    align-items: baseline;
+}
+@media only screen and (min-width: 786px) {
+    .station-body h4 {
+        text-align: center;
+    }
+    .big-station-cont {
+        height: 65vh;
+        width: 65%;
+    }
+    .all-stations-cont {
+        width: 65%;
+    }
+    .station-actions-cont {
+        justify-content: flex-end;
+    }
+    .station-header-cont {
+        text-align: center;
+    }
 }

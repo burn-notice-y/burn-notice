@@ -1,11 +1,15 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
+import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight'
 
 const FireFighter = ({ firstName, lastName }) => (
-    <Typography variant="subheading" component="h6">
-        {firstName} {lastName}
-    </Typography>
+    <div className={"fireman-block"}>
+        <KeyboardArrowRight className={"fireman-arrow"}/>
+        <Typography variant="subheading" component="h6" className={"fireman"}>
+             {firstName} {lastName}
+        </Typography>
+    </div>
 );
 
 FireFighter.propTypes = {

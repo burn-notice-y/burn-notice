@@ -56,11 +56,9 @@ public class TransferRequestController {
     public TransferRequest findOne(@RequestParam long id){
         return transferDao.findOne(id);
     }
-
     @Value("${sendgrid_api_key}") String sendGridAPIKey;
     @PostMapping("/api/approve-transfer")
     public void approveRequest( @RequestBody TransferRequest request) throws IOException {
-
         User applicant = userDao.findOne(request.getUser().getId());
 
         Vacancy vacancy = vacDao.findOne(request.getVacancy().getId());
@@ -156,5 +154,9 @@ public class TransferRequestController {
         } catch (IOException ex) {
             throw ex;
         }
+    }
+    @GetMapping("/api/station-vacancies")
+    public List<TransferReqHighlights> findStationVacancies(@RequestParam long id){
+        return transferDao.findAllByVacancyIdOrderByIdDesc(id);
     }
 }

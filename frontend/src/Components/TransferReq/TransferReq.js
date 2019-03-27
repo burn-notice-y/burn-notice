@@ -14,6 +14,7 @@ const TransferReq = props => {
     switch (props.status) {
         case "Denied": status = "red"; break;
         case "Approved": status ="green"; break;
+        case "Filled": status ="black"; break;
         default: break;
     }
     return (
