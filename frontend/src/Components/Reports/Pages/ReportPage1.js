@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 import {MenuItem, TextField} from "@material-ui/core";
 import {reportCategories} from "../../../data/categories";
 import DatePickClass from "../../DatePickClass";
-import TimePick from "../../TimePicker";
+import TimePick from "../../TimePick";
 import TwoOptionSelect from "../../TwoOptionSelect";
 import Typography from "@material-ui/core/Typography/Typography";
-import Divider from "@material-ui/core/Divider/Divider";
 
 const ReportPage1 = ({ inputHandler, reportType, chemicals, fireRetardant, createDate }) => (
     <div className="page-1">
@@ -41,10 +40,10 @@ const ReportPage1 = ({ inputHandler, reportType, chemicals, fireRetardant, creat
 
         <div className="time">
             <div className="time1-cont">
-                <TimePick label={"Time Dispatched"} helper={"Format: XX:XX"} onChange={inputHandler}/>
+                <TimePick label={"Time Dispatched"} helperText={"Format: XX:XX"} onChange={inputHandler}/>
             </div>
             <div className="time2-cont">
-                <TimePick label={"Time Arrived"} helper={"24hr time"} onChange={inputHandler}/>
+                <TimePick label={"Time Arrived"} helperText={"24hr time"} onChange={inputHandler}/>
             </div>
         </div>
         <div className="radio">
@@ -62,7 +61,7 @@ const ReportPage1 = ({ inputHandler, reportType, chemicals, fireRetardant, creat
 
 ReportPage1.propTypes = {
     inputHandler: PropTypes.func,
-    reportType: PropTypes.string,
+    reportType: PropTypes.number,
     chemicals: PropTypes.string,
     fireRetardant: PropTypes.string
 };

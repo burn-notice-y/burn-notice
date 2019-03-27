@@ -1,9 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import axios from "axios";
 import Typography from "@material-ui/core/Typography/Typography";
-import ManyFirefighters from "../Firefighters/ManyFirefighters";
 import PropTypes from "prop-types";
-import props from "../../data/exampleReports";
 import * as actions from '../../store/actions';
 import { connect } from 'react-redux';
 import report from "../../data/bigReport";

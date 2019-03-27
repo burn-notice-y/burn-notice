@@ -46,7 +46,7 @@ class CreateReport extends Component {
     inputHandler = type => event => {
         if (type === "createDate"){
             if(event > new Date()) {
-                this.props.openModal()
+                this.props.showModal(["Whoa", "Can you see into the future?", "Select a past date"])
             }  else {
                 this.setState({createDate: moment(event).format("YYYY-MM-DD")})
             }

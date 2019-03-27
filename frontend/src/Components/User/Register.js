@@ -86,8 +86,6 @@ class Register extends Component{
                             margin="normal"
                             variant="outlined"
                             required
-                            validators={['required', 'isEmail']}
-                            errorMessages={['This field is required', 'Email is not valid']}
                         />
                         <TextField
                             error={this.state.error}
@@ -102,7 +100,6 @@ class Register extends Component{
                         />
                     </div>
                     <div className="reg-group reg-input">
-
                         <TextField
                             error={this.state.error}
                             id={`register-first-name`}
@@ -128,7 +125,7 @@ class Register extends Component{
                     </div>
 
                     <div className="reg-group reg-input">
-                        <TextField
+                        <TextValidator
                             error={this.state.error}
                             label="Email"
                             type="email"
@@ -138,6 +135,8 @@ class Register extends Component{
                             margin="normal"
                             variant="outlined"
                             required
+                            validators={['required', 'isEmail']}
+                            errorMessages={['This field is required', 'Email is not valid']}
                         />
                         <DropDown items={fireStations}
                                   value={this.state.station}

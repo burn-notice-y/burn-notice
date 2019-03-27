@@ -1,6 +1,5 @@
 import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
-import {Link as RouterLink} from "react-router-dom";
 import ListItem from "@material-ui/core/ListItem/ListItem";
 import ListSubheader from "@material-ui/core/ListSubheader/ListSubheader";
 import ListItemIcon from "@material-ui/core/ListItemIcon/ListItemIcon";
@@ -42,9 +41,10 @@ const AdminActions = ({ closeMenu, user}) => {
             />
             {[[`Assignment History`, `/assignments/show/${user ? user.id : ""}`], ['Station List', '/stations/all']].map((text, index) => (
             <ListItem button key={index} onClick={closeMenu}>
-                <ListItemIcon>{text[0] === "Assignment History" ?
-                    <Assignment/> : <LocationCity/> }</ListItemIcon>
-                <Link to={text[1]}><ListItemText primary={text[0]}/></Link>
+                <Link to={text[1]} className={"router-link"}>
+                    <ListItemIcon>{text[0] === "Assignment History" ? <Assignment/> : <LocationCity/> }</ListItemIcon>
+                    <ListItemText primary={text[0]}/>
+                </Link>
             </ListItem>
             ))}
 

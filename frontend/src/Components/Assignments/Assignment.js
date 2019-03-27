@@ -1,8 +1,6 @@
 import React from 'react';
 import CardContent from "@material-ui/core/CardContent/CardContent";
 import Typography from "@material-ui/core/Typography/Typography";
-import CardActions from "@material-ui/core/CardActions/CardActions";
-import Button from "@material-ui/core/Button/Button";
 import Card from "@material-ui/core/Card/Card";
 import moment from 'moment';
 

@@ -27,7 +27,7 @@ const DropDown = ({label, value, inputHandler, items, id, inputArgument}) => {
 
 DropDown.propTypes = {
     label: PropTypes.string,
-    value: PropTypes.string,
+    value: PropTypes.any,
     inputHandler: PropTypes.func,
     items: PropTypes.array,
     id: PropTypes.string,

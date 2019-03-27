@@ -43,6 +43,9 @@
 .card-size {
     width: 80vh !important;
 }
+.vacancy-divider {
+    margin-top: 3vh;
+}
 
 @media only screen and (min-width: 786px) {
     .admin-create-vacancy {

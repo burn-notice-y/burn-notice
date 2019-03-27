@@ -15,17 +15,21 @@ const PersonalActions = ({closeMenu, logout}) => (
     <List>
         <ListSubheader>Personal</ListSubheader>
         <ListItem button>
+            <Link component={RouterLink} to={"/user/profile"} className={"router-link"}>
             <ListItemIcon><Person/></ListItemIcon>
-            <Link component={RouterLink} to={"/user/profile"}><ListItemText primary={"Profile"} onClick={closeMenu}/></Link>
+                <ListItemText primary={"Profile"} onClick={closeMenu}/>
+            </Link>
         </ListItem>
-        <ListItem button>
-            <ListItemIcon><PersonOutline/></ListItemIcon>
-            <div className={"close-div"}
+            <div className={"close-div router-link"}
                  tabIndex={0}
                  role="button"
-                 onClick={logout}>
-                <ListItemText primary={"Logout"}/></div>
+                 onClick={logout}
+                 >
+        <ListItem button>
+            <ListItemIcon><PersonOutline/></ListItemIcon>
+                <ListItemText primary={"Logout"}/>
         </ListItem>
+            </div>
     </List>
 );
 
