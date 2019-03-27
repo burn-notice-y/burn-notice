@@ -29,7 +29,7 @@ class Landing extends Component {
         } else {
             greeting = (
                 <div className="action-info-cont">
-                    <Link to={"/user/register"}><Button variant="contained" color="primary" className={"landing-button"}>
+                    <Link to={"/visitor/register"}><Button variant="contained" color="primary" className={"landing-button"}>
                         Create an Account
                     </Button>
                     </Link>

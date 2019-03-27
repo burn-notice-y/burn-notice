@@ -12,6 +12,7 @@ import DropDown from "../DropDown";
 import {fireStations} from '../../data/categories';
 import Divider from "@material-ui/core/Divider/Divider";
 import * as PropTypes from "prop-types";
+import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 
 
 
@@ -73,22 +74,24 @@ class Register extends Component{
                     </Typography>
                     <Divider/>
                 </div>
-                <form >
+                <ValidatorForm ref="form" onSubmit={this.register} onError={error => console.log(error)}>
                 <div className="input-cont">
                     <div className="reg-group reg-input">
-                        <TextField
+                        <TextValidator
                             error={this.state.error}
-                            id={`outlined-username`}
+                            id={`register-sap`}
                             label="SAP"
                             value={this.state.sap}
                             onChange={this.inputHandler('sap')}
                             margin="normal"
                             variant="outlined"
                             required
+                            validators={['required', 'isEmail']}
+                            errorMessages={['This field is required', 'Email is not valid']}
                         />
                         <TextField
                             error={this.state.error}
-                            id={`outlined-password`}
+                            id={`register-password`}
                             label="Password"
                             type="password"
                             value={this.state.password}
@@ -102,8 +105,9 @@ class Register extends Component{
 
                         <TextField
                             error={this.state.error}
+                            id={`register-first-name`}
                             label="First Name"
-                            type="email"
+                            type="text"
                             value={this.state.firstName}
                             onChange={this.inputHandler('firstName')}
                             margin="normal"
@@ -113,6 +117,7 @@ class Register extends Component{
                         <TextField
                             error={this.state.error}
                             label="Last Name"
+                            id={`register-last-name`}
                             type="text"
                             value={this.state.lastName}
                             onChange={this.inputHandler('lastName')}
@@ -127,6 +132,7 @@ class Register extends Component{
                             error={this.state.error}
                             label="Email"
                             type="email"
+                            id={`register-email`}
                             value={this.state.email}
                             onChange={this.inputHandler('email')}
                             margin="normal"
@@ -149,7 +155,7 @@ class Register extends Component{
                         <Button variant="contained" color="primary" type={"submit"} onClick={this.register}>Continue</Button>
                     </div>
                 </div>
-                </form>
+                </ValidatorForm>
 
             </div>
         )
