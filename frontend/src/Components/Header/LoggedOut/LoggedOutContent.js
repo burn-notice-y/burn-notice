@@ -23,12 +23,12 @@ const LoggedOutContent = () => {
             <List>
                 <ListSubheader>Users</ListSubheader>
                 {['Login', 'Register'].map((text, index) => (
-                    <ListItem button key={text}>
                         <Link component={RouterLink} to={index % 2 === 0 ? "/visitor/login": "/visitor/register"} className={"router-link"}>
+                    <ListItem button key={text}>
                         <ListItemIcon>{index % 2 === 0 ? <Person/> : <PersonAdd/>}</ListItemIcon>
                             <ListItemText primary={text}/>
-                        </Link>
                     </ListItem>
+                        </Link>
                 ))}
             </List>
         </Fragment>
