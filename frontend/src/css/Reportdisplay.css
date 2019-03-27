@@ -69,3 +69,14 @@
 .report-body h5 {
     margin-top: 2vh;
 }
+.big-report {
+    height: 75vh;
+    width: 80%;
+}
+.report-body {
+    padding-bottom: 100px;
+}
+.big-report-divider {
+    width: 100%;
+    margin: 4vh!important;
+}

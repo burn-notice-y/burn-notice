@@ -38,15 +38,15 @@ class BigStation extends Component {
                     </div>
                     <div className="station-body">
                         <Typography component="h4" variant="h5">
-                            Captain: {station.captain.firstName + " " + station.captain.lastName}
+                            Chief: {station.district.chief.lastName}
                         </Typography>
                         <Typography component="h4" variant="h5">
                             District: {station.district.name}
                         </Typography>
                         <Typography component="h4" variant="h5">
-                            Chief: {station.district.chief.lastName}
+                            Captain: {station.captain.firstName + " " + station.captain.lastName}
                         </Typography>
-                        <ManyFirefighters firemanList={station.currentCrew}/>
+                        <ManyFirefighters title={"Current Crew"} firemanList={station.currentCrew}/>
                     </div>
                 </div>
             )

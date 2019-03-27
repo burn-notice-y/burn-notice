@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Button from "@material-ui/core/Button/Button";
 import Typography from "@material-ui/core/Typography/Typography";
 
-const TransferActions = ({ chief, cannotApply, applyText, helperText, actionOnRequest }) => {
+const TransferActions = ({ chief, cannotApply, applyText, helperText, actionOnRequest, status }) => {
     let actions = (
         <div className="user-actions">
             <div>
@@ -15,7 +15,7 @@ const TransferActions = ({ chief, cannotApply, applyText, helperText, actionOnRe
             </div>
         </div>
     );
-    if (chief){
+    if (chief && applyText !== "Closed"){
         actions = (
             <div className="chief-actions">
                 <div className="deny">

@@ -27,7 +27,7 @@ const AdminActions = ({ closeMenu, user}) => {
                           mainIcon={<ListAlt/>}
                           listItems={[
                               [<LibraryAdd/>, "Create Report", "/reports/create/1"],
-                              [<Description/>, "My Reports", "/reports"]
+                              [<Description/>, "My Reports", `/reports/${user ? user.id : ""}`]
                           ]}
             />
             <DropDownList closeMenu={closeMenu}

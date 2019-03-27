@@ -11,6 +11,9 @@ public interface TransferRequestRepository extends CrudRepository<TransferReques
 
     List<TransferReqHighlights> findAllByUserId(long id);
 
+
+    List<TransferReqHighlights> findAllByVacancyIdOrderByIdDesc(Long vacancyId);
+
     List<TransferRequest> findAllByVacancyId(Long vacancyId);
 
 }

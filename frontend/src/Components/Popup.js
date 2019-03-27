@@ -9,7 +9,7 @@ const Popup = ({ show, message, close }) => {
     return (
         <div className={`success-message  ${show ? "popup-active" : ""}`}>
             <CheckCircleIcon/>
-            <Typography component="p" className={`success-p`}>
+            <Typography component="p" className={`success-p`} variant="h6">
                 {message}
             </Typography>
             <CloseIcon className={"close-icon"} onClick={close}/>

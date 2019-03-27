@@ -57,7 +57,9 @@ class CreateReport extends Component {
     }
     };
 
-    searchFirefighters = () => {
+    searchFirefighters = event => {
+        event.preventDefault();
+        event.stopPropagation();
         if (this.state.search === "") {
             this.setState({searchResult: []})
         } else {
@@ -135,12 +137,6 @@ class CreateReport extends Component {
     };
 
     submitReport = () => {
-        // go through each property
-        if (this.state.timeArrived === "" || this.state.timeDispatched === ""
-            || this.state.teamActions === "" || this.state.description === ""){
-                this.props.showModal(["Oops", "One or more fields were left blank. Ensure that all required fields are filled out", "Please try again"])
-        } else {
-            // ensure that they are not empty strings
             this.props.toggleLoading();
             axios.post("/api/create-report", {
                 createDate: this.state.createDate,
@@ -161,8 +157,7 @@ class CreateReport extends Component {
                     this.props.toggleLoading();
                     this.props.showModal(["Oops", "Something went wrong", "Please try again later"])
                 })
-        }
-    };
+        };
 
     render() {
         if (this.state.redirect) {
@@ -175,7 +170,7 @@ class CreateReport extends Component {
                         <Typography component="h3" variant="h4" gutterBottom className={"report-header"}>
                             File a Report
                         </Typography>
-                        <Divider variant="middle"/>
+                        <Divider className={"report-divider"}/>
                     </div>
                     <div className="page-nav">
                         <Typography component="h3" variant="h6" gutterBottom className={"registration-header"}>
@@ -187,7 +182,7 @@ class CreateReport extends Component {
                             <Route path={"/reports/create/:id"} render={() => this.determinePage()}/>
                         </Switch>
                     </div>
-                    <Divider/>
+                    <Divider className={"report-divider"}/>
                     <Action page={this.props.match.params.pageNumber} submitReport={this.submitReport}/>
                 </div>
             </Fragment>

@@ -124,7 +124,7 @@ class ReviewTransferReq extends Component{
                         </div>
                     </div>
                     <div className="input-cont">
-                        <VacancyUserInfo {...request.user} apply={this.apply}
+                        <VacancyUserInfo {...request} apply={this.apply}
                                          cannotApply={cannotApply}
                                          applyText={applyText}
                                          chief={this.state.chief}

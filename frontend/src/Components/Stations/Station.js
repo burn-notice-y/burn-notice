@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 const Station = props => (
     <Card className="station-cont">
         <CardContent>
-            <div className="vacancy-header-cont">
+            <div className="station-header-cont">
                 <div className="vacancy-header">
                     <Typography variant="h5" component="h2">
                         Station {props.name}
@@ -24,7 +24,7 @@ const Station = props => (
                 Captain: {props.captain.firstName + " " + props.captain.lastName}
             </Typography>
         </CardContent>
-        <CardActions className={"vacancy-actions-cont"}>
+        <CardActions className={"station-actions-cont"}>
             <Link to={`/stations/view/${props.id}`}><Button size="small">See more</Button></Link>
         </CardActions>
     </Card>

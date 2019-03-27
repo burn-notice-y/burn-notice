@@ -38,7 +38,7 @@ const UserActions = ({ closeMenu, user}) => {
 
            {[[`Assignment History`, `/assignments/show/${user ? user.id : ""}`], ['Station List', '/stations/all']].map((text, index) => (
                    <Link to={text[1]} className={"link"} key={index}>
-                       <ListItem button key={index} onClick={closeMenu}>
+                       <ListItem button key={index} onClick={closeMenu} className={"router-link"}>
                            <ListItemIcon>{text[0] === "Assignment History" ?
                                <Description/> : <LocationCity/> }</ListItemIcon>
                            <ListItemText primary={text[0]}/>

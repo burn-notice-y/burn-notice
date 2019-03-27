@@ -17,6 +17,7 @@ Loading Toggle
     opacity: 1;
     padding-top: 50px;
 }
+
 .loading-active {
     filter: blur(3px);
 }
@@ -72,5 +73,8 @@ Loading Toggle
         z-index: 100000;
         width: 30vw;
         left: 15%;
+    }
+    .success-p {
+        font-size: 20px;
     }
 }

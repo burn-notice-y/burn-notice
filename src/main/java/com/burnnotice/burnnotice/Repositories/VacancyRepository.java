@@ -8,6 +8,9 @@ import java.util.List;
 
 public interface VacancyRepository extends CrudRepository<Vacancy, Long> {
     List<VacancyHighlights> findAllByAndFillDateEqualsOrderByIdDesc(String fillDate);
+
     VacancyTransfer findById(Long id);
+
+    List<VacancyHighlights> findAllBy();
 
 }

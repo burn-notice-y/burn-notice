@@ -12,7 +12,7 @@ const ReportPage1 = ({ inputHandler, reportType, chemicals, fireRetardant, creat
         <Typography variant="subheading" component="p">
             Incident Details:
         </Typography>
-        <div className="vacancy-cat reg-input">
+        <div className="report-cat">
             <div className="report-group">
                 <TextField
                     id="report-dropdown"
@@ -48,11 +48,13 @@ const ReportPage1 = ({ inputHandler, reportType, chemicals, fireRetardant, creat
         </div>
         <div className="radio">
             <TwoOptionSelect title={"Exposure to Chemicals?"} value={chemicals}
-                             inputHandler={inputHandler('chemicals')}
+                             inputHandler={inputHandler}
                              oneVal={"true"} oneName={"Yes"} twoVal={"false"} twoName={"No"}
+                             argument={"chemicals"}
             />
             <TwoOptionSelect title={"Fire Retardant Present?"} value={fireRetardant}
-                             inputHandler={inputHandler('fireRetardant')} oneName={"Yes"} oneVal={"true"} twoName={"No"} twoVal={"false"}
+                             argument={"fireRetardant"}
+                             inputHandler={inputHandler} oneName={"Yes"} oneVal={"true"} twoName={"No"} twoVal={"false"}
             />
         </div>
 

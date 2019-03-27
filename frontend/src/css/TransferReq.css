@@ -29,7 +29,7 @@
     display: flex;
     align-items: center;
 }
-.stationSelect-cont div{
+.stationSelect-cont > div{
     width: 84% !important;
 }
 .user-requests-cont {
@@ -38,6 +38,20 @@
 }
 .user-req-header-cont h2 {
     text-align: center;
+}
+.vacancy-transfers-big-cont {
+    height: 75vh;
+    width: 80%;
+}
+.vac-tran-header-cont {
+    text-align: center;
+}
+.vacancy-search > div{
+    width: 50%;
+}
+.vacancy-search {
+    display: flex;
+    justify-content: center;
 }
 
 @media only screen and (min-width: 786px){
@@ -64,5 +78,11 @@
     .user-transfer-divider {
         width: 60% !important;
         margin: 2vh 20% !important;
+    }
+    .stationSelect-cont > div{
+        width: 50% !important;
+    }
+    .transfer-select-cont {
+        width: 90%;
     }
 }

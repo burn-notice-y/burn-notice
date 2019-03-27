@@ -4,6 +4,7 @@ import com.burnnotice.burnnotice.Models.Vacancy;
 import com.burnnotice.burnnotice.Repositories.*;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -18,10 +19,15 @@ public class VacancyController
     }
 
 
-    @GetMapping("/api/all-vacancies")
-    public Iterable<VacancyHighlights> viewAllVacancies() {
+    @GetMapping("/api/open-vacancies")
+    public Iterable<VacancyHighlights> getOpenVacancies() {
         return vacDao.findAllByAndFillDateEqualsOrderByIdDesc("9999");
     }
+    @GetMapping("/api/all-vacancies")
+    public List<VacancyHighlights> getAllVacancies() {
+        return vacDao.findAllBy();
+    }
+
 
     @GetMapping("/api/one-vacancy")
     public VacancyTransfer findOneVacancy(@RequestParam("id") long id) {
@@ -33,6 +39,8 @@ public class VacancyController
         vacancy.setStation(stationDao.findByName(vacancy.getStation().getName()));
         vacDao.save(vacancy);
     }
+
+
 
 
 }

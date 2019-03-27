@@ -155,4 +155,8 @@ public class TransferRequestController {
             throw ex;
         }
     }
+    @GetMapping("/api/station-vacancies")
+    public List<TransferReqHighlights> findStationVacancies(@RequestParam long id){
+        return transferDao.findAllByVacancyIdOrderByIdDesc(id);
+    }
 }

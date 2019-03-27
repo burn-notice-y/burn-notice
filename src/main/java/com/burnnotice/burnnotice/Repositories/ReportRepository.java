@@ -14,4 +14,6 @@ public interface ReportRepository extends CrudRepository<Report, Long> {
     List<ReportHighlights> findAllByCreateDateBetween(String startDate, String endDate);
 
     List<ReportHighlights> findAllByTypeName(String type);
+
+    List<ReportHighlights> findAllByCreatorId(long id);
 }

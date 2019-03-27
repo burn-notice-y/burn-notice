@@ -35,4 +35,15 @@
     .prof-input div {
         width: 100%!important;
     }
+    .prof-input-cont {
+        width: 80%;
+    }
+    .top {
+        width: 80%;
+        display: flex;
+        align-items: center;
+    }
+    .prof-actions-cont {
+        float: right;
+    }
 }

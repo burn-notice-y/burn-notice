@@ -14,7 +14,7 @@ class UserReportDisplay extends Component {
 
     componentDidMount(){
         this.props.toggleLoading();
-        axios.get("/api/reports")
+        axios.get(`/api/reports?id=${this.props.id}`)
             .then(res => {
                 this.props.toggleLoading();
                 this.setState({
@@ -36,7 +36,7 @@ class UserReportDisplay extends Component {
                         Your Reports
                     </Typography>
                 </div>
-                <ManyReports stationList={this.state.reports}/>
+                <ManyReports data={this.state.reports} show={true}/>
             </div>
 
         )
@@ -44,7 +44,8 @@ class UserReportDisplay extends Component {
 }
 
 UserReportDisplay.propTypes = {
-    toggleLoading: PropTypes.func
+    toggleLoading: PropTypes.func,
+    id: PropTypes.string,
 };
 
 
