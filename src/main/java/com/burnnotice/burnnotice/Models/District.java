@@ -57,6 +57,6 @@ public class District {
         this.stationList = stationList;
     }
 
-    public District() {
-    }
+    public District() { }
+
 }

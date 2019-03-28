@@ -1,0 +1,23 @@
+.team-member-cont {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+}
+.about-cont {
+    height: 80vh;
+    width: 80%;
+}
+.about-divider {
+    margin: 3vh !important;
+}
+.about-header h1 {
+    text-align: center;
+}
+.about-body {
+    margin-top: 5vh;
+    display: flex;
+    flex-wrap: wrap;
+}
+.team-cont {
+}

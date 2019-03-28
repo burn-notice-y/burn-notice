@@ -29,7 +29,7 @@
 #search {
     margin-left: 5px;
     margin-top: 12px;
-    width: 80%;
+    width: 70%;
     border: none;
     font-size: 20px;
     text-align: center;
@@ -71,7 +71,7 @@
     margin-right: 20px;
 }
 .single-action-cont {
-    margin-top: 2vh;
+    margin: 2vh 0 10vh 0;
     text-align: right;
     width: 95%;
 }
@@ -83,7 +83,27 @@
 .primary-display div {
     margin-right: 10px;
 }
-
+.report-group {
+    margin: 3vh 0;
+}
+.report-group > div {
+    width: 100%;
+}
+.page-1-radio {
+    margin: 3vh 0 !important;
+}
+.category-dropdown > div {
+    width: 100%;
+}
+.page-nav {
+    margin-top: 4vh;
+}
+.description-cont {
+    margin-bottom: 4vh;
+}
+.page3 {
+    margin-bottom: 2vh;
+}
 @media only screen and (min-width: 786px){
     .report-group {
         display: flex;

@@ -6,6 +6,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import * as PropTypes from "prop-types";
 import DatePick from "../../DatePickClass";
 import Button from "@material-ui/core/Button/Button";
+import TextField from "@material-ui/core/TextField/TextField";
 
 
 class SearchByOne extends Component {
@@ -24,20 +25,23 @@ class SearchByOne extends Component {
                     </div>
                 </div>;
             case "By Last Name":
-                return <div className={"search-name"}>
-                    <Paper elevation={1} className={"search-cont"}>
-                        <input type="text" id={"name"}
-                               value={this.props.name}
-                               onChange={this.props.handleChange('name')}
-                               placeholder={this.props.type}
-                               autoComplete={"off"}
+                return (
+                    <form>
+                        <div className={"search-name"}>
+                        <TextField
+                            label="Creator Last Name"
+                            type="text"
+                            value={this.props.name}
+                            onChange={this.props.handleChange('name')}
+                            margin="normal"
+                            variant="outlined"
                         />
-                        <IconButton aria-label="Search" onClick={this.props.searchShow}>
-                            <SearchIcon/>
-                        </IconButton>
-                        <Divider/>
-                    </Paper>
-                </div>;
+                        <div>
+                            <Button variant="contained" color="primary" type={"submit"} onClick={this.props.searchShow}>Search</Button>
+                        </div>
+                    </div>
+                    </form>
+                );
             default: return;
         }
     };

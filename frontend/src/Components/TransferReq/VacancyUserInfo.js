@@ -4,14 +4,13 @@ import TextField from "@material-ui/core/TextField/TextField";
 import TransferActions from "./TransferActions";
 
 const VacancyUserInfo = props => {
-    console.log(props)
     return (
         <div className="editable">
             <div className="user-transfer-group">
                 <div className="reg-sap reg-input">
                     <TextField
                         label="SAP"
-                        value={props.user.sap}
+                        value={props.sap}
                         margin="normal"
                         variant="outlined"
                         disabled={true}/>
@@ -19,7 +18,7 @@ const VacancyUserInfo = props => {
                 <div className="reg-firstname reg-input">
                     <TextField
                         label="First Name"
-                        value={props.user.firstName}
+                        value={props.firstName}
                         margin="normal"
                         variant="outlined"
                         disabled={true}/>
@@ -27,13 +26,13 @@ const VacancyUserInfo = props => {
                 <div className="reg-lastname reg-input">
                     <TextField
                         label="Last Name"
-                        value={props.user.lastName}
+                        value={props.lastName}
                         margin="normal"
                         variant="outlined"
                         disabled={true}/>
                 </div>
             </div>
-            <TransferActions {...props}/>
+            <TransferActions {...props} />
         </div>
     );
 };

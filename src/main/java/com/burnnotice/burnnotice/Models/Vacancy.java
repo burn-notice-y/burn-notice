@@ -91,4 +91,6 @@ public class Vacancy {
     public void setTransferRequest(List<TransferRequest> transferRequest) {
         this.transferRequest = transferRequest;
     }
+
+
 }

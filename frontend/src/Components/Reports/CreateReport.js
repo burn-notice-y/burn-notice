@@ -26,8 +26,8 @@ class CreateReport extends Component {
         fireRetardant: "true",
         teamActions: "",
         description: "",
-        timeArrived: "",
-        timeDispatched: "",
+        timeArrived: moment(),
+        timeDispatched: moment(),
         createDate: moment().format("YYYY-MM-DD"),
         search: "",
         redirect: false,
@@ -44,17 +44,23 @@ class CreateReport extends Component {
 
 
     inputHandler = type => event => {
-        if (type === "createDate"){
-            if(event > new Date()) {
-                this.props.showModal(["Whoa", "Can you see into the future?", "Select a past date"])
-            }  else {
-                this.setState({createDate: moment(event).format("YYYY-MM-DD")})
-            }
-        } else {
         this.setState({
             [type]: event.target.value
         })
-    }
+    };
+
+    dateHandler = type => event => {
+        if (type === "createDate") {
+            if (event > new Date()) {
+                this.props.showModal(["Whoa", "Can you see into the future?", "Select a past date"])
+            } else {
+                this.setState({createDate: moment(event).format("YYYY-MM-DD")})
+            }
+        } else {
+            this.setState({
+                [type]: event
+            })
+        }
     };
 
     searchFirefighters = event => {
@@ -113,7 +119,7 @@ class CreateReport extends Component {
     determinePage = () => {
         switch (this.props.match.params.pageNumber) {
             case "1":
-                return <ReportPage1 {...this.state} inputHandler={this.inputHandler}/>;
+                return <ReportPage1 {...this.state} dateHandler={this.dateHandler} inputHandler={this.inputHandler}/>;
             case "2":
                 return <ReportsPage2 {...this.state} inputHandler={this.inputHandler}/>;
             case "3":

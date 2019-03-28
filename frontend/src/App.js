@@ -15,6 +15,7 @@ import Login from "./Components/User/Login";
 import Profile from "./Components/User/Profile";
 import Popup from "./Components/Popup";
 import OwnModal from "./Components/OwnModal";
+import About from "./Components/Visitor/About";
 
 class App extends Component {
     componentDidMount() {
@@ -39,6 +40,7 @@ class App extends Component {
                         <Switch>
                             <Route path={"/visitor/register"} render={() => <Register/>}/>
                             <Route path={"/visitor/login"} render={() => <Login/>}/>
+                            <Route path={"/visitor/about"} render={() => <About/>}/>
                             <Route path={"/user/profile"} render={() => <Profile />}/>
                             <Route path={"/:path"} render={(routeProps) => <MainRouter {...routeProps}/>}/>
                             <Route path={"/"} render={() => <Landing/>}/>
@@ -67,7 +69,7 @@ App.propTypes = {
     }),
     closePopup: PropTypes.func,
     closeModal: PropTypes.func,
-    user: PropTypes.object,
+    user: PropTypes.any,
 
 };
 

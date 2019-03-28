@@ -26,7 +26,8 @@ const AdminActions = ({ closeMenu, user}) => {
                           primaryText={"Reports"}
                           mainIcon={<ListAlt/>}
                           listItems={[
-                              [<LibraryAdd/>, "Create Report", "/reports/create/1"],
+                              [<LibraryAdd/>, "Search", "/reports/search"],
+                              [<LibraryAdd/>, "Create", "/reports/create/1"],
                               [<Description/>, "My Reports", `/reports/${user ? user.id : ""}`]
                           ]}
             />
@@ -40,12 +41,12 @@ const AdminActions = ({ closeMenu, user}) => {
                           ]}
             />
             {[[`Assignment History`, `/assignments/show/${user ? user.id : ""}`], ['Station List', '/stations/all']].map((text, index) => (
-            <ListItem button key={index} onClick={closeMenu}>
-                <Link to={text[1]} className={"router-link"}>
-                    <ListItemIcon>{text[0] === "Assignment History" ? <Assignment/> : <LocationCity/> }</ListItemIcon>
-                    <ListItemText primary={text[0]}/>
+                <Link to={text[1]} className={"router-link"} key={index}>
+                    <ListItem button onClick={closeMenu}>
+                        <ListItemIcon>{text[0] === "Assignment History" ? <Assignment/> : <LocationCity/> }</ListItemIcon>
+                        <ListItemText primary={text[0]}/>
+                    </ListItem>
                 </Link>
-            </ListItem>
             ))}
 
         </Fragment>

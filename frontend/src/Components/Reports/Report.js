@@ -6,12 +6,13 @@ import Card from "@material-ui/core/Card/Card";
 import Typography from "@material-ui/core/Typography/Typography";
 import { Link } from 'react-router-dom';
 import PropTypes from "prop-types";
+import moment from 'moment';
 
 const Report = ({ createDate, creator, type, id }) => (
     <Card className={"assignment"}>
         <CardContent>
             <Typography variant="h5" component="h2">
-                Create Date: {createDate}
+                Date: {moment(createDate).format("MMMM Do YYYY")}
             </Typography>
             <Typography component="p" className={"date"}>
                 Creator: {`${creator.firstName} ${creator.lastName}`}
