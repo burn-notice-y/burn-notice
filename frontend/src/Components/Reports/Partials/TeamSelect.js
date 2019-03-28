@@ -7,6 +7,7 @@ import FirefighterSearchCont from "./FirefighterSearchCont";
 import Typography from "@material-ui/core/Typography/Typography";
 import Paper from "@material-ui/core/Paper/Paper";
 import Divider from "@material-ui/core/Divider/Divider";
+import ClearIcon from "@material-ui/icons/Clear";
 
 const TeamSelect = props => (
     <div className="search-container">
@@ -29,6 +30,9 @@ const TeamSelect = props => (
                         />
                         <IconButton aria-label="Search" onClick={props.searchFirefighters} type={"submit"}>
                             <SearchIcon/>
+                        </IconButton>
+                        <IconButton aria-label="Search" onClick={props.clearSearch}>
+                            <ClearIcon/>
                         </IconButton>
                         <Divider/>
                     </Paper>

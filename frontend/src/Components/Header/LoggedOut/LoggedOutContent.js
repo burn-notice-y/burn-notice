@@ -9,7 +9,6 @@ import Person from '@material-ui/icons/Person';
 import PersonAdd from '@material-ui/icons/PersonAdd';
 import VideoLabel from '@material-ui/icons/VideoLabel';
 import List from "@material-ui/core/List/List";
-import AboutSection from "../AboutSection";
 
 const LoggedOutContent = () => {
     return (

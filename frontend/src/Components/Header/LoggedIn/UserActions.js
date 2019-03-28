@@ -12,6 +12,7 @@ import ListAlt from '@material-ui/icons/ListAlt';
 import Store from '@material-ui/icons/Store';
 import Search from '@material-ui/icons/Search';
 import LocationCity from '@material-ui/icons/LocationCity';
+import {Assignment} from "@material-ui/icons";
 
 const UserActions = ({ closeMenu, user}) => {
     return (
@@ -21,7 +22,8 @@ const UserActions = ({ closeMenu, user}) => {
                          primaryText={"Reports"}
                          mainIcon={<ListAlt/>}
                          listItems={[
-                             [<LibraryAdd/>, "Create Report", "/reports/create/1"],
+                             [<Search/>, "Search", "/reports/search"],
+                             [<LibraryAdd/>, "Create", "/reports/create/1"],
                              [<Description/>, "My Reports", `/reports/${user ? user.id : ""}`]
                          ]}
            />
@@ -40,7 +42,7 @@ const UserActions = ({ closeMenu, user}) => {
                    <Link to={text[1]} className={"link"} key={index}>
                        <ListItem button key={index} onClick={closeMenu} className={"router-link"}>
                            <ListItemIcon>{text[0] === "Assignment History" ?
-                               <Description/> : <LocationCity/> }</ListItemIcon>
+                               <Assignment/> : <LocationCity/> }</ListItemIcon>
                            <ListItemText primary={text[0]}/>
                        </ListItem>
                    </Link>

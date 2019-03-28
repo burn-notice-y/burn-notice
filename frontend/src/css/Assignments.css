@@ -15,6 +15,10 @@
 .date {
     margin: 1vh 0 !important;
 }
+.assignment-divider {
+    margin: 2vh 0 4vh 0 !important;
+}
+
 @media only screen and (min-width: 786px) {
     .assignment-cont {
         width: 100%;

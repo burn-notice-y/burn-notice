@@ -3,7 +3,6 @@ import Typography from "@material-ui/core/Typography/Typography";
 import TextField from "@material-ui/core/TextField/TextField";
 import Button from "@material-ui/core/Button/Button";
 import '../../css/Profile.css';
-import user from '../../data/user';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
 import axios from "axios";
@@ -18,15 +17,24 @@ class Profile extends Component {
         firstName: "",
         lastName: "",
         sap: "",
+        stations: "",
+        chief: ""
     };
+
+    componentDidMount() {
+        this.props.toggleLoading();
+    }
+
 
     static getDerivedStateFromProps(nextProps, prevState) {
         if (nextProps.user && nextProps.user.id !== ""){
             if (nextProps.user.id !== prevState.id){
+                nextProps.toggleLoading();
                 return {...nextProps.user}
             }
             return null;
         } else {
+
             return {...nextProps.user}
         }
     }
@@ -48,15 +56,19 @@ class Profile extends Component {
             this.props.showModal(["Oops", "Editing is locked", "Click the edit button to make changes"])
         } else {
         this.props.toggleLoading();
-            axios.post("/api/edit-profile", {...this.state})
+            axios.post("/api/edit-profile", {
+                sap: this.state.sap,
+                firstName: this.state.firstName,
+                lastName: this.state.lastName,
+                id: this.state.id,
+                email: this.state.email
+            })
                 .then(() => {
                     this.props.toggleLoading();
                     this.props.showPopup("Success!");
                     this.setState({editLocked: true});
-                    // setTimeout(() => {
-                    //     this.props.closePopup()
-                    // }, 4000)
                 })
+                .catch(() => console.log("errrorororororoororororo"))
         }
     };
 
@@ -145,12 +157,12 @@ class Profile extends Component {
                             </div>
                             <div className="edit-station-cont reg-input">
                                 <Typography component="p" variant="subtitle2" gutterBottom className={"edit-transfer"}>
-                                    Current Station: {user.fireStation.code}
+                                    {this.state.chief === false ? `Current Station: ${this.state.stations.name}` : "Chief" }
                                 </Typography>
                             </div>
                             <div className="edit-station-cont reg-input">
                                 <Typography component="p" variant="subtitle2" gutterBottom className={"edit-transfer"}>
-                                    Current District: {user.fireStation.district}
+                                    Current District: 8-0
                                 </Typography>
                             </div>
                         </div>

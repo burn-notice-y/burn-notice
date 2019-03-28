@@ -97,7 +97,7 @@ class BigVacancy extends Component {
                             />
 
                             <div className={"fireman-cont"}>
-                                <ManyFirefighters firemanList={this.state.vacancy.station.currentCrew}/>
+                                <ManyFirefighters firemanList={this.state.vacancy.station.currentCrew} title={"Current Crew"}/>
                             </div>
                         </div>
                         <div className="top">

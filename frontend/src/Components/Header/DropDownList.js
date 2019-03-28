@@ -34,8 +34,8 @@ class DropDownList extends Component {
                 <Collapse in={this.state.open} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
                         {this.props.listItems.map((itemArray, index) => (
-                            <Link to={itemArray[2]} className={"sub-link"}>
-                                <ListItem button key={index}>
+                            <Link to={itemArray[2]} className={"sub-link"} key={index}>
+                                <ListItem button>
                                     <ListItemIcon>
                                      {itemArray[0]}
                                     </ListItemIcon>

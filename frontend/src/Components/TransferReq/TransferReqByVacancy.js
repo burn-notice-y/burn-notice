@@ -47,11 +47,11 @@ class TransferReqByVacancy extends Component {
                 <div className="filter-cont">
                     <DropDown inputHandler={this.inputHandler} inputArgument={"filterTerm"}
                               value={this.state.filterTerm} label={"Search By"}
-                              items={vacancyStatus} targeter={"vacancy-search"}
+                              items={vacancyStatus} cssName={"vacancy-search"}
                     />
                 </div>
                 <ManyTransferReq admin={true} transferRequests={filteredRequests}/>
-                <EmptyDisplay items={this.state.requests} variant={"h5"} name={"requests"}/>
+                <EmptyDisplay items={filteredRequests} show={true} variant={"h5"} name={"requests"}/>
             </div>
         );
     }
