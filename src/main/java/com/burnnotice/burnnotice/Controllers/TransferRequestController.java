@@ -103,7 +103,7 @@ public class TransferRequestController {
                 application.getUser().setEligibleForTransfer(true);
                 String denied_subject = "Transfer Request Denied!";
                 Email denied_to = new Email(application.getUser().getEmail());
-                Content denied_content = new Content("text/html", "<h1>Your Request has been denied<h1><br><p>Dear " + application.getUser().getFirstName() + " " + application.getUser().getLastName() + ", We Regret to inform you that your transfer to station" + stationName  + "has been denied</p>");
+                Content denied_content = new Content("text/html", "<h1>Your Request has been denied</h1><br><p>Dear " + application.getUser().getFirstName() + " " + application.getUser().getLastName() + ", We Regret to inform you that your transfer to station " + stationName  + " has been denied</p>");
                 Mail denied_mail = new Mail(denied_from, denied_subject, denied_to, denied_content);
                 Request deniedRequest = new Request();
                 SendGrid sg = new SendGrid(sendGridAPIKey);
@@ -142,7 +142,7 @@ public class TransferRequestController {
         return assignmentDao.findAllByUserIdOrderByIdDesc(33).get(0);
     }
 
-    public void sendEmail(Request request, Mail mail, SendGrid sg) throws IOException{
+    public static void sendEmail(Request request, Mail mail, SendGrid sg) throws IOException{
         try {
             request.setMethod(Method.POST);
             request.setEndpoint("mail/send");
