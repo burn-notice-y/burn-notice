@@ -25,7 +25,7 @@ class SearchByTwo extends Component {
     render() {
 
         return(
-        <div>
+        <div className={"by-2"}>
             <div className="time">
                 <DatePick labelDisplay={"Start Date"} argumentName={"startDate"} value={this.props.startDate} handleChange={this.props.handleChange}/>
                 <DatePick labelDisplay={"End Date"} argumentName={"endDate"} value={this.props.endDate} handleChange={this.props.handleChange}/>

@@ -67,11 +67,19 @@ class CreateVacancy extends Component {
                 </div>
                 <Divider className={"vacancy-divider"}/>
                 <div className="input-cont">
-                    <div className="vac-date-cont reg-input">
-                        <DatePickClass labelDisplay={"Start Date"}
-                                       value={this.state.postDate} handleChange={this.inputHandler}
-                                       argumentName={"postDate"}
-                        />
+                    <div className="vac-row">
+                        <div className="vac-date-cont">
+                            <DatePickClass labelDisplay={"Start Date"}
+                                           value={this.state.postDate} handleChange={this.inputHandler}
+                                           argumentName={"postDate"}
+                            />
+                        </div>
+                        <div className="vacancy-cat">
+                            <DropDown inputHandler={this.inputHandler} value={this.state.station}
+                                      inputArgument={"station"} items={fireStations} label={"Station"}
+                                      target={"vacancy-station-sel"}
+                            />
+                        </div>
                     </div>
                     <div className="vac-role-cont reg-input">
                         <div>
@@ -95,12 +103,9 @@ class CreateVacancy extends Component {
                             />
                         </div>
                     </div>
-                    <div className="vacancy-cat reg-input">
-                        <DropDown inputHandler={this.inputHandler} value={this.state.station}
-                                  inputArgument={"station"} items={fireStations} label={"Station"}
-                        />
-                    </div>
+
                 </div>
+                <Divider className="create-vac-divider"/>
                 <div className="actions-cont">
                     <div className="submit-reg-cont">
                         <Button variant="contained" color="primary"><div onClick={this.submit}>Submit</div></Button>

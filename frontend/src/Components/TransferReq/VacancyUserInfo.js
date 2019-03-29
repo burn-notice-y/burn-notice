@@ -4,7 +4,6 @@ import TextField from "@material-ui/core/TextField/TextField";
 import TransferActions from "./TransferActions";
 
 const VacancyUserInfo = props => {
-    console.log(props)
     return (
         <div className="editable">
             <div className="user-transfer-group">
@@ -33,7 +32,7 @@ const VacancyUserInfo = props => {
                         disabled={true}/>
                 </div>
             </div>
-            <TransferActions {...props}/>
+            <TransferActions {...props} />
         </div>
     );
 };

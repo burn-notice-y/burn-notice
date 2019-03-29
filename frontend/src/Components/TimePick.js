@@ -2,7 +2,7 @@ import React from "react";
 import { TimePicker } from "material-ui-pickers";
 import PropTypes from 'prop-types';
 
-const TimePick = ({ helperText, label, value, inputHandler }) => (
+const TimePick = ({ helperText, label, value, changeHandler, argument }) => (
     <div className="picker">
         <TimePicker
             keyboard
@@ -12,8 +12,9 @@ const TimePick = ({ helperText, label, value, inputHandler }) => (
             ampm={false}
             label={label}
             value={value}
-            onChange={inputHandler}
+            onChange={changeHandler(argument)}
             required
+            format={"LT"}
         />
     </div>
 );
@@ -21,9 +22,9 @@ const TimePick = ({ helperText, label, value, inputHandler }) => (
 TimePick.propTypes = {
     helperText: PropTypes.string,
     label: PropTypes.string,
-    value: PropTypes.string,
-    inputHandler: PropTypes.func,
+    value: PropTypes.object,
+    changeHandler: PropTypes.func,
+    argument: PropTypes.string,
 };
 
-
-export default TimePicker;
+export default TimePick;

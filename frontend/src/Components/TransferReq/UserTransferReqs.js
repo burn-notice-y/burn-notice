@@ -6,6 +6,7 @@ import * as actions from '../../store/actions';
 import axios from 'axios';
 import Typography from "@material-ui/core/Typography/Typography";
 import Divider from "@material-ui/core/Divider/Divider";
+import EmptyDisplay from "../EmptyDisplay";
 
 class UserTransferReqs extends Component {
     state = {
@@ -34,6 +35,7 @@ class UserTransferReqs extends Component {
                 </div>
                 <Divider className={"user-transfer-divider"}/>
                 <ManyTransferReq admin={false} {...this.state}/>
+                <EmptyDisplay name={"applications"} variant={"h4"} show={true} items={this.state.transferRequests}/>
             </div>
         );
     }

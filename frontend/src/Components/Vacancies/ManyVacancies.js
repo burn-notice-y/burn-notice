@@ -1,15 +1,14 @@
 import React from 'react';
 import Vacancy from "./Vacancy";
 import PropTypes from 'prop-types';
-import Typography from "@material-ui/core/Typography/Typography";
 import EmptyDisplay from "../EmptyDisplay";
 
 
-const ManyVacancies = ({ admin, allVacancies }) => (
+const ManyVacancies = ({ admin, vacancies }) => (
     <div className="many-vacancies-cont">
         <div className="vacancy-body">
-            {allVacancies.map(vacancy => <Vacancy admin={admin} key={vacancy.id} {...vacancy} />)}
-            <EmptyDisplay name={"vacancies"} variant={"h5"} items={allVacancies}/>
+            {vacancies.map(vacancy => <Vacancy admin={admin} key={vacancy.id} {...vacancy} />)}
+            <EmptyDisplay name={"vacancies"} variant={"h5"} items={vacancies}/>
         </div>
     </div>
 );
@@ -17,7 +16,7 @@ const ManyVacancies = ({ admin, allVacancies }) => (
 
 ManyVacancies.propTypes = {
     admin: PropTypes.bool,
-    allVacancies: PropTypes.array
+    vacancies: PropTypes.arrayOf(PropTypes.object)
 };
 
 export default ManyVacancies;

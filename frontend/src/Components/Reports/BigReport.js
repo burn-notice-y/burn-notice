@@ -4,19 +4,15 @@ import Typography from "@material-ui/core/Typography/Typography";
 import PropTypes from "prop-types";
 import * as actions from '../../store/actions';
 import { connect } from 'react-redux';
-import report from "../../data/bigReport";
-import CardContent from "@material-ui/core/CardContent/CardContent";
-import Card from "@material-ui/core/Card/Card";
 import Divider from "@material-ui/core/Divider/Divider";
 import ManyFirefighters from "../Firefighters/ManyFirefighters";
-
+import Fab from "@material-ui/core/Fab/Fab";
+import ArrowBack from '@material-ui/icons/ArrowBack';
+import moment from 'moment';
+import '../../css/Reportdisplay.css'
 
 class BigReport extends Component {
-
-    state = {
-        report: null
-
-    };
+    state = { report: null };
 
     componentDidMount() {
         this.props.toggleLoading();
@@ -25,9 +21,9 @@ class BigReport extends Component {
                 this.props.toggleLoading();
                 this.setState({report: res.data})
             })
-            .catch(error => {
-                console.log(error);
-                this.props.toggleLoading()
+            .catch(() => {
+                this.props.toggleLoading();
+                this.props.showModal(["Oops", "Looks like something went wrong", "Try again in a little bit"])
             })
     }
 
@@ -59,7 +55,7 @@ class BigReport extends Component {
                             Create Date:
                         </Typography>
                         <Typography component="p" variant="subtitle1">
-                            {report.createDate}
+                            {moment(report.createDate).format("MMMM Do YYYY")}
                         </Typography>
                         <Typography component="h5" variant="h6">
                             Report Type:
@@ -77,13 +73,13 @@ class BigReport extends Component {
                             Time Dispatched:
                         </Typography>
                         <Typography component={"p"} variant={"subtitle1"}>
-                            {report.timeDispatched}
+                            {moment(report.timeDispatched).format("LT")}
                         </Typography>
                         <Typography component="h5" variant="h6">
                             Time Arrived:
                         </Typography>
                         <Typography component="p" variant="subtitle1">
-                            {report.timeArrived}
+                            {moment(report.timeArrived).format("LT")}
                         </Typography>
                         <Typography component="h5" variant="h6">
                             Fire Retardant Present:
@@ -112,15 +108,13 @@ class BigReport extends Component {
         }
     };
 
-
     render() {
-
-    console.log(this.state);
-    console.log(report.description);
-
         return (
             <Fragment>
                 {this.showStation()}
+                <Fab className={"back-button"} color="primary" onClick={() => this.props.history.goBack()}>
+                    <ArrowBack/>
+                </Fab>
             </Fragment>
 
         )
@@ -130,13 +124,8 @@ class BigReport extends Component {
 
 BigReport.propTypes = {
     toggleLoading: PropTypes.func,
+    showModal: PropTypes.func,
     match: PropTypes.any
 };
 
-const mapStateToProps = store => {
-    return {
-        unicorn: store.user
-    }
-};
-
-export default connect(mapStateToProps, actions)(BigReport);
+export default connect(null, actions)(BigReport);

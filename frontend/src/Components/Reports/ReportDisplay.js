@@ -13,6 +13,8 @@ import * as actions from '../../store/actions';
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 import moment from 'moment';
+import Divider from "@material-ui/core/Divider/Divider";
+import EmptyDisplay from "../EmptyDisplay";
 
 class ReportDisplay extends Component {
     state = {
@@ -23,6 +25,7 @@ class ReportDisplay extends Component {
         startDate: moment().format("YYYY-MM-DD"),
         endDate: moment().format("YYYY-MM-DD"),
         displayReports: false,
+        data: []
     };
 
     inputHandler = type => event => {
@@ -36,7 +39,9 @@ class ReportDisplay extends Component {
         }
     };
 
-    showSearchResults = () => {
+    showSearchResults = event => {
+        event.preventDefault();
+        event.stopPropagation();
         this.props.toggleLoading();
         let requestUrl = "";
         let queryString = "";
@@ -93,20 +98,14 @@ class ReportDisplay extends Component {
             <div className="report-d-cont">
                 <div className="report-d-header">
                     <Typography component="h3" variant="h2" gutterBottom className={"report-d-header"}>
-                        Reports
+                        Search Reports
                     </Typography>
                 </div>
-                <div className="report-info">
-                    <Typography component="h3" variant="h4" gutterBottom className={"report-d-header"}>
-                        What type of Report?
-                    </Typography>
-                </div>
-                <div className="report-info">
-                    <Typography component="h2" variant="h5" className={"report-d-header"}>
-                        Search By:
-                    </Typography>
-                </div>
+                <Divider className={"report-search-divider"}/>
+                <div className="report-filter">
+
                 <div className="big-search">
+                    <div className="search-group">
                     <TextField className={"dropdown"}
                                id="outlined-select-currency"
                                select
@@ -122,12 +121,14 @@ class ReportDisplay extends Component {
                         ))}
                     </TextField>
                 </div>
-                <div>
+                <div className={"filter-type-cont"}>
                     {this.determineSearchType(this.state.type)}
 
                 </div>
+                </div>
+                </div>
                 <ManyReports data={this.state.data} show={this.state.displayReports}/>
-
+                <EmptyDisplay name={"reports"} variant={"h5"} show={this.state.displayReports} items={this.state.data}/>
             </div>
 
         )

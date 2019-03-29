@@ -1,9 +1,7 @@
-import React, {Component, Fragment} from 'react';
+import React, { Fragment } from 'react';
 import Report from "./Report";
-import Typography from "@material-ui/core/Typography/Typography";
 import PropTypes from "prop-types";
-
-
+import EmptyDisplay from "../EmptyDisplay";
 
 const ManyReports = ({ show, data}) => {
         // this is mapping thru the report object and going thru each report. the ...report is called a spread operator
@@ -20,6 +18,7 @@ const ManyReports = ({ show, data}) => {
         return (
             <Fragment>
                 {display}
+                <EmptyDisplay items={data} name={"reports"} variant="h4"/>
             </Fragment>
         )
 };

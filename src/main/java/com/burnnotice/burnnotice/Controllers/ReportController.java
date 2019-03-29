@@ -36,6 +36,7 @@ public class ReportController {
     public void createReport(@RequestBody Report report) throws IOException {
         reportDao.save(report);
         for (User user : report.getUsers()){
+
             User targetUser = userDao.findOne(user.getId());
             User creator = userDao.findOne(report.getCreator().getId());
             ReportType reportType = reportTypeDao.findOne(report.getType().getId());
@@ -52,14 +53,14 @@ public class ReportController {
             sendEmail(request, mail, sg);
 
 
-            
+     
             user.getReports().add(report);
         }
     }
 
     @GetMapping("/api/reports")
     public Iterable<ReportHighlights> findByCreatorId(@RequestParam long id) {
-        return reportDao.findAllByCreatorId(id);
+        return reportDao.findAllByCreatorIdOrderByIdDesc(id);
     }
 
     @GetMapping("/api/one-report")
@@ -70,7 +71,7 @@ public class ReportController {
     // find by last name
     @GetMapping("/api/creator-report")
     public List<ReportHighlights> findAllByCreator(@RequestParam String creatorName){
-        return reportDao.findAllByCreatorLastName(creatorName);
+        return reportDao.findAllByCreatorLastNameLike(creatorName);
     }
 
     // find by date

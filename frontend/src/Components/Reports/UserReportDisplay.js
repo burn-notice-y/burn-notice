@@ -5,6 +5,7 @@ import ManyReports from "./ManyReports";
 import * as PropTypes from "prop-types";
 import * as actions from '../../store/actions';
 import { connect } from 'react-redux';
+import EmptyDisplay from "../EmptyDisplay";
 
 class UserReportDisplay extends Component {
 
@@ -37,6 +38,7 @@ class UserReportDisplay extends Component {
                     </Typography>
                 </div>
                 <ManyReports data={this.state.reports} show={true}/>
+                <EmptyDisplay items={this.state.reports} show={true} variant={"h5"} name={"reports"}/>
             </div>
 
         )

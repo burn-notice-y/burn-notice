@@ -5,4 +5,5 @@ public interface VacancyHighlights {
     StationName getStation();
     boolean getEngine();
     boolean getTemporary();
+    String getFillDate();
 }

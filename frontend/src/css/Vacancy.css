@@ -3,9 +3,7 @@
 .vacancy-cont {
     margin: 4vh 0;
 }
-.vac-date-cont {
-    margin-top: 10vh;
-}
+
 .availability-cont {
     margin-top: 2vh !important;
 }
@@ -15,13 +13,13 @@
     justify-content: space-between;
 }
 .admin-create-vacancy {
-    height: 75vh;
+    height: 70vh;
 }
 .picker {
     margin-top: 10px;
 }
 .vacancy-cat {
-    margin-bottom:15px;
+
 }
 .role-cont {
     display: flex;
@@ -32,9 +30,9 @@
     width: 40% !important;
     float: left;
 }
-.vac-role-cont {
-    margin-top: 20px;
-}
+
+
+
 .station-num {
     justify-content: center !important;
 }
@@ -60,6 +58,24 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.vacancy-station-sel > div {
+    width: 100%;
+}
+.vacancy-cat {
+    width: 33%;
+}
+.vac-date-cont  div{
+    width: 100%;
+}
+.vac-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 3vh 0;
+}
+.create-vac-divider {
+    margin: 3vh 0 1vh 0 !important;
 }
 
 @media only screen and (min-width: 786px) {

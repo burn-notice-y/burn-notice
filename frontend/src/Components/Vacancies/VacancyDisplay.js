@@ -6,41 +6,42 @@ import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
 import axios from 'axios';
 import * as PropTypes from "prop-types";
-import DropDown from "../DropDown";
-import {vacancyStatus} from "../../data/categories";
 import TwoOptionSelect from "../TwoOptionSelect";
 import Divider from "@material-ui/core/Divider/Divider";
 
-
-// this component is the admin's view of Vacancies in their district
-
 class VacancyDisplay extends Component{
-    // if chief is true, send chief to ManyVacancies
     state= {
         allVacancies: [],
+        openVacancies: [],
         filterTerm: "open"
     };
+
     componentDidMount(){
-       this.fetchVacancies();
-    }
-
-    inputHandler = type => event => {
-        this.setState({
-            [type]: event.target.value
-        }, this.fetchVacancies)
-    };
-
-    fetchVacancies = () => {
         this.props.toggleLoading();
-        axios.get(`/api/${this.state.filterTerm === "all" ? "all" : "open"}-vacancies`)
-            .then(res => {
-                this.props.toggleLoading();
-                this.setState({allVacancies: res.data})
+        axios.get(`/api/all-vacancies`)
+            .then(allVacancies => {
+                axios.get("/api/open-vacancies")
+                    .then(openVacancies => {
+                        this.props.toggleLoading();
+                        this.setState({
+                            allVacancies: allVacancies.data,
+                            openVacancies: openVacancies.data
+                        })
+                    }).catch(() => {
+                    this.props.toggleLoading();
+                    this.props.showModal(["Oops", "Something went wrong", "Please try again"])
+                })
             })
             .catch(() => {
                 this.props.toggleLoading();
                 this.props.showModal(["Oops", "Something went wrong", "Please try again"])
             })
+    }
+
+    inputHandler = type => event => {
+        this.setState({
+            [type]: event.target.value
+        })
     };
 
     render(){
@@ -49,7 +50,7 @@ class VacancyDisplay extends Component{
             chief = true;
         }
         let style = "black";
-        let text = "Filled";
+        let text = "All";
         if(this.state.filterTerm === "open") {
             style = "green";
             text = "Open";
@@ -80,7 +81,7 @@ class VacancyDisplay extends Component{
 
                 </div>
                 <div className="vacancy-cont">
-                    <ManyVacancies admin={chief} {...this.state}/>
+                    <ManyVacancies admin={chief} vacancies={this.state.filterTerm === "open" ? this.state.openVacancies : this.state.allVacancies}/>
                 </div>
             </div>
         )
