@@ -21,20 +21,13 @@ class Profile extends Component {
         chief: ""
     };
 
-    componentDidMount() {
-        this.props.toggleLoading();
-    }
-
-
     static getDerivedStateFromProps(nextProps, prevState) {
         if (nextProps.user && nextProps.user.id !== ""){
             if (nextProps.user.id !== prevState.id){
-                nextProps.toggleLoading();
                 return {...nextProps.user}
             }
             return null;
         } else {
-
             return {...nextProps.user}
         }
     }
@@ -67,8 +60,14 @@ class Profile extends Component {
                     this.props.toggleLoading();
                     this.props.showPopup("Success!");
                     this.setState({editLocked: true});
+                    setTimeout(() => {
+                        this.props.closePopup()
+                    }, 3000)
                 })
-                .catch(() => console.log("errrorororororoororororo"))
+                .catch(() => {
+                    this.props.toggleLoading();
+                    this.props.showModal(["Oops", "Something went wrong", "Please try again"]);
+                })
         }
     };
 
@@ -189,6 +188,7 @@ const mapStateToProps = state => {
 Profile.propTypes = {
     showPopup: PropTypes.func,
     toggleLoading: PropTypes.func,
-    closePopup :PropTypes.func
+    closePopup :PropTypes.func,
+    showModal: PropTypes.func,
 };
 export default connect(mapStateToProps, actions)(Profile);
