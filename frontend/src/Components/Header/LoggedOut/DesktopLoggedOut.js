@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import AboutSection from "../AboutSection";
 import CardHeader from "@material-ui/core/CardHeader/CardHeader";
 import LoggedOutContent from "./LoggedOutContent";
+import logo from '../../../assets/images/company-logo.png';
 
 const drawerWidth = 240;
 
@@ -41,10 +42,13 @@ const DesktopLoggedOut = (props) => {
         <div className={"desktop desktop-menu"}>
             <CssBaseline />
             <AppBar position="fixed" className={classes.appBar}>
-                <Toolbar>
+                <Toolbar className={"header-cont"}>
                     <Typography variant="h6" color="inherit" noWrap>
                         Burn Notice
                     </Typography>
+                    <div>
+                        <img src={logo} className={"logo"} alt={"company logo"}/>
+                    </div>
                 </Toolbar>
             </AppBar>
             <Drawer
