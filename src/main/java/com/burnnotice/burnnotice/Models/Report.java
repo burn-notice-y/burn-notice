@@ -40,6 +40,7 @@ public class Report {
 
     //type of report being submitted
     @OneToOne
+    @JoinColumn(name = "type_id")
     private ReportType type;
 
     @ManyToMany(cascade = CascadeType.MERGE)
