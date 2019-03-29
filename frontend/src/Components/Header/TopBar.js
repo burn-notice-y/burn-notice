@@ -2,21 +2,22 @@ import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
 import '../../css/Header.css';
+import * as PropTypes from "prop-types";
+import logo from '../../assets/images/company-logo.png';
 
-const TopNavBar = (props) => {
-    return (
-        <React.Fragment>
-            <div className="top-nav-cont">
+const TopNavBar = (props) => (
+        <div className="top-nav-cont">
+            <div className={"logo-cont"}>
                 <div className="menu-tog" onClick={props.toggleMenu}><i className="fas fa-bars"/></div>
             </div>
-        </React.Fragment>
-    )
+            <div className={"logo-cont"}>
+                <img src={logo} alt={"company logo"} className={"logo"}/>
+            </div>
+        </div>
+);
+
+TopNavBar.propTypes = {
+    toggleMenu: PropTypes.func,
 };
 
-const mapStateToProps = state => {
-
-    return {
-        ...state
-    }
-};
-export default connect(mapStateToProps, actions)(TopNavBar);
+export default connect(null, actions)(TopNavBar);
