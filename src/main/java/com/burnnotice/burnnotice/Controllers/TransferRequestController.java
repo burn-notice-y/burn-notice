@@ -120,6 +120,12 @@ public class TransferRequestController {
 
 
         // Add an association between the successful applicant and the accepting fire station
+        FireStation oldStation = stationDao.findOne(applicant.getStations().get(0).getId());
+        List<FireStation> newStations = new ArrayList<>();
+        newStations.add(station);
+        oldStation.getCurrentCrew().remove(applicant);
+        applicant.setStations(newStations);
+
         station.getCurrentCrew().add(applicant);
         stationDao.save(station);
     }

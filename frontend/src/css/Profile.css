@@ -27,6 +27,12 @@
 .prof-actions-cont {
     padding-top: 5vh;
 }
+.edit-prof-cont {
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
 @media only screen and (min-width: 786px) {
     .reg-input div {
