@@ -32,27 +32,33 @@ class Register extends Component{
     register = event => {
         event.preventDefault();
         event.stopPropagation();
-        this.props.toggleLoading();
-        axios.post("/api/register", {
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
-            sap: this.state.sap,
-            password: this.state.password,
-            email: this.state.email,
-        }).then(() => {
-            axios.post("/api/add-station", `stationName=${this.state.station}`)
-                .then(result => {
-                    console.log(result);
-                    this.props.toggleLoading();
-                    this.setState({redirect: true})
-                }).catch(() => {
+        if (!this.state.email.includes("@") && !this.state.email.includes(".")){
+            this.props.showModal(["Invalid Email", `It looks your email is missing some things. The format we're looking for is "mail@mail.com"`, "Please try again with a valid entry"])
+        } else if(this.state.sap === "" || this.state.password === "" || this.state.lastName === "" ){
+            this.props.showModal(["Oops", "Looks like you have some empty fields. Make sure everything is filled out ", "Please try again"])
+        } else {
+            this.props.toggleLoading();
+            axios.post("/api/register", {
+                firstName: this.state.firstName,
+                lastName: this.state.lastName,
+                sap: this.state.sap,
+                password: this.state.password,
+                email: this.state.email,
+            }).then(() => {
+                axios.post("/api/add-station", `stationName=${this.state.station}`)
+                    .then(result => {
+                        console.log(result);
+                        this.props.toggleLoading();
+                        this.setState({redirect: true})
+                    }).catch(() => {
                     this.props.toggleLoading();
                     this.setState({error: true})
-            })
+                })
             }).catch(() => {
                 this.props.toggleLoading();
                 this.setState({error: true})
             })
+        }
     };
 
     inputHandler = type => event => {
@@ -163,6 +169,7 @@ class Register extends Component{
 Register.propTypes = {
     fetchUser: PropTypes.func,
     toggleLoading: PropTypes.func,
+    showModal: PropTypes.func,
 
 
 };

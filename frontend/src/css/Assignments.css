@@ -18,6 +18,9 @@
 .assignment-divider {
     margin: 2vh 0 4vh 0 !important;
 }
+.assignment-cont {
+    margin: 4vh 0 !important;
+}
 
 @media only screen and (min-width: 786px) {
     .assignment-cont {
