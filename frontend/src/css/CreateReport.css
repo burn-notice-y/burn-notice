@@ -29,7 +29,7 @@
 #search {
     margin-left: 5px;
     margin-top: 12px;
-    width: 70%;
+    width: 60%;
     border: none;
     font-size: 20px;
     text-align: center;
@@ -149,6 +149,14 @@
         width: 75%;
     }
     .page3 {
+        width: 80%;
+    }
+    #search {
+        width: 75%;
+    }
+}
+@media only screen and (min-width: 960px){
+    #search {
         width: 80%;
     }
 }

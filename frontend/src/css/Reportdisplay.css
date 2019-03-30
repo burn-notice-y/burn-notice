@@ -1,6 +1,6 @@
 .report-d-cont {
     height: 75vh;
-    width: 70%;
+    width: 83%;
 }
 .dropdown {
     width: 80%;
@@ -33,10 +33,14 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    width: 85%;
 }
 
 .search-name {
-    width: 60%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
 }
 .button-cont {
     padding-top: 7px;
@@ -59,7 +63,13 @@
 
 .type-info {
     margin: 3vh 0 2vh 0;
-
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+}
+.type-info > div {
+    width: 73%;
 }
 
 .report-body h5 {
@@ -91,7 +101,7 @@
         width: 40%;
     }
     .search-group {
-        width: 40%;
+        width: 30%;
     }
     .search-group > div {
         width: 100%;
@@ -105,9 +115,9 @@
         margin-right: 30px;
     }
     .big-search {
-        width: 100%;
+        width: 75%;
         display: flex;
-        justify-content: flex-start;
+        justify-content: space-between;
         align-items: center;
     }
     .report-info {
@@ -119,7 +129,7 @@
         align-items: center;
     }
     .filter-type-cont {
-        width: 100%;
+        width: 70%;
     }
     .by-2 {
         display: flex;
@@ -138,6 +148,10 @@
         display: flex;
         justify-content: space-evenly;
         align-items: center;
+        width: 85%;
+    }
+    .type-info > div {
+        width: 55%;
     }
 
 }
