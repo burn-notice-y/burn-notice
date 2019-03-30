@@ -23,6 +23,7 @@ Main
     opacity: 1;
     padding-top: 50px;
     overflow: visible;
+    width: 100%;
 }
 
 .loading-active {
