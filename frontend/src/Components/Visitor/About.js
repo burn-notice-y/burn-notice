@@ -7,6 +7,12 @@ import shawn from '../../assets/images/shawn.jpeg';
 import aziz from '../../assets/images/aziz.jpeg';
 import chris from '../../assets/images/chris.jpeg';
 
+const teamMembers = [
+        {
+
+        }
+    ];
+
 const About = () => {
     return (
         <div className="about-cont">
@@ -20,6 +26,9 @@ const About = () => {
                 <div className="team-cont">
                     <div className="ind-team-member">
                         <img src={karla} alt=""/>
+                    </div>
+                    <div className="member-info">
+                        email
                     </div>
                     <div className="ind-team-member">
                         <img src={chris} alt=""/>
