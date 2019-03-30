@@ -75,6 +75,7 @@ Main
         margin-left: 240px;
         flex-shrink: 0;
         padding-top: 100px;
+        width: 76%;
     }
     .success-message {
         padding: 1%;
