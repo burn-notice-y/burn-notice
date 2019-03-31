@@ -22,8 +22,7 @@ Main
     height: 95vh;
     opacity: 1;
     padding-top: 50px;
-    width: 80%;
-    overflow: visible;
+    width: 100%;
 }
 
 .loading-active {
@@ -75,6 +74,7 @@ Main
         margin-left: 240px;
         flex-shrink: 0;
         padding-top: 100px;
+        width: 80%;
     }
     .success-message {
         padding: 2%;
