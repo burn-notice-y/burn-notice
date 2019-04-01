@@ -1,6 +1,6 @@
 .create-report-cont {
     width: 80%;
-    height: 75vh;
+    height: 85vh;
     scroll-behavior: smooth;
 }
 ::-webkit-scrollbar {
@@ -24,7 +24,7 @@
 }
 
 .team-header {
-    margin-top: 5vh;
+    margin-top: 3vh;
 }
 #search {
     margin-left: 5px;
@@ -41,7 +41,7 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-    margin-top: 10vh !important;
+    margin: 3vh 0 !important;
 }
 .team-member-cont {
     display: flex;
@@ -96,13 +96,18 @@
     width: 100%;
 }
 .page-nav {
-    margin-top: 4vh;
+    margin-top: 3vh;
 }
 .description-cont {
     margin-bottom: 4vh;
 }
 .page3 {
     margin-bottom: 2vh;
+}
+.report-header-cont {
+    display: flex;
+    justify-content: space-between;
+    width: 75%;
 }
 @media only screen and (min-width: 786px){
     .report-group {
@@ -136,14 +141,14 @@
         text-align: left;
     }
     .page-nav {
-        margin-top: 5vh;
+        margin-top: 2vh;
     }
     .report-cat div {
         width: 94%;
     }
     .report-divider {
         width: 80%;
-        margin: 3vh 0 !important;
+        margin: 2vh 0 !important;
     }
     .two-actions-cont {
         width: 75%;
