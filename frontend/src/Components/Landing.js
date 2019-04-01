@@ -9,6 +9,7 @@ import CardDesign from "./CardDesign";
 import Divider from "@material-ui/core/Divider/Divider";
 import vacancyImage from '../assets/images/vacancy.jpeg';
 import transferImage from '../assets/images/transfers.jpg';
+import reportImage from '../assets/images/reports-1065.png';
 
 class Landing extends Component {
 
@@ -50,9 +51,9 @@ class Landing extends Component {
                 <Divider className={"landing-divider"}/>
                 <div className={"landing-card-content-cont"}>
                     <div className={"landing-card-cont"}>
+                        <CardDesign image={reportImage} altText={"Report"} content={"DO Something"} title={"Reports"}/>
                         <CardDesign image={vacancyImage} altText={"Vacancy"} content={"DO Something"} title={"Vacancies"}/>
-                        <CardDesign image={transferImage} altText={"Vacancy"} content={"DO Something"} title={"Vacancies"}/>
-                        <CardDesign image={vacancyImage} altText={"Vacancy"} content={"DO Something"} title={"Vacancies"}/>
+                        <CardDesign image={transferImage} altText={"Transfer Request"} content={"DO Something"} title={"Transfer Request"}/>
                     </div>
                 </div>
 
