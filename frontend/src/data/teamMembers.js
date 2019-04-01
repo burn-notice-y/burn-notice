@@ -3,13 +3,13 @@ export default imgUrls => (
         {
             name: "Aziz Alyahya",
             email: "aziz.t.alyahya@gmail.com",
-            gitHub: "https://github.com/aziztalyaha",
+            gitHub: "https://github.com/aziztalyahya",
             img: imgUrls[0]
         },
         {
             name: "Shawn Arnold",
             email: "shawnthearnold@gmail.com",
-            gitHub: "https://github.com/aziztalyaha",
+            gitHub: "https://github.com/ShawnArnold1",
             img: imgUrls[1]
         },
         {

@@ -9,6 +9,7 @@ import * as PropTypes from "prop-types";
 import TopNavBar from "../TopBar";
 import UserActions from "./UserActions";
 import AboutSection from "../AboutSection";
+import fireLogo from '../../../assets/images/fire-icon.png';
 
 class UserHeader extends Component {
     state = {
@@ -31,13 +32,15 @@ class UserHeader extends Component {
                          role="button"
                          onScrollCapture={this.props.closeMenu}>
                         <div className={"nav-items-test"}>
-                            <CardHeader title={"Burn Notice"}
-                                        subheader={`Welcome, ${this.state.firstName} ${this.state.lastName}`}/>
+                            <div className="fire-cont">
+                                <CardHeader title={"Burn Notice"} subheader={`Welcome, ${this.state.firstName} ${this.state.lastName}`}/>
+                                <div><img className={"fire-icon"} src={fireLogo} alt={"fire"}/> </div>
+                            </div>
                             <List>
                                 <UserActions closeMenu={this.props.closeMenu} user={this.props.user}/>
                             </List>
                             <PersonalActions closeMenu={this.props.closeMenu} logout={this.props.logout}/>
-                            <AboutSection/>
+                            <AboutSection closeMenu={this.props.closeMenu}/>
                         </div>
                     </div>
                 </Drawer>

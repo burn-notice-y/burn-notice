@@ -19,7 +19,8 @@ const styles = theme => ({
         display: 'flex',
     },
     appBar: {
-        backgroundColor: "#9d1112"
+        backgroundColor: "#9d1112",
+        width: "100%"
     },
     drawer: {
         width: drawerWidth,

@@ -14,7 +14,7 @@ const AboutSection = ({ closeMenu }) => (
         <List>
             <Link to={"/visitor/about"} className={"router-link"}>
                 <ListItem button onClick={closeMenu}>
-                    <ListItemIcon><About/></ListItemIcon>
+                    <ListItemIcon><About className={"icon"}/></ListItemIcon>
                     <ListItemText primary={"About Us"}/>
                 </ListItem>
             </Link>

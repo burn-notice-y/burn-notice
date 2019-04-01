@@ -16,7 +16,7 @@ const LoggedOutContent = () => {
             <List>
                 <Link component={RouterLink} to={"/"}>
                     <ListItem button>
-                        <ListItemIcon>{<VideoLabel/>}</ListItemIcon>
+                        <ListItemIcon>{<VideoLabel className={"icon"}/>}</ListItemIcon>
                         <ListItemText primary={'Home'}/>
                     </ListItem>
                 </Link>
@@ -27,7 +27,7 @@ const LoggedOutContent = () => {
                 {['Login', 'Register'].map((text, index) => (
                         <Link component={RouterLink} key={text} to={index % 2 === 0 ? "/visitor/login": "/visitor/register"} className={"router-link"}>
                             <ListItem button>
-                                <ListItemIcon>{index % 2 === 0 ? <Person/> : <PersonAdd/>}</ListItemIcon>
+                                <ListItemIcon>{index % 2 === 0 ? <Person className={"icon"}/> : <PersonAdd className={"icon"}/>}</ListItemIcon>
                                     <ListItemText primary={text}/>
                             </ListItem>
                         </Link>
