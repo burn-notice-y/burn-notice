@@ -56,6 +56,7 @@ public class TransferRequestController {
     public TransferRequest findOne(@RequestParam long id){
         return transferDao.findOne(id);
     }
+
     @Value("${sendgrid_api_key}") String sendGridAPIKey;
     @PostMapping("/api/approve-transfer")
     public void approveRequest( @RequestBody TransferRequest request) throws IOException {

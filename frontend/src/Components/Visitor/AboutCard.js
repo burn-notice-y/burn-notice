@@ -27,7 +27,7 @@ const AboutCard = props => {
         <Card className={classes.card}>
             <CardActionArea>
                 <CardMedia
-                    className={classes.media}
+                    className={"card-img"}
                     image={props.image}
                     title={props.altText || "oops!"}
                 />

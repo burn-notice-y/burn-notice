@@ -19,7 +19,9 @@
     background-size: cover;
 
 }
-
+.card-img {
+    height: 100px;
+}
 
 @keyframes heartRateIn {
     0% {
@@ -96,6 +98,9 @@
 }
 
 @media only screen and (min-width: 786px) {
+    .card-img {
+        height: 140px;
+    }
     .team-body {
         flex-wrap: wrap;
     }
@@ -104,6 +109,7 @@
         width: 18%;
     }
     .about-body {
+        height: 50vh;
         justify-content: space-evenly;
     }
     .about-cont{
