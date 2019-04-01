@@ -22,6 +22,8 @@ Main
     height: 95vh;
     opacity: 1;
     padding-top: 50px;
+
+
     overflow: visible;
     width: 100%;
 }
@@ -75,7 +77,9 @@ Main
         margin-left: 240px;
         flex-shrink: 0;
         padding-top: 100px;
+        width: 80%;
         width: 76%;
+
     }
     .success-message {
         padding: 1%;
