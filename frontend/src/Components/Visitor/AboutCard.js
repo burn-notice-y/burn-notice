@@ -22,12 +22,13 @@ const styles = {
 };
 
 const AboutCard = props => {
+    console.log(window.width);
     const { classes } = props;
     return (
         <Card className={classes.card}>
             <CardActionArea>
                 <CardMedia
-                    className={classes.media}
+                    className={"card-img"}
                     image={props.image}
                     title={props.altText || "oops!"}
                 />

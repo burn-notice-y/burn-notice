@@ -34,9 +34,9 @@ const MediaCard =(props) => {
                     <Typography gutterBottom variant="h5" component="h2">
                         {props.title}
                     </Typography>
-                    <Typography component="p">
+                    <div>
                         {props.content}
-                    </Typography>
+                    </div>
                 </CardContent>
             </CardActionArea>
         </Card>
@@ -48,7 +48,7 @@ MediaCard.propTypes = {
     classes: PropTypes.object.isRequired,
     image: PropTypes.any,
     title: PropTypes.string,
-    content: PropTypes.string,
+    content: PropTypes.any,
     altText: PropTypes.string,
 };
 

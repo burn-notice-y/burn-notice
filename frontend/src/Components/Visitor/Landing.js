@@ -11,6 +11,8 @@ import vacancyImage from '../../assets/images/vacancy.jpeg';
 import transferImage from '../../assets/images/transfers.jpg';
 import reportImage from '../../assets/images/reports-1065.png';
 import HeartRate from "../HeartRate";
+import List from "@material-ui/core/List/List";
+import ListItem from "@material-ui/core/ListItem/ListItem";
 
 class Landing extends Component {
 
@@ -20,22 +22,22 @@ class Landing extends Component {
 
     render() {
     let reportInfo = (
-        <ul>
-            <li>Easily file reports from anywhere</li>
-            <li>Associate responders with the presence of deadly chemicals</li>
-        </ul>
+        <List>
+            <ListItem>Easily file reports from anywhere</ListItem>
+            <ListItem>Associate responders with the presence of deadly chemicals</ListItem>
+        </List>
     );
     let vacancyInfo = (
-        <ul>
-            <li>Apply from anywhere, anytime</li>
-            <li>Get real time rosters of the station's current crew</li>
-        </ul>
+        <List>
+            <ListItem>Apply from anywhere, anytime</ListItem>
+            <ListItem>Get real time rosters of the station's current crew</ListItem>
+        </List>
     );
     let transferInfo = (
-        <ul>
-            <li>Email notifications when your application status changes</li>
-            <li>Automatically updating assignment history upon transfer</li>
-        </ul>
+        <List>
+            <ListItem>Email notifications when your application status changes</ListItem>
+            <ListItem>Automatically updating assignment history upon transfer</ListItem>
+        </List>
     );
         return (
             <div className={"landing-cont"}>
