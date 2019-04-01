@@ -39,13 +39,20 @@ class Landing extends Component {
     );
         return (
             <div className={"landing-cont"}>
-                <div className="landing-header-cont" style={{display: "flex", justifyContent: "space-evenly"}}>
-                        <Typography component="h2" variant="h2" gutterBottom style={{zIndex: 10000}}>
+                <div className="landing-header-cont">
+                        <Typography component="h2" variant="h2" gutterBottom style={{zIndex: 100}}>
                             Burn Notice
                         </Typography>
-                    <HeartRate/>
+                    <div className="heart-rate-cont">
+                        <HeartRate/>
+                    </div>
                  </div>
                 <Divider className={"landing-divider"}/>
+                <div className="mobile-info">
+                    <Typography variant="body1" component="p">
+                        An efficient, yet user friendly portal for the San Antonio Fire Department to track internal vacancies and file reports
+                    </Typography>
+                </div>
                 <div className={"landing-card-content-cont"}>
                     <div className={"landing-card-cont"}>
                         <CardDesign image={reportImage} altText={"Report"} content={reportInfo} title={"Reports"}/>

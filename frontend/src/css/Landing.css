@@ -1,6 +1,9 @@
-.landing-cont {
-    height: 80vh;
-    width: 70%;
+.landing-header-cont {
+    text-align: center;
+}
+.heart-rate-cont {
+    display: flex;
+    justify-content: center;
 }
 .landing-info-cont {
     margin-bottom: 10vh;
@@ -24,7 +27,7 @@
 }
 .landing-cont {
     width: 90%;
-    height: 76vh;
+    height: 60vh;
 }
 .landing-divider {
     margin: 2vh 0 !important;
@@ -48,19 +51,44 @@
 .get-started a {
     width: 100%;
 }
+.landing-card-content-cont {
+    display: none;
+}
+.mobile-info {
+    margin: 7vh 0;
+    display: flex;
+    justify-content: center;
+}
+.mobile-info > p {
+    width: 80%;
+}
 
 @media only screen and (min-width: 786px){
+    .landing-cont {
+        height: 80vh;
+    }
+    .mobile-info {
+        display: none;
+    }
+    .heart-rate-cont {
+        width: 40%;
+    }
+    .landing-card-content-cont {
+        display: block;
+    }
     .full-cont {
         width: 85%;
     }
     .landing-cont {
         height: 80vh;
     }
+    .landing-header-cont {
+        display: flex;
+    }
     .landing-header-cont h2 {
         text-align: center;
     }
     .landing-card-cont {
-        display: flex;
         justify-content: space-between;
     }
 }

@@ -79,10 +79,11 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+
 }
 .team-body > div {
     margin: 2vh;
-    width: 18%;
+    width: 40%;
 }
 .team-cont {
 }
@@ -94,6 +95,13 @@
 }
 
 @media only screen and (min-width: 786px) {
+    .team-body {
+        flex-wrap: wrap;
+    }
+    .team-body > div {
+        margin: 2vh;
+        width: 18%;
+    }
     .about-body {
         justify-content: space-evenly;
     }

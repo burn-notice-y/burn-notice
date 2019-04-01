@@ -22,12 +22,7 @@ li {
 Main
 ***************************************************/
 .content {
-    width: 100%;
-    display: flex;
-    flex-shrink: 1;
-    height: 100vh;
-    overflow-x: hidden;
-
+    background-color: white;
 }
 
 .main-content-cont {
@@ -35,7 +30,7 @@ Main
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 95vh;
+    height: 103vh;
     opacity: 1;
     padding-top: 50px;
     width: 100%;
@@ -123,9 +118,15 @@ Main
 @media only screen and (min-width: 780px){
     .content {
         background-color: white;
+        width: 100%;
+        display: flex;
+        flex-shrink: 1;
+        height: 100vh;
+        overflow-x: hidden;
     }
     .main-content-cont {
         margin-left: 240px;
+        overflow: scroll;
         flex-shrink: 0;
         height: 100vh;
         padding-top: 100px;
