@@ -2,7 +2,20 @@ body {
     margin: 0;
 }
 a {
+    text-decoration: none !important;
+}
+ul {
+    padding: 0;
+    margin: 0;
+}
+li {
+    list-style: none;
     text-decoration: none;
+    margin: 2vh 0;
+}
+.disclaimer-cont {
+    padding-top: 100px;
+    height: 50vh;
 }
 
 /**************************************************
@@ -12,6 +25,9 @@ Main
     width: 100%;
     display: flex;
     flex-shrink: 1;
+    height: 100vh;
+    overflow-x: hidden;
+
 }
 
 .main-content-cont {
@@ -22,9 +38,6 @@ Main
     height: 95vh;
     opacity: 1;
     padding-top: 50px;
-
-
-    overflow: visible;
     width: 100%;
 }
 
@@ -50,39 +63,75 @@ Main
 .success-message {
     background-color: #4caa44;
     width: 60vw;
-    position: absolute;
     bottom: -70px;
     left: 10px;
     border-radius: 7px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 4%;
     color: white;
     transition: all 0.4s ease-in-out;
     opacity: 0;
+    height: 0;
+    padding: 0;
     box-shadow: 11px 11px 31px -7px rgba(111, 111, 111, 0.75);
 }
 .popup-active {
+    position: absolute;
+    padding: 4%;
     bottom: 10px;
     left: 10px;
     opacity: 1;
+
 }
 .success-p {
     color: white !important;
 }
 
+.heart-rate {
+    width: 150px;
+    height: 73px;
+    position: relative;
+}
+
+.fade-in {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #FFFFFF;
+    top: 0;
+    right: 0;
+    animation: heartRateIn 2.5s linear infinite;
+}
+
+.fade-out {
+    position: absolute;
+    width: 120%;
+    height: 100%;
+    top: 0;
+    left: -120%;
+    animation: heartRateOut 2.5s linear infinite;
+    background: rgb(250, 251, 255);
+    background: -moz-linear-gradient(left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
+    background: -webkit-linear-gradient(left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
+    background: -o-linear-gradient(left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
+    background: -ms-linear-gradient(left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
+    background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 80%, rgba(255, 255, 255, 0) 100%);
+}
+
 @media only screen and (min-width: 780px){
+    .content {
+        background-color: white;
+    }
     .main-content-cont {
         margin-left: 240px;
         flex-shrink: 0;
+        height: 100vh;
         padding-top: 100px;
-        width: 80%;
-        width: 76%;
-
+        width: calc(100% - 240px);
     }
     .success-message {
-        padding: 1%;
+        padding: 2%;
         z-index: 100000;
         width: 20vw;
         left: 25%;

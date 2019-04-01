@@ -4,20 +4,105 @@
     align-items: center;
     width: 50%;
 }
+.about-header {
+
+}
 .about-cont {
-    height: 80vh;
-    width: 80%;
+    padding-top: 10vh;
+    width: 100%;
+    height: 101vh;
+    background-image: linear-gradient(
+            to bottom,
+            rgba(0,0,0, .7),
+            rgba(0,0,0, .4)
+    ),url("../assets/images/fireman.jpg");
+    background-size: cover;
+}
+
+
+@keyframes heartRateIn {
+    0% {
+        width: 100%;
+    }
+    50% {
+        width: 0;
+    }
+    100% {
+        width: 0;
+    }
+}
+
+@keyframes heartRateOut {
+    0% {
+        left: -120%;
+    }
+    30% {
+        left: -120%;
+    }
+    100% {
+        left: 0;
+    }
+}
+.github {
+    display: flex;
+    justify-content: center;
+}
+.github-name {
+    color: #bfbfbf !important;
+    transition: all 0.3s;
+    padding-bottom: 10px;
+    margin-bottom: 1px;
+}
+.github-name:hover {
+    border-bottom: 1px solid #bfbfbf;
 }
 .about-divider {
-    margin: 3vh !important;
+    margin: 1vh 0 !important;
+    background-color: #bfbfbf!important;
 }
 .about-header h1 {
     text-align: center;
 }
 .about-body {
-    margin-top: 5vh;
     display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 50vh;
+    align-items: flex-end;
+}
+.about-header {
+    color: #bfbfbf !important;
+}
+.team-body {
+    width: 96% !important;
+    display: flex;
+    justify-content: space-between;
     flex-wrap: wrap;
 }
+.team-body > div {
+    margin: 2vh;
+    width: 18%;
+}
 .team-cont {
+}
+
+@media only screen and (min-width: 480px) {
+    .about-body > div {
+        width: 40%;
+    }
+}
+
+@media only screen and (min-width: 786px) {
+    .about-body {
+        justify-content: space-evenly;
+    }
+    .about-body > div {
+        width: 20%;
+    }
+}
+@media only screen and (min-width: 1200px) {
+    .about-body > div {
+        width: 20%;
+    }
 }

@@ -8,6 +8,7 @@ import axios from 'axios';
 import * as PropTypes from "prop-types";
 import TwoOptionSelect from "../TwoOptionSelect";
 import Divider from "@material-ui/core/Divider/Divider";
+import EmptyDisplay from "../EmptyDisplay";
 
 class VacancyDisplay extends Component{
     state= {
@@ -82,6 +83,7 @@ class VacancyDisplay extends Component{
                 </div>
                 <div className="vacancy-cont">
                     <ManyVacancies admin={chief} vacancies={this.state.filterTerm === "open" ? this.state.openVacancies : this.state.allVacancies}/>
+                    <EmptyDisplay show={true} items={this.state.filterTerm === "open" ? this.state.openVacancies : this.state.allVacancies} variant={"h5"} name={"vacancies"}/>
                 </div>
             </div>
         )

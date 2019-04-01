@@ -42,7 +42,7 @@ const UserActions = ({ closeMenu, user}) => {
                    <Link to={text[1]} className={"link"} key={index}>
                        <ListItem button key={index} onClick={closeMenu} className={"router-link"}>
                            <ListItemIcon>{text[0] === "Assignment History" ?
-                               <Assignment/> : <LocationCity/> }</ListItemIcon>
+                               <Assignment className={"icon"}/> : <LocationCity/> }</ListItemIcon>
                            <ListItemText primary={text[0]}/>
                        </ListItem>
                    </Link>

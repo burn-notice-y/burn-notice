@@ -16,6 +16,7 @@ import Profile from "./Components/User/Profile";
 import Popup from "./Components/Popup";
 import OwnModal from "./Components/OwnModal";
 import About from "./Components/Visitor/About";
+import Disclaimer from "./Components/Disclaimer";
 
 class App extends Component {
     componentDidMount() {
@@ -41,6 +42,7 @@ class App extends Component {
                             <Route path={"/visitor/register"} render={() => <Register/>}/>
                             <Route path={"/visitor/login"} render={() => <Login/>}/>
                             <Route path={"/visitor/about"} render={() => <About/>}/>
+                            <Route path={"/visitor/disclaimer"} render={() => <Disclaimer/>}/>
                             <Route path={"/user/profile"} render={() => <Profile />}/>
                             <Route path={"/:path"} render={(routeProps) => <MainRouter {...routeProps}/>}/>
                             <Route path={"/"} render={() => <Landing/>}/>

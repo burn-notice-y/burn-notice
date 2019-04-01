@@ -15,7 +15,14 @@
     width: 100%;
 }
 .login-header {
-    margin-bottom: 8vh;
+    width: 80%;
+}
+.login-header-h3 > h3 {
+    margin-bottom: 0;
+}
+.login-header-h3 {
+    z-index: 10000000;
+    width: 60%;
 }
 .input-cont:last-child {
     margin-bottom: 7vh;
@@ -23,6 +30,10 @@
 .submit-login-cont {
     margin-bottom: 3vh;
 }
+.login-heart {
+    margin-top: 3vh;
+}
+
 @media only screen and (min-width: 786px) {
     .login-cont {
         width: 50%;

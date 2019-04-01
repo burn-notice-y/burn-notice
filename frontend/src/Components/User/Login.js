@@ -9,6 +9,7 @@ import '../../css/Login.css';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import Divider from "@material-ui/core/Divider/Divider";
+import HeartRate from "../HeartRate";
 
 
 class Login extends Component {
@@ -49,12 +50,15 @@ class Login extends Component {
         }
         return (
             <div className="login-cont">
-                <div className="login-header">
-                    <Typography component="h3" variant="h2" gutterBottom className={"login-header"}>
-                        Sign in
-                    </Typography>
-                    <Divider/>
+                <div className="login-header" style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+                    <div className={"login-header-h3"}>
+                        <Typography component="h3" variant="h2" gutterBottom className={"login-header"}>
+                            Sign in
+                        </Typography>
+                    </div>
+                    <HeartRate/>
                 </div>
+                <Divider style={{margin: "3vh 0"}}/>
                 <div className="login-info">
                     <Typography component="p" gutterBottom className={"login-header"}>
                         Use your SAP number, and your custom password
