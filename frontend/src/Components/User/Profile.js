@@ -18,7 +18,8 @@ class Profile extends Component {
         lastName: "",
         sap: "",
         stations: "",
-        chief: ""
+        chief: "",
+        eligibleForTransfer: ""
     };
 
     static getDerivedStateFromProps(nextProps, prevState) {
@@ -72,15 +73,6 @@ class Profile extends Component {
     };
 
     render() {
-        let actionName = "cancel";
-        if (this.state.editLocked){
-            actionName = "edit"
-        }
-        let transferEligible = false;
-        let transferText = "No";
-        if (transferEligible){
-            transferText = "Yes";
-        }
         return (
             <div className={"big-edit-cont"}>
                 <div className="register-header">
@@ -91,7 +83,7 @@ class Profile extends Component {
                         <Divider/>
                         <div className="edit-cont">
                             <Button variant="contained" color="primary">
-                                <div onClick={this.toggleEdit}>{actionName}</div>
+                                <div onClick={this.toggleEdit}>{this.state.editLocked ? "Edit" : "Cancel"}</div>
                             </Button>
                         </div>
                     </div>
@@ -157,7 +149,7 @@ class Profile extends Component {
                                     Eligible For Transfer:
                                 </Typography>
                                 <Typography component="h6" variant="h6" gutterBottom className={"edit-transfer"}>
-                                    {transferText}
+                                    {this.state.eligibleForTransfer ? "Yes" : "No"}
                                 </Typography>
                             </div>
                             <div className="edit-prof-cont">
