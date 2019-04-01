@@ -53,6 +53,10 @@
     display: flex;
     justify-content: center;
 }
+.transfer-input-cont {
+    width: 100%;
+    margin-top: 1vh;
+}
 
 @media only screen and (min-width: 786px){
     .transfer-group {

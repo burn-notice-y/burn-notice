@@ -39,6 +39,7 @@ Main
     opacity: 1;
     padding-top: 50px;
     width: 100%;
+    overflow: scroll;
 }
 
 .loading-active {

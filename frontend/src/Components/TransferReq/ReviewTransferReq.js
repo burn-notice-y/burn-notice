@@ -105,7 +105,7 @@ class ReviewTransferReq extends Component{
                             {this.props.header}
                         </Typography>
                     </div>
-                    <div className="input-cont">
+                    <div className="transfer-input-cont">
                         <div className="apply">
                             <VacancyInfo fillDate={fillDate} postDate={moment(request.vacancy.postDate).format("MMMM Do YYYY")} role={request.vacancy.engine ? "Engine" : "Truck"} temporary={request.vacancy.temporary ? "Yes" : "No"}
                                          stationName={request.vacancy.station.name} captain={captain}

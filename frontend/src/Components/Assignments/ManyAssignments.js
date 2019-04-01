@@ -41,7 +41,7 @@ class ManyAssignments extends Component {
                 </div>
                 <Divider className={"assignment-divider"}/>
                 <div className="assignments-content">
-                    {this.state.assignments.map(assignment => <Assignment key={assignment.id} {...assignment}/>)}
+                    {this.state.assignments.reverse().map(assignment => <Assignment key={assignment.id} {...assignment}/>)}
                 </div>
             </div>
         );

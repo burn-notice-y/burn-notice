@@ -17,6 +17,7 @@ import ReportsPage2 from "./Pages/ReportPage2";
 import ReportsPage3 from "./Pages/ReportPage3";
 import Action from "./Actions/Action";
 import Divider from "@material-ui/core/Divider/Divider";
+import Button from "@material-ui/core/Button/Button";
 
 class CreateReport extends Component {
     state = {
@@ -164,6 +165,18 @@ class CreateReport extends Component {
                     this.props.showModal(["Oops", "Something went wrong", "Please try again later"])
                 })
         };
+    fillReport = () => {
+      this.setState({
+          teamActions: "Jermaine Cole spit actual fire",
+          description: "Right now I'm starin' out the window of my Range and contemplating, am I sane?\n" +
+              "Have I sacrificed for fame?\n" +
+              "My occupation on my brain\n" +
+              "Thought that I could change it all if I had changed\n" +
+              "But the people that I came up with way back is still the same\n" +
+              "I be tryna give 'em game like Santa did when Christmas came\n" +
+              "They be listenin' but it's clear to me they did not hear a thing\n"
+      })
+    };
 
     render() {
         if (this.state.redirect) {
@@ -176,14 +189,17 @@ class CreateReport extends Component {
                         <Typography component="h3" variant="h4" gutterBottom className={"report-header"}>
                             File a Report
                         </Typography>
-                        <Divider className={"report-divider"}/>
+                        <div className="pre-fill">
+                            <Button color="primary" variant="contained" onClick={this.fillReport}>Fill</Button>
+                        </div>
                     </div>
+                        <Divider className={"report-divider"}/>
                     <div className="page-nav">
                         <Typography component="h3" variant="h6" gutterBottom className={"registration-header"}>
                             Page: {this.props.match.params.pageNumber}
                         </Typography>
                     </div>
-                    <div className="input-cont">
+                    <div className="report-input-cont">
                         <Switch>
                             <Route path={"/reports/create/:id"} render={() => this.determinePage()}/>
                         </Switch>
