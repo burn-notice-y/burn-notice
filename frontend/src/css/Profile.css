@@ -26,6 +26,14 @@
 }
 .prof-actions-cont {
     padding-top: 5vh;
+    display: flex;
+    justify-content: flex-end;
+}
+.edit-prof-cont {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 @media only screen and (min-width: 786px) {

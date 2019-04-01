@@ -22,7 +22,7 @@ const Assignment = ({ engine, startDate, endDate, station }) => {
                     Role: {role}
                 </Typography>
                 <Typography variant="h5" component="h2">
-                    Station: {station.code}
+                    Station: {station.name}
                 </Typography>
                 <Typography color="textSecondary" className={"assignment-dates"}>
                     Dates of Assignment:

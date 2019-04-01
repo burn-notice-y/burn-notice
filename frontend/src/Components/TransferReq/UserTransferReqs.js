@@ -35,7 +35,7 @@ class UserTransferReqs extends Component {
                 </div>
                 <Divider className={"user-transfer-divider"}/>
                 <ManyTransferReq admin={false} {...this.state}/>
-                <EmptyDisplay name={"applications"} variant={"h4"} show={true} items={this.state.transferRequests}/>
+                <EmptyDisplay name={"applications"} variant={"h5"} show={true} items={this.state.transferRequests}/>
             </div>
         );
     }

@@ -21,20 +21,13 @@ class Profile extends Component {
         chief: ""
     };
 
-    componentDidMount() {
-        this.props.toggleLoading();
-    }
-
-
     static getDerivedStateFromProps(nextProps, prevState) {
         if (nextProps.user && nextProps.user.id !== ""){
             if (nextProps.user.id !== prevState.id){
-                nextProps.toggleLoading();
                 return {...nextProps.user}
             }
             return null;
         } else {
-
             return {...nextProps.user}
         }
     }
@@ -67,8 +60,14 @@ class Profile extends Component {
                     this.props.toggleLoading();
                     this.props.showPopup("Success!");
                     this.setState({editLocked: true});
+                    setTimeout(() => {
+                        this.props.closePopup()
+                    }, 3000)
                 })
-                .catch(() => console.log("errrorororororoororororo"))
+                .catch(() => {
+                    this.props.toggleLoading();
+                    this.props.showModal(["Oops", "Something went wrong", "Please try again"]);
+                })
         }
     };
 
@@ -141,28 +140,40 @@ class Profile extends Component {
                     <div className="static">
                         <div className="overview">
                             <div className="static-header">
-                                <Typography component="h3" variant="h6" gutterBottom className={"edit-transfer"}>
+                                <Typography component="h3" variant="h4" gutterBottom className={"edit-transfer"}>
                                     Overview:
                                 </Typography>
                             </div>
-                            <div className="edit-transfer-cont reg-input">
-                                <Typography component="p" variant="subtitle2" gutterBottom className={"edit-transfer"}>
-                                    SAP: {this.state.sap}
+                            <div className="edit-prof-cont">
+                                <Typography component="h6" variant="h6" gutterBottom className={"edit-transfer"}>
+                                    SAP:
+                                </Typography>
+                                <Typography component="h6" variant="h6" gutterBottom className={"edit-transfer"}>
+                                    {this.state.sap}
                                 </Typography>
                             </div>
-                            <div className="edit-transfer-cont reg-input">
-                                <Typography component="p" variant="subtitle2" gutterBottom className={"edit-transfer"}>
-                                    Eligible For Transfer: {transferText}
+                            <div className="edit-prof-cont">
+                                <Typography component="h6" variant="h6" gutterBottom className={"edit-transfer"}>
+                                    Eligible For Transfer:
+                                </Typography>
+                                <Typography component="h6" variant="h6" gutterBottom className={"edit-transfer"}>
+                                    {transferText}
                                 </Typography>
                             </div>
-                            <div className="edit-station-cont reg-input">
-                                <Typography component="p" variant="subtitle2" gutterBottom className={"edit-transfer"}>
-                                    {this.state.chief === false ? `Current Station: ${this.state.stations.name}` : "Chief" }
+                            <div className="edit-prof-cont">
+                                <Typography component="h6" variant="h6" gutterBottom className={"edit-transfer"}>
+                                    {this.state.chief === false ? `Current Station:` : "Chief" }
+                                </Typography>
+                                <Typography component="h6" variant="h6" gutterBottom className={"edit-transfer"}>
+                                    {this.state.chief === false ? this.state.stations.name : "" }
                                 </Typography>
                             </div>
-                            <div className="edit-station-cont reg-input">
-                                <Typography component="p" variant="subtitle2" gutterBottom className={"edit-transfer"}>
-                                    Current District: 8-0
+                            <div className="edit-prof-cont">
+                                <Typography component="h6" variant="h6" gutterBottom className={"edit-transfer"}>
+                                    Current District:
+                                </Typography>
+                                <Typography component="h6" variant="h6" gutterBottom className={"edit-transfer"}>
+                                    8-0
                                 </Typography>
                             </div>
                         </div>
@@ -189,6 +200,7 @@ const mapStateToProps = state => {
 Profile.propTypes = {
     showPopup: PropTypes.func,
     toggleLoading: PropTypes.func,
-    closePopup :PropTypes.func
+    closePopup :PropTypes.func,
+    showModal: PropTypes.func,
 };
 export default connect(mapStateToProps, actions)(Profile);

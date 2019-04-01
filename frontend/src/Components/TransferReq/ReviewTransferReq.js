@@ -114,7 +114,7 @@ class ReviewTransferReq extends Component{
                                          />
 
                             <div className={"fireman-cont"}>
-                                <ManyFirefighters firemanList={this.state.request.vacancy.station.currentCrew}/>
+                                <ManyFirefighters firemanList={this.state.request.vacancy.station.currentCrew} title={"Current Crew"}/>
                             </div>
                         </div>
                         <div className="top">
