@@ -7,7 +7,7 @@ import shawn from '../../assets/images/shawn.jpeg';
 import aziz from '../../assets/images/aziz.jpeg';
 import chris from '../../assets/images/chris.jpeg';
 import teamMembers from '../../data/teamMembers';
-import AboutCard from "../AboutCard";
+import AboutCard from "./AboutCard";
 
 const About = () => {
     return (
@@ -29,8 +29,8 @@ const About = () => {
             </div>
             <div className="about-body">
                 <div className="team-body">
-                    {teamMembers([aziz, shawn, chris, karla]).map(member => (
-                        <AboutCard email={member.email} github={member.gitHub} image={member.img} content={member.name} altText={member.name} />
+                    {teamMembers([aziz, shawn, chris, karla]).map((member, index) => (
+                        <AboutCard key={index} email={member.email} github={member.gitHub} image={member.img} content={member.name} altText={member.name} />
                     ))}
                 </div>
             </div>

@@ -1,6 +1,6 @@
 .login-cont {
     height: 75vh;
-    width: 80%;
+    width: 85%;
 }
 
 .login-actions-cont {
@@ -15,7 +15,7 @@
     width: 100%;
 }
 .login-header {
-    width: 90%;
+    width: 100%;
 }
 .login-header-h3 > h3 {
     margin-bottom: 0;
