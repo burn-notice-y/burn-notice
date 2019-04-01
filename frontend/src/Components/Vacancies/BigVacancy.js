@@ -14,11 +14,6 @@ import * as PropTypes from "prop-types";
 class BigVacancy extends Component {
     state = {
         vacancy: null,
-        id: "",
-        firstName: "",
-        lastName: "",
-        sap: "",
-        user: ""
     };
 
     static getDerivedStateFromProps(nextProps) {
@@ -43,7 +38,7 @@ class BigVacancy extends Component {
         axios.post("/api/submitApplication", {
             sentDate: moment().format('YYYY-MM-DD'),
             status: "Pending",
-            user: {id: this.state.id },
+            user: {id: this.state.user.id },
             vacancy: {id: this.props.match.params.id },
         }).then(result => {
             this.props.toggleLoading();
@@ -71,7 +66,7 @@ class BigVacancy extends Component {
         if (vacancy.fillDate === "9999"){
             fillDate = "Open";
             applyText = "Apply";
-            if (this.state.eligibleForTransfer){
+            if (!this.state.eligibleForTransfer){
                 cannotApply = false;
             } else {
                 helperText = "You are not eligible for transfer"
