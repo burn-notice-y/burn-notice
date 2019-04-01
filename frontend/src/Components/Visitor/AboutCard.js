@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { connect } from 'react-redux';
-import * as actions from '../store/actions';
+import * as actions from '../../store/actions/index';
 
 const styles = {
     card: {

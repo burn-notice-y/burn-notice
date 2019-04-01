@@ -3,7 +3,7 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 import * as actions from './store/actions';
 import './css/global.css';
-import Landing from './Components/Landing';
+import Landing from './Components/Visitor/Landing';
 import Header from './Components/Header/Header';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import PropTypes from 'prop-types';
@@ -16,7 +16,7 @@ import Profile from "./Components/User/Profile";
 import Popup from "./Components/Popup";
 import OwnModal from "./Components/OwnModal";
 import About from "./Components/Visitor/About";
-import Disclaimer from "./Components/Disclaimer";
+import Disclaimer from "./Components/Visitor/Disclaimer";
 
 class App extends Component {
     componentDidMount() {
