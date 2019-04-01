@@ -13,7 +13,7 @@
     height: 101vh;
     background-image: linear-gradient(
             to bottom,
-            rgba(0,0,0, .5),
+            rgba(0,0,0, .7),
             rgba(0,0,0, .4)
     ),url("../assets/images/fireman.jpg");
     background-size: cover;
@@ -42,6 +42,19 @@
     100% {
         left: 0;
     }
+}
+.github {
+    display: flex;
+    justify-content: center;
+}
+.github-name {
+    color: #bfbfbf !important;
+    transition: all 0.3s;
+    padding-bottom: 10px;
+    margin-bottom: 1px;
+}
+.github-name:hover {
+    border-bottom: 1px solid #bfbfbf;
 }
 .about-divider {
     margin: 1vh 0 !important;

@@ -18,17 +18,35 @@
     width: 100%;
 }
 .landing-card-cont {
-    width: 75%;
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
 }
 .landing-cont {
     width: 90%;
     height: 76vh;
 }
 .landing-divider {
-    margin: 4vh 0 !important;
+    margin: 2vh 0 !important;
 }
 .ind-card-cont {
     margin: 4vh 0;
+    width: 31%;
+}
+.ind-card-cont >div {
+    height: 40vh;
+}
+.landing-actions {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.get-started {
+    margin-top: 4vh;
+    width: 50%;
+}
+.get-started a {
+    width: 100%;
 }
 
 @media only screen and (min-width: 786px){
@@ -36,7 +54,7 @@
         width: 85%;
     }
     .landing-cont {
-        height: 50vh;
+        height: 80vh;
     }
     .landing-header-cont h2 {
         text-align: center;

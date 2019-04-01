@@ -1,16 +1,12 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import reportImage from '../assets/images/reports-1065.png';
 import '../css/Landing.css';
-import vacancyImage from '../assets/images/vacancy.jpeg';
 
 
 
@@ -19,7 +15,7 @@ const styles = {
         maxWidth: 345,
     },
     media: {
-        height: 180,
+        height: 100,
     },
 };
 

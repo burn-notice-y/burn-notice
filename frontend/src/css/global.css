@@ -4,6 +4,19 @@ body {
 a {
     text-decoration: none !important;
 }
+ul {
+    padding: 0;
+    margin: 0;
+}
+li {
+    list-style: none;
+    text-decoration: none;
+    margin: 2vh 0;
+}
+.disclaimer-cont {
+    padding-top: 100px;
+    height: 50vh;
+}
 
 /**************************************************
 Main

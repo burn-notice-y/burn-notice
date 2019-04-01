@@ -20,6 +20,13 @@ const About = () => {
             <div style={{display: "flex", justifyContent: "center"}}>
                 <Divider className={"about-divider"} style={{width: "80%"}}/>
             </div>
+            <div className="github">
+                    <a href="https://github.com/burn-notice-y/burn-notice" target={"_blank"}>
+                <Typography variant="subheading" className={"github-name"}>
+                        Project GitHub&#8482;
+                </Typography>
+                    </a>
+            </div>
             <div className="about-body">
                 <div className="team-body">
                     {teamMembers([aziz, shawn, chris, karla]).map(member => (
