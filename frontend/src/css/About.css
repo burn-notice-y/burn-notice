@@ -13,8 +13,8 @@
     height: 120vh;
     background-image: linear-gradient(
             to bottom,
-            rgba(0,0,0, .7),
-            rgba(0,0,0, .4)
+            rgba(0,0,0, .9),
+            rgba(0,0,0, .6)
     ),url("../assets/images/mobile-fire.jpg");
     background-size: cover;
 
@@ -71,7 +71,7 @@
     justify-content: center;
     flex-wrap: wrap;
     width: 100%;
-    height: 50vh;
+    height: 70vh;
     align-items: flex-end;
 }
 .about-header {
@@ -89,6 +89,9 @@
     width: 40%;
 }
 .team-cont {
+}
+.about-name > p {
+    text-align: center;
 }
 
 @media only screen and (min-width: 480px) {
@@ -109,7 +112,7 @@
         width: 18%;
     }
     .about-body {
-        height: 50vh;
+        height: 70vh;
         justify-content: space-evenly;
     }
     .about-cont{
