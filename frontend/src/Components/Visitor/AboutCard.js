@@ -31,8 +31,8 @@ const AboutCard = props => {
                     image={props.image}
                     title={props.altText || "oops!"}
                 />
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
+                <CardContent className={"about-name"}>
+                    <Typography gutterBottom variant="h5" component="h2" >
                         {props.title}
                     </Typography>
                     <Typography component="p">
