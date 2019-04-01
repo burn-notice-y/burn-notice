@@ -17,12 +17,13 @@ class BigVacancy extends Component {
         id: "",
         firstName: "",
         lastName: "",
+        sap: "",
+        user: ""
     };
 
     static getDerivedStateFromProps(nextProps) {
-        return {...nextProps.user}
+        return {...nextProps}
     }
-
 
     componentDidMount(){
         this.props.toggleLoading();
@@ -55,6 +56,7 @@ class BigVacancy extends Component {
     };
 
     render(){
+        console.log(this.state);
         if (this.state.vacancy === null){
             return <div/>;
         }

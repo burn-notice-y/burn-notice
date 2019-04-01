@@ -1,22 +1,14 @@
 import React from 'react';
 import TransferReq from '../TransferReq/TransferReq'
 import PropTypes from 'prop-types';
-import Typography from "@material-ui/core/Typography";
+import EmptyDisplay from "../EmptyDisplay";
 
 const ManyTransferReq = ({ admin, transferRequests, executedSearch }) => {
-    let emptyDisplay = null;
-    if (transferRequests.length === 0 && executedSearch){
-        emptyDisplay = (
-            <Typography component={"h2"} variant={"h5"}>
-                No pending requests for this station
-            </Typography>
-        )
-    }
     return (
         <div className="many-transferReq-cont">
-            <div className="transferReq-body">
+            <div className="transferReq-body" style={{width: "60%"}}>
                 {transferRequests.map(transferReq => <TransferReq admin={admin} key={transferReq.id} {...transferReq} />)}
-                {emptyDisplay}
+                <EmptyDisplay variant={"h5"} items={transferRequests} name={"requests"} show={executedSearch}/>
             </div>
         </div>
     );
